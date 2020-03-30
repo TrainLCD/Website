@@ -72,7 +72,7 @@
     <p class="text">
     TinyKitten never asks for personal information such as name, date of birth, address, telephone number, e-mail address, bank account number, credit card number, driver's license number, etc. when registering for use. However, the location information of the user is temporarily acquired due to the characteristics of this application, but is not stored at all on the server.
     </p>
-    <h3>3.Purpose of collecting and using personal information</h3>
+    <h3 class="heading">3.Purpose of collecting and using personal information</h3>
     <p class="text">TinyKitten collects and uses personal information for the following purposes:</p>
     <ol class="list">
         <li>To provide and operate this application</li>
