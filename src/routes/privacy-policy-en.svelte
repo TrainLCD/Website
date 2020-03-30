@@ -77,17 +77,17 @@
     <ol class="list">
         <li>To provide and operate this application</li>
     </ol>
-    <h3 class="heading">3.Change of purpose of use</h3>
+    <h3 class="heading">4.Change of purpose of use</h3>
     <ol class="list">
         <li>TinyKitten will change the purpose of use of personal information only if it is reasonably deemed that the purpose of use is relevant to before the change.</li>
         <li>If the purpose of use is changed, the purpose after the change shall be notified to the user or published on this website by the method prescribed by TinyKitten.</li>
     </ol>
-    <h3 class="heading">4.Changes in Privacy Policy</h3>
+    <h3 class="heading">5.Changes in Privacy Policy</h3>
     <ol class="list">
         <li>The contents of this policy are subject to change without notice to the user, except for laws and regulations and other matters stipulated otherwise in this policy.</li>
         <li>Except as otherwise provided by TinyKitten, the revised Privacy Policy will take effect from the time it is posted on this website.</li>
     </ol>
-    <h3 class="heading">5.Contact for Inquiries</h3>
+    <h3 class="heading">6.Contact for Inquiries</h3>
     <p class="text">For inquiries regarding this policy, please contact the following contact.</p>
     <ul class="list">
     <li>Name: TinyKitten(Tsubasa SEKIGUCHI)</li>
