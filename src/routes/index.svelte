@@ -100,6 +100,11 @@
     margin-bottom: 48px;
   }
 
+  .footerLinks {
+    color: #aaa;
+    margin-bottom: 24px;
+  }
+
   /* Oppa PC Style */
   @media (min-width: 800px) {
     .mockup {
@@ -147,10 +152,12 @@
   <h1 class="heading">GALLERY</h1>
   <figure>
     <iframe
+      title="実際に使っている様子"
       width="560"
       height="315"
       src="https://www.youtube.com/embed/wxmmoxxss10"
       frameborder="0"
+      style="max-width: 100%;"
       allow="accelerometer; autoplay; encrypted-media; gyroscope;
       picture-in-picture"
       allowfullscreen />
@@ -158,6 +165,7 @@
   </figure>
   <figure>
     <iframe
+      title="元になった開発者のセッション"
       width="560"
       height="315"
       src="https://www.youtube.com/embed/zJ92TUjhdEw?start=15820"
@@ -170,6 +178,9 @@
 </section>
 
 <footer>
+  <div class="footerLinks">
+    <a class="footerLink" href="/privacy-policy">プライバシーポリシー</a>
+  </div>
   <h3>
     <a
       class="footerLink"
@@ -179,5 +190,5 @@
       The TinyKitten Project
     </a>
   </h3>
-  <p class="footerCopy">&copy; TinyKitten 2019</p>
+  <p class="footerCopy">&copy; TinyKitten 2020</p>
 </footer>
