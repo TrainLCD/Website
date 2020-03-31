@@ -25,7 +25,8 @@
 }
 .title {
     font-size: 3rem;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    line-height: 1.25;
 }
 .subtitle {
     font-size: 1rem;
