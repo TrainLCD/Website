@@ -170,6 +170,7 @@
       height="315"
       src="https://www.youtube.com/embed/zJ92TUjhdEw?start=15820"
       frameborder="0"
+      style="max-width: 100%;"
       allow="accelerometer; autoplay; encrypted-media; gyroscope;
       picture-in-picture"
       allowfullscreen />
