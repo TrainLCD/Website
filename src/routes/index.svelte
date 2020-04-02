@@ -155,11 +155,10 @@
       title="実際に使っている様子"
       width="560"
       height="315"
-      src="https://www.youtube.com/embed/wxmmoxxss10"
+      src="https://www.youtube.com/embed/T4y6MKApDXg"
       frameborder="0"
       style="max-width: 100%;"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope;
-      picture-in-picture"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen />
     <figcaption>実際に使っている様子</figcaption>
   </figure>
