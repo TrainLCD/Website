@@ -62,12 +62,11 @@ section {
 
   .arrow {
     position: absolute;
-    bottom: 32px;
+    bottom: 64px;
   }
 
   .heading {
     font-size: 1.5rem;
-    text-align: center;
     color: #555;
     margin-bottom: 32px;
   }
@@ -77,7 +76,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 32px;
+    padding: 24px;
     flex-direction: column;
   }
 
@@ -85,12 +84,17 @@ section {
     background: #fafafa;
   }
 
-  .text {
-    line-height: 2;
+  .text, .subwayNotice {
+    line-height: 1.5;
   }
 
-  .textBlock {
+  .text, .subwayNotice, figcaption {
+    font-size: 0.9rem;
     text-align: center;
+  }
+
+  .text {
+    text-rendering: optimizeLegibility;
   }
   
   figure {
@@ -98,7 +102,6 @@ section {
   }
 
   figcaption {
-    text-align: center;
     padding-top: 24px;
     padding-bottom: 24px;
     color: #aaa;
@@ -139,6 +142,13 @@ section {
       min-height: 75vh;
       padding: 64px;
     }
+    .textBlock {
+      text-align: center;
+    }
+    
+    .text, .subwayNotice, figcaption {
+    font-size: 1rem;
+  }
   }
 </style>
 
@@ -177,7 +187,7 @@ section {
 </section>
 
 <section id="next" class="about section">
-  <h2 class="heading">About TrainLCD</h2>
+  <h2 class="heading">TrainLCDとは</h2>
   <div class="textBlock">
     <p class="text">TrainLCDは、電車のLCDを再現したスマホアプリです</p>
     <p class="text"><b class="bold">満員電車</b>、<b class="bold">LCDのない路線</b>など、現在どこにいるか、どの駅を通るのかひと目で分かります。ぜひお試しください。</p>
@@ -186,7 +196,7 @@ section {
 </section>
 
 <section class="gallery section">
-  <h2 class="heading">GALLERY</h2>
+  <h2 class="heading">ギャラリー</h2>
   <figure>
     <iframe
       title="実際に使っている様子"
