@@ -11,108 +11,128 @@
 </script>
 
 <style>
-  section {
+section {
+  box-sizing: border-box;
+}
+
+  .firstView {
+    height: 100vh;
+    background: #333;
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .firstViewContent {
+    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 32px;
-    box-sizing: border-box;
-  }
-
-  figure {
-      margin-bottom: 32px;
-  }
-
-  .horizonalCenter {
-    align-items: center;
-  }
-
-  .verticalCenter {
     justify-content: center;
-  }
-
-  .mockup {
-    max-width: 100%;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
   }
 
   .appNameTitle {
-    font-size: 2.5rem;
-    color: #555;
-    margin-top: 64px;
+    font-size: 2rem;
+    margin-top: 32px;
+  }
+  
+  .appDescription {
+    margin-top: 12px;
+    font-weight: normal;
   }
 
-  .appDescription {
-    margin-top: 24px;
-    font-weight: normal;
-    color: #777;
+  .mockup {
+    width: 75%;
   }
 
   .stores {
+    width: 100%;
     display: flex;
-    margin-top: 48px;
+    justify-content: center;
+    margin-top: 32px;
   }
 
   .stores img {
-    height: 48px;
-    margin: 0 12px;
-  }
-
-  footer {
-    background: #333;
-    padding: 32px;
-    color: #aaa;
-    letter-spacing: 1px;
-    font-kerning: normal;
-    text-align: center;
-  }
-
-  .footerCopy {
-    margin-top: 6px;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .footerLink {
-    color: #aaa;
+    width: 120px;
+    margin: 0 8px;
   }
 
   .arrow {
     position: absolute;
-    left: auto;
-    right: auto;
     bottom: 32px;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 32px;
+  }
+  
+  .section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+    flex-direction: column;
+  }
+
+  .section:nth-child(even) {
+    background: #fafafa;
+  }
+
+  .text {
+    line-height: 2;
+  }
+
+  .textBlock {
+    text-align: center;
+  }
+  
+  figure {
+    margin-bottom: 32px;
   }
 
   figcaption {
     text-align: center;
-    margin-top: 12px;
-    color: #888;
-  }
-
-  .heading {
-    margin-top: 64px;
-    font-size: 2rem;
-    color: #555;
-    border-bottom: 4px solid #555;
-    padding-bottom: 12px;
-    margin-bottom: 48px;
-  }
-
-  .footerLinks {
+    padding-top: 24px;
+    padding-bottom: 24px;
     color: #aaa;
-    margin-bottom: 24px;
   }
+
+  .footer {
+    background: #dedede;
+    text-align: center;
+    padding: 32px;
+  }
+
+  .privacyLink {
+    margin-bottom: 12px;
+  }
+
+.footer, .footer a {
+   color: #555;
+   line-height: 1.5;
+   display: block;
+ }
 
   /* Oppa PC Style */
   @media (min-width: 800px) {
     .mockup {
-      max-width: 40%;
+      max-width: 30%;
     }
 
     .arrow {
       cursor: pointer;
+    }
+
+    .section {
+      min-height: 75vh;
+      padding: 64px;
     }
   }
 </style>
@@ -122,34 +142,45 @@
 </svelte:head>
 <Header />
 
-<section class="verticalCenter horizonalCenter">
-  <img class="mockup" src="/images/mock.png" alt="Mockup" />
-  <h1 class="appNameTitle">TrainLCD</h1>
-  <h2 class="appDescription">電車のLCDを再現したスマホアプリです</h2>
-  <div class="stores">
-    <a
-      href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
-      target="_blank"
-      rel="noopener noreferrer">
-      <img src="/images/appStore.svg" alt="App Store" />
-    </a>
-    <a
-      href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
-      target="_blank"
-      rel="noopener noreferrer">
-      <img src="/images/googlePlay.png" alt="Google Play" />
-    </a>
-  </div>
+<section class="firstView">
+  <div class="firstViewContent">
+    <img class="mockup" src="/images/mock.png" alt="Mockup" />
+    <h1 class="appNameTitle">TrainLCD</h1>
+    <h2 class="appDescription">電車のLCDを再現したスマホアプリです</h2>
+    <div class="stores">
+      <a
+        href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
+        target="_blank"
+        rel="noopener noreferrer">
+        <img src="/images/appStore.svg" alt="App Store" />
+      </a>
+      <a
+        href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
+        target="_blank"
+        rel="noopener noreferrer">
+        <img src="/images/googlePlay.png" alt="Google Play" />
+      </a>
+    </div>
 
   <img
     on:click={onNextClick}
     class="arrow"
     src="/images/arrow.svg"
     alt="Next" />
+
+  </div>
 </section>
 
-<section id="next" class="horizonalCenter">
-  <h1 class="heading">GALLERY</h1>
+<section id="next" class="about section">
+  <h2 class="heading">About TrainLCD</h2>
+  <div class="textBlock">
+    <p class="text">TrainLCDは、電車のLCDを再現したスマホアプリです</p>
+    <p class="text"><b class="bold">満員電車</b>、<b class="bold">LCDのない路線</b>など、現在どこにいるか、どの駅を通るのかひと目で分かります。ぜひお試しください。</p>
+  </div>
+</section>
+
+<section class="gallery section">
+  <h2 class="heading">GALLERY</h2>
   <figure>
     <iframe
       title="実際に使っている様子"
@@ -177,18 +208,13 @@
   </figure>
 </section>
 
-<footer>
-  <div class="footerLinks">
-    <a class="footerLink" href="/privacy-policy">プライバシーポリシー</a>
-  </div>
-  <h3>
-    <a
-      class="footerLink"
-      href="https://tinykitten.me"
-      target="_blank"
-      rel="noopener noreferrer">
-      The TinyKitten Project
-    </a>
-  </h3>
-  <p class="footerCopy">&copy; TinyKitten 2020</p>
+<footer class="footer">
+  <a class="privacyLink" href="/privacy-policy">プライバシーポリシー</a>
+  <a
+    href="https://tinykitten.me"
+    target="_blank"
+    rel="noopener noreferrer">
+    Product of TinyKitten
+  </a>
+  <p>&copy; TinyKitten 2020</p>
 </footer>
