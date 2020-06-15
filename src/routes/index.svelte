@@ -114,11 +114,16 @@ section {
     margin-bottom: 12px;
   }
 
-.footer, .footer a {
-   color: #555;
-   line-height: 1.5;
-   display: block;
- }
+  .subwayNotice {
+    color: #555;
+    margin-top: 24px;
+  }
+
+  .footer, .footer a {
+    color: #555;
+    line-height: 1.5;
+    display: block;
+  }
 
   /* Oppa PC Style */
   @media (min-width: 800px) {
@@ -176,6 +181,7 @@ section {
   <div class="textBlock">
     <p class="text">TrainLCDは、電車のLCDを再現したスマホアプリです</p>
     <p class="text"><b class="bold">満員電車</b>、<b class="bold">LCDのない路線</b>など、現在どこにいるか、どの駅を通るのかひと目で分かります。ぜひお試しください。</p>
+    <p class="subwayNotice">※電波が届きづらい場所は動作保証外です。（地下区間など）</p>
   </div>
 </section>
 
