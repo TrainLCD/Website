@@ -62,7 +62,7 @@ section {
 
   .arrow {
     position: absolute;
-    bottom: 64px;
+    bottom: 32px;
   }
 
   .heading {
@@ -147,8 +147,12 @@ section {
     }
     
     .text, .subwayNotice, figcaption {
-    font-size: 1rem;
-  }
+      font-size: 1rem;
+    }
+
+    .arrow {
+      bottom: 64px;
+    }
   }
 </style>
 
