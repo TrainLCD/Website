@@ -21,7 +21,8 @@
 
 .title,
 .heading,
-.text {
+.text,
+.captionText {
   text-align: center;
 }
 
@@ -33,6 +34,11 @@
 .text {
   color: #212121;
   margin-top: 18px;
+}
+.captionText {
+  color: #212121;
+  font-size: 0.75rem;
+  margin-top: 8px;
 }
 
 .features {
@@ -85,5 +91,8 @@
   .features {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 32px;
+  }
+  .learnMore {
+    cursor: pointer;
   }
 }
