@@ -1,7 +1,35 @@
 import Head from 'next/head';
+import React, { useEffect, useState } from 'react';
+import AboutSection from '../components/sections/About';
+import DownloadSection from '../components/sections/Download';
+import FeatureSection from '../components/sections/Feature';
+import WelcomeSection from '../components/sections/Welcome';
+import { ShowingImage } from '../models/ShowingImage';
 import styles from '../styles/pages/Home.module.css';
 
-export default function Home(): React.ReactElement {
+const images: ShowingImage[] = [
+  {
+    bg: '/images/bg/fukuoka.jpg',
+    mock: '/images/mockup/mojiko.png',
+  },
+  {
+    bg: '/images/bg/kyoto.jpg',
+    mock: '/images/mockup/nijo.png',
+  },
+];
+
+const Home: React.FC = () => {
+  const [showingImg, setShowingImg] = useState<ShowingImage>();
+
+  useEffect(() => {
+    const index = Math.floor(Math.random() * Math.floor(images.length));
+    setShowingImg(images[index]);
+  }, []);
+
+  if (!showingImg) {
+    return null;
+  }
+
   return (
     <main className={styles.main}>
       <Head>
@@ -28,6 +56,12 @@ export default function Home(): React.ReactElement {
         <meta name="twitter:creator" content="@tinykitten8" />
         <meta property="fb:app_id" content="596269604527027" />
       </Head>
+      <WelcomeSection showingImg={showingImg} />
+      <AboutSection showingImg={showingImg} />
+      <FeatureSection />
+      <DownloadSection />
     </main>
   );
-}
+};
+
+export default Home;
