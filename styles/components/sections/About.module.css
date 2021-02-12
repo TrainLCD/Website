@@ -1,0 +1,42 @@
+.root {
+  padding: 64px 32px 128px 32px;
+  background-color: #fcfcfc;
+}
+.title {
+  text-transform: uppercase;
+  color: #555;
+}
+.subtitle {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 8px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: 1.5rem;
+  margin-top: 32px;
+  color: #333;
+}
+
+.title,
+.heading,
+.text {
+  text-align: center;
+}
+
+.heading,
+.text {
+  line-height: 1.5;
+}
+
+.text {
+  color: #212121;
+  margin-top: 18px;
+}
+
+.mockup {
+  margin-top: 32px;
+  text-align: center;
+}

@@ -1,0 +1,42 @@
+.main {
+  color: #333;
+  max-width: 1024px;
+  margin: 48px auto 0 auto;
+  padding: 32px;
+  line-height: 1.5;
+}
+.link {
+  font-weight: bold;
+  color: #333;
+}
+.policyHeading {
+  text-align: center;
+}
+.meta {
+  margin-top: 32px;
+  text-align: right;
+}
+.title {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+}
+.text {
+  line-height: 2;
+  margin: 24px 0;
+}
+.heading {
+  font-size: 1.5rem;
+  margin: 24px 0;
+}
+.list {
+  margin-left: 32px;
+}
+.listItem {
+  margin-bottom: 12px;
+}
