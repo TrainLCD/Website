@@ -18,6 +18,7 @@ const JapanModal: React.FC<Props> = ({
 }: Props) => {
   return (
     <Modal
+      closeTimeoutMS={150}
       className={commonStyles.modalContent}
       overlayClassName={commonStyles.modalOverlay}
       isOpen={isOpen}
