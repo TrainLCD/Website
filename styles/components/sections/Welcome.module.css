@@ -1,5 +1,5 @@
 .firstView {
-  height: 100vh;
+  min-height: 100vh;
   background: #333;
   background-size: cover;
   background-repeat: no-repeat;
@@ -40,8 +40,7 @@
   margin: 0 8px;
 }
 .arrow {
-  position: absolute;
-  bottom: 32px;
+  margin-top: 64px;
 }
 
 @media (min-width: 800px) {
@@ -49,9 +48,9 @@
     max-width: 30%;
   }
   .arrow {
+    position: absolute;
+    bottom: 32px;
     cursor: pointer;
-  }
-  .arrow {
     bottom: 64px;
   }
 }
