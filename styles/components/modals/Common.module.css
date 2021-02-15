@@ -82,6 +82,7 @@
   margin: 32px auto 0 auto;
   display: block;
   font-size: 0.9rem;
+  outline: none;
 }
 
 .link {
