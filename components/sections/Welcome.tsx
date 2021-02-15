@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from '../../styles/components/sections/Welcome.module.css';
 import Image from 'next/image';
-import AppStoreIcon from '../AppStoreIcon';
-import GooglePlayIcon from '../GooglePlayIcon';
 import ArrowIcon from '../ArrowIcon';
 import { ShowingImage } from '../../models/ShowingImage';
+import { isJa } from '../../utils/isJa';
 
 type Props = {
   showingImg: ShowingImage;
@@ -36,9 +35,9 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
         />
         <h1 className={styles.appNameTitle}>TrainLCD</h1>
         <h2 className={styles.appDescription}>
-          日本全国で使える
-          <br />
-          電車のLCDを再現したスマホアプリです
+          {isJa
+            ? `日本全国で使える\n電車のLCDを再現したスマホアプリです`
+            : 'It is a smartphone application\nthat reproduces the LCD of trains that can be used all over Japan.'}
         </h2>
         <div className={styles.stores}>
           <a
@@ -47,7 +46,17 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <AppStoreIcon width={135} height={40} />
+            <Image
+              className={styles.mockup}
+              src={
+                isJa
+                  ? '/images/store/appstore-jp.svg'
+                  : '/images/store/appstore-us.svg'
+              }
+              alt="Mockup"
+              width={135}
+              height={40}
+            />
           </a>
           <a
             className={styles.store}
@@ -55,7 +64,17 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <GooglePlayIcon width={135} height={40} />
+            <Image
+              className={styles.mockup}
+              src={
+                isJa
+                  ? '/images/store/google-play-jp.png'
+                  : '/images/store/google-play-us.png'
+              }
+              alt="Mockup"
+              width={134}
+              height={40}
+            />
           </a>
         </div>
 

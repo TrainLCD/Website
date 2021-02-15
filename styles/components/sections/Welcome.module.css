@@ -18,6 +18,7 @@
 .appNameTitle {
   font-size: 2rem;
   margin-top: 32px;
+  padding: 0 32px;
 }
 
 .appDescription {
@@ -25,6 +26,8 @@
   font-weight: normal;
   text-align: center;
   line-height: 1.5;
+  white-space: pre-wrap;
+  padding: 0 32px;
 }
 .mockup {
   width: 75%;
@@ -53,4 +56,8 @@
     cursor: pointer;
     bottom: 64px;
   }
+}
+
+.icon {
+  height: 50px;
 }
