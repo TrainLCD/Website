@@ -16,6 +16,14 @@ const images: ShowingImage[] = [
     bg: '/images/bg/kyoto.jpg',
     mock: '/images/mockup/nijo.png',
   },
+  {
+    bg: '/images/bg/nagasaki.jpg',
+    mock: '/images/mockup/nishihamano-machi.png',
+  },
+  {
+    bg: '/images/bg/osaka.jpg',
+    mock: '/images/mockup/shin-osaka.png',
+  },
 ];
 
 const Home: React.FC = () => {
