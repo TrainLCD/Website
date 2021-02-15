@@ -7,3 +7,11 @@
 .copyright {
   color: #555;
 }
+
+.link {
+  display: block;
+  color: #555;
+  text-decoration: none;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
