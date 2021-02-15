@@ -35,6 +35,10 @@ const images: ShowingImage[] = [
       ? '/images/mockup/tatsuokajo.png'
       : '/images/mockup/tatsuokajo-en.png',
   },
+  {
+    bg: '/images/bg/shibuya.jpg',
+    mock: isJa ? '/images/mockup/shibuya.png' : '/images/mockup/shibuya-en.png',
+  },
 ];
 
 const Home: React.FC = () => {
