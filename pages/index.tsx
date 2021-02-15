@@ -6,27 +6,34 @@ import FeatureSection from '../components/sections/Feature';
 import WelcomeSection from '../components/sections/Welcome';
 import { ShowingImage } from '../models/ShowingImage';
 import styles from '../styles/pages/Home.module.css';
+import { isJa } from '../utils/isJa';
 
 const images: ShowingImage[] = [
   {
     bg: '/images/bg/fukuoka.jpg',
-    mock: '/images/mockup/mojiko.png',
+    mock: isJa ? '/images/mockup/mojiko.png' : '/images/mockup/mojiko-en.png',
   },
   {
     bg: '/images/bg/kyoto.jpg',
-    mock: '/images/mockup/nijo.png',
+    mock: isJa ? '/images/mockup/nijo.png' : '/images/mockup/nijo-en.png',
   },
   {
     bg: '/images/bg/nagasaki.jpg',
-    mock: '/images/mockup/nishihamano-machi.png',
+    mock: isJa
+      ? '/images/mockup/nishihamano-machi.png'
+      : '/images/mockup/nishihamano-machi-en.png',
   },
   {
     bg: '/images/bg/osaka.jpg',
-    mock: '/images/mockup/shin-osaka.png',
+    mock: isJa
+      ? '/images/mockup/shin-osaka.png'
+      : '/images/mockup/shin-osaka-en.png',
   },
   {
     bg: '/images/bg/nagano.jpg',
-    mock: '/images/mockup/tatsuokajo.png',
+    mock: isJa
+      ? '/images/mockup/tatsuokajo.png'
+      : '/images/mockup/tatsuokajo-en.png',
   },
 ];
 
