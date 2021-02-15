@@ -24,6 +24,10 @@ const images: ShowingImage[] = [
     bg: '/images/bg/osaka.jpg',
     mock: '/images/mockup/shin-osaka.png',
   },
+  {
+    bg: '/images/bg/nagano.jpg',
+    mock: '/images/mockup/tatsuokajo.png',
+  },
 ];
 
 const Home: React.FC = () => {
