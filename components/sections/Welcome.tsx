@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../../styles/components/sections/Welcome.module.css';
 import Image from 'next/image';
 import ArrowIcon from '../ArrowIcon';

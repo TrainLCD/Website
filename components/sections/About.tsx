@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 import { ShowingImage } from '../../models/ShowingImage';
 import styles from '../../styles/components/sections/About.module.css';
 import { isJa } from '../../utils/isJa';
