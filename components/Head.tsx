@@ -31,8 +31,8 @@ const AppHead: React.FC<Props> = ({
       property="og:image"
       content="https://trainlcd.tinykitten.me/ogp.png"
     />
-    <meta property="og:image:width" content="1266" />
-    <meta property="og:image:height" content="585" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="TrainLCD" />
     <meta name="twitter:card" content="summary_large_image" />
