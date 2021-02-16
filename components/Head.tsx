@@ -29,7 +29,7 @@ const AppHead: React.FC<Props> = ({
     <meta property="og:url" content={url} />
     <meta
       property="og:image"
-      content="https://trainlcd.tinykitten.me/ogp.png"
+      content="https://trainlcd.tinykitten.me/ogp.202102161436.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
