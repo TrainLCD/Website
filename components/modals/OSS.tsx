@@ -45,7 +45,7 @@ const OSSModal: React.FC<Props> = ({
           つまり、誰でもTrainLCDの改善のサポートができるということです！
         </p>
         <a
-          href="https://github.com/TinyKitten/TrainLCD"
+          href="https://github.com/TrainLCD/MobileApp"
           target="_blank"
           rel="noopener noreferrer"
           className={commonStyles.link}
