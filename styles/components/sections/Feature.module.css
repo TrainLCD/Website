@@ -1,6 +1,6 @@
 .root {
   padding: 64px 32px 128px 32px;
-  background-color: #f4f6fa;
+  background-color: #fcfcfc;
 }
 .title {
   text-transform: uppercase;
@@ -61,7 +61,7 @@
 }
 
 .circle {
-  background-color: #fcfcfc;
+  background-color: #fff;
   border: 1px solid #eee;
   border-radius: 50%;
   width: 128px;

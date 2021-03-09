@@ -3,6 +3,7 @@ import AppHead from '../components/Head';
 import AboutSection from '../components/sections/About';
 import DownloadSection from '../components/sections/Download';
 import FeatureSection from '../components/sections/Feature';
+import SupportSection from '../components/sections/Support';
 import WelcomeSection from '../components/sections/Welcome';
 import { ShowingImage } from '../models/ShowingImage';
 import styles from '../styles/pages/Home.module.css';
@@ -73,6 +74,7 @@ const Home: React.FC = () => {
       <WelcomeSection showingImg={showingImg} />
       <AboutSection showingImg={showingImg} />
       <FeatureSection />
+      <SupportSection />
       <DownloadSection />
     </main>
   );
