@@ -60,7 +60,7 @@ const OSSModal: React.FC<Props> = ({
           rel="noopener noreferrer"
           className={commonStyles.link}
         >
-          {isJa ? 'See repository' : 'リポジトリを見る'}
+          {isJa ? 'リポジトリを見る' : 'See Repository'}
         </a>
         <button onClick={onRequestClose} className={commonStyles.close}>
           {isJa ? '閉じる' : 'Close'}
