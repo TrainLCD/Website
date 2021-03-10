@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Modal from 'react-modal';
 import commonStyles from '../../styles/components/modals/Common.module.css';
+import { isJa } from '../../utils/isJa';
 import CloseIcon from '../CloseIcon';
 import GitHubIcon from '../GitHubIcon';
 
@@ -26,7 +26,11 @@ const OSSModal: React.FC<Props> = ({
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
-      contentLabel="TrainLCDはiPad対応"
+      contentLabel={
+        isJa
+          ? 'TrainLCDはオープンソースプロジェクト'
+          : 'TrainLCD is an open source project'
+      }
     >
       <header className={commonStyles.headerContainer}>
         <CloseIcon
@@ -37,12 +41,18 @@ const OSSModal: React.FC<Props> = ({
       <main className={commonStyles.main}>
         <GitHubIcon width={128} height={128} />
         <h3 className={commonStyles.heading}>
-          TrainLCDはオープンソースプロジェクト
+          {isJa
+            ? 'TrainLCDはオープンソースプロジェクト'
+            : 'TrainLCD is an open source project'}
         </h3>
         <p className={commonStyles.text}>
-          TrainLCDはMITライセンスのオープンソースプロジェクトです。
+          {isJa
+            ? 'TrainLCDはMITライセンスのオープンソースプロジェクトです。'
+            : 'TrainLCD is an MIT licensed open source project.'}
           <br />
-          つまり、誰でもTrainLCDの改善のサポートができるということです！
+          {isJa
+            ? 'つまり、誰でもTrainLCDの改善のサポートができるということです！'
+            : 'This means that anyone can help improve the TrainLCD!'}
         </p>
         <a
           href="https://github.com/TrainLCD/MobileApp"
@@ -50,10 +60,10 @@ const OSSModal: React.FC<Props> = ({
           rel="noopener noreferrer"
           className={commonStyles.link}
         >
-          リポジトリを見る
+          {isJa ? 'See repository' : 'リポジトリを見る'}
         </a>
         <button onClick={onRequestClose} className={commonStyles.close}>
-          閉じる
+          {isJa ? '閉じる' : 'Close'}
         </button>
       </main>
     </Modal>

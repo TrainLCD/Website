@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Modal from 'react-modal';
 import commonStyles from '../../styles/components/modals/Common.module.css';
+import { isJa } from '../../utils/isJa';
 import CloseIcon from '../CloseIcon';
 
 type Props = {
@@ -25,7 +26,11 @@ const AppleWatchModal: React.FC<Props> = ({
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
-      contentLabel="TrainLCDはApple Watchに対応"
+      contentLabel={
+        isJa
+          ? 'TrainLCDはApple Watchに対応'
+          : 'TrainLCD compatible with Apple Watch'
+      }
     >
       <header className={commonStyles.headerContainer}>
         <CloseIcon
@@ -37,21 +42,31 @@ const AppleWatchModal: React.FC<Props> = ({
         <div className={commonStyles.imageContainer}>
           <Image
             src="/images/applewatch.png"
-            alt="Apple Watchで動くTrainLCD"
+            alt={
+              isJa
+                ? 'Apple Watchで動くTrainLCD'
+                : 'TrainLCD running on Apple Watch'
+            }
             width={184}
             height={224}
           />
         </div>
         <h3 className={commonStyles.heading}>
-          TrainLCDはApple Watchに対応しています。
+          {isJa
+            ? 'TrainLCDはApple Watchに対応しています。'
+            : 'Train LCD is compatible with Apple Watch.'}
         </h3>
         <p className={commonStyles.text}>
-          Apple Watchと一緒に使えば、さらに便利に次の駅を知ることができます。
+          {isJa
+            ? 'Apple Watchと一緒に使えば、さらに便利に次の駅を知ることができます。'
+            : 'If you use it with your Apple Watch, you can find out the next station even more conveniently.'}
           <br />
-          iPhoneを出せないときでも、手首を見るだけで今停車している駅や、次に停まる駅を知ることが出来ます。
+          {isJa
+            ? 'iPhoneを出せないときでも、手首を見るだけで今停車している駅や、次に停まる駅を知ることが出来ます。'
+            : `Even when you can't take out your iPhone, you can find out which station is currently stopped or next by just looking at your wrist.`}
         </p>
         <button onClick={onRequestClose} className={commonStyles.close}>
-          閉じる
+          {isJa ? '閉じる' : 'Close'}
         </button>
       </main>
     </Modal>

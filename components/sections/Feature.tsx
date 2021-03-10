@@ -79,8 +79,8 @@ const AboutSection: React.FC = () => {
             <p className={styles.captionText}>
               <sup className={styles.sup}>*1</sup>
               {isJa
-                ? '鶴見線、直通路線、支線など'
-                : 'Tsurumi line, direct communication line, branch line, etc.'}
+                ? '鶴見線、一部直通路線・支線など'
+                : 'Tsurumi Line, some direct passage lines, branch lines, etc.'}
             </p>
             <button onClick={handleJapanClick} className={styles.learnMore}>
               {isJa ? '詳しくはこちら' : 'Learn more'}

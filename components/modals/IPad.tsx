@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Modal from 'react-modal';
 import commonStyles from '../../styles/components/modals/Common.module.css';
+import { isJa } from '../../utils/isJa';
 import CloseIcon from '../CloseIcon';
 
 type Props = {
@@ -25,7 +26,9 @@ const IPadModal: React.FC<Props> = ({
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
-      contentLabel="TrainLCDはiPadに対応"
+      contentLabel={
+        isJa ? 'TrainLCDはiPadに対応' : 'TrainLCD compatible with iPad'
+      }
     >
       <header className={commonStyles.headerContainer}>
         <CloseIcon
@@ -37,21 +40,27 @@ const IPadModal: React.FC<Props> = ({
         <div className={commonStyles.imageContainer}>
           <Image
             src="/images/ipad.png"
-            alt="iPadで動くTrainLCD"
+            alt={isJa ? 'iPadで動くTrainLCD' : 'TrainLCD running on iPad'}
             width={2360}
             height={1640}
           />
         </div>
         <h3 className={commonStyles.heading}>
-          TrainLCDはiPadに対応しています。
+          {isJa
+            ? 'TrainLCDはiPadに対応しています。'
+            : 'TrainLCD is compatible with iPad.'}
         </h3>
         <p className={commonStyles.text}>
-          iPadと一緒に使えば、もっとわかりやすく次の駅を知ることができます。
+          {isJa
+            ? 'iPadと一緒に使えば、もっとわかりやすく次の駅を知ることができます。'
+            : 'If you use it with an iPad, you can know the next station more easily.'}
           <br />
-          最新のどのiPadにも対応しているため、アプリをダウンロードすれば快適に使えます。
+          {isJa
+            ? '最新のどのiPadにも対応しているため、アプリをダウンロードすれば快適に使えます。'
+            : `It's compatible with all the latest iPads, so you can use it comfortably by downloading the app.`}
         </p>
         <button onClick={onRequestClose} className={commonStyles.close}>
-          閉じる
+          {isJa ? '閉じる' : 'Close'}
         </button>
       </main>
     </Modal>

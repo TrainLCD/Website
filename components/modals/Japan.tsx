@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import commonStyles from '../../styles/components/modals/Common.module.css';
+import { isJa } from '../../utils/isJa';
 import CloseIcon from '../CloseIcon';
 import JapanIcon from '../JapanIcon';
 
@@ -25,7 +26,11 @@ const JapanModal: React.FC<Props> = ({
       onAfterOpen={onAfterOpen}
       onRequestClose={onRequestClose}
       style={customStyles}
-      contentLabel="TrainLCDは日本全国で使えます"
+      contentLabel={
+        isJa
+          ? 'TrainLCDは日本全国で使えます'
+          : 'TrainLCD can be used all over Japan'
+      }
     >
       <header className={commonStyles.headerContainer}>
         <CloseIcon
@@ -37,14 +42,22 @@ const JapanModal: React.FC<Props> = ({
         <div className={commonStyles.circle}>
           <JapanIcon />
         </div>
-        <h3 className={commonStyles.heading}>TrainLCDは日本全国で使えます</h3>
+        <h3 className={commonStyles.heading}>
+          {isJa
+            ? 'TrainLCDは日本全国で使えます'
+            : 'TrainLCD can be used all over Japan'}
+        </h3>
         <p className={commonStyles.text}>
-          TrainLCDは、鶴見線、直通路線、支線を除けば日本全国のほぼすべての路線で使用可能です。
+          {isJa
+            ? 'TrainLCDは、鶴見線、一部の直通路線・支線を除けば日本全国のほぼすべての路線で使用可能です。'
+            : 'TrainLCD can be used on almost all lines in Japan except for the Tsurumi line and some direct passage lines and branch lines.'}
           <br />
-          現在、各駅停車の列車と一部の快速路線のみ対応しています。
+          {isJa
+            ? '現在、各駅停車の列車と一部の優等列車のみ対応していますが、対応する列車種別は順次増加予定です。'
+            : 'Currently, only trains that stop at each station and some excellent trains are supported, but the number of supported train types is scheduled to increase gradually.'}
         </p>
         <button onClick={onRequestClose} className={commonStyles.close}>
-          閉じる
+          {isJa ? '閉じる' : 'Close'}
         </button>
       </main>
     </Modal>
