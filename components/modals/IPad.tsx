@@ -59,9 +59,6 @@ const IPadModal: React.FC<Props> = ({
             ? '最新のどのiPadにも対応しているため、アプリをダウンロードすれば快適に使えます。'
             : `It's compatible with all the latest iPads, so you can use it comfortably by downloading the app.`}
         </p>
-        <button onClick={onRequestClose} className={commonStyles.close}>
-          {isJa ? '閉じる' : 'Close'}
-        </button>
       </main>
     </Modal>
   );

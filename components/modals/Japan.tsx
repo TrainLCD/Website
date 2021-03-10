@@ -56,9 +56,6 @@ const JapanModal: React.FC<Props> = ({
             ? '現在、各駅停車の列車と一部の優等列車のみ対応していますが、対応する列車種別は順次増加予定です。'
             : 'Currently, only trains that stop at each station and some excellent trains are supported, but the number of supported train types is scheduled to increase gradually.'}
         </p>
-        <button onClick={onRequestClose} className={commonStyles.close}>
-          {isJa ? '閉じる' : 'Close'}
-        </button>
       </main>
     </Modal>
   );

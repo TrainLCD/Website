@@ -65,9 +65,6 @@ const AppleWatchModal: React.FC<Props> = ({
             ? 'iPhoneを出せないときでも、手首を見るだけで今停車している駅や、次に停まる駅を知ることが出来ます。'
             : `Even when you can't take out your iPhone, you can find out which station is currently stopped or next by just looking at your wrist.`}
         </p>
-        <button onClick={onRequestClose} className={commonStyles.close}>
-          {isJa ? '閉じる' : 'Close'}
-        </button>
       </main>
     </Modal>
   );

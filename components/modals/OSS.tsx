@@ -62,9 +62,6 @@ const OSSModal: React.FC<Props> = ({
         >
           {isJa ? 'リポジトリを見る' : 'See Repository'}
         </a>
-        <button onClick={onRequestClose} className={commonStyles.close}>
-          {isJa ? '閉じる' : 'Close'}
-        </button>
       </main>
     </Modal>
   );

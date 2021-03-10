@@ -71,21 +71,6 @@
   align-items: center;
 }
 
-.close {
-  appearance: none;
-  border: 2px solid #555;
-  background-color: white;
-  border-radius: 32px;
-  color: #555;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 8px 32px;
-  margin: 32px auto 0 auto;
-  display: block;
-  font-size: 0.9rem;
-  outline: none;
-}
-
 .link {
   border: 2px solid #03a9f4;
   background-color: white;
@@ -119,8 +104,5 @@
   .headerContainer {
     margin-bottom: 32px;
     padding: 0 0px;
-  }
-  .close {
-    cursor: pointer;
   }
 }
