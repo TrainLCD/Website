@@ -42,7 +42,6 @@ const AppHead: React.FC<Props> = ({
       name="twitter:description"
       content="TrainLCDは、位置情報と連動して電車のLCDを再現するアプリです。"
     />
-    <meta name="twitter:app:country" content="JP" />
     <meta name="twitter:app:name:iphone" content="TrainLCD" />
     <meta name="twitter:app:id:iphone" content="1486355943" />
     <meta name="twitter:app:name:ipad" content="TrainLCD" />
