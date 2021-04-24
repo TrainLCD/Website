@@ -35,7 +35,7 @@ const AppHead: React.FC<Props> = ({
     <meta property="og:image:height" content="630" />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="TrainLCD" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="app" />
     <meta name="twitter:site" content="@tinykitten8" />
     <meta name="twitter:creator" content="@tinykitten8" />
     <meta
