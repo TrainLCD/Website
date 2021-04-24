@@ -38,7 +38,19 @@ const AppHead: React.FC<Props> = ({
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tinykitten8" />
     <meta name="twitter:creator" content="@tinykitten8" />
+    <meta
+      name="twitter:description"
+      content="TrainLCDは、位置情報と連動して電車のLCDを再現するアプリです。"
+    />
+    <meta name="twitter:app:country" content="JP" />
+    <meta name="twitter:app:name:iphone" content="TrainLCD" />
+    <meta name="twitter:app:id:iphone" content="1486355943" />
+    <meta name="twitter:app:name:ipad" content="TrainLCD" />
+    <meta name="twitter:app:id:ipad" content="1486355943" />
+    <meta name="twitter:app:name:googleplay" content="TrainLCD" />
+    <meta name="twitter:app:id:googleplay" content="me.tinykitten.trainlcd" />
     <meta property="fb:app_id" content="596269604527027" />
+    <meta name="apple-itunes-app" content="app-id=1486355943" />
   </Head>
 );
 
