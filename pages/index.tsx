@@ -5,6 +5,7 @@ import DownloadSection from '../components/sections/Download';
 import FeatureSection from '../components/sections/Feature';
 import SupportSection from '../components/sections/Support';
 import WelcomeSection from '../components/sections/Welcome';
+import JoinCommunitySection from '../components/sections/JoinCommunity';
 import { ShowingImage } from '../models/ShowingImage';
 import styles from '../styles/pages/Home.module.css';
 import { isJa } from '../utils/isJa';
@@ -76,6 +77,7 @@ const Home: React.FC = () => {
       <FeatureSection />
       <SupportSection />
       <DownloadSection />
+      <JoinCommunitySection />
     </main>
   );
 };
