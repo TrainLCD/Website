@@ -70,6 +70,35 @@ const PrivacyPolicy: React.FC = () => {
         <li className={styles.listItem}>名前: TinyKitten(関口 翼)</li>
         <li className={styles.listItem}>Eメールアドレス： ts@tinykitten.me</li>
       </ul>
+      <h3 className={styles.heading}>
+        第7条（Google Analyticsの利用について）
+      </h3>
+      <p className={styles.text}>
+        当サイトおよび本アプリでは、サイトおよびアプリの利用状況を把握するためにGoogle
+        Analyticsを利用しています。Google
+        Analyticsは、サイト側ではクッキーを利用して利用者の情報を収集し、
+        アプリ側ではアプリの各起動ごとに自動的に割り当てられた割り当てられたIDを収集しますが、
+        ユーザーの個人情報とは関連付けられません。Google
+        Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google
+        Analyticsのサイトをご覧ください。
+        <br />
+        なお、Google
+        Analyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。
+      </p>
+      <h3 className={styles.heading}>
+        第8条（Firebase Crashlyticsの利用について）
+      </h3>
+      <p className={styles.text}>
+        本アプリでは、アプリの安定性を把握するためにFirebase
+        Crashlyticsを利用しています。Firebase
+        Crashlyticsは、アプリがクラッシュした際にアプリの各起動ごとに自動的に割り当てられた割り当てられたIDを収集しますが、
+        ユーザーの個人情報とは関連付けられません。Firebase
+        Crashlyticsの利用規約及びプライバシーポリシーに関する説明については、Firebase
+        Crashlyticsのサイトをご覧ください。
+        <br />
+        なお、Firebase
+        Crashlyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。
+      </p>
     </main>
   );
 };

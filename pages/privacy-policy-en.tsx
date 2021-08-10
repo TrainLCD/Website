@@ -101,6 +101,32 @@ const PrivacyPolicy: React.FC = () => {
         <li>Name: TinyKitten(Tsubasa SEKIGUCHI)</li>
         <li>E-mail address: ts@tinykitten.me</li>
       </ul>
+      <h3 className={styles.heading}>7.About the use of Google Analytics</h3>
+      <p className={styles.text}>
+        This site and this application use Google Analytics to understand the
+        usage status of the site and application. Google Analytics uses cookies
+        to collect user information on the site side, and collects the assigned
+        ID automatically assigned to each launch of the application on the
+        application side, but with the user&lsquo;s personal information Is not
+        associated. For a description of the Google Analytics Terms of Service
+        and Privacy Policy, please visit the Google Analytics website.
+        <br />
+        TinyKitten shall not be liable for any damages caused by using the
+        Google Analytics service.
+      </p>
+      <h3 className={styles.heading}>
+        8.About the use of Firebase Crashlytics
+      </h3>
+      <p className={styles.text}>
+        This app uses Firebase Crashlytics to understand the stability of the
+        app. Firebase Crashlytics collects an automatically assigned ID for each
+        launch of your app when the app crashes, but it is not associated with
+        your personal information. For a description of the Firebase Crashlytics
+        Terms of Service and Privacy Policy, please visit the Firebase
+        Crashlytics website. <br />
+        TinyKitten shall not be liable for any damages caused by using the
+        Firebase Crashlytics service.
+      </p>
     </main>
   );
 };
