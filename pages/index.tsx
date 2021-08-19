@@ -56,7 +56,7 @@ const Home: React.FC = () => {
       <>
         <AppHead
           title="TrainLCD"
-          description="TrainLCDは、位置情報と連動して電車のLCDを再現するアプリです。"
+          description="TrainLCDは、日本全国の鉄道路線で使える新感覚のナビゲーションアプリです。"
           url="https://trainlcd.tinykitten.me/"
           ogType="website"
         />
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
     <main className={styles.main}>
       <AppHead
         title="TrainLCD"
-        description="TrainLCDは、位置情報と連動して電車のLCDを再現するアプリです。"
+        description="TrainLCDは、日本全国の鉄道路線で使える新感覚のナビゲーションアプリです。"
         url="https://trainlcd.tinykitten.me/"
         ogType="website"
       />

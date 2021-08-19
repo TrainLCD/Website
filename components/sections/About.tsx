@@ -23,8 +23,8 @@ const AboutSection: React.FC<Props> = ({ showingImg }: Props) => {
         />
         <h2 className={styles.heading}>
           {isJa
-            ? `電車のLCDを再現した\nスマホ/iPadアプリ`
-            : 'TrainLCD is a smartphone/iPad app\nthat reproduces the LCD of a train.'}
+            ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです。`
+            : 'Can be used on routes all over Japan\nNew sense navigation app.'}
         </h2>
         <p className={styles.text}>
           {isJa

@@ -35,8 +35,8 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
         <h1 className={styles.appNameTitle}>TrainLCD</h1>
         <h2 className={styles.appDescription}>
           {isJa
-            ? `日本全国で使える\n電車のLCDを再現したスマホアプリです`
-            : 'It is a smartphone application\nthat reproduces the LCD of trains that can be used all over Japan.'}
+            ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです。`
+            : 'Can be used on routes all over Japan\nNew sense navigation app.'}
         </h2>
         <div className={styles.stores}>
           <a
