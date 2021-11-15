@@ -3,11 +3,10 @@ import AppHead from '../components/Head';
 import AboutSection from '../components/sections/About';
 import DownloadSection from '../components/sections/Download';
 import FeatureSection from '../components/sections/Feature';
+import JoinCommunitySection from '../components/sections/JoinCommunity';
 import SupportSection from '../components/sections/Support';
 import WelcomeSection from '../components/sections/Welcome';
-import JoinCommunitySection from '../components/sections/JoinCommunity';
 import { ShowingImage } from '../models/ShowingImage';
-import styles from '../styles/pages/Home.module.css';
 import { isJa } from '../utils/isJa';
 
 const images: ShowingImage[] = [
@@ -65,7 +64,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <main className={styles.main}>
+    <main>
       <AppHead
         title="TrainLCD"
         description="TrainLCDは、日本全国の鉄道路線で使える新感覚のナビゲーションアプリです。"

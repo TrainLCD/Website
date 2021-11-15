@@ -1,26 +1,34 @@
 import AppHead from '../components/Head';
-import styles from '../styles/pages/PrivacyPolicy.module.css';
+import {
+  Container,
+  HeadingContainer,
+  HeadingMetaContainer,
+  HeadingText,
+  InternalLink,
+  OrderedList,
+  Paragraph,
+  Title,
+  UnorderedList,
+} from '../components/PrivacyPolicyElements';
 
 const PrivacyPolicy: React.FC = () => {
   return (
-    <main className={styles.main}>
+    <Container>
       <AppHead
         title="Privacy Policy - TrainLCD"
         description="TrainLCD privacy policy."
         url="https://trainlcd.tinykitten.me/privacy-policy-en/"
         ogType="article"
       />
-      <header className={styles.policyHeading}>
-        <h1 className={styles.title}>Privacy Policy</h1>
-        <aside className={styles.meta}>
+      <HeadingContainer>
+        <Title>Privacy Policy</Title>
+        <HeadingMetaContainer>
           <p>Last updated: March 30, 2020</p>
           <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
-          <a className={styles.link} href="/privacy-policy">
-            日本語版
-          </a>
-        </aside>
-      </header>
-      <p className={styles.text}>
+          <InternalLink href="/privacy-policy">日本語版</InternalLink>
+        </HeadingMetaContainer>
+      </HeadingContainer>
+      <Paragraph>
         In the following, customers who use the application
         &ldquo;TrainLCD&ldquo; (hereinafter referred to as &ldquo;this
         application&ldquo;) managed and operated by TinyKitten (hereafter
@@ -29,13 +37,13 @@ const PrivacyPolicy: React.FC = () => {
         using this application, please agree to the following and use it. In
         addition, TinyKitten shall be able to change the following contents as
         appropriate.
-      </p>
-      <p className={styles.text}>
+      </Paragraph>
+      <Paragraph>
         The privacy policy for the handling of user&lsquo;s personal information
         in this application provided by TinyKitten is as follows.
-      </p>
-      <h3 className={styles.heading}>1.Personal information</h3>
-      <p className={styles.text}>
+      </Paragraph>
+      <HeadingText>1.Personal information</HeadingText>
+      <Paragraph>
         “Personal information” refers to “personal information” as defined in
         the Personal Information Protection Law, and is information about living
         individuals, including the name, date of birth, address, telephone
@@ -45,30 +53,28 @@ const PrivacyPolicy: React.FC = () => {
         information, such as data related to fingerprints and voiceprints, and
         the insurer number on a health insurance card. Refers to the location
         information obtained from the smartphone.
-      </p>
-      <h3 className={styles.heading}>
-        2.Method of collecting personal information
-      </h3>
-      <p className={styles.text}>
+      </Paragraph>
+      <HeadingText>2.Method of collecting personal information</HeadingText>
+      <Paragraph>
         TinyKitten never asks for personal information such as name, date of
         birth, address, telephone number, e-mail address, bank account number,
         credit card number, driver&lsquo;s license number, etc. when registering
         for use. However, the location information of the user is temporarily
         acquired due to the characteristics of this application, but is not
         stored at all on the server.
-      </p>
-      <h3 className={styles.heading}>
+      </Paragraph>
+      <HeadingText>
         3.Purpose of collecting and using personal information
-      </h3>
-      <p className={styles.text}>
+      </HeadingText>
+      <Paragraph>
         TinyKitten collects and uses personal information for the following
         purposes:
-      </p>
-      <ol className={styles.list}>
+      </Paragraph>
+      <OrderedList>
         <li>To provide and operate this application</li>
-      </ol>
-      <h3 className={styles.heading}>4.Change of purpose of use</h3>
-      <ol className={styles.list}>
+      </OrderedList>
+      <HeadingText>4.Change of purpose of use</HeadingText>
+      <OrderedList>
         <li>
           TinyKitten will change the purpose of use of personal information only
           if it is reasonably deemed that the purpose of use is relevant to
@@ -79,9 +85,9 @@ const PrivacyPolicy: React.FC = () => {
           be notified to the user or published on this website by the method
           prescribed by TinyKitten.
         </li>
-      </ol>
-      <h3 className={styles.heading}>5.Changes in Privacy Policy</h3>
-      <ol className={styles.list}>
+      </OrderedList>
+      <HeadingText>5.Changes in Privacy Policy</HeadingText>
+      <OrderedList>
         <li>
           The contents of this policy are subject to change without notice to
           the user, except for laws and regulations and other matters stipulated
@@ -91,18 +97,18 @@ const PrivacyPolicy: React.FC = () => {
           Except as otherwise provided by TinyKitten, the revised Privacy Policy
           will take effect from the time it is posted on this website.
         </li>
-      </ol>
-      <h3 className={styles.heading}>6.Contact for Inquiries</h3>
-      <p className={styles.text}>
+      </OrderedList>
+      <HeadingText>6.Contact for Inquiries</HeadingText>
+      <Paragraph>
         For inquiries regarding this policy, please contact the following
         contact.
-      </p>
-      <ul className={styles.list}>
+      </Paragraph>
+      <UnorderedList>
         <li>Name: TinyKitten(Tsubasa SEKIGUCHI)</li>
         <li>E-mail address: ts@tinykitten.me</li>
-      </ul>
-      <h3 className={styles.heading}>7.About the use of Google Analytics</h3>
-      <p className={styles.text}>
+      </UnorderedList>
+      <HeadingText>7.About the use of Google Analytics</HeadingText>
+      <Paragraph>
         This site and this application use Google Analytics to understand the
         usage status of the site and application. Google Analytics uses cookies
         to collect user information on the site side, and collects the assigned
@@ -113,11 +119,9 @@ const PrivacyPolicy: React.FC = () => {
         <br />
         TinyKitten shall not be liable for any damages caused by using the
         Google Analytics service.
-      </p>
-      <h3 className={styles.heading}>
-        8.About the use of Firebase Crashlytics
-      </h3>
-      <p className={styles.text}>
+      </Paragraph>
+      <HeadingText>8.About the use of Firebase Crashlytics</HeadingText>
+      <Paragraph>
         This app uses Firebase Crashlytics to understand the stability of the
         app. Firebase Crashlytics collects an automatically assigned ID for each
         launch of your app when the app crashes, but it is not associated with
@@ -126,8 +130,8 @@ const PrivacyPolicy: React.FC = () => {
         Crashlytics website. <br />
         TinyKitten shall not be liable for any damages caused by using the
         Firebase Crashlytics service.
-      </p>
-    </main>
+      </Paragraph>
+    </Container>
   );
 };
 

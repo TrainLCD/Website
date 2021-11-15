@@ -1,15 +1,26 @@
 import Image from 'next/image';
-import styles from '../../styles/components/sections/Download.module.css';
+import styled from 'styled-components';
 import { isJa } from '../../utils/isJa';
+import Container from '../Container';
+import { Subtitle, Text, Title } from '../Typography';
+
+const StoresContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+`;
+const StoreLink = styled.a`
+  margin: 0 8px;
+`;
 
 const DownloadSection: React.FC = () => {
   return (
-    <div className={styles.root}>
-      {isJa && <h1 className={styles.title}>DOWNLOAD</h1>}
-      <h2 className={styles.subtitle}>
-        {isJa ? 'TrainLCDを使ってみよう' : 'Try TrainLCD'}
-      </h2>
-      <p className={styles.text}>
+    <Container>
+      {isJa && <Title>DOWNLOAD</Title>}
+      <Subtitle>{isJa ? 'TrainLCDを使ってみよう' : 'Try TrainLCD'}</Subtitle>
+      <Text>
         {isJa
           ? 'TrainLCDはiPhone、iPad、Androidスマートフォンに対応しています。'
           : 'TrainLCD is compatible with iPhone, iPad and Android smartphones.'}
@@ -17,16 +28,14 @@ const DownloadSection: React.FC = () => {
         {isJa
           ? `早速お使いのスマートフォンで使ってみましょう！`
           : `Let's use it on your smartphone right away!`}
-      </p>
-      <div className={styles.stores}>
-        <a
-          className={styles.store}
+      </Text>
+      <StoresContainer>
+        <StoreLink
           href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
-            className={styles.mockup}
             src={
               isJa
                 ? '/images/store/appstore-jp.svg'
@@ -36,15 +45,13 @@ const DownloadSection: React.FC = () => {
             width={135}
             height={40}
           />
-        </a>
-        <a
-          className={styles.store}
+        </StoreLink>
+        <StoreLink
           href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
-            className={styles.mockup}
             src={
               isJa
                 ? '/images/store/google-play-jp.png'
@@ -54,9 +61,9 @@ const DownloadSection: React.FC = () => {
             width={134}
             height={40}
           />
-        </a>
-      </div>
-    </div>
+        </StoreLink>
+      </StoresContainer>
+    </Container>
   );
 };
 
