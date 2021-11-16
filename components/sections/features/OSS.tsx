@@ -47,7 +47,7 @@ const OSSFeatureSection: React.FC = () => {
         </Description>
         <ButtonContainer>
           <ButtonLink
-            href="https://forms.gle/bWvwyincJpz76GK86"
+            href="https://github.com/TrainLCD/MobileApp"
             target="_blank"
             rel="noopener noreferrer"
           >
