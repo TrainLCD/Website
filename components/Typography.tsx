@@ -15,6 +15,6 @@ export const Text = styled.p`
   line-height: 1.5;
   white-space: pre-wrap;
   color: #212121;
-  margin-top: 18px;
+  margin-top: 12px;
   text-align: center;
 `;
