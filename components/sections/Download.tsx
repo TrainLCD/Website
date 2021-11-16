@@ -22,8 +22,8 @@ const DownloadSection: React.FC = () => {
       <Subtitle>{isJa ? 'TrainLCDを使ってみよう' : 'Try TrainLCD'}</Subtitle>
       <Text>
         {isJa
-          ? 'TrainLCDはiPhone、iPad、Androidスマートフォンに対応しています。'
-          : 'TrainLCD is compatible with iPhone, iPad and Android smartphones.'}
+          ? 'iPhone、iPad、Androidスマートフォンに対応しています。'
+          : 'Compatible with iPhone, iPad and Android smartphones.'}
         <br />
         {isJa
           ? `早速お使いのスマートフォンで使ってみましょう！`

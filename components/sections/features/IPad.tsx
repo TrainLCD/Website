@@ -41,9 +41,7 @@ const IPadFeatureSection: React.FC = () => {
       </ImageContainer>
       <TextContainer>
         <Heading style={{ marginBottom: '12px' }}>
-          {isJa
-            ? 'TrainLCDはiPadに対応しています'
-            : 'TrainLCD is compatible with iPad.'}
+          {isJa ? 'iPadに対応' : 'Compatible with iPad.'}
         </Heading>
         <Description>
           {isJa

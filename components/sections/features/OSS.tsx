@@ -32,9 +32,7 @@ const OSSFeatureSection: React.FC = () => {
       <GitHubIcon width={128} height={128} />
       <TextContainer>
         <Heading style={{ marginBottom: '12px' }}>
-          {isJa
-            ? 'TrainLCDはオープンソースプロジェクト'
-            : 'TrainLCD is an open source project'}
+          {isJa ? 'オープンソースプロジェクト' : 'An open source project'}
         </Heading>
         <Description>
           {isJa

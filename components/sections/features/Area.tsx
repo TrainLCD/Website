@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { isJa } from '../../../utils/isJa';
 import { FeatureContainer } from '../../FeatureItemElements';
 import NumberBox from '../../NumberBox';
 
@@ -47,21 +48,45 @@ const SUP = styled.sup`
 `;
 
 const AreaFeatureSection: React.FC = () => {
+  const preText = isJa ? '全国の' : 'Compatible\nwith';
+
   return (
     <FeatureContainer>
       <NumbersContainer>
-        <NumberBox preText="全国の" num={9136} afterText="駅に対応" />
-        <NumberBox preText="全国の" num={617} afterText="路線に対応" />
-        <NumberBox preText="全国の" num={171} afterText="鉄道会社に対応" />
+        <NumberBox
+          preText={preText}
+          num={9136}
+          afterText={isJa ? '駅に対応' : 'Stations'}
+          en={!isJa}
+        />
+        <NumberBox
+          preText={preText}
+          num={617}
+          afterText={isJa ? '路線に対応' : 'Lines'}
+          en={!isJa}
+        />
+        <NumberBox
+          preText={preText}
+          num={171}
+          afterText={isJa ? '鉄道会社に対応' : 'Companies'}
+          en={!isJa}
+        />
       </NumbersContainer>
       <TextContainer>
-        <Heading style={{ marginBottom: '12px' }}>日本全国サービス対象</Heading>
+        <Heading style={{ marginBottom: '12px' }}>
+          {isJa ? '日本全国サービス対象' : 'Service target all over Japan'}
+        </Heading>
         <Description>
-          地下鉄路線や一部の路線<SUP>*1</SUP>
-          を除き、日本全国のほとんどの路線に対応しています。
+          {isJa
+            ? '一部例外を除き、日本全国のほとんどの路線に対応しています。'
+            : 'With some exceptions, it supports most routes throughout Japan.'}
+          <SUP>*1</SUP>
         </Description>
         <Caption>
-          <SUP>*1</SUP>鶴見線、一部直通路線・支線など
+          <SUP>*1</SUP>
+          {isJa
+            ? '地下鉄などの電波の入りづらい路線、鶴見線などの入り組んだ路線は一部サービス保証外となります。'
+            : 'Some services are not guaranteed for lines such as the subway where radio waves are difficult to enter, and complicated lines such as the Tsurumi line.'}
         </Caption>
       </TextContainer>
     </FeatureContainer>

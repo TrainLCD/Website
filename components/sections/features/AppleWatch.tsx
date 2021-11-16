@@ -45,9 +45,7 @@ const AppleWatchFeatureSection: React.FC = () => {
       </ImageContainer>
       <TextContainer>
         <Heading style={{ marginBottom: '12px' }}>
-          {isJa
-            ? 'TrainLCDはApple Watchに対応しています'
-            : 'TrainLCD is compatible with Apple Watch.'}
+          {isJa ? 'Apple Watchに対応' : 'Compatible with Apple Watch.'}
         </Heading>
         <Description>
           {isJa

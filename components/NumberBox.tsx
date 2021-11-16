@@ -4,6 +4,7 @@ type Props = {
   preText: string;
   num: number;
   afterText: string;
+  en: boolean;
 };
 
 const Container = styled.div`
@@ -37,10 +38,14 @@ const AfterText = styled.p`
   color: white;
   font-size: 0.75rem;
 `;
-const PreText = styled.p`
+const PreText = styled.p<{ en: boolean }>`
   font-weight: bold;
   color: #333;
-  line-height: 1.5;
+  text-align: center;
+  line-height: 1.25;
+  font-size: ${({ en }) => (en ? '0.75rem' : '1rem')};
+  margin-bottom: ${({ en }) => (en ? '8px' : '4px')};
+  white-space: pre-wrap;
 `;
 const Num = styled.p`
   font-size: 1.5rem;
@@ -48,10 +53,10 @@ const Num = styled.p`
   color: #333;
 `;
 
-const NumberBox: React.FC<Props> = ({ preText, num, afterText }: Props) => (
+const NumberBox: React.FC<Props> = ({ preText, num, afterText, en }: Props) => (
   <Container>
     <TopContainer>
-      <PreText>{preText}</PreText>
+      <PreText en={en}>{preText}</PreText>
       <Num>{num.toLocaleString()}</Num>
     </TopContainer>
     <AfterTextContainer>
