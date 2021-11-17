@@ -14,7 +14,7 @@ const InviteContainer = styled.div`
 const JoinCommunity: React.FC = () => {
   return (
     <Container>
-      {isJa && <Title>COMMUNITY</Title>}
+      <Title>COMMUNITY</Title>
       <Subtitle>
         {isJa ? 'コミュニティに参加しよう！' : 'Join our community!'}
       </Subtitle>

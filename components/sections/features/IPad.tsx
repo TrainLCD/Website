@@ -33,7 +33,7 @@ const IPadFeatureSection: React.FC = () => {
     <FeatureContainer>
       <ImageContainer>
         <Image
-          src="/images/ipad.png"
+          src={isJa ? '/images/ipad.png' : '/images/ipad-en.png'}
           alt={isJa ? 'iPadで動くTrainLCD' : 'TrainLCD running on iPad'}
           width={2360}
           height={1640}

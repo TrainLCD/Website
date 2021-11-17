@@ -25,7 +25,7 @@ const Mockup = styled.div`
 const AboutSection: React.FC<Props> = ({ showingImg }: Props) => {
   return (
     <Container id="about">
-      {isJa && <Title>CONCEPT</Title>}
+      <Title>CONCEPT</Title>
       <Subtitle>{isJa ? 'TrainLCDのコンセプト' : 'What is TrainLCD?'}</Subtitle>
       <Mockup>
         <Image

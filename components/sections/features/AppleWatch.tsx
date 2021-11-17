@@ -33,14 +33,14 @@ const AppleWatchFeatureSection: React.FC = () => {
     <FeatureContainer>
       <ImageContainer>
         <Image
-          src="/images/applewatch.png"
+          src={isJa ? '/images/applewatch.png' : '/images/applewatch-en.png'}
           alt={
             isJa
               ? 'Apple Watchで動くTrainLCD'
               : 'TrainLCD running on Apple Watch'
           }
-          width={184}
-          height={224}
+          width={313}
+          height={465}
         />
       </ImageContainer>
       <TextContainer>

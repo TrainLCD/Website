@@ -18,7 +18,7 @@ const StoreLink = styled.a`
 const DownloadSection: React.FC = () => {
   return (
     <Container odd>
-      {isJa && <Title>DOWNLOAD</Title>}
+      <Title>DOWNLOAD</Title>
       <Subtitle>{isJa ? 'TrainLCDを使ってみよう' : 'Try TrainLCD'}</Subtitle>
       <Text>
         {isJa

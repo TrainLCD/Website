@@ -9,7 +9,7 @@ import OSSFeatureSection from './features/OSS';
 
 const AboutSection: React.FC = () => (
   <Container odd>
-    {isJa && <Title>FEATURE</Title>}
+    <Title>FEATURE</Title>
     <Subtitle>{isJa ? 'TrainLCDの特徴' : 'TrainLCD features'}</Subtitle>
     <AreaFeatureSection />
     <IPadFeatureSection />

@@ -11,7 +11,7 @@ const ButtonContainer = styled.div`
 const SupportSection: React.FC = () => {
   return (
     <Container>
-      {isJa && <Title>SUPPORT</Title>}
+      <Title>SUPPORT</Title>
       <Subtitle>{isJa ? 'サポートが必要ですか？' : 'Need support?'}</Subtitle>
       <Text>
         {isJa
