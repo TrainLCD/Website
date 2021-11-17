@@ -1,14 +1,24 @@
-import styles from '../../styles/components/sections/JoinCommunity.module.css';
+import styled from 'styled-components';
 import { isJa } from '../../utils/isJa';
+import Container from '../Container';
+import { Subtitle, Text, Title } from '../Typography';
+
+const InviteContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+`;
 
 const JoinCommunity: React.FC = () => {
   return (
-    <div className={styles.root}>
-      {isJa && <h1 className={styles.title}>COMMUNITY</h1>}
-      <h2 className={styles.subtitle}>
+    <Container>
+      <Title>COMMUNITY</Title>
+      <Subtitle>
         {isJa ? 'コミュニティに参加しよう！' : 'Join our community!'}
-      </h2>
-      <p className={styles.text}>
+      </Subtitle>
+      <Text>
         {isJa
           ? 'アプリを気に入っていっていただけましたか？ではぜひTrainLCD Discordコミュニティに参加しましょう！'
           : 'Did you like the app? Join the TrainLCD Discord community!'}
@@ -16,18 +26,17 @@ const JoinCommunity: React.FC = () => {
         {isJa
           ? `TrainLCDコミュニティではアプリへの早期アクセスや、自分の意見をいち早くアプリに反映させることが出来ます！`
           : `In the TrainLCD community, you can access the app early and reflect your opinion in the app as soon as possible!`}
-      </p>
-      <div className={styles.invite}>
+      </Text>
+      <InviteContainer>
         <iframe
           src="https://discord.com/widget?id=679751900891185245&theme=dark"
           width="350"
           height="500"
-          allowTransparency={true}
           frameBorder="0"
           sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
         ></iframe>
-      </div>
-    </div>
+      </InviteContainer>
+    </Container>
   );
 };
 

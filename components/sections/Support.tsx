@@ -1,30 +1,34 @@
-import styles from '../../styles/components/sections/Support.module.css';
+import styled from 'styled-components';
 import { isJa } from '../../utils/isJa';
+import ButtonLink from '../ButtonLink';
+import Container from '../Container';
+import { Subtitle, Text, Title } from '../Typography';
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
 
 const SupportSection: React.FC = () => {
   return (
-    <div className={styles.root}>
-      {isJa && <h1 className={styles.title}>SUPPORT</h1>}
-      <h2 className={styles.subtitle}>
-        {isJa ? 'サポートが必要ですか？' : 'Need support?'}
-      </h2>
-      <p className={styles.text}>
+    <Container>
+      <Title>SUPPORT</Title>
+      <Subtitle>{isJa ? 'サポートが必要ですか？' : 'Need support?'}</Subtitle>
+      <Text>
         {isJa
           ? 'TrainLCDのサービスなどにお気づきの点があった場合、ご気軽にご連絡ください。'
           : 'If you have any questions about TrainLCD, please feel free to contact us.'}
-      </p>
+      </Text>
 
-      <div className={styles.buttonContainer}>
-        <a
+      <ButtonContainer>
+        <ButtonLink
           href="https://forms.gle/bWvwyincJpz76GK86"
           target="_blank"
           rel="noopener noreferrer"
-          className={styles.button}
         >
           {isJa ? 'サポートに連絡する' : 'Contact support'}
-        </a>
-      </div>
-    </div>
+        </ButtonLink>
+      </ButtonContainer>
+    </Container>
   );
 };
 
