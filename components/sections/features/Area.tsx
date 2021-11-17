@@ -7,10 +7,9 @@ const NumbersContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   @media (min-width: 800px) {
-    justify-content: space-around;
     max-width: 480px;
   }
 `;
