@@ -17,5 +17,7 @@ export const Text = styled.p`
   color: #555;
   margin-top: 12px;
   font-weight: bold;
-  text-align: center;
+  @media (min-width: 800px) {
+    text-align: center;
+  }
 `;

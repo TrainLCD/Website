@@ -11,16 +11,20 @@ const TextContainer = styled.div`
 const Heading = styled.h2`
   font-size: 1.5rem;
   color: #333;
-  text-align: center;
   margin-bottom: 12px;
   line-height: 1.5;
+  @media (min-width: 800px) {
+    text-align: center;
+  }
 `;
 
 const Description = styled.p`
   font-weight: bold;
-  text-align: center;
   color: #555;
   line-height: 1.5;
+  @media (min-width: 800px) {
+    text-align: center;
+  }
 `;
 const ButtonContainer = styled.div`
   display: flex;

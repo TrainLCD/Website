@@ -13,9 +13,11 @@ const Heading = styled.h3`
   font-size: 1.5rem;
   margin-top: 32px;
   color: #333;
-  text-align: center;
   line-height: 1.5;
   white-space: pre-wrap;
+  @media (min-width: 800px) {
+    text-align: center;
+  }
 `;
 const Mockup = styled.div`
   margin-top: 32px;
@@ -37,7 +39,7 @@ const AboutSection: React.FC<Props> = ({ showingImg }: Props) => {
       </Mockup>
       <Heading>
         {isJa
-          ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです`
+          ? `日本全国の鉄道路線で使える新感覚のナビゲーションアプリです`
           : 'Can be used on routes all over Japan\nNew sense navigation app.'}
       </Heading>
       <Text>
