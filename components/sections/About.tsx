@@ -43,15 +43,15 @@ const AboutSection: React.FC<Props> = ({ showingImg }: Props) => {
       <Text>
         {isJa
           ? `あなたのスマートフォンで使える電車のLCD。
-          満員電車でどこにいるかわからないときや、乗ったことのない路線に乗車する際など。
-          寝過ごすかもしれない？でも大丈夫。通知を受け取れます。
-          さらに、Apple Watchでリアルタイムに自分が今どこにいるかも確認できます。
-          今までにありそうでなかった新感覚ナビゲーションアプリ「TrainLCD」きっとあなたの役に立つはずです。`
+満員電車でどこにいるかわからないときや、乗ったことのない路線に乗車する際など。
+寝過ごすかもしれない？でも大丈夫。通知を受け取れます。
+さらに、Apple Watchでリアルタイムに自分が今どこにいるかも確認できます。
+今までにありそうでなかった新感覚ナビゲーションアプリ「TrainLCD」きっとあなたの役に立つはずです。`
           : `LCD of the train that can be used on your smartphone.
-          When you don't know where you are on a crowded train, or when you get on a route you have never taken.
-          May I oversleep? but it's okay. You will be notified.
-          In addition, you can see where you are in real time on your Apple Watch.
-          A new type of navigation app "Train LCD" that has never been seen before will surely be useful to you.`}
+When you don't know where you are on a crowded train, or when you get on a route you have never taken.
+May I oversleep? but it's okay. You will be notified.
+In addition, you can see where you are in real time on your Apple Watch.
+A new type of navigation app "Train LCD" that has never been seen before will surely be useful to you.`}
       </Text>
     </Container>
   );

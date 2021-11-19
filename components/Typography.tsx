@@ -14,7 +14,8 @@ export const Subtitle = styled.h1`
 export const Text = styled.p`
   line-height: 1.5;
   white-space: pre-wrap;
-  color: #212121;
+  color: #555;
   margin-top: 12px;
+  font-weight: bold;
   text-align: center;
 `;
