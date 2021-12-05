@@ -6,6 +6,7 @@ import FeatureSection from '../components/sections/Feature';
 import JoinCommunitySection from '../components/sections/JoinCommunity';
 import SupportSection from '../components/sections/Support';
 import WelcomeSection from '../components/sections/Welcome';
+import ServiceSuspendModal from '../components/ServiceSuspendModal';
 import { ShowingImage } from '../models/ShowingImage';
 import { isJa } from '../utils/isJa';
 
@@ -44,6 +45,7 @@ const images: ShowingImage[] = [
 
 const Home: React.FC = () => {
   const [showingImg, setShowingImg] = useState<ShowingImage>();
+  const [suspendModalShow, setSuspendModalShow] = useState(true);
 
   useEffect(() => {
     const index = Math.floor(Math.random() * Math.floor(images.length));
@@ -63,6 +65,8 @@ const Home: React.FC = () => {
     );
   }
 
+  const handleSuspendModalClose = () => setSuspendModalShow(false);
+
   return (
     <main>
       <AppHead
@@ -77,6 +81,11 @@ const Home: React.FC = () => {
       <SupportSection />
       <DownloadSection />
       <JoinCommunitySection />
+
+      <ServiceSuspendModal
+        isOpen={suspendModalShow}
+        onRequestClose={handleSuspendModalClose}
+      />
     </main>
   );
 };
