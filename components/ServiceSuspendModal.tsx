@@ -22,8 +22,11 @@ const customStyles: Modal.Styles = {
     borderRadius: 8,
     maxWidth: '640px',
     maxHeight: '100%',
-    overflow: 'scroll',
+    overflowX: 'hidden',
+    overflowY: 'scroll',
     marginTop: '24px',
+    scrollbarWidth: 'none',
+    msOverflowStyle: 'none',
   },
   overlay: {
     background: 'rgba(0, 0, 0, 0.5)',
