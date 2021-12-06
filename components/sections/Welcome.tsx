@@ -39,6 +39,14 @@ const AppDescription = styled.h2`
   white-space: pre-wrap;
   padding: 0 32px;
 `;
+const CautionText = styled.b`
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  padding: 0 32px;
+`;
 const MockupImage = styled(Image)`
   width: 75%;
 
@@ -46,17 +54,6 @@ const MockupImage = styled(Image)`
     max-width: 30%;
   }
 `;
-const StoresContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 32px;
-`;
-const StoreLink = styled.a`
-  margin: 0 8px;
-`;
-
 const Arrow = styled(ArrowIcon)`
   margin-top: 64px;
   @media (min-width: 800px) {
@@ -95,41 +92,11 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
             ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです。`
             : 'Can be used on routes all over Japan\nNew sense navigation app.'}
         </AppDescription>
-        <StoresContainer>
-          <StoreLink
-            href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MockupImage
-              src={
-                isJa
-                  ? '/images/store/appstore-jp.svg'
-                  : '/images/store/appstore-us.svg'
-              }
-              alt="Mockup"
-              width={135}
-              height={40}
-            />
-          </StoreLink>
-          <StoreLink
-            href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MockupImage
-              src={
-                isJa
-                  ? '/images/store/google-play-jp.png'
-                  : '/images/store/google-play-us.png'
-              }
-              alt="Mockup"
-              width={134}
-              height={40}
-            />
-          </StoreLink>
-        </StoresContainer>
-
+        <CautionText>
+          {isJa
+            ? `現在内部テスター以外の方へのサービス提供を一時中断しております。`
+            : 'Currently, we are temporarily suspending the provision of services to people other than internal testers.'}
+        </CautionText>
         <Arrow onClick={handleNextClick} />
       </Content>
     </Container>
