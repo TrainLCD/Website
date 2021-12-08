@@ -108,7 +108,7 @@ const ShareModal = ({ isOpen, onRequestClose }: Props): React.ReactElement => {
 2年ほどにわたってTrainLCDを開発してまいりましたが、2021年12月15日よりTrainLCDのサービスを一部中断・アプリストアからの取り下げを行わせていただきます。
 サービスの一部中断の理由といたしまして、ほぼ私一人の開発者で開発するのに限界を感じ、今後利用者の方々に満足していただけるサービスの提供が難しいと判断したためです。
 TrainLCDサービスを皆様により便利に利用できる様になりましたら、サービスを全面的に再開いたします。
-当面の間はTrainLCDの一部サービスをご利用いただけませんが、何卒ご理解・ご協力をお願い致します。`
+当分の間はTrainLCDの一部サービスをご利用いただけませんが、何卒ご理解・ご協力をお願い致します。`
             : `Thank you for using TrainLCD.
 We have been developing TrainLCD for about two years, but from December 15, 2021, we will suspend some TrainLCD services and withdraw from the app store.
 The reason for the partial interruption of the service is that I felt that it was difficult for me to develop it by myself, and decided that it would be difficult to provide a service that would satisfy the users in the future.

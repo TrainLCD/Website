@@ -9,7 +9,7 @@ const SupportSection: React.FC = () => {
       <Subtitle>{isJa ? 'サポートが必要ですか？' : 'Need support?'}</Subtitle>
       <Text>
         {isJa
-          ? 'TrainLCDサービスに関してのサポートは当面の間取りやめさせていただきます。'
+          ? 'TrainLCDサービスに関してのサポートは当分の間取りやめさせていただきます。'
           : 'Support for the TrainLCD service will be discontinued for the time being.'}
       </Text>
     </Container>
