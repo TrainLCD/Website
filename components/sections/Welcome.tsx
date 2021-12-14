@@ -94,8 +94,8 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
         </AppDescription>
         <CautionText>
           {isJa
-            ? `現在内部テスター以外の方へのサービス提供を一時中断しております。`
-            : 'Currently, we are temporarily suspending the provision of services to people other than internal testers.'}
+            ? '2021年12月15日より内部テスター以外の方へのサービス提供を一時中断しております。'
+            : 'From December 15, 2021, we have temporarily suspended the provision of services to people other than internal testers.'}
         </CautionText>
         <Arrow onClick={handleNextClick} />
       </Content>
