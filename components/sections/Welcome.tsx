@@ -10,10 +10,6 @@ type Props = {
 
 const Container = styled.section`
   min-height: 100vh;
-  background: #333;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 `;
 const Content = styled.div`
   background: rgba(0, 0, 0, 0.75);
@@ -64,6 +60,10 @@ const Arrow = styled(ArrowIcon)`
   }
 `;
 
+const BGImage = styled(Image)`
+  z-index: -1;
+`;
+
 const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
   const handleNextClick = () => {
     const aboutElem = document.querySelector('#about');
@@ -74,11 +74,8 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
   };
 
   return (
-    <Container
-      style={{
-        backgroundImage: `url('${showingImg.bg}')`,
-      }}
-    >
+    <Container>
+      <BGImage src={showingImg.bg} layout="fill" objectFit="cover" />
       <Content>
         <MockupImage
           src={showingImg.mock}
