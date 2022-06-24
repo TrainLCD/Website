@@ -7,7 +7,7 @@ import AreaFeatureSection from './features/Area';
 import IPadFeatureSection from './features/IPad';
 import OSSFeatureSection from './features/OSS';
 
-const AboutSection: React.FC = () => (
+const FeatureSection: React.FC = () => (
   <Container odd>
     <Title>FEATURE</Title>
     <Subtitle>{isJa ? 'TrainLCDの特徴' : 'TrainLCD features'}</Subtitle>
@@ -18,4 +18,4 @@ const AboutSection: React.FC = () => (
   </Container>
 );
 
-export default AboutSection;
+export default FeatureSection;

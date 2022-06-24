@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import appleWatchEnMock from '../../../assets/images/applewatch-en.png';
+import appleWatchMock from '../../../assets/images/applewatch.png';
 import { isJa } from '../../../utils/isJa';
 import { FeatureContainer } from '../../FeatureItemElements';
 
@@ -37,7 +39,7 @@ const AppleWatchFeatureSection: React.FC = () => {
     <FeatureContainer>
       <ImageContainer>
         <Image
-          src={isJa ? '/images/applewatch.png' : '/images/applewatch-en.png'}
+          src={isJa ? appleWatchMock : appleWatchEnMock}
           alt={
             isJa
               ? 'Apple Watchで動くTrainLCD'

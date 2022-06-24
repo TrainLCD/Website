@@ -1,4 +1,6 @@
+import { StaticImageData } from 'next/image';
+
 export type ShowingImage = {
-  bg: string;
-  mock: string;
+  bg: StaticImageData;
+  mock: StaticImageData;
 };

@@ -2,7 +2,7 @@ import { isJa } from '../../utils/isJa';
 import Container from '../Container';
 import { Subtitle, Text, Title } from '../Typography';
 
-const JoinCommunity: React.FC = () => {
+const JoinCommunitySection: React.FC = () => {
   return (
     <Container>
       <Title>COMMUNITY</Title>
@@ -18,4 +18,4 @@ const JoinCommunity: React.FC = () => {
   );
 };
 
-export default JoinCommunity;
+export default JoinCommunitySection;
