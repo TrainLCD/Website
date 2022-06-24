@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import iPadEnMock from '../../../assets/images/ipad-en.png';
+import iPadMock from '../../../assets/images/ipad.png';
 import { isJa } from '../../../utils/isJa';
 import { FeatureContainer } from '../../FeatureItemElements';
 
@@ -37,7 +39,7 @@ const IPadFeatureSection: React.FC = () => {
     <FeatureContainer>
       <ImageContainer>
         <Image
-          src={isJa ? '/images/ipad.png' : '/images/ipad-en.png'}
+          src={isJa ? iPadMock : iPadEnMock}
           alt={isJa ? 'iPadで動くTrainLCD' : 'TrainLCD running on iPad'}
           width={2360}
           height={1640}

@@ -1,4 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import fukuokaBg from '../assets/images/bg/fukuoka.jpg';
+import kyotoBg from '../assets/images/bg/kyoto.jpg';
+import naganoBg from '../assets/images/bg/nagano.jpg';
+import nagasakiBg from '../assets/images/bg/nagasaki.jpg';
+import osakaBg from '../assets/images/bg/osaka.jpg';
+import shibuyaBg from '../assets/images/bg/shibuya.jpg';
+import mojikoEnMock from '../assets/images/mockup/mojiko-en.png';
+import mojikoMock from '../assets/images/mockup/mojiko.png';
+import nijoEnMock from '../assets/images/mockup/nijo-en.png';
+import nijoMock from '../assets/images/mockup/nijo.png';
+import nishihamanoMachiEnMock from '../assets/images/mockup/nishihamano-machi-en.png';
+import nishihamanoMachiMock from '../assets/images/mockup/nishihamano-machi.png';
+import shibuyaEnMock from '../assets/images/mockup/shibuya-en.png';
+import shibuyaMock from '../assets/images/mockup/shibuya.png';
+import shinOsakaEnMock from '../assets/images/mockup/shin-osaka-en.png';
+import shinOsakaMock from '../assets/images/mockup/shin-osaka.png';
+import tatsuokajoEnMock from '../assets/images/mockup/tatsuokajo-en.png';
+import tatsuokajoMock from '../assets/images/mockup/tatsuokajo.png';
 import AppHead from '../components/Head';
 import AboutSection from '../components/sections/About';
 import DownloadSection from '../components/sections/Download';
@@ -12,34 +30,28 @@ import { isJa } from '../utils/isJa';
 
 const images: ShowingImage[] = [
   {
-    bg: '/images/bg/fukuoka.jpg',
-    mock: isJa ? '/images/mockup/mojiko.png' : '/images/mockup/mojiko-en.png',
+    bg: fukuokaBg,
+    mock: isJa ? mojikoMock : mojikoEnMock,
   },
   {
-    bg: '/images/bg/kyoto.jpg',
-    mock: isJa ? '/images/mockup/nijo.png' : '/images/mockup/nijo-en.png',
+    bg: kyotoBg,
+    mock: isJa ? nijoMock : nijoEnMock,
   },
   {
-    bg: '/images/bg/nagasaki.jpg',
-    mock: isJa
-      ? '/images/mockup/nishihamano-machi.png'
-      : '/images/mockup/nishihamano-machi-en.png',
+    bg: nagasakiBg,
+    mock: isJa ? nishihamanoMachiMock : nishihamanoMachiEnMock,
   },
   {
-    bg: '/images/bg/osaka.jpg',
-    mock: isJa
-      ? '/images/mockup/shin-osaka.png'
-      : '/images/mockup/shin-osaka-en.png',
+    bg: osakaBg,
+    mock: isJa ? shinOsakaMock : shinOsakaEnMock,
   },
   {
-    bg: '/images/bg/nagano.jpg',
-    mock: isJa
-      ? '/images/mockup/tatsuokajo.png'
-      : '/images/mockup/tatsuokajo-en.png',
+    bg: naganoBg,
+    mock: isJa ? tatsuokajoMock : tatsuokajoEnMock,
   },
   {
-    bg: '/images/bg/shibuya.jpg',
-    mock: isJa ? '/images/mockup/shibuya.png' : '/images/mockup/shibuya-en.png',
+    bg: shibuyaBg,
+    mock: isJa ? shibuyaMock : shibuyaEnMock,
   },
 ];
 

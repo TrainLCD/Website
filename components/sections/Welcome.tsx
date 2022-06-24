@@ -10,6 +10,7 @@ type Props = {
 
 const Container = styled.section`
   min-height: 100vh;
+  position: relative;
 `;
 const Content = styled.div`
   background: rgba(0, 0, 0, 0.75);
