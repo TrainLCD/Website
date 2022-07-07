@@ -18,6 +18,10 @@ const Subtitle = styled.h2`
   font-weight: normal;
 `;
 
+const ExternalLink = styled.a`
+  color: #333;
+`;
+
 const PrivacyPolicy: React.FC = () => {
   return (
     <Container>
@@ -32,6 +36,7 @@ const PrivacyPolicy: React.FC = () => {
         <Subtitle>プライバシーポリシー(個人情報保護方針)</Subtitle>
         <HeadingMetaContainer>
           <p>令和2年3月30日 制定</p>
+          <p>令和4年7月8日 改定</p>
           <p>屋号TinyKitten(関口 翼)</p>
           <InternalLink href="/privacy-policy-en">
             English version available here.
@@ -39,18 +44,18 @@ const PrivacyPolicy: React.FC = () => {
         </HeadingMetaContainer>
       </HeadingContainer>
       <Paragraph>
-        以下では、個人事業主屋号TinyKitten（以下TinyKittenといいます。）が管理、運営するアプリ「TrainLCD」（以下「本アプリ」といいます。）を利用するお客さま（以下「利用者」といいます。）とTinyKittenとの間に適用される条件等を定めています。利用者が本アプリを利用する際には、以下の内容に同意の上、ご利用いただくようお願いします。なお、TinyKittenは、適宜、以下の内容を変更することができるものとします。
+        以下では、個人事業主屋号TinyKitten（以下TinyKittenといいます。）が管理、運営するアプリ「TrainLCD」（以下「本アプリ」といいます。）を利用するお客さま（以下「利用者様」といいます。）とTinyKittenとの間に適用される条件等を定めています。利用者様が本アプリを利用する際には、以下の内容に同意の上、ご利用いただくようお願いします。なお、TinyKittenは、適宜、以下の内容を変更することができるものとします。
       </Paragraph>
       <Paragraph>
-        以下のとおり、TinyKittenの提供する本アプリにおける、利用者の個人情報の取扱いについて、プライバシーポリシーを定めます。
+        以下のとおり、TinyKittenの提供する本アプリにおける、利用者様の個人情報の取扱いについて、プライバシーポリシーを定めます。
       </Paragraph>
       <HeadingText>第1条（個人情報）</HeadingText>
       <Paragraph>
-        「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）及び利用者のスマートフォンから取得した位置情報を指します。
+        「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）及び利用者様のスマートフォンから取得した位置情報を指します。
       </Paragraph>
       <HeadingText>第2条（個人情報の収集方法）</HeadingText>
       <Paragraph>
-        TinyKittenは，ユーザーが利用登録をする際に氏名，生年月日，住所，電話番号，メールアドレス，銀行口座番号，クレジットカード番号，運転免許証番号などの個人情報をお尋ねすることは一切ありません。ただし、利用者の位置情報は本アプリの特性上一時的に取得いたしますが、サーバー上で一切保管しません。
+        TinyKittenは，ユーザーが利用登録をする際に氏名，生年月日，住所，電話番号，メールアドレス，銀行口座番号，クレジットカード番号，運転免許証番号などの個人情報をお尋ねすることは一切ありません。ただし、利用者様の位置情報は本アプリの特性上一時的に取得いたしますが、サーバー上で一切保管しません。
       </Paragraph>
       <HeadingText>第3条（個人情報を収集・利用する目的）</HeadingText>
       <Paragraph>
@@ -89,7 +94,7 @@ const PrivacyPolicy: React.FC = () => {
       <Paragraph>
         当サイトおよび本アプリでは、サイトおよびアプリの利用状況を把握するためにGoogle
         Analyticsを利用しています。Google
-        Analyticsは、サイト側ではクッキーを利用して利用者の情報を収集し、
+        Analyticsは、サイト側ではクッキーを利用して利用者様の情報を収集し、
         アプリ側ではアプリの各起動ごとに自動的に割り当てられた割り当てられたIDを収集しますが、
         ユーザーの個人情報とは関連付けられません。Google
         Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google
@@ -98,17 +103,33 @@ const PrivacyPolicy: React.FC = () => {
         なお、Google
         Analyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。
       </Paragraph>
-      <HeadingText>第8条（Firebase Crashlyticsの利用について）</HeadingText>
+      <HeadingText>第8条（Sentryの利用について）</HeadingText>
       <Paragraph>
-        本アプリでは、アプリの安定性を把握するためにFirebase
-        Crashlyticsを利用しています。Firebase
-        Crashlyticsは、アプリがクラッシュした際にアプリの各起動ごとに自動的に割り当てられた割り当てられたIDを収集しますが、
-        ユーザーの個人情報とは関連付けられません。Firebase
-        Crashlyticsの利用規約及びプライバシーポリシーに関する説明については、Firebase
-        Crashlyticsのサイトをご覧ください。
+        本アプリでは、アプリの安定性を把握するためにFunctional
+        Software社のサービスである
+        <ExternalLink href="https://sentry.io/" target="_blank">
+          Sentry
+        </ExternalLink>
+        を利用しています。
+        本アプリのご利用中に生じたエラーについて必要最低限の情報がFunctional
+        Software社のサーバーに送信されます。TinyKittenは、Functional
+        Software社からその分析結果を受け取り、利用者様のエラー状況を把握します。Sentryにより収集、記録、分析された利用者様の情報には、特定の個人を識別する情報は一切含まれません。Sentryの
+        <ExternalLink href="https://sentry.io/terms/" target="_blank">
+          利用規約
+        </ExternalLink>
+        及び
+        <ExternalLink href="https://sentry.io/privacy/" target="_blank">
+          プライバシーポリシー
+        </ExternalLink>
+        に関する説明については、Sentryのサイトをご覧ください。
+      </Paragraph>
+      <HeadingText>第9条（フィードバック機能の利用について）</HeadingText>
+      <Paragraph>
+        本アプリの「フィードバック」機能では、必要最低限の情報がTinyKittenが独自に開発したシステムに送信されます。
         <br />
-        なお、Firebase
-        Crashlyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。
+        フィードバック機能により収集、記録、分析された利用者様の情報には、特定の個人を識別する情報は一切含まれません。
+        <br />
+        また、システムにより収集、記録、分析された情報は、TinyKittenの定める一定の期間保管されます。
       </Paragraph>
     </Container>
   );
