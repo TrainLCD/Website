@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import AppHead from '../components/Head';
 import {
   Container,
@@ -11,6 +12,10 @@ import {
   UnorderedList,
 } from '../components/PrivacyPolicyElements';
 
+const ExternalLink = styled.a`
+  color: #333;
+`;
+
 const PrivacyPolicy: React.FC = () => {
   return (
     <Container>
@@ -23,7 +28,8 @@ const PrivacyPolicy: React.FC = () => {
       <HeadingContainer>
         <Title>Privacy Policy</Title>
         <HeadingMetaContainer>
-          <p>Last updated: March 30, 2020</p>
+          <p>Policy enacted: March 30, 2020</p>
+          <p>Last updated: July 8, 2022</p>
           <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
           <InternalLink href="/privacy-policy">日本語版</InternalLink>
         </HeadingMetaContainer>
@@ -120,16 +126,35 @@ const PrivacyPolicy: React.FC = () => {
         TinyKitten shall not be liable for any damages caused by using the
         Google Analytics service.
       </Paragraph>
-      <HeadingText>8.About the use of Firebase Crashlytics</HeadingText>
+      <HeadingText>8.Use of Sentry</HeadingText>
       <Paragraph>
-        This app uses Firebase Crashlytics to understand the stability of the
-        app. Firebase Crashlytics collects an automatically assigned ID for each
-        launch of your app when the app crashes, but it is not associated with
-        your personal information. For a description of the Firebase Crashlytics
-        Terms of Service and Privacy Policy, please visit the Firebase
-        Crashlytics website. <br />
-        TinyKitten shall not be liable for any damages caused by using the
-        Firebase Crashlytics service.
+        This application uses{' '}
+        <ExternalLink href="https://sentry.io/" target="_blank">
+          Sentry
+        </ExternalLink>
+        , a service provided by Functional Software, to understand the stability
+        of the application. TinyKitten receives the results of this analysis
+        from Functional Software to understand the user&lsquo;s error status.
+        The information collected, recorded, and analyzed by Sentry does not
+        contain any personally identifiable information; please visit
+        Sentry&lsquo;s site for a description of Sentry&lsquo;s{' '}
+        <ExternalLink href="https://sentry.io/terms/" target="_blank">
+          Terms of Use
+        </ExternalLink>{' '}
+        and{' '}
+        <ExternalLink href="https://sentry.io/privacy/" target="_blank">
+          Privacy Policy
+        </ExternalLink>
+        .
+      </Paragraph>
+      <HeadingText>8.Use of Feedback Function</HeadingText>
+      <Paragraph>
+        The &quot;Feedback&quot; feature of this application sends the minimum
+        necessary information to TinyKitten&lsquo;s proprietary system. The
+        information collected, recorded, and analyzed by the feedback function
+        does not contain any information that identifies you as a specific
+        individual. The information collected, recorded, and analyzed by the
+        system will be stored for a period of time determined by TinyKitten.{' '}
       </Paragraph>
     </Container>
   );
