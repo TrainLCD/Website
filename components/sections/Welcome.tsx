@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
+import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
 import { ShowingImage } from '../../models/ShowingImage';
 import { isJa } from '../../utils/isJa';
+import AppStoreJPIcon from '../AppStoreJPIcon';
+import AppStoreUSIcon from '../AppStoreUSIcon';
 import ArrowIcon from '../ArrowIcon';
 
 type Props = {
@@ -36,14 +40,6 @@ const AppDescription = styled.h2`
   white-space: pre-wrap;
   padding: 0 32px;
 `;
-const CautionText = styled.b`
-  margin-top: 12px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  padding: 0 32px;
-`;
 const MockupImage = styled(Image)`
   width: 75%;
 
@@ -51,6 +47,18 @@ const MockupImage = styled(Image)`
     max-width: 30%;
   }
 `;
+
+const StoresContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+`;
+const StoreLink = styled.a`
+  margin: 0 8px;
+`;
+
 const Arrow = styled(ArrowIcon)`
   margin-top: 64px;
   @media (min-width: 800px) {
@@ -64,7 +72,6 @@ const Arrow = styled(ArrowIcon)`
 const BGImage = styled(Image)`
   z-index: -1;
 `;
-
 const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
   const handleNextClick = () => {
     const aboutElem = document.querySelector('#about');
@@ -90,11 +97,28 @@ const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
             ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです。`
             : 'Can be used on routes all over Japan\nNew sense navigation app.'}
         </AppDescription>
-        <CautionText>
-          {isJa
-            ? '2021年12月15日より内部テスター以外の方へのサービス提供を一時中断しております。'
-            : 'From December 15, 2021, we have temporarily suspended the provision of services to people other than internal testers.'}
-        </CautionText>
+        <StoresContainer>
+          <StoreLink
+            href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {isJa ? <AppStoreJPIcon /> : <AppStoreUSIcon />}
+          </StoreLink>
+          <StoreLink
+            href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
+              alt="Play Store"
+              width={134}
+              height={40}
+            />
+          </StoreLink>
+        </StoresContainer>
+
         <Arrow onClick={handleNextClick} />
       </Content>
     </Container>
