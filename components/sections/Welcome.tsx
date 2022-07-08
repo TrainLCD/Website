@@ -57,6 +57,7 @@ const StoresContainer = styled.div`
 `;
 const StoreLink = styled.a`
   margin: 0 8px;
+  z-index: 1;
 `;
 
 const Arrow = styled(ArrowIcon)`
