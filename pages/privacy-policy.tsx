@@ -36,7 +36,7 @@ const PrivacyPolicy: React.FC = () => {
         <Subtitle>プライバシーポリシー(個人情報保護方針)</Subtitle>
         <HeadingMetaContainer>
           <p>令和2年3月30日 制定</p>
-          <p>令和4年7月8日 改定</p>
+          <p>令和4年7月13日 改定</p>
           <p>屋号TinyKitten(関口 翼)</p>
           <InternalLink href="/privacy-policy-en">
             English version available here.
@@ -88,7 +88,7 @@ const PrivacyPolicy: React.FC = () => {
       </Paragraph>
       <UnorderedList>
         <li>名前: TinyKitten(関口 翼)</li>
-        <li>Eメールアドレス： ts@tinykitten.me</li>
+        <li>Eメールアドレス： trainlcd@tinykitten.me</li>
       </UnorderedList>
       <HeadingText>第7条（Google Analyticsの利用について）</HeadingText>
       <Paragraph>
