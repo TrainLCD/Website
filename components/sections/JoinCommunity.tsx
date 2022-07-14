@@ -24,8 +24,8 @@ const JoinCommunitySection: React.FC = () => {
           : 'Did you like the app? Join the TrainLCD Discord community!'}
         <br />
         {isJa
-          ? `TrainLCDコミュニティではアプリへの早期アクセスや、自分の意見をいち早くアプリに反映させることが出来ます！`
-          : `In the TrainLCD community, you can access the app early and reflect your opinion in the app as soon as possible!`}
+          ? `TrainLCDコミュニティでは自分の意見をいち早くアプリに反映させることや、同じTrainLCDユーザーとの交流が出来ます！`
+          : `The TrainLCD community is a great place to get your opinions reflected in the application as quickly as possible and to interact with other TrainLCD users!`}
       </Text>
       <InviteContainer>
         <iframe
