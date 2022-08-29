@@ -69,10 +69,12 @@ const IPadSection: React.FC = () => {
           iPadと一緒に使えば、
           <br />
           もっとわかりやすく次の駅を知ることができます。
-          最新のどのiPadにも対応している<sup>*2</sup>ため、
+          <br />
+          最新のどのiPadにも対応している
+          <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
+          ため、
           <br />
           アプリをダウンロードしてすぐ快適に使えます。
-          <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
         </DescriptionText>
         <DisclaimerText>
           <sup>*2</sup>

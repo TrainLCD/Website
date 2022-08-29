@@ -53,6 +53,10 @@ const DisclaimerText = styled.p`
   line-height: 1.5;
 `;
 
+const ResizedSup = styled.sup`
+  font-size: 1rem;
+`;
+
 const AppleWatchSection: React.FC = () => {
   return (
     <Container>
@@ -66,7 +70,7 @@ const AppleWatchSection: React.FC = () => {
       </MockupContainer>
       <TextsContainer>
         <ShortHeading>
-          スマートウォッチ対応<sup>*3</sup>
+          スマートウォッチ対応<ResizedSup>*3</ResizedSup>
         </ShortHeading>
         <Heading>
           <AccentText>日本全国</AccentText>サービス対象
