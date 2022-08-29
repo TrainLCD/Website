@@ -1,50 +1,66 @@
 import React from 'react';
 import styled from 'styled-components';
-import TinyKittenIcon from './TinyKittenIcon';
+import { isJa } from '../utils/isJa';
+import AppLogo from './AppLogo';
 
-/*
-.header {
-}
-.title {
-}
-*/
+const AppInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
 
 const HeaderContainer = styled.header`
   position: fixed;
-  left: 0;
-  top: 0;
-  height: 48px;
+  height: 64px;
   background: #fff;
   z-index: 9999;
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
-
-  @supports (
-    (-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))
-  ) {
-    background-color: rgba(255, 255, 255, 0.5);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-  }
+  border-bottom: 1px solid #ddd;
+  padding: 0 64px;
 `;
 
-const TKContainer = styled.div``;
+const AppTitle = styled.p`
+  margin-left: 8px;
+  font-weight: bold;
+  color: #444;
+`;
+
+const TryButtonContainer = styled.div``;
+
+const TryButton = styled.button`
+  appearance: none;
+  background-color: #277bc0;
+  width: 180px;
+  height: 48px;
+  border: none;
+  border-radius: 48px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+`;
 
 const Header: React.FC = () => {
+  const handleTryButtonClick = () => {
+    const aboutElem = document.querySelector('#download');
+    window.scrollTo({
+      top: aboutElem?.getBoundingClientRect().top,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <HeaderContainer>
-      <TKContainer>
-        <a
-          href="https://tinykitten.me"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <TinyKittenIcon width={32} height={32} />
-        </a>
-      </TKContainer>
+      <AppInfoContainer>
+        <AppLogo width={37.89} height={48} />
+        <AppTitle>TrainLCD</AppTitle>
+      </AppInfoContainer>
+      <TryButtonContainer>
+        <TryButton onClick={handleTryButtonClick}>
+          {isJa ? '使ってみる' : 'Try TrainLCD'}
+        </TryButton>
+      </TryButtonContainer>
     </HeaderContainer>
   );
 };

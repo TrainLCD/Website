@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.main`
   color: #333;
   max-width: 1024px;
-  margin: 48px auto 0 auto;
-  padding: 32px;
+  padding: 128px 32px 32px 32px;
   line-height: 1.5;
 `;
 
