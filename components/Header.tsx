@@ -1,12 +1,18 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { isJa } from '../utils/isJa';
 import AppLogo from './AppLogo';
 
 const AppInfoContainer = styled.div`
-  display: flex;
-  align-items: center;
   width: 100%;
+`;
+
+const AppInfoAnchor = styled.a`
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
 `;
 
 const HeaderContainer = styled.header`
@@ -53,8 +59,12 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <AppInfoContainer>
-        <AppLogo width={37.89} height={48} />
-        <AppTitle>TrainLCD</AppTitle>
+        <Link href="/" passHref>
+          <AppInfoAnchor>
+            <AppLogo width={37.89} height={48} />
+            <AppTitle>TrainLCD</AppTitle>
+          </AppInfoAnchor>
+        </Link>
       </AppInfoContainer>
       <TryButtonContainer>
         <TryButton onClick={handleTryButtonClick}>
