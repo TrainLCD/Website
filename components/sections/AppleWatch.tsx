@@ -73,7 +73,7 @@ const AppleWatchSection: React.FC = () => {
           スマートウォッチ対応<ResizedSup>*3</ResizedSup>
         </ShortHeading>
         <Heading>
-          <AccentText>日本全国</AccentText>サービス対象
+          <AccentText>Apple Watch</AccentText>でも使えます
         </Heading>
         <DescriptionText>
           Apple Watchと組み合わせれば
