@@ -1,22 +1,37 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
+import { Media, mediaQueries } from '../../constants/media';
 import RingsPC from '../RingsPC';
+import RingsSP from '../RingsSP';
 
 const Container = styled.section`
   height: 100vh;
   position: relative;
-  display: flex;
-  padding: 0 64px;
+  padding: 0 32px;
   background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding: 0 64px;
+  }
 `;
 
-const LeftContainer = styled.div`
-  height: 100%;
+const TextsContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  flex: 1;
+  margin-bottom: 80px;
+  @media ${mediaQueries.md} {
+    flex: 1;
+    height: 100%;
+    margin-bottom: 0;
+  }
 `;
 
 const ColoredText = styled.span`
@@ -24,8 +39,10 @@ const ColoredText = styled.span`
 `;
 
 const Heading = styled.h1`
-  font-size: 3rem;
   line-height: 1.5;
+  @media ${mediaQueries.md} {
+    font-size: 3rem;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -33,19 +50,36 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 24px;
+
+  @media ${mediaQueries.md} {
+    font-weight: bold;
+    color: #444;
+    margin-top: 24px;
+  }
 `;
 
-const RightContainer = styled.div`
+const MockupContainer = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  flex: 0.75;
+
+  @media ${mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 0.75;
+  }
 `;
 
 const StyledRingsPC = styled(RingsPC)`
   position: absolute;
   right: 0;
   bottom: 256px;
+`;
+
+const StyledRingsSP = styled(RingsSP)`
+  position: absolute;
+  right: 0;
+  bottom: 300px;
 `;
 
 const TryButton = styled.button`
@@ -72,7 +106,7 @@ const WelcomeSection: React.FC = () => {
 
   return (
     <Container>
-      <LeftContainer>
+      <TextsContainer>
         <Heading>
           日本全国の鉄道路線で使える
           <br />
@@ -85,12 +119,27 @@ const WelcomeSection: React.FC = () => {
           <br />
           迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
         </DescriptionText>
+        <Media greaterThanOrEqual="lg">
+          <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
+        </Media>
+      </TextsContainer>
+      <MockupContainer>
+        <Media greaterThanOrEqual="lg">
+          <StyledRingsPC />
+        </Media>
+        <Media lessThan="lg">
+          <StyledRingsSP />
+        </Media>
+        <Image
+          src={mockImage}
+          width={626.19}
+          height={440}
+          alt="iPhone and iPad"
+        />
+      </MockupContainer>
+      <Media lessThan="lg">
         <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
-      </LeftContainer>
-      <RightContainer>
-        <StyledRingsPC />
-        <Image src={mockImage} alt="iPhone and iPad" />
-      </RightContainer>
+      </Media>
     </Container>
   );
 };

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
 import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
+import { Media, mediaQueries } from '../../constants/media';
 import { isJa } from '../../utils/isJa';
 import AppStoreJPIcon from '../AppStoreJPIcon';
 import AppStoreUSIcon from '../AppStoreUSIcon';
@@ -9,27 +10,44 @@ import AppStoreUSIcon from '../AppStoreUSIcon';
 const Container = styled.section`
   height: 100vh;
   position: relative;
+  padding: 0 32px;
+  background-color: #fefefe;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 0 64px;
-  background-color: #fcfcfc;
+  justify-content: center;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding: 0 64px;
+  }
 `;
 const StoresContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
   flex-direction: column;
+  @media ${mediaQueries.md} {
+    width: 50%;
+  }
 `;
 
 const TextsContainer = styled.div`
-  width: 50%;
+  width: 100%;
+  @media ${mediaQueries.md} {
+    width: 50%;
+  }
 `;
 
 const ShortHeading = styled.p`
-  font-size: 1.5rem;
   color: #277bc0;
   font-weight: bold;
+  margin-top: 32px;
+  @media ${mediaQueries.md} {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
 `;
 
 const AccentText = styled.span`
@@ -37,22 +55,32 @@ const AccentText = styled.span`
 `;
 
 const Heading = styled.h1`
-  font-size: 3rem;
   line-height: 1.5;
+  @media ${mediaQueries.md} {
+    font-size: 3rem;
+  }
 `;
 
 const DescriptionText = styled.p`
   line-height: 1.5;
   font-weight: bold;
   color: #444;
-  font-size: 1.5rem;
-  margin-top: 24px;
+  margin-top: 16px;
+  @media ${mediaQueries.md} {
+    margin-top: 24px;
+    font-size: 1.5rem;
+  }
 `;
 
 const ResizedAppStoreIcon = styled(isJa ? AppStoreJPIcon : AppStoreUSIcon)`
-  width: 320px;
-  height: 113.07px;
-  margin-bottom: 64px;
+  width: 160px;
+  height: 52.5px;
+  margin-bottom: 21px;
+  @media ${mediaQueries.md} {
+    width: 320px;
+    height: 113.07px;
+    margin-bottom: 64px;
+  }
 `;
 
 const DownloadSection: React.FC = () => {
@@ -71,11 +99,20 @@ const DownloadSection: React.FC = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Image
-            width={320 - 13}
-            height={95.32 - 13}
-            src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
-          />
+          <Media greaterThanOrEqual="lg">
+            <Image
+              width={320}
+              height={95.32}
+              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
+            />
+          </Media>
+          <Media lessThan="lg">
+            <Image
+              width={160}
+              height={47.66}
+              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
+            />
+          </Media>
         </a>
       </StoresContainer>
       <TextsContainer>

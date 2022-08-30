@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
+import { mediaQueries } from '../constants/media';
 import AppLogo from './AppLogo';
 import DiscordLogo from './DiscordLogo';
 import TinyKittenProduct from './TinyKittenProduct';
@@ -7,7 +8,10 @@ import TwitterLogo from './TwitterLogo';
 
 const FooterContainer = styled.footer`
   background-color: #212121;
-  padding: 40px 64px;
+  padding: 40px 16px;
+  @media ${mediaQueries.md} {
+    padding: 40px 64px;
+  }
 `;
 const AppInfoContainer = styled.div`
   padding-bottom: 40px;
@@ -26,16 +30,24 @@ const AppInfoTextContainer = styled.div`
   justify-content: center;
 `;
 const AppDescriptionText = styled.p`
-  font-size: 0.75rem;
+  font-size: 0.25rem;
   color: white;
   font-weight: bold;
+  white-space: pre-wrap;
+  @media ${mediaQueries.md} {
+    font-size: 0.75rem;
+    white-space: initial;
+  }
 `;
 const AppNameText = styled.p`
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: white;
   font-weight: bold;
   line-height: 1;
   margin-top: 2px;
+  @media ${mediaQueries.md} {
+    font-size: 1.5rem;
+  }
 `;
 
 const Divider = styled.div`
@@ -48,21 +60,30 @@ const BottomContainer = styled.div`
   padding-top: 24px;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+  }
 `;
 
 const BottomLeftContainer = styled.div``;
 
 const buttonAnimationMixin = css`
-  opacity: 0.75;
-  transition: 250ms;
-  &:hover {
-    opacity: 1;
+  @media ${mediaQueries.md} {
+    opacity: 0.75;
+    transition: 250ms;
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 
 const SocialMediaList = styled.div`
   display: flex;
   gap: 14px;
+  @media ${mediaQueries.md} {
+    gap: 8px;
+  }
 `;
 
 const ResizedTwitterLogo = styled(TwitterLogo)`
@@ -81,6 +102,10 @@ const LinkList = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 21px;
+  flex-direction: column;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+  }
 `;
 
 const StyledAnchor = styled.a`
@@ -95,7 +120,12 @@ const BottomRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 32px;
+  @media ${mediaQueries.md} {
+    align-items: flex-end;
+    margin-top: 0;
+  }
 `;
 
 const CopyrightText = styled.p`
@@ -104,8 +134,12 @@ const CopyrightText = styled.p`
   margin-top: 12px;
   line-height: 1.2;
   opacity: 0.75;
-  text-align: right;
+  text-align: left;
   line-height: 1.25;
+  white-space: pre-wrap;
+  @media ${mediaQueries.md} {
+    text-align: right;
+  }
 `;
 
 const Footer: React.FC = () => {
@@ -117,7 +151,7 @@ const Footer: React.FC = () => {
         <StyledAppLogo />
         <AppInfoTextContainer>
           <AppDescriptionText>
-            日本全国の鉄道路線で使える 新感覚ナビゲーションアプリ
+            日本全国の鉄道路線で使える{'\n'}新感覚ナビゲーションアプリ
           </AppDescriptionText>
           <AppNameText>TrainLCD</AppNameText>
         </AppInfoTextContainer>
@@ -170,9 +204,7 @@ const Footer: React.FC = () => {
             <TinyKittenProduct />
           </a>
           <CopyrightText>
-            © 2019-{currentYear} TinyKitten(Tsubasa SEKIGUCHI)
-            <br />
-            and the Volunteer TrainLCD development team.
+            {`© 2019-${currentYear} TinyKitten(Tsubasa SEKIGUCHI)\nand the Volunteer TrainLCD development team.`}
           </CopyrightText>
         </BottomRightContainer>
       </BottomContainer>

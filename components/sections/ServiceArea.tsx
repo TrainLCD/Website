@@ -2,31 +2,48 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import mojikoEnMock from '../../assets/images/mockup/mojiko-en.png';
 import mojikoMock from '../../assets/images/mockup/mojiko.png';
+import { mediaQueries } from '../../constants/media';
 import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
   height: 100vh;
   position: relative;
+  padding: 0 32px;
+  background-color: #fefefe;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 0 64px;
-  background-color: #fcfcfc;
+  justify-content: center;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding: 0 64px;
+  }
 `;
 const MockupContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 100%;
+  @media ${mediaQueries.md} {
+    width: 50%;
+  }
 `;
 
 const TextsContainer = styled.div`
-  width: 50%;
+  width: 100%;
+  @media ${mediaQueries.md} {
+    width: 50%;
+  }
 `;
 
 const ShortHeading = styled.p`
-  font-size: 1.5rem;
   color: #277bc0;
   font-weight: bold;
+  @media ${mediaQueries.md} {
+    font-size: 1.5rem;
+  }
 `;
 
 const AccentText = styled.span`
@@ -34,20 +51,28 @@ const AccentText = styled.span`
 `;
 
 const Heading = styled.h1`
-  font-size: 3rem;
   line-height: 1.5;
+  @media ${mediaQueries.md} {
+    font-size: 3rem;
+  }
 `;
 
 const DescriptionText = styled.p`
   line-height: 1.5;
   font-weight: bold;
   color: #444;
-  font-size: 1.5rem;
-  margin-top: 24px;
+  margin-top: 16px;
+  @media ${mediaQueries.md} {
+    margin-top: 24px;
+    font-size: 1.5rem;
+  }
 `;
 
 const DescriptionCaptionNumber = styled.sup`
-  font-size: 1rem;
+  font-size: 0.5rem;
+  @media ${mediaQueries.md} {
+    font-size: 1rem;
+  }
 `;
 
 const DisclaimerText = styled.p`

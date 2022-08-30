@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import { mediaQueries } from '../constants/media';
 import { isJa } from '../utils/isJa';
 import AppLogo from './AppLogo';
 
 const AppInfoContainer = styled.div`
   width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const AppInfoAnchor = styled.a`
@@ -24,7 +27,10 @@ const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ddd;
-  padding: 0 64px;
+  padding: 0 32px;
+  @media ${mediaQueries.md} {
+    padding: 0 64px;
+  }
 `;
 
 const AppTitle = styled.p`
@@ -38,13 +44,17 @@ const TryButtonContainer = styled.div``;
 const TryButton = styled.button`
   appearance: none;
   background-color: #277bc0;
-  width: 180px;
-  height: 48px;
+  width: 120px;
+  height: 40px;
   border: none;
-  border-radius: 48px;
+  border-radius: 40px;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  @media ${mediaQueries.md} {
+    width: 180px;
+    height: 48px;
+  }
 `;
 
 const Header: React.FC = () => {
@@ -61,7 +71,7 @@ const Header: React.FC = () => {
       <AppInfoContainer>
         <Link href="/" passHref>
           <AppInfoAnchor>
-            <AppLogo width={37.89} height={48} />
+            <AppLogo width={25.26} height={32} />
             <AppTitle>TrainLCD</AppTitle>
           </AppInfoAnchor>
         </Link>

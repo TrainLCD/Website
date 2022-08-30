@@ -2,9 +2,9 @@ import React from 'react';
 import AppHead from '../components/Head';
 import AppleWatchSection from '../components/sections/AppleWatch';
 import DownloadSection from '../components/sections/Download';
-import IPadSection from '../components/sections/IPad';
 import OSSSection from '../components/sections/OSS';
 import ServiceAreaSection from '../components/sections/ServiceArea';
+import TabletSection from '../components/sections/Tablet';
 import WelcomeSection from '../components/sections/Welcome';
 
 const Home: React.FC = () => {
@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       />
       <WelcomeSection />
       <ServiceAreaSection />
-      <IPadSection />
+      <TabletSection />
       <AppleWatchSection />
       <OSSSection />
       <DownloadSection />

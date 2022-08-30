@@ -7,6 +7,7 @@ import Document, {
   NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { mediaStyles } from '../constants/media';
 
 class MyDocument extends Document {
   static async getInitialProps(
@@ -40,7 +41,12 @@ class MyDocument extends Document {
   render(): React.ReactElement {
     return (
       <Html lang="ja">
-        <Head />
+        <Head>
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{ __html: mediaStyles }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import styled from 'styled-components';
+import iPadEnMock from '../../assets/images/ipad-en.png';
+import iPadMock from '../../assets/images/ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
-import GitHubIcon from '../GitHubIcon';
+import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
   height: 100vh;
@@ -33,18 +36,13 @@ const TextsContainer = styled.div`
 const ShortHeading = styled.p`
   color: #277bc0;
   font-weight: bold;
-  margin-top: 32px;
   @media ${mediaQueries.md} {
     font-size: 1.5rem;
-    margin-top: 0;
   }
 `;
 
 const AccentText = styled.span`
   color: #277bc0;
-  @media ${mediaQueries.md} {
-    white-space: pre-wrap;
-  }
 `;
 
 const Heading = styled.h1`
@@ -65,31 +63,54 @@ const DescriptionText = styled.p`
   }
 `;
 
-const ResizedGitHubIcon = styled(GitHubIcon)`
-  width: 160px;
-  height: 156.04px;
+const DescriptionCaptionNumber = styled.sup`
+  font-size: 0.5rem;
   @media ${mediaQueries.md} {
-    width: 290px;
-    height: 282.82px;
+    font-size: 1rem;
   }
 `;
 
-const ToGHButton = styled.a`
-  display: block;
-  background-color: #277bc0;
-  width: 180px;
-  height: 48px;
-  border: none;
-  border-radius: 48px;
-  color: white;
-  font-weight: bold;
-  margin-top: 32px;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const DisclaimerText = styled.p`
+  font-size: 0.75rem;
+  color: #444444;
+  margin-top: 12px;
+  line-height: 1.5;
 `;
+
+const TextFragment = () => (
+  <TextsContainer>
+    <ShortHeading>タブレット対応</ShortHeading>
+    <Heading>
+      <AccentText>iPad</AccentText>で使えます
+    </Heading>
+    <DescriptionText>
+      iPadと一緒に使えば、
+      <br />
+      もっとわかりやすく次の駅を知ることができます。
+      <br />
+      最新のどのiPadにも対応している
+      <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
+      ため、
+      <br />
+      アプリをダウンロードしてすぐ快適に使えます。
+    </DescriptionText>
+    <DisclaimerText>
+      <sup>*2</sup>
+      Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる可能性があります。
+    </DisclaimerText>
+  </TextsContainer>
+);
+
+const MockupFragment = () => (
+  <MockupContainer>
+    <Image
+      src={isJa ? iPadMock : iPadEnMock}
+      alt="iPad"
+      width={580}
+      height={430.22}
+    />
+  </MockupContainer>
+);
 
 const StyledMedia = styled(Media)`
   width: 100%;
@@ -101,37 +122,8 @@ const StyledMedia = styled(Media)`
     flex-direction: row;
   }
 `;
-const TextFragment = () => (
-  <TextsContainer>
-    <ShortHeading>PRs Welcome</ShortHeading>
-    <Heading>
-      TrainLCDは
-      <br />
-      <AccentText>オープンソース{'\n'}プロジェクト</AccentText>
-    </Heading>
-    <DescriptionText>
-      TrainLCDはMITライセンスのオープンソースプロジェクトです。
-      <br />
-      エンジニアの皆さん、
-      <br />
-      TrainLCDの開発に貢献してみませんか？
-    </DescriptionText>
-    <ToGHButton
-      href="https://github.com/TrainLCD/MobileApp"
-      rel="noopener noreferrer"
-    >
-      リポジトリを見る
-    </ToGHButton>
-  </TextsContainer>
-);
 
-const MockupFragment = () => (
-  <MockupContainer>
-    <ResizedGitHubIcon />
-  </MockupContainer>
-);
-
-const OSSSection: React.FC = () => {
+const TabletSection: React.FC = () => {
   return (
     <Container>
       <StyledMedia greaterThanOrEqual="lg">
@@ -146,4 +138,4 @@ const OSSSection: React.FC = () => {
   );
 };
 
-export default OSSSection;
+export default TabletSection;
