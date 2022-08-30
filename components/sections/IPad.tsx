@@ -10,7 +10,7 @@ const Container = styled.section`
   display: flex;
   align-items: center;
   padding: 0 64px;
-  background-color: #fcfcfc;
+  background-color: #fefefe;
 `;
 const MockupContainer = styled.div`
   display: flex;
