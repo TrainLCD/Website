@@ -5,7 +5,6 @@ import iPadEnMock from '../../assets/images/ipad-en.png';
 import iPadMock from '../../assets/images/ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
-import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -109,16 +108,19 @@ const TextFragment = () => {
   );
 };
 
-const MockupFragment = () => (
-  <MockupContainer>
-    <Image
-      src={isJa ? iPadMock : iPadEnMock}
-      alt="iPad"
-      width={580}
-      height={430.22}
-    />
-  </MockupContainer>
-);
+const MockupFragment = () => {
+  const isJa = useIsJa();
+  return (
+    <MockupContainer>
+      <Image
+        src={isJa ? iPadMock : iPadEnMock}
+        alt="iPad"
+        width={580}
+        height={430.22}
+      />
+    </MockupContainer>
+  );
+};
 
 const StyledMedia = styled(Media)`
   width: 100%;

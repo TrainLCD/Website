@@ -1,11 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
 import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
 import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
-import { isJa } from '../../utils/isJa';
 import AppStoreJPIcon from '../AppStoreJPIcon';
 import AppStoreUSIcon from '../AppStoreUSIcon';
 
@@ -75,7 +74,7 @@ const DescriptionText = styled.p`
   }
 `;
 
-const ResizedAppStoreIcon = styled(isJa ? AppStoreJPIcon : AppStoreUSIcon)`
+const appStoreResizeMixin = css`
   width: 160px;
   height: 52.5px;
   margin-bottom: 21px;
@@ -84,6 +83,12 @@ const ResizedAppStoreIcon = styled(isJa ? AppStoreJPIcon : AppStoreUSIcon)`
     height: 113.07px;
     margin-bottom: 64px;
   }
+`;
+const ResizedAppStoreJPIcon = styled(AppStoreJPIcon)`
+  ${appStoreResizeMixin}
+`;
+const ResizedAppStoreUSIcon = styled(AppStoreUSIcon)`
+  ${appStoreResizeMixin}
 `;
 
 const DownloadSection: React.FC = () => {
@@ -98,7 +103,7 @@ const DownloadSection: React.FC = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <ResizedAppStoreIcon />
+          {isJa ? <ResizedAppStoreJPIcon /> : <ResizedAppStoreUSIcon />}
         </a>
         <a
           href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
