@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../constants/media';
-import { isJa } from '../utils/isJa';
 import AppLogo from './AppLogo';
 
 const AppInfoContainer = styled.div`
@@ -59,6 +59,7 @@ const TryButton = styled.button`
 `;
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
   const handleTryButtonClick = () => {
     const aboutElem = document.querySelector('#download');
     window.scrollTo({
@@ -78,9 +79,7 @@ const Header: React.FC = () => {
         </Link>
       </AppInfoContainer>
       <TryButtonContainer>
-        <TryButton onClick={handleTryButtonClick}>
-          {isJa ? '使ってみる' : 'Try TrainLCD'}
-        </TryButton>
+        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
       </TryButtonContainer>
     </HeaderContainer>
   );

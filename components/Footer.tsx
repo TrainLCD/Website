@@ -1,6 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { mediaQueries } from '../constants/media';
+import useIsJa from '../hooks/useIsJa';
 import AppLogo from './AppLogo';
 import DiscordLogo from './DiscordLogo';
 import TinyKittenProduct from './TinyKittenProduct';
@@ -144,15 +146,15 @@ const CopyrightText = styled.p`
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
+  const isJa = useIsJa();
 
   return (
     <FooterContainer>
       <AppInfoContainer>
         <StyledAppLogo />
         <AppInfoTextContainer>
-          <AppDescriptionText>
-            日本全国の鉄道路線で使える{'\n'}新感覚ナビゲーションアプリ
-          </AppDescriptionText>
+          <AppDescriptionText>{t('component.footer.motto')}</AppDescriptionText>
           <AppNameText>TrainLCD</AppNameText>
         </AppInfoTextContainer>
       </AppInfoContainer>
@@ -181,17 +183,20 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              開発者のポートフォリオ
+              {t('component.footer.portfolio')}
             </StyledAnchor>
-            <Link href="/privacy-policy" passHref>
-              <StyledAnchor>プライバシーポリシー</StyledAnchor>
+            <Link
+              href={isJa ? '/privacy-policy' : '/privacy-policy-en'}
+              passHref
+            >
+              <StyledAnchor>{t('component.footer.privacyPolicy')}</StyledAnchor>
             </Link>
             <StyledAnchor
               href="https://discord.gg/qKT7zSGQre"
               target="_blank"
               rel="noreferrer noopener"
             >
-              Discordコミュニティに参加する
+              {t('component.footer.joinCom')}
             </StyledAnchor>
           </LinkList>
         </BottomLeftContainer>

@@ -1,0 +1,54 @@
+{
+  "global": {
+    "app": "App",
+    "try": "Try TrainLCD"
+  },
+  "component": {
+    "footer": {
+      "motto": "A new type of navigation application\nthat can be used on railroad lines throughout Japan",
+      "portfolio": "Developer's Portfolio(in Japanese)",
+      "privacyPolicy": "Privacy Policy",
+      "joinCom": "Join the Discord Community(in Japanese)"
+    }
+  },
+  "section": {
+    "welcome": {
+      "canBeUsed": "Can be used on railroad lines throughout Japan",
+      "newSenseNav": "New Sense Navigation",
+      "description": "It has never been possible to use a train LCD with your smartphone.\nThat's TrainLCD, a new kind of navigation app!\nWhen you feel lost, when you are not sure if you can get off the train. It will surely be useful for you."
+    },
+    "serviceArea": {
+      "shortHeading": "Service Area",
+      "description": "With a few exceptions, most of Japan's nationwide Railroad lines are supported",
+      "disclaimer": "Service is not guaranteed for some routes where signal reception is difficult, such as subways, and for intricate routes such as the Tsurumi Line.\nThe service is only available for railroad lines and not for buses or other means of transportation",
+      "enOnly": {
+        "nationwide": "Nationwide",
+        "svcCoverageInJpn": "service coverage in Japan"
+      }
+    },
+    "tablet": {
+      "shortHeading": "Tablet Support",
+      "canBeUsedWith": "Can be used with",
+      "description": "With the iPad, you can find out the next station more easily.\nThe app is compatible with any of the latest iPads, so you can use it comfortably as soon as you download it.\nYou can download the app and start using it right away.",
+      "disclaimer": "The Wi-Fi model iPad is not equipped with GPS and may become unstable under certain conditions."
+    },
+    "appleWatch": {
+      "shortHeading": "Smartwatch Support",
+      "alsoWorks": "Also works with",
+      "description": "When combined with the Apple Watch\nYou can know where you are stopping and where you will be stopping next just by looking at your wrist.\nand the station where the train will stop next.",
+      "disclaimer": "Only Apple Watch is supported. Currently not compatible with Wear OS, etc."
+    },
+    "oss": {
+      "trainlcdIs": "TrainLCD is",
+      "ossProject": "Open Source Project",
+      "description": "TrainLCD is an MIT-licensed open source project.\nEngineers, would you like to contribute to the development of TrainLCD?",
+      "viewRepo": "Browse Repository"
+    },
+    "dl": {
+      "shortHeading": "Let's use it right away.",
+      "and": "and",
+      "bothSupport": "Both supported",
+      "description": "It is compatible with iPhone, iPad, and Android smartphones, and of course it is free.\nGet it working on your smartphone ASAP!"
+    }
+  }
+}

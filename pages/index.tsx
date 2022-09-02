@@ -1,3 +1,4 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 import AppHead from '../components/Head';
 import AppleWatchSection from '../components/sections/AppleWatch';
@@ -25,5 +26,11 @@ const Home: React.FC = () => {
     </main>
   );
 };
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 export default Home;

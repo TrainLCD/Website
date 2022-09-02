@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
@@ -51,6 +52,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 24px;
+  white-space: pre-wrap;
 
   @media ${mediaQueries.md} {
     font-weight: bold;
@@ -97,6 +99,7 @@ const TryButton = styled.button`
 `;
 
 const WelcomeSection: React.FC = () => {
+  const { t } = useTranslation();
   const handleTryButtonClick = () => {
     const aboutElem = document.querySelector('#download');
     window.scrollTo({
@@ -109,19 +112,16 @@ const WelcomeSection: React.FC = () => {
     <Container>
       <TextsContainer>
         <Heading>
-          日本全国の鉄道路線で使える
+          {t('section.welcome.canBeUsed')}
           <br />
-          <ColoredText>新感覚ナビゲーション</ColoredText>アプリ
+          <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>&nbsp;
+          {t('global.app')}
         </Heading>
-        <DescriptionText>
-          今までにありそうでなかった あなたのスマートフォンで使える電車のLCD。
-          <br />
-          それが、新感覚ナビゲーションアプリ「TrainLCD」
-          <br />
-          迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
-        </DescriptionText>
+        <DescriptionText>{t('section.welcome.description')}</DescriptionText>
         <Media greaterThanOrEqual="lg">
-          <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
+          <TryButton onClick={handleTryButtonClick}>
+            {t('global.try')}
+          </TryButton>
         </Media>
       </TextsContainer>
       <MockupContainer>
@@ -135,11 +135,12 @@ const WelcomeSection: React.FC = () => {
           src={mockImage}
           width={626.19}
           height={440}
+          objectFit="contain"
           alt="iPhone and iPad"
         />
       </MockupContainer>
       <Media lessThan="lg">
-        <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
+        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
       </Media>
     </Container>
   );

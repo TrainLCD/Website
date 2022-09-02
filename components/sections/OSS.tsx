@@ -1,5 +1,7 @@
+import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { Media, mediaQueries } from '../../constants/media';
+import useIsJa from '../../hooks/useIsJa';
 import GitHubIcon from '../GitHubIcon';
 
 const Container = styled.section`
@@ -59,6 +61,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 16px;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     margin-top: 24px;
     font-size: 1.5rem;
@@ -101,29 +104,28 @@ const StyledMedia = styled(Media)`
     flex-direction: row;
   }
 `;
-const TextFragment = () => (
-  <TextsContainer>
-    <ShortHeading>PRs Welcome</ShortHeading>
-    <Heading>
-      TrainLCDは
-      <br />
-      <AccentText>オープンソース{'\n'}プロジェクト</AccentText>
-    </Heading>
-    <DescriptionText>
-      TrainLCDはMITライセンスのオープンソースプロジェクトです。
-      <br />
-      エンジニアの皆さん、
-      <br />
-      TrainLCDの開発に貢献してみませんか？
-    </DescriptionText>
-    <ToGHButton
-      href="https://github.com/TrainLCD/MobileApp"
-      rel="noopener noreferrer"
-    >
-      リポジトリを見る
-    </ToGHButton>
-  </TextsContainer>
-);
+const TextFragment = () => {
+  const isJa = useIsJa();
+  const { t } = useTranslation();
+
+  return (
+    <TextsContainer>
+      <ShortHeading>PRs Welcome</ShortHeading>
+      <Heading>
+        {t('section.oss.trainlcdIs')}
+        <br />
+        <AccentText>{t('section.oss.ossProject')}</AccentText>
+      </Heading>
+      <DescriptionText>{t('section.oss.description')}</DescriptionText>
+      <ToGHButton
+        href="https://github.com/TrainLCD/MobileApp"
+        rel="noopener noreferrer"
+      >
+        {t('section.oss.viewRepo')}
+      </ToGHButton>
+    </TextsContainer>
+  );
+};
 
 const MockupFragment = () => (
   <MockupContainer>

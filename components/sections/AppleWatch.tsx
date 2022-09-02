@@ -1,9 +1,10 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
 import appleWatchEnMock from '../../assets/images/applewatch-en.png';
 import appleWatchMock from '../../assets/images/applewatch.png';
 import { mediaQueries } from '../../constants/media';
-import { isJa } from '../../utils/isJa';
+import useIsJa from '../../hooks/useIsJa';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -64,6 +65,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 16px;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     margin-top: 24px;
     font-size: 1.5rem;
@@ -85,6 +87,9 @@ const DisclaimerText = styled.p`
 `;
 
 const AppleWatchSection: React.FC = () => {
+  const { t } = useTranslation();
+  const isJa = useIsJa();
+
   return (
     <Container>
       <MockupContainer>
@@ -97,22 +102,24 @@ const AppleWatchSection: React.FC = () => {
       </MockupContainer>
       <TextsContainer>
         <ShortHeading>
-          スマートウォッチ対応
+          {t('section.appleWatch.shortHeading')}
           <DescriptionCaptionNumber>*3</DescriptionCaptionNumber>
         </ShortHeading>
-        <Heading>
-          <AccentText>Apple Watch</AccentText>でも使えます
-        </Heading>
-        <DescriptionText>
-          Apple Watchと組み合わせれば
-          <br />
-          手首を見るだけで今停車している駅や、
-          <br />
-          次に停まる駅を知ることができます。
-        </DescriptionText>
+        {isJa ? (
+          <Heading>
+            <AccentText>Apple Watch</AccentText>
+            {t('section.appleWatch.alsoWorks')}
+          </Heading>
+        ) : (
+          <Heading>
+            {t('section.appleWatch.alsoWorks')}&nbsp;
+            <AccentText>Apple Watch</AccentText>
+          </Heading>
+        )}
+        <DescriptionText>{t('section.appleWatch.description')}</DescriptionText>
         <DisclaimerText>
           <sup>*3</sup>
-          Apple Watchのみの対応となります。現在Wear OS等には対応していません。
+          {t('section.appleWatch.disclaimer')}
         </DisclaimerText>
       </TextsContainer>
     </Container>

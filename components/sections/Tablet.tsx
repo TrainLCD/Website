@@ -1,8 +1,10 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
 import iPadEnMock from '../../assets/images/ipad-en.png';
 import iPadMock from '../../assets/images/ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
+import useIsJa from '../../hooks/useIsJa';
 import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
@@ -57,6 +59,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 16px;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     margin-top: 24px;
     font-size: 1.5rem;
@@ -77,29 +80,34 @@ const DisclaimerText = styled.p`
   line-height: 1.5;
 `;
 
-const TextFragment = () => (
-  <TextsContainer>
-    <ShortHeading>タブレット対応</ShortHeading>
-    <Heading>
-      <AccentText>iPad</AccentText>で使えます
-    </Heading>
-    <DescriptionText>
-      iPadと一緒に使えば、
-      <br />
-      もっとわかりやすく次の駅を知ることができます。
-      <br />
-      最新のどのiPadにも対応している
-      <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
-      ため、
-      <br />
-      アプリをダウンロードしてすぐ快適に使えます。
-    </DescriptionText>
-    <DisclaimerText>
-      <sup>*2</sup>
-      Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる可能性があります。
-    </DisclaimerText>
-  </TextsContainer>
-);
+const TextFragment = () => {
+  const { t } = useTranslation();
+  const isJa = useIsJa();
+
+  return (
+    <TextsContainer>
+      <ShortHeading>{t('section.tablet.shortHeading')}</ShortHeading>
+      {isJa ? (
+        <Heading>
+          <AccentText>iPad</AccentText>
+          {t('section.tablet.canBeUsedWith')}
+        </Heading>
+      ) : (
+        <Heading>
+          {t('section.tablet.canBeUsedWith')} <AccentText>iPad</AccentText>
+        </Heading>
+      )}
+      <DescriptionText>
+        {t('section.tablet.description')}
+        <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
+      </DescriptionText>
+      <DisclaimerText>
+        <sup>*2</sup>
+        {t('section.tablet.disclaimer')}
+      </DisclaimerText>
+    </TextsContainer>
+  );
+};
 
 const MockupFragment = () => (
   <MockupContainer>

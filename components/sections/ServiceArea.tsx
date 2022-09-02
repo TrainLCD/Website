@@ -1,9 +1,10 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
 import mojikoEnMock from '../../assets/images/mockup/mojiko-en.png';
 import mojikoMock from '../../assets/images/mockup/mojiko.png';
 import { mediaQueries } from '../../constants/media';
-import { isJa } from '../../utils/isJa';
+import useIsJa from '../../hooks/useIsJa';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -41,6 +42,7 @@ const TextsContainer = styled.div`
 const ShortHeading = styled.p`
   color: #277bc0;
   font-weight: bold;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     font-size: 1.5rem;
   }
@@ -52,6 +54,7 @@ const AccentText = styled.span`
 
 const Heading = styled.h1`
   line-height: 1.5;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     font-size: 3rem;
   }
@@ -62,6 +65,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 16px;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     margin-top: 24px;
     font-size: 1.5rem;
@@ -80,9 +84,14 @@ const DisclaimerText = styled.p`
   color: #444444;
   margin-top: 12px;
   line-height: 1.5;
+  white-space: pre-wrap;
 `;
 
 const AboutSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const isJa = useIsJa();
+
   return (
     <Container>
       <MockupContainer>
@@ -94,21 +103,29 @@ const AboutSection: React.FC = () => {
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>サービス対象エリア</ShortHeading>
-        <Heading>
-          <AccentText>日本全国</AccentText>サービス対象
-        </Heading>
+        <ShortHeading>{t('section.serviceArea.shortHeading')}</ShortHeading>
+        {isJa ? (
+          <Heading>
+            <AccentText>
+              {t('section.serviceArea.jaOnly.throughoutJapan')}
+            </AccentText>
+            {t('section.serviceArea.jaOnly.serviceTarget')}
+          </Heading>
+        ) : (
+          <Heading>
+            <AccentText>
+              {t('section.serviceArea.enOnly.nationwide')}&nbsp;
+            </AccentText>
+            {t('section.serviceArea.enOnly.svcCoverageInJpn')}
+          </Heading>
+        )}
         <DescriptionText>
-          一部例外を除き、日本全国のほとんどの
-          <br />
-          鉄道路線に対応しています
+          {t('section.serviceArea.description')}
           <DescriptionCaptionNumber>*1</DescriptionCaptionNumber>
         </DescriptionText>
         <DisclaimerText>
           <sup>*1</sup>
-          地下鉄などの電波の入りづらい路線、鶴見線などの入り組んだ路線は一部サービス保証外となります。
-          <br />
-          またサービス対象は鉄道路線のみであり、バス等の移動手段には対応しておりません。
+          {t('section.serviceArea.disclaimer')}
         </DisclaimerText>
       </TextsContainer>
     </Container>

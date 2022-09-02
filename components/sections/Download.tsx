@@ -1,8 +1,10 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
 import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
 import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
 import { Media, mediaQueries } from '../../constants/media';
+import useIsJa from '../../hooks/useIsJa';
 import { isJa } from '../../utils/isJa';
 import AppStoreJPIcon from '../AppStoreJPIcon';
 import AppStoreUSIcon from '../AppStoreUSIcon';
@@ -66,6 +68,7 @@ const DescriptionText = styled.p`
   font-weight: bold;
   color: #444;
   margin-top: 16px;
+  white-space: pre-wrap;
   @media ${mediaQueries.md} {
     margin-top: 24px;
     font-size: 1.5rem;
@@ -84,6 +87,9 @@ const ResizedAppStoreIcon = styled(isJa ? AppStoreJPIcon : AppStoreUSIcon)`
 `;
 
 const DownloadSection: React.FC = () => {
+  const { t } = useTranslation();
+  const isJa = useIsJa();
+
   return (
     <Container id="download">
       <StoresContainer>
@@ -116,17 +122,22 @@ const DownloadSection: React.FC = () => {
         </a>
       </StoresContainer>
       <TextsContainer>
-        <ShortHeading>早速使ってみよう</ShortHeading>
-        <Heading>
-          iOSとAndroid
-          <br />
-          <AccentText>どちらも対応</AccentText>
-        </Heading>
-        <DescriptionText>
-          iPhone、iPad、Androidスマートフォンに対応していて、もちろん無料です。
-          <br />
-          早速お使いのスマートフォンで使ってみましょう！
-        </DescriptionText>
+        <ShortHeading>{t('section.dl.shortHeading')}</ShortHeading>
+        {/* スペースの有無 */}
+        {isJa ? (
+          <Heading>
+            iOS{t('section.dl.and')}Android
+            <br />
+            <AccentText>{t('section.dl.bothSupport')}</AccentText>
+          </Heading>
+        ) : (
+          <Heading>
+            iOS {t('section.dl.and')} Android
+            <br />
+            <AccentText>{t('section.dl.bothSupport')}</AccentText>
+          </Heading>
+        )}
+        <DescriptionText>{t('section.dl.description')} </DescriptionText>
       </TextsContainer>
     </Container>
   );
