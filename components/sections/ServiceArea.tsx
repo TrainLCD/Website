@@ -6,7 +6,7 @@ import { mediaQueries } from '../../constants/media';
 import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   padding: 0 32px;
   background-color: #fefefe;
@@ -108,7 +108,6 @@ const AboutSection: React.FC = () => {
           <sup>*1</sup>
           地下鉄などの電波の入りづらい路線、鶴見線などの入り組んだ路線は一部サービス保証外となります。
           <br />
-          &nbsp;
           またサービス対象は鉄道路線のみであり、バス等の移動手段には対応しておりません。
         </DisclaimerText>
       </TextsContainer>

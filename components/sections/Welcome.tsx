@@ -6,14 +6,15 @@ import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
 
 const Container = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  padding: 0 32px;
+  padding: 32px;
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 64px;
   @media ${mediaQueries.md} {
     flex-direction: row;
     justify-content: flex-start;
@@ -26,11 +27,11 @@ const TextsContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 80px;
+  margin-bottom: 32px;
   @media ${mediaQueries.md} {
     flex: 1;
     height: 100%;
-    margin-bottom: 0;
+    margin-bottom: 80px;
   }
 `;
 
@@ -59,7 +60,7 @@ const DescriptionText = styled.p`
 `;
 
 const MockupContainer = styled.div`
-  display: flex;
+  position: relative;
   flex-direction: column;
 
   @media ${mediaQueries.md} {
@@ -72,14 +73,14 @@ const MockupContainer = styled.div`
 
 const StyledRingsPC = styled(RingsPC)`
   position: absolute;
-  right: 0;
-  bottom: 256px;
+  right: -64px;
+  bottom: 0;
 `;
 
 const StyledRingsSP = styled(RingsSP)`
   position: absolute;
-  right: 0;
-  bottom: 300px;
+  right: -32px;
+  top: -32px;
 `;
 
 const TryButton = styled.button`

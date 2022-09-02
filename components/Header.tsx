@@ -20,6 +20,7 @@ const AppInfoAnchor = styled.a`
 
 const HeaderContainer = styled.header`
   position: fixed;
+  top: 0;
   height: 64px;
   background: #fff;
   z-index: 9999;

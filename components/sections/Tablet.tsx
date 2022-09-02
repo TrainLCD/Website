@@ -6,9 +6,9 @@ import { Media, mediaQueries } from '../../constants/media';
 import { isJa } from '../../utils/isJa';
 
 const Container = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  padding: 0 32px;
+  padding: 32px;
   background-color: #fefefe;
 
   @media ${mediaQueries.md} {

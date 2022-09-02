@@ -8,7 +8,7 @@ import AppStoreJPIcon from '../AppStoreJPIcon';
 import AppStoreUSIcon from '../AppStoreUSIcon';
 
 const Container = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   padding: 0 32px;
   background-color: #fefefe;
