@@ -1,3 +1,4 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import styled from 'styled-components';
 import AppHead from '../components/Head';
 import {
@@ -138,4 +139,9 @@ const PrivacyPolicy: React.FC = () => {
   );
 };
 
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 export default PrivacyPolicy;
