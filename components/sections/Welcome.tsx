@@ -41,8 +41,8 @@ const ColoredText = styled.span`
   color: #277bc0;
 `;
 
-const Heading = styled.h1`
-  line-height: 1.25;
+const Heading = styled.h2<{ isJa: boolean }>`
+  line-height: ${({ isJa }) => (isJa ? 1.25 : 1.15)};
   font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
@@ -116,7 +116,7 @@ const WelcomeSection: React.FC = () => {
   return (
     <Container>
       <TextsContainer>
-        <Heading>
+        <Heading isJa={isJa}>
           {t('section.welcome.canBeUsed')}
           <br />
           <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>
