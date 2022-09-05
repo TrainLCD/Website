@@ -7,6 +7,8 @@ import Document, {
   NextScript,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { mediaStyles } from '../constants/media';
+import i18nextConfig from '../next-i18next.config';
 
 class MyDocument extends Document {
   static async getInitialProps(
@@ -38,9 +40,17 @@ class MyDocument extends Document {
   }
 
   render(): React.ReactElement {
+    const currentLocale =
+      this.props.__NEXT_DATA__.locale || i18nextConfig.i18n.defaultLocale;
+
     return (
-      <Html lang="ja">
-        <Head />
+      <Html lang={currentLocale}>
+        <Head>
+          <style
+            type="text/css"
+            dangerouslySetInnerHTML={{ __html: mediaStyles }}
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

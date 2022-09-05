@@ -1,127 +1,153 @@
+import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import styled from 'styled-components';
-import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
-import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
-import { ShowingImage } from '../../models/ShowingImage';
-import { isJa } from '../../utils/isJa';
-import AppStoreJPIcon from '../AppStoreJPIcon';
-import AppStoreUSIcon from '../AppStoreUSIcon';
-import ArrowIcon from '../ArrowIcon';
-
-type Props = {
-  showingImg: ShowingImage;
-};
+import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
+import { Media, mediaQueries } from '../../constants/media';
+import useIsJa from '../../hooks/useIsJa';
+import RingsPC from '../RingsPC';
+import RingsSP from '../RingsSP';
 
 const Container = styled.section`
   min-height: 100vh;
   position: relative;
-`;
-const Content = styled.div`
-  background: rgba(0, 0, 0, 0.75);
-  width: 100%;
-  height: 100vh;
+  padding: 32px;
+  background-color: #fefefe;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  color: #fff;
-`;
-
-const AppNameTitle = styled.h1`
-  font-size: 2rem;
-  margin-top: 32px;
-  padding: 0 32px;
-`;
-const AppDescription = styled.h2`
-  margin-top: 12px;
-  font-weight: normal;
-  text-align: center;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  padding: 0 32px;
-`;
-const MockupImage = styled(Image)`
-  width: 75%;
-
-  @media (min-width: 800px) {
-    max-width: 30%;
-  }
-`;
-
-const StoresContainer = styled.div`
-  width: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 32px;
-`;
-const StoreLink = styled.a`
-  margin: 0 8px;
-  z-index: 1;
-`;
-
-const Arrow = styled(ArrowIcon)`
   margin-top: 64px;
-  @media (min-width: 800px) {
-    position: absolute;
-    bottom: 32px;
-    cursor: pointer;
-    bottom: 64px;
+  @media ${mediaQueries.md} {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding: 0 64px;
   }
 `;
 
-const BGImage = styled(Image)`
-  z-index: -1;
+const TextsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 32px;
+  @media ${mediaQueries.md} {
+    flex: 1;
+    height: 100%;
+    margin-bottom: 80px;
+  }
 `;
-const WelcomeSection: React.FC<Props> = ({ showingImg }: Props) => {
-  const handleNextClick = () => {
-    const aboutElem = document.querySelector('#about');
+
+const ColoredText = styled.span`
+  color: #277bc0;
+`;
+
+const Heading = styled.h1`
+  line-height: 1.25;
+  font-size: 1.5rem;
+  @media ${mediaQueries.md} {
+    font-size: 3rem;
+  }
+`;
+
+const DescriptionText = styled.p`
+  line-height: 1.5;
+  font-weight: bold;
+  color: #444;
+  margin-top: 24px;
+  white-space: pre-wrap;
+  font-size: 0.75rem;
+
+  @media ${mediaQueries.md} {
+    font-weight: bold;
+    color: #444;
+    margin-top: 24px;
+    font-size: 1rem;
+  }
+`;
+
+const MockupContainer = styled.div`
+  position: relative;
+  flex-direction: column;
+
+  @media ${mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 0.75;
+  }
+`;
+
+const StyledRingsPC = styled(RingsPC)`
+  position: absolute;
+  right: -64px;
+  bottom: 0;
+`;
+
+const StyledRingsSP = styled(RingsSP)`
+  position: absolute;
+  right: -32px;
+  top: -32px;
+`;
+
+const TryButton = styled.button`
+  appearance: none;
+  background-color: #277bc0;
+  width: 180px;
+  height: 48px;
+  border: none;
+  border-radius: 48px;
+  color: white;
+  font-weight: bold;
+  margin-top: 32px;
+  cursor: pointer;
+`;
+
+const WelcomeSection: React.FC = () => {
+  const { t } = useTranslation();
+  const handleTryButtonClick = () => {
+    const aboutElem = document.querySelector('#download');
     window.scrollTo({
       top: aboutElem?.getBoundingClientRect().top,
       behavior: 'smooth',
     });
   };
+  const isJa = useIsJa();
 
   return (
     <Container>
-      <BGImage src={showingImg.bg} layout="fill" objectFit="cover" />
-      <Content>
-        <MockupImage
-          src={showingImg.mock}
-          alt="Mockup"
-          width={361.5}
-          height={191.25}
+      <TextsContainer>
+        <Heading>
+          {t('section.welcome.canBeUsed')}
+          <br />
+          <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>
+          {!isJa && ' '}
+          {t('global.app')}
+        </Heading>
+        <DescriptionText>{t('section.welcome.description')}</DescriptionText>
+        <Media greaterThanOrEqual="lg">
+          <TryButton onClick={handleTryButtonClick}>
+            {t('global.try')}
+          </TryButton>
+        </Media>
+      </TextsContainer>
+      <MockupContainer>
+        <Media greaterThanOrEqual="lg">
+          <StyledRingsPC />
+        </Media>
+        <Media lessThan="lg">
+          <StyledRingsSP />
+        </Media>
+        <Image
+          src={mockImage}
+          width={626.19}
+          height={440}
+          objectFit="contain"
+          alt="iPhone and iPad"
         />
-        <AppNameTitle>TrainLCD</AppNameTitle>
-        <AppDescription>
-          {isJa
-            ? `日本全国の鉄道路線で使える\n新感覚のナビゲーションアプリです。`
-            : 'Can be used on routes all over Japan\nNew sense navigation app.'}
-        </AppDescription>
-        <StoresContainer>
-          <StoreLink
-            href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {isJa ? <AppStoreJPIcon /> : <AppStoreUSIcon />}
-          </StoreLink>
-          <StoreLink
-            href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
-              alt="Play Store"
-              width={134}
-              height={40}
-            />
-          </StoreLink>
-        </StoresContainer>
-
-        <Arrow onClick={handleNextClick} />
-      </Content>
+      </MockupContainer>
+      <Media lessThan="lg">
+        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
+      </Media>
     </Container>
   );
 };

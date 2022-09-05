@@ -1,9 +1,12 @@
-const AppStoreJPIcon: React.FC = () => (
+import { SVGProps } from 'react';
+
+type Props = SVGProps<SVGSVGElement>;
+
+const AppStoreJPIcon: React.FC<Props> = (props) => (
   <svg
+    {...props}
     id="JP"
     xmlns="http://www.w3.org/2000/svg"
-    width="108.85157"
-    height="40"
     viewBox="0 0 108.85157 40"
   >
     <title>Download_on_the_App_Store_Badge_JP_RGB_blk_100317</title>

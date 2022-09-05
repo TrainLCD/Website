@@ -9,8 +9,10 @@
     "lint": "eslint './**/*.ts{,x}'"
   },
   "dependencies": {
+    "@artsy/fresnel": "^6.1.0",
     "@types/styled-components": "^5.1.15",
     "next": "^12.1.6",
+    "next-i18next": "^12.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.3"
