@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
+import useIsJa from '../../hooks/useIsJa';
 import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
 
@@ -41,7 +42,8 @@ const ColoredText = styled.span`
 `;
 
 const Heading = styled.h1`
-  line-height: 1.5;
+  line-height: 1.25;
+  font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
   }
@@ -53,11 +55,13 @@ const DescriptionText = styled.p`
   color: #444;
   margin-top: 24px;
   white-space: pre-wrap;
+  font-size: 0.75rem;
 
   @media ${mediaQueries.md} {
     font-weight: bold;
     color: #444;
     margin-top: 24px;
+    font-size: 1rem;
   }
 `;
 
@@ -107,6 +111,7 @@ const WelcomeSection: React.FC = () => {
       behavior: 'smooth',
     });
   };
+  const isJa = useIsJa();
 
   return (
     <Container>
@@ -114,7 +119,8 @@ const WelcomeSection: React.FC = () => {
         <Heading>
           {t('section.welcome.canBeUsed')}
           <br />
-          <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>&nbsp;
+          <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>
+          {!isJa && ' '}
           {t('global.app')}
         </Heading>
         <DescriptionText>{t('section.welcome.description')}</DescriptionText>

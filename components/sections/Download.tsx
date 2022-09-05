@@ -55,8 +55,9 @@ const AccentText = styled.span`
   color: #277bc0;
 `;
 
-const Heading = styled.h1`
-  line-height: 1.5;
+const Heading = styled.h3`
+  line-height: 1.25;
+  font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
   }

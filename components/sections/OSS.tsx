@@ -1,7 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 import { Media, mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import GitHubIcon from '../GitHubIcon';
 
 const Container = styled.section`
@@ -49,8 +48,9 @@ const AccentText = styled.span`
   }
 `;
 
-const Heading = styled.h1`
-  line-height: 1.5;
+const Heading = styled.h3`
+  line-height: 1.25;
+  font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
   }
@@ -105,7 +105,6 @@ const StyledMedia = styled(Media)`
   }
 `;
 const TextFragment = () => {
-  const isJa = useIsJa();
   const { t } = useTranslation();
 
   return (
