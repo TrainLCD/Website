@@ -113,15 +113,17 @@ const DownloadSection: React.FC = () => {
         >
           <Media greaterThanOrEqual="lg">
             <Image
-              width={320}
+              width={310}
               height={95.32}
+              objectFit="contain"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
           <Media lessThan="lg">
             <Image
-              width={160}
+              width={140}
               height={47.66}
+              objectFit="contain"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
