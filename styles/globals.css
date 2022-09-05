@@ -22,9 +22,8 @@ html, body {
   5. Improve text rendering
 */
 body {
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 /*
   6. Improve media defaults
