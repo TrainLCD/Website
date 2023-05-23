@@ -1,7 +1,8 @@
 {
   "global": {
     "app": "アプリ",
-    "try": "使ってみる"
+    "try": "使ってみる",
+    "smartwatch": "スマートウォッチ"
   },
   "component": {
     "footer": {
@@ -34,10 +35,10 @@
       "disclaimer": "Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる可能性があります。"
     },
     "appleWatch": {
-      "shortHeading": "スマートウォッチ対応",
+      "shortHeading": "満員電車でも安心",
       "alsoWorks": "でも使えます",
-      "description": "Apple Watchと組み合わせれば\n手首を見るだけで今停車している駅や、\n次に停まる駅を知ることができます。",
-      "disclaimer": "Apple Watchのみの対応となります。現在Wear OS等には対応していません。"
+      "description": "Apple Watchと組み合わせれば\n手首を見るだけで今停車している駅や、\n次に停まる駅を知ることができます。\nまた、Wear OS by Googleにも近日対応予定です。",
+      "disclaimer": "現在はApple Watchのみの対応となります。Wear OS by Googleへの対応時期は未定です。"
     },
     "oss": {
       "trainlcdIs": "TrainLCDは",

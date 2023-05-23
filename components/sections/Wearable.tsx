@@ -73,10 +73,11 @@ const DescriptionText = styled.p`
   }
 `;
 
-const DescriptionCaptionNumber = styled.sup`
-  font-size: 0.5rem;
+const HeadingCaptionNumber = styled.sup`
+  font-size: 1rem;
+  color: #277bc0;
   @media ${mediaQueries.md} {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 `;
 
@@ -102,19 +103,19 @@ const AppleWatchSection: React.FC = () => {
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>
-          {t('section.appleWatch.shortHeading')}
-          <DescriptionCaptionNumber>*3</DescriptionCaptionNumber>
-        </ShortHeading>
+        <ShortHeading>{t('section.appleWatch.shortHeading')}</ShortHeading>
         {isJa ? (
           <Heading>
-            <AccentText>Apple Watch</AccentText>
+            <AccentText>{t('global.smartwatch')}</AccentText>
+            <HeadingCaptionNumber>*3</HeadingCaptionNumber>
+            <br />
             {t('section.appleWatch.alsoWorks')}
           </Heading>
         ) : (
           <Heading>
             {t('section.appleWatch.alsoWorks')}&nbsp;
-            <AccentText>Apple Watch</AccentText>
+            <AccentText>{t('global.smartwatch')}</AccentText>
+            <HeadingCaptionNumber>*3</HeadingCaptionNumber>
           </Heading>
         )}
         <DescriptionText>{t('section.appleWatch.description')}</DescriptionText>

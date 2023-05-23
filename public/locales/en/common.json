@@ -1,7 +1,8 @@
 {
   "global": {
     "app": "App",
-    "try": "Try TrainLCD"
+    "try": "Try TrainLCD",
+    "smartwatch": "Smartwatch"
   },
   "component": {
     "footer": {
@@ -33,10 +34,10 @@
       "disclaimer": "The Wi-Fi model iPad is not equipped with GPS and may become unstable under certain conditions."
     },
     "appleWatch": {
-      "shortHeading": "Smartwatch Support",
+      "shortHeading": "Are you in a crowded train?",
       "alsoWorks": "Also works with",
-      "description": "When combined with the Apple Watch\nYou can know where you are stopping and where you will be stopping next just by looking at your wrist.\nand the station where the train will stop next.",
-      "disclaimer": "Only Apple Watch is supported. Currently not compatible with Wear OS, etc."
+      "description": "When combined with the Apple Watch\nYou can know where you are stopping and where you will be stopping next just by looking at your wrist.\nand the station where the train will stop next.\nIn addition, Wear OS by Google will also be supported soon.",
+      "disclaimer": "Currently, only Apple Watch is supported; support for Wear OS by Google has not yet been determined."
     },
     "oss": {
       "trainlcdIs": "TrainLCD is",

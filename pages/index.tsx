@@ -1,11 +1,11 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 import AppHead from '../components/Head';
-import AppleWatchSection from '../components/sections/AppleWatch';
 import DownloadSection from '../components/sections/Download';
 import OSSSection from '../components/sections/OSS';
 import ServiceAreaSection from '../components/sections/ServiceArea';
 import TabletSection from '../components/sections/Tablet';
+import WearableSection from '../components/sections/Wearable';
 import WelcomeSection from '../components/sections/Welcome';
 
 const Home: React.FC = () => {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
       <WelcomeSection />
       <ServiceAreaSection />
       <TabletSection />
-      <AppleWatchSection />
+      <WearableSection />
       <OSSSection />
       <DownloadSection />
     </main>
