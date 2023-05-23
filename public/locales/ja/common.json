@@ -15,7 +15,8 @@
   "section": {
     "welcome": {
       "canBeUsed": "日本全国の鉄道路線で使える",
-      "newSenseNav": "新感覚ナビゲーション",
+      "newSense": "新感覚",
+      "navigationApp": "ナビゲーションアプリ",
       "description": "今までにありそうでなかった あなたのスマートフォンで使える電車のLCD。\nそれが、新感覚ナビゲーションアプリ「TrainLCD」\n迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。"
     },
     "serviceArea": {

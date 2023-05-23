@@ -59,7 +59,6 @@ const DescriptionText = styled.p<{ en?: boolean }>`
 
   @media ${mediaQueries.md} {
     color: #444;
-    margin-top: ${({ en }) => (en ? 8 : 12)}px;
     font-size: 1rem;
   }
 `;
@@ -118,9 +117,9 @@ const WelcomeSection: React.FC = () => {
         <Heading isJa={isJa}>
           {t('section.welcome.canBeUsed')}
           <br />
-          <ColoredText>{t('section.welcome.newSenseNav')}</ColoredText>
+          <ColoredText>{t('section.welcome.newSense')}</ColoredText>
           {!isJa && ' '}
-          {t('global.app')}
+          <span>{t('section.welcome.navigationApp')}</span>
         </Heading>
         <DescriptionText en={!isJa}>
           {t('section.welcome.description')}
