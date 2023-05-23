@@ -7,6 +7,7 @@ import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
 import AppStoreJPIcon from '../AppStoreJPIcon';
 import AppStoreUSIcon from '../AppStoreUSIcon';
+import DescriptionText from '../DescriptionText';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -60,18 +61,6 @@ const Heading = styled.h3`
   font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
-  }
-`;
-
-const DescriptionText = styled.p`
-  line-height: 1.5;
-  font-weight: bold;
-  color: #444;
-  margin-top: 16px;
-  white-space: pre-wrap;
-  @media ${mediaQueries.md} {
-    margin-top: 24px;
-    font-size: 1.5rem;
   }
 `;
 

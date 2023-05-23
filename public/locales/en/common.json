@@ -20,8 +20,8 @@
     },
     "serviceArea": {
       "shortHeading": "Service Area",
-      "description": "With a few exceptions, most of Japan's nationwide Railroad lines are supported",
-      "disclaimer": "Service is not guaranteed for some routes where signal reception is difficult, such as subways, and for intricate routes such as the Tsurumi Line.\nThe service is only available for railroad lines and not for buses or other means of transportation",
+      "description": "With a few exceptions, most of Japan's nationwide Railroad lines are supported.",
+      "disclaimer": "Service is not guaranteed for some routes where signal reception is difficult, such as subways, and for intricate routes such as the Tsurumi Line. The service is only available for railroad lines and not for buses or other means of transportation.",
       "enOnly": {
         "nationwide": "Nationwide",
         "svcCoverageInJpn": "service coverage in Japan"
@@ -31,7 +31,7 @@
       "shortHeading": "Tablet Support",
       "canBeUsedWith": "Can be used with",
       "description": "With the iPad, you can find out the next station more easily.\nThe app is compatible with any of the latest iPads, so you can use it comfortably as soon as you download it.\nYou can download the app and start using it right away.",
-      "disclaimer": "The Wi-Fi model iPad is not equipped with GPS and may become unstable under certain conditions."
+      "disclaimer": "The Wi-Fi model iPad does not support GPS and may become unstable under certain conditions."
     },
     "appleWatch": {
       "shortHeading": "Are you in a crowded train?",

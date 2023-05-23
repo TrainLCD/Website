@@ -22,7 +22,6 @@ html, body {
   5. Improve text rendering
 */
 body {
-  -webkit-font-smoothing: antialiased;
   font-family: 'Roboto', sans-serif;
   overflow-wrap: break-word;
 }

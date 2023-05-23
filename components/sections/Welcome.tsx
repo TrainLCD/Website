@@ -49,18 +49,17 @@ const Heading = styled.h2<{ isJa: boolean }>`
   }
 `;
 
-const DescriptionText = styled.p`
+const DescriptionText = styled.p<{ en?: boolean }>`
   line-height: 1.5;
-  font-weight: bold;
-  color: #444;
-  margin-top: 24px;
+  font-weight: ${({ en }) => (en ? 'normal' : 'bold')};
+  color: #212121;
+  margin-top: 12px;
   white-space: pre-wrap;
   font-size: 0.75rem;
 
   @media ${mediaQueries.md} {
-    font-weight: bold;
     color: #444;
-    margin-top: 24px;
+    margin-top: ${({ en }) => (en ? 8 : 12)}px;
     font-size: 1rem;
   }
 `;
@@ -123,7 +122,9 @@ const WelcomeSection: React.FC = () => {
           {!isJa && ' '}
           {t('global.app')}
         </Heading>
-        <DescriptionText>{t('section.welcome.description')}</DescriptionText>
+        <DescriptionText en={!isJa}>
+          {t('section.welcome.description')}
+        </DescriptionText>
         <Media greaterThanOrEqual="lg">
           <TryButton onClick={handleTryButtonClick}>
             {t('global.try')}
