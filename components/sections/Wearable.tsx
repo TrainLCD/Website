@@ -75,9 +75,10 @@ const DisclaimerText = styled.p`
   color: #444444;
   margin-top: 12px;
   line-height: 1.5;
+  white-space: pre-wrap;
 `;
 
-const AppleWatchSection: React.FC = () => {
+const WearableSection: React.FC = () => {
   const { t } = useTranslation();
   const isJa = useIsJa();
 
@@ -92,29 +93,29 @@ const AppleWatchSection: React.FC = () => {
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>{t('section.appleWatch.shortHeading')}</ShortHeading>
+        <ShortHeading>{t('section.wearable.shortHeading')}</ShortHeading>
         {isJa ? (
           <Heading>
             <AccentText>{t('global.smartwatch')}</AccentText>
             <HeadingCaptionNumber>*3</HeadingCaptionNumber>
             <br />
-            {t('section.appleWatch.alsoWorks')}
+            {t('section.wearable.alsoWorks')}
           </Heading>
         ) : (
           <Heading>
-            {t('section.appleWatch.alsoWorks')}&nbsp;
+            {t('section.wearable.alsoWorks')}&nbsp;
             <AccentText>{t('global.smartwatch')}</AccentText>
             <HeadingCaptionNumber>*3</HeadingCaptionNumber>
           </Heading>
         )}
-        <DescriptionText>{t('section.appleWatch.description')}</DescriptionText>
+        <DescriptionText>{t('section.wearable.description')}</DescriptionText>
         <DisclaimerText>
           <sup>*3</sup>
-          {t('section.appleWatch.disclaimer')}
+          {t('section.wearable.disclaimer')}
         </DisclaimerText>
       </TextsContainer>
     </Container>
   );
 };
 
-export default AppleWatchSection;
+export default WearableSection;

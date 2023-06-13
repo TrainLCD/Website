@@ -33,11 +33,11 @@
       "description": "With the iPad, you can find out the next station more easily.\nThe app is compatible with any of the latest iPads, so you can use it comfortably as soon as you download it.\nYou can download the app and start using it right away.",
       "disclaimer": "The Wi-Fi model iPad does not support GPS and may become unstable under certain conditions."
     },
-    "appleWatch": {
+    "wearable": {
       "shortHeading": "Are you in a crowded train?",
       "alsoWorks": "Also works with",
-      "description": "When combined with the Apple Watch\nYou can know where you are stopping and where you will be stopping next just by looking at your wrist.\nand the station where the train will stop next.\nIn addition, Wear OS by Google will also be supported soon.",
-      "disclaimer": "Currently, only Apple Watch is supported; support for Wear OS by Google has not yet been determined."
+      "description": "By combining an Apple Watch or a smartwatch with Wear OS by Google, you can know the current stop and the next stop just by looking at your wrist.",
+      "disclaimer": "Wear OS by Google requires an Android smartphone to be paired with the device; it cannot be used if paired with an iPhone."
     },
     "oss": {
       "trainlcdIs": "TrainLCD is",
