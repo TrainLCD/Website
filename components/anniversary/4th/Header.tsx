@@ -48,7 +48,7 @@ const TitleContainer = styled.div`
 const DownloadButton = styled.button`
   appearance: none;
   background-color: #e94560;
-  width: 180px;
+  min-width: 180px;
   height: 40px;
   border: none;
   border-radius: 40px;
@@ -78,7 +78,9 @@ const SpecialHeader: React.FC<Props> = ({ firstViewPassed }) => {
       <InfoContainer fvPassed={firstViewPassed}>
         <SpecialLogo width={25.26} height={32} />
         <TitleContainer>
-          <PageTitle>TrainLCD 4th</PageTitle>
+          <PageTitle>
+            <small>TrainLCD</small> 4th
+          </PageTitle>
           <PageTitleSub>Special Website</PageTitleSub>
         </TitleContainer>
       </InfoContainer>
