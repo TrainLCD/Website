@@ -46,7 +46,10 @@ const GreetingSection: React.VFC<Props> = ({ onVisibilityChange }) => {
 
 const Container = styled.div`
   position: relative;
+  display: flex;
+  width: 100%;
   min-height: 100vh;
+  align-items: center;
   background-color: #fafafa;
   z-index: 1;
 `;
