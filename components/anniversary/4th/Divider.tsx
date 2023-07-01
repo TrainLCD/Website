@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Divider: React.VFC = () => (
+type Props = {
+  white?: boolean;
+};
+
+const Divider: React.VFC<Props> = ({ white }) => (
   <DividerContainer>
-    <DividerLine />
+    <DividerLine white={white} />
   </DividerContainer>
 );
 
@@ -14,11 +18,11 @@ const DividerContainer = styled.div`
   margin: 32px 0;
 `;
 
-const DividerLine = styled.span`
+const DividerLine = styled.span<{ white?: boolean }>`
   display: block;
   height: 2px;
   width: 64px;
-  background-color: #111;
+  background-color: ${({ white }) => (white ? '#fff' : '#111')};
 `;
 
 export default Divider;
