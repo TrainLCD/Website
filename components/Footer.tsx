@@ -9,8 +9,10 @@ import TinyKittenProduct from './TinyKittenProduct';
 import TwitterLogo from './TwitterLogo';
 
 const FooterContainer = styled.footer`
+  position: sticky;
   background-color: #212121;
   padding: 40px 16px;
+  z-index: 1;
   @media ${mediaQueries.md} {
     padding: 40px 64px;
   }
