@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ const AppInfoContainer = styled.div`
   align-items: center;
 `;
 
-const AppInfoAnchor = styled.a`
+const AppInfoAnchor = styled.span`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -79,7 +79,9 @@ const Header: React.FC = () => {
         </Link>
       </AppInfoContainer>
       <TryButtonContainer>
-        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
+        <TryButton onClick={handleTryButtonClick}>
+          {t('common:global.try')}
+        </TryButton>
       </TryButtonContainer>
     </HeaderContainer>
   );

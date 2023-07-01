@@ -1,4 +1,3 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
@@ -36,11 +35,5 @@ const SpecialPage: React.VFC = () => {
 const Container = styled.main`
   min-height: 100vh;
 `;
-
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common'])),
-  },
-});
 
 export default SpecialPage;

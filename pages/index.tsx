@@ -1,4 +1,3 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
 import Footer from '../components/Footer';
 import AppHead from '../components/Head';
@@ -30,11 +29,5 @@ const Home: React.FC = () => {
     </main>
   );
 };
-
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common'])),
-  },
-});
 
 export default Home;

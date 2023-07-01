@@ -1,5 +1,5 @@
 import { SpringValue, a } from '@react-spring/web';
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -19,9 +19,9 @@ const FirstView: React.VFC = () => {
 
   useEffect(() => {
     if (!firstAnimationCompleted) {
-      textMarginBottom.start('0%');
+      textMarginBottom.start('common:0%');
       setTimeout(() => {
-        downloadButtonBottom.start('0px');
+        downloadButtonBottom.start('common:0px');
         downloadButtonOpacity.start(1);
       }, 500);
       setTimeout(() => {
@@ -54,7 +54,7 @@ const FirstView: React.VFC = () => {
           </SpringContainer>
           <SpringContainer>
             <ContentText style={{ marginBottom: textMarginBottom }}>
-              {t('4thAnniversary.firstView.greeting')}
+              {t('special:firstView.greeting')}
             </ContentText>
           </SpringContainer>
           <DownloadButtonContainer>
@@ -65,7 +65,7 @@ const FirstView: React.VFC = () => {
               }}
               onClick={handleDownloadButtonClick}
             >
-              {t('global.download')}
+              {t('common:global.download')}
             </DownloadButton>
           </DownloadButtonContainer>
         </ContentTextsContainer>
@@ -74,18 +74,22 @@ const FirstView: React.VFC = () => {
           <MockupImage
             style={{
               opacity: mockupImageOpacity,
+              width: 626.19,
+              height: 440,
             }}
             src={mockImage}
-            width={626.19}
-            height={440}
-            objectFit="contain"
             alt="iPhone and iPad"
+            priority
           />
         </MockupImageContainer>
       </ContentContainer>
 
       <BGContainer>
-        <BGImage src="/anniversary/4th/bg/fukuoka.jpg" layout="fill" />
+        <BGImage
+          src="/anniversary/4th/bg/fukuoka.jpg"
+          fill
+          alt="Background image"
+        />
         <ImageOverlay />
       </BGContainer>
     </Container>
@@ -211,6 +215,7 @@ const MockupImageContainer = styled(a.div)`
 
 const MockupImage = styled(a(Image))`
   opacity: 0;
+  object-fit: contain;
 `;
 
 export default FirstView;

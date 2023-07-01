@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import iPadEnMock from '../../assets/images/ipad-en.png';
@@ -75,24 +75,25 @@ const TextFragment = () => {
 
   return (
     <TextsContainer>
-      <ShortHeading>{t('section.tablet.shortHeading')}</ShortHeading>
+      <ShortHeading>{t('common:section.tablet.shortHeading')}</ShortHeading>
       {isJa ? (
         <Heading>
           <AccentText>iPad</AccentText>
-          {t('section.tablet.canBeUsedWith')}
+          {t('common:section.tablet.canBeUsedWith')}
         </Heading>
       ) : (
         <Heading>
-          {t('section.tablet.canBeUsedWith')} <AccentText>iPad</AccentText>
+          {t('common:section.tablet.canBeUsedWith')}{' '}
+          <AccentText>iPad</AccentText>
         </Heading>
       )}
       <DescriptionText>
-        {t('section.tablet.description')}
+        {t('common:section.tablet.description')}
         <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
       </DescriptionText>
       <DisclaimerText>
         <sup>*2</sup>
-        {t('section.tablet.disclaimer')}
+        {t('common:section.tablet.disclaimer')}
       </DisclaimerText>
     </TextsContainer>
   );
@@ -105,8 +106,7 @@ const MockupFragment = () => {
       <Image
         src={isJa ? iPadMock : iPadEnMock}
         alt="iPad"
-        width={580}
-        height={430.22}
+        style={{ width: 580, height: 430.22 }}
       />
     </MockupContainer>
   );

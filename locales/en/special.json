@@ -1,0 +1,12 @@
+{
+  "firstView": {
+    "greeting": "Thanks to your support, TrainLCD has celebrated its 4th anniversary since its development. We will continue to do our best to provide better services in the future."
+  },
+  "greeting": {
+    "subTitle": "",
+    "heading": "Nice to meet you, I'm TinyKitten.",
+    "message": "Nice to meet you. I am a developer of TrainLCD and a freelance engineer under the trade name \"TinyKitte\".\nPlease feel free to call me \"Kittan.\nThank you very much for using TrainLCD. If you haven't used it yet, please give it a try.\nThis time, we have made a special commemorative website to celebrate the four-year anniversary of TrainLCD's development.\nThe scope of my responsibilities at TrainLCD is everything. I developed the app, programmed the server side, did the infrastructure, and designed the site.\nI also have friends help me with data entry and test apps before they are released to the store.\nI manage to find time to make this app as a personal hobby, so if you would like to write a review for the store, I would appreciate it if you would be as kind as possible.",
+    "caption1": "Development of the TrainLCD application began on July 1, 2019.",
+    "caption2": "Infrastructure here refers to cloud computing services such as GCP."
+  }
+}

@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import { useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../../constants/media';
@@ -18,9 +18,8 @@ const GreetingSection: React.VFC<Props> = ({ onVisibilityChange }) => {
 
   const hasSubtitle = useMemo(
     () =>
-      t('4thAnniversary.greeting.subTitle') !==
-        '4thAnniversary.greeting.subTitle' ||
-      !t('4thAnniversary.greeting.subTitle').length,
+      t('special:greeting.subTitle') !== '4thspecial:greeting.subTitle' ||
+      !t('special:greeting.subTitle').length,
     [t]
   );
 
@@ -30,23 +29,17 @@ const GreetingSection: React.VFC<Props> = ({ onVisibilityChange }) => {
         <TitleContainer>
           <SectionTitle>GREETING</SectionTitle>
           {hasSubtitle && (
-            <SectionSubTitle>
-              {t('4thAnniversary.greeting.subTitle')}
-            </SectionSubTitle>
+            <SectionSubTitle>{t('special:greeting.subTitle')}</SectionSubTitle>
           )}
         </TitleContainer>
         <Divider />
         <DescriptionContainer>
-          <DescriptionTitle>
-            {t('4thAnniversary.greeting.heading')}
-          </DescriptionTitle>
-          <DescriptionText>
-            {t('4thAnniversary.greeting.message')}
-          </DescriptionText>
+          <DescriptionTitle>{t('special:greeting.heading')}</DescriptionTitle>
+          <DescriptionText>{t('special:greeting.message')}</DescriptionText>
           <CaptionText>
-            *1: {t('4thAnniversary.greeting.caption1')}
+            *1: {t('special:greeting.caption1')}
             <br />
-            *2: {t('4thAnniversary.greeting.caption2')}
+            *2: {t('special:greeting.caption2')}
           </CaptionText>
         </DescriptionContainer>
       </ContentContainer>

@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import mojikoEnMock from '../../assets/images/mockup/mojiko-en.png';
@@ -93,29 +93,31 @@ const AboutSection: React.FC = () => {
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>{t('section.serviceArea.shortHeading')}</ShortHeading>
+        <ShortHeading>
+          {t('common:section.serviceArea.shortHeading')}
+        </ShortHeading>
         {isJa ? (
           <Heading>
             <AccentText>
-              {t('section.serviceArea.jaOnly.throughoutJapan')}
+              {t('common:section.serviceArea.jaOnly.throughoutJapan')}
             </AccentText>
-            {t('section.serviceArea.jaOnly.serviceTarget')}
+            {t('common:section.serviceArea.jaOnly.serviceTarget')}
           </Heading>
         ) : (
           <Heading>
             <AccentText>
-              {t('section.serviceArea.enOnly.nationwide')}&nbsp;
+              {t('common:section.serviceArea.enOnly.nationwide')}&nbsp;
             </AccentText>
-            {t('section.serviceArea.enOnly.svcCoverageInJpn')}
+            {t('common:section.serviceArea.enOnly.svcCoverageInJpn')}
           </Heading>
         )}
         <DescriptionText>
-          {t('section.serviceArea.description')}
+          {t('common:section.serviceArea.description')}
           <DescriptionCaptionNumber>*1</DescriptionCaptionNumber>
         </DescriptionText>
         <DisclaimerText>
           <sup>*1</sup>
-          {t('section.serviceArea.disclaimer')}
+          {t('common:section.serviceArea.disclaimer')}
         </DisclaimerText>
       </TextsContainer>
     </Container>

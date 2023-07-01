@@ -1,22 +1,14 @@
-import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../constants/media';
 import SpecialLogo from './Logo';
 
-const InfoContainer = styled.div`
+const InfoContainer = styled.div<{ fvPassed: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
-`;
-
-const InfoAnchor = styled.a<{ fvPassed: boolean }>`
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
   color: ${({ fvPassed }) => (fvPassed ? '#444' : '#fff')};
 `;
 
@@ -83,19 +75,15 @@ const SpecialHeader: React.FC<Props> = ({ firstViewPassed }) => {
 
   return (
     <HeaderContainer fvPassed={firstViewPassed}>
-      <InfoContainer>
-        <Link href="/" passHref>
-          <InfoAnchor fvPassed={firstViewPassed}>
-            <SpecialLogo width={25.26} height={32} />
-            <TitleContainer>
-              <PageTitle>TrainLCD 4th</PageTitle>
-              <PageTitleSub>Special Website</PageTitleSub>
-            </TitleContainer>
-          </InfoAnchor>
-        </Link>
+      <InfoContainer fvPassed={firstViewPassed}>
+        <SpecialLogo width={25.26} height={32} />
+        <TitleContainer>
+          <PageTitle>TrainLCD 4th</PageTitle>
+          <PageTitleSub>Special Website</PageTitleSub>
+        </TitleContainer>
       </InfoContainer>
       <DownloadButton onClick={handleDownloadButtonClick}>
-        {t('global.download')}
+        {t('common:global.download')}
       </DownloadButton>
     </HeaderContainer>
   );

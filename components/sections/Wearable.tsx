@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import appleWatchEnMock from '../../assets/images/applewatch-en.png';
@@ -88,30 +88,31 @@ const WearableSection: React.FC = () => {
         <Image
           src={isJa ? appleWatchMock : appleWatchEnMock}
           alt="TrainLCD"
-          width={289.44}
-          height={430}
+          style={{ width: 289.44, height: 430 }}
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>{t('section.wearable.shortHeading')}</ShortHeading>
+        <ShortHeading>{t('common:section.wearable.shortHeading')}</ShortHeading>
         {isJa ? (
           <Heading>
-            <AccentText>{t('global.smartwatch')}</AccentText>
+            <AccentText>{t('common:global.smartwatch')}</AccentText>
             <HeadingCaptionNumber>*3</HeadingCaptionNumber>
             <br />
-            {t('section.wearable.alsoWorks')}
+            {t('common:section.wearable.alsoWorks')}
           </Heading>
         ) : (
           <Heading>
-            {t('section.wearable.alsoWorks')}&nbsp;
-            <AccentText>{t('global.smartwatch')}</AccentText>
+            {t('common:section.wearable.alsoWorks')}&nbsp;
+            <AccentText>{t('common:global.smartwatch')}</AccentText>
             <HeadingCaptionNumber>*3</HeadingCaptionNumber>
           </Heading>
         )}
-        <DescriptionText>{t('section.wearable.description')}</DescriptionText>
+        <DescriptionText>
+          {t('common:section.wearable.description')}
+        </DescriptionText>
         <DisclaimerText>
           <sup>*3</sup>
-          {t('section.wearable.disclaimer')}
+          {t('common:section.wearable.disclaimer')}
         </DisclaimerText>
       </TextsContainer>
     </Container>
