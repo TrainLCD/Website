@@ -1,6 +1,8 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import React from 'react';
+import Footer from '../components/Footer';
 import AppHead from '../components/Head';
+import Header from '../components/Header';
 import DownloadSection from '../components/sections/Download';
 import OSSSection from '../components/sections/OSS';
 import ServiceAreaSection from '../components/sections/ServiceArea';
@@ -17,12 +19,14 @@ const Home: React.FC = () => {
         url="https://trainlcd.tinykitten.me/"
         ogType="website"
       />
+      <Header />
       <WelcomeSection />
       <ServiceAreaSection />
       <TabletSection />
       <WearableSection />
       <OSSSection />
       <DownloadSection />
+      <Footer />
     </main>
   );
 };
