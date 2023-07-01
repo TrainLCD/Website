@@ -1,3 +1,4 @@
+import useTranslation from 'next-translate/useTranslation';
 import { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import Footer from '../components/Footer';
@@ -9,6 +10,7 @@ import HistorySection from '../components/anniversary/4th/sections/History';
 
 const SpecialPage: React.VFC = () => {
   const [firstViewPassed, setFirstViewPassed] = useState(false);
+  const { t } = useTranslation();
 
   const handleVisibilityChange = useCallback(
     (visibility: boolean) => setFirstViewPassed(visibility),
@@ -18,7 +20,7 @@ const SpecialPage: React.VFC = () => {
   return (
     <Container>
       <AppHead
-        title="TrainLCD 4周年記念サイト"
+        title={t('special:page.title')}
         description="TrainLCDは、おかげさまで開発開始から4周年を迎えました。"
         url="https://trainlcd.tinykitten.me/special"
         ogType="website"
