@@ -39,7 +39,7 @@ const FirstView: React.VFC = () => {
           <MockupImage
             style={{
               width: 626.19,
-              height: 440,
+              height: 'auto',
             }}
             src={mockImage}
             alt="iPhone and iPad"
@@ -87,9 +87,7 @@ const SpringContainer = styled.div`
   overflow: hidden;
 `;
 
-const ContentTextsContainer = styled.div`
-  max-width: 720px;
-`;
+const ContentTextsContainer = styled.div``;
 
 const ContentTitle = styled.h2`
   color: white;
@@ -168,6 +166,9 @@ const MockupImageContainer = styled.div`
   overflow: hidden;
 
   @media ${mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 0;
   }
 `;
