@@ -48,7 +48,7 @@ const TitleContainer = styled.div`
 const DownloadButton = styled.button`
   appearance: none;
   background-color: #e94560;
-  min-width: 180px;
+  min-width: 150px;
   height: 40px;
   border: none;
   border-radius: 40px;
