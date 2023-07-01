@@ -1,10 +1,10 @@
 import useTranslation from 'next-translate/useTranslation';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../../constants/media';
 import useScreenVisibility from '../../../../hooks/useScreenVisibility';
 import Avatar from '../Avatar';
-import Divider from '../Divider';
+import SectionHeader from '../SectionHeader';
 
 type Props = { onVisibilityChange: (visible: boolean) => void };
 
@@ -17,24 +17,13 @@ const GreetingSection: React.VFC<Props> = ({ onVisibilityChange }) => {
     onVisibilityChange(visible);
   }, [onVisibilityChange, visible]);
 
-  const hasSubtitle = useMemo(
-    () =>
-      t('special:greeting.subTitle') !== '4thspecial:greeting.subTitle' ||
-      !t('special:greeting.subTitle').length,
-    [t]
-  );
-
   return (
     <Container>
       <ContentContainer>
-        <TitleContainer>
-          <SectionTitle>GREETING</SectionTitle>
-          {hasSubtitle && (
-            <SectionSubTitle>{t('special:greeting.subTitle')}</SectionSubTitle>
-          )}
-        </TitleContainer>
-        <Divider />
-
+        <SectionHeader
+          title="GREETING"
+          subTitle={t('special:greeting.subTitle')}
+        />
         <DescriptionContainer>
           <div>
             <DescriptionTitle>{t('special:greeting.heading')}</DescriptionTitle>
@@ -92,22 +81,6 @@ const ResizedAvatar = styled(Avatar)`
   height: 256px;
   margin-left: 32px;
   filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
-`;
-
-const TitleContainer = styled.div`
-  color: #111;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 2rem;
-  letter-spacing: 0.25rem;
-  font-weight: bold;
-`;
-
-const SectionSubTitle = styled.h3`
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-  font-weight: bold;
 `;
 
 const DescriptionContainer = styled.div`
