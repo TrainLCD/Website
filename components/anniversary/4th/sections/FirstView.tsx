@@ -49,7 +49,7 @@ const FirstView: React.VFC = () => {
             <ContentTitle style={{ marginBottom: textMarginBottom }}>
               TrainLCD{' '}
               <ContentTitleLargeModifier>4th</ContentTitleLargeModifier>{' '}
-              Anniversary!
+              Anniversary🎉
             </ContentTitle>
           </SpringContainer>
           <SpringContainer>

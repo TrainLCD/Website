@@ -98,10 +98,10 @@ const DescriptionContainer = styled.div`
 const DescriptionTitle = styled.p`
   font-size: 2rem;
   letter-spacing: 0.1rem;
+  font-weight: bold;
 
   @media ${mediaQueries.md} {
     font-size: 3rem;
-    letter-spacing: 0.25rem;
   }
 `;
 
