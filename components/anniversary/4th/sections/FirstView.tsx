@@ -1,8 +1,7 @@
-import { SpringValue, a } from '@react-spring/web';
 import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback } from 'react';
 import styled from 'styled-components';
 import mockImage from '../../../../assets/images/mockup/iphone-and-ipad.png';
 import { mediaQueries } from '../../../../constants/media';
@@ -10,32 +9,6 @@ import { mediaQueries } from '../../../../constants/media';
 const FirstView: React.VFC = () => {
   const router = useRouter();
   const { t } = useTranslation();
-
-  const [firstAnimationCompleted, setFirstAnimationCompleted] = useState(false);
-  const textMarginBottom = useMemo(() => new SpringValue('-100%'), []);
-  const downloadButtonBottom = useMemo(() => new SpringValue('-48px'), []);
-  const downloadButtonOpacity = useMemo(() => new SpringValue(0), []);
-  const mockupImageOpacity = useMemo(() => new SpringValue(0), []);
-
-  useEffect(() => {
-    if (!firstAnimationCompleted) {
-      textMarginBottom.start('common:0%');
-      setTimeout(() => {
-        downloadButtonBottom.start('common:0px');
-        downloadButtonOpacity.start(1);
-      }, 500);
-      setTimeout(() => {
-        mockupImageOpacity.start(1);
-      }, 1000);
-      setFirstAnimationCompleted(true);
-    }
-  }, [
-    downloadButtonBottom,
-    downloadButtonOpacity,
-    firstAnimationCompleted,
-    mockupImageOpacity,
-    textMarginBottom,
-  ]);
 
   const handleDownloadButtonClick = useCallback(() => {
     router.push('/');
@@ -46,25 +19,17 @@ const FirstView: React.VFC = () => {
       <ContentContainer>
         <ContentTextsContainer>
           <SpringContainer>
-            <ContentTitle style={{ marginBottom: textMarginBottom }}>
+            <ContentTitle>
               TrainLCD{' '}
               <ContentTitleLargeModifier>4th</ContentTitleLargeModifier>{' '}
               Anniversary🎉
             </ContentTitle>
           </SpringContainer>
           <SpringContainer>
-            <ContentText style={{ marginBottom: textMarginBottom }}>
-              {t('special:firstView.greeting')}
-            </ContentText>
+            <ContentText>{t('special:firstView.greeting')}</ContentText>
           </SpringContainer>
           <DownloadButtonContainer>
-            <DownloadButton
-              style={{
-                bottom: downloadButtonBottom,
-                opacity: downloadButtonOpacity,
-              }}
-              onClick={handleDownloadButtonClick}
-            >
+            <DownloadButton onClick={handleDownloadButtonClick}>
               {t('common:global.download')}
             </DownloadButton>
           </DownloadButtonContainer>
@@ -73,7 +38,6 @@ const FirstView: React.VFC = () => {
         <MockupImageContainer>
           <MockupImage
             style={{
-              opacity: mockupImageOpacity,
               width: 626.19,
               height: 440,
             }}
@@ -102,7 +66,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -127,24 +91,22 @@ const ContentTextsContainer = styled.div`
   max-width: 720px;
 `;
 
-const ContentTitle = styled(a.h2)`
+const ContentTitle = styled.h2`
   color: white;
   font-size: 2rem;
   max-width: 100%;
-  margin-bottom: -100%;
 
   @media ${mediaQueries.md} {
     font-size: 3rem;
   }
 `;
 
-const ContentText = styled(a.p)`
+const ContentText = styled.p`
   color: white;
   max-width: 100%;
   margin-top: 8px;
   line-height: 1.75;
   opacity: 0.75;
-  margin-bottom: -100%;
 `;
 
 const ContentTitleLargeModifier = styled.span`
@@ -163,7 +125,7 @@ const BGContainer = styled.div`
 `;
 
 const BGImage = styled(Image)`
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -188,7 +150,7 @@ const DownloadButtonContainer = styled.div`
   }
 `;
 
-const DownloadButton = styled(a.button)`
+const DownloadButton = styled.button`
   display: block;
   position: absolute;
   appearance: none;
@@ -200,12 +162,9 @@ const DownloadButton = styled(a.button)`
   color: white;
   font-weight: bold;
   cursor: pointer;
-  bottom: -48px;
-  opacity: 0;
 `;
 
-const MockupImageContainer = styled(a.div)`
-  margin-top: 32px;
+const MockupImageContainer = styled.div`
   overflow: hidden;
 
   @media ${mediaQueries.md} {
@@ -213,8 +172,7 @@ const MockupImageContainer = styled(a.div)`
   }
 `;
 
-const MockupImage = styled(a(Image))`
-  opacity: 0;
+const MockupImage = styled(Image)`
   object-fit: contain;
 `;
 
