@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../../constants/media';
 import useScreenVisibility from '../../../../hooks/useScreenVisibility';
+import Avatar from '../Avatar';
 import Divider from '../Divider';
 
 type Props = { onVisibilityChange: (visible: boolean) => void };
@@ -33,14 +34,20 @@ const GreetingSection: React.VFC<Props> = ({ onVisibilityChange }) => {
           )}
         </TitleContainer>
         <Divider />
+
         <DescriptionContainer>
-          <DescriptionTitle>{t('special:greeting.heading')}</DescriptionTitle>
-          <DescriptionText>{t('special:greeting.message')}</DescriptionText>
-          <CaptionText>
-            *1: {t('special:greeting.caption1')}
-            <br />
-            *2: {t('special:greeting.caption2')}
-          </CaptionText>
+          <div>
+            <DescriptionTitle>{t('special:greeting.heading')}</DescriptionTitle>
+            <DescriptionText>{t('special:greeting.message')}</DescriptionText>
+            <CaptionText>
+              *1: {t('special:greeting.caption1')}
+              <br />
+              *2: {t('special:greeting.caption2')}
+            </CaptionText>
+          </div>
+          <AvatarContainer>
+            <ResizedAvatar />
+          </AvatarContainer>
         </DescriptionContainer>
       </ContentContainer>
       <ViewIntersectPoint ref={ref} />
@@ -60,18 +67,31 @@ const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  padding: 32px;
   z-index: 1;
-  left: 0;
-  top: 0;
   color: #333;
   overflow: hidden;
+  padding: 32px;
 
   @media ${mediaQueries.md} {
     padding: 72px 128px;
   }
+`;
+
+const AvatarContainer = styled.div`
+  display: none;
+  @media ${mediaQueries.md} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const ResizedAvatar = styled(Avatar)`
+  max-width: 100%;
+  width: 256px;
+  height: 256px;
+  margin-left: 32px;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
 `;
 
 const TitleContainer = styled.div`
@@ -91,8 +111,10 @@ const SectionSubTitle = styled.h3`
 `;
 
 const DescriptionContainer = styled.div`
-  margin-top: 16px;
-  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const DescriptionTitle = styled.p`
@@ -109,6 +131,8 @@ const DescriptionText = styled.p`
   margin-top: 32px;
   font-size: 0.9rem;
   line-height: 2;
+  white-space: pre-wrap;
+  width: 100%;
   @media ${mediaQueries.md} {
     font-size: 1rem;
   }
