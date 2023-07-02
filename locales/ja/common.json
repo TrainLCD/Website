@@ -2,7 +2,8 @@
   "global": {
     "app": "アプリ",
     "try": "使ってみる",
-    "smartwatch": "スマートウォッチ"
+    "smartwatch": "スマートウォッチ",
+    "download": "ダウンロード"
   },
   "component": {
     "footer": {

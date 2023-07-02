@@ -1,7 +1,8 @@
 {
   "global": {
     "try": "Try TrainLCD",
-    "smartwatch": "Smartwatch"
+    "smartwatch": "Smartwatch",
+    "download": "Download"
   },
   "component": {
     "footer": {

@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
@@ -115,18 +115,18 @@ const WelcomeSection: React.FC = () => {
     <Container>
       <TextsContainer>
         <Heading isJa={isJa}>
-          {t('section.welcome.canBeUsed')}
+          {t('common:section.welcome.canBeUsed')}
           <br />
-          <ColoredText>{t('section.welcome.newSense')}</ColoredText>
+          <ColoredText>{t('common:section.welcome.newSense')}</ColoredText>
           {!isJa && ' '}
-          <span>{t('section.welcome.navigationApp')}</span>
+          <span>{t('common:section.welcome.navigationApp')}</span>
         </Heading>
         <DescriptionText en={!isJa}>
-          {t('section.welcome.description')}
+          {t('common:section.welcome.description')}
         </DescriptionText>
         <Media greaterThanOrEqual="lg">
           <TryButton onClick={handleTryButtonClick}>
-            {t('global.try')}
+            {t('common:global.try')}
           </TryButton>
         </Media>
       </TextsContainer>
@@ -139,14 +139,20 @@ const WelcomeSection: React.FC = () => {
         </Media>
         <Image
           src={mockImage}
-          width={626.19}
-          height={440}
-          objectFit="contain"
+          style={{
+            objectFit: 'contain',
+            width: 626.19,
+            height: 440,
+            zIndex: 1,
+          }}
           alt="iPhone and iPad"
+          priority
         />
       </MockupContainer>
       <Media lessThan="lg">
-        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
+        <TryButton onClick={handleTryButtonClick}>
+          {t('common:global.try')}
+        </TryButton>
       </Media>
     </Container>
   );

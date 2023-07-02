@@ -1,0 +1,51 @@
+[
+  {
+    "slug": "pronama",
+    "heading": "Introductory session for the original TrainLCD app",
+    "description": "I had the opportunity to give a session on the development of the original TrainLCD application at a \"Pronama\" event in Tokyo.\nThe concept of the app at the time was different again, but technically almost identical.",
+    "startDate": "2017/02",
+    "endDate": null
+  },
+  {
+    "slug": "born",
+    "heading": "Started TrainLCD development",
+    "description": "I started development on a whim. At first, rather than reproducing a train guidance system, I started with a light hearted thought, \"I originally implemented an API that only returns nearby stations, so there is no need to reproduce it, but it would be interesting to have a navigation application with roughly the same look and feel.\"",
+    "startDate": "2017/02",
+    "endDate": null
+  },
+  {
+    "slug": "storeDebut",
+    "heading": "Now available on App Store/Google Play",
+    "description": "We started releasing the app on the App Store/Google Play in the hope that more people would use it if we released it on the app store.",
+    "startDate": "2019/11",
+    "endDate": null
+  },
+  {
+    "slug": "appleWatch",
+    "heading": "Apple Watch Support",
+    "description": "Apple Watch support has been added. Just by looking at your wrist, you will be able to know which station you are currently stopped at and where you will stop next.",
+    "startDate": "2020/12",
+    "endDate": null
+  },
+  {
+    "slug": "liveActivities",
+    "heading": "Live Activities support",
+    "description": "Live Activities support has been added. You can now know where you are without opening the application, just by looking at the lock screen. In the screenshot, Live Activities is shown at the bottom of the notification list.",
+    "startDate": "2022/09",
+    "endDate": null
+  },
+  {
+    "slug": "android2k",
+    "heading": "Android version installed on more than 2,000 devices",
+    "description": "Before we knew it, the number of devices installed via Google Play exceeded 2,000 devices.",
+    "startDate": "2023/06",
+    "endDate": null
+  },
+  {
+    "slug": "wearos",
+    "heading": "Compatible with Wear OS by Google",
+    "description": "Wear OS support is now available, allowing you to use TrainLCD in combination with an Android smartphone paired with a wearable device that supports Wear OS, such as the Pixel Watch.",
+    "startDate": "2023/06",
+    "endDate": null
+  }
+]

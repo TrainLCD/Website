@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { mediaQueries } from '../constants/media';
@@ -9,8 +9,10 @@ import TinyKittenProduct from './TinyKittenProduct';
 import TwitterLogo from './TwitterLogo';
 
 const FooterContainer = styled.footer`
+  position: sticky;
   background-color: #212121;
   padding: 40px 16px;
+  z-index: 1;
   @media ${mediaQueries.md} {
     padding: 40px 64px;
   }
@@ -32,7 +34,7 @@ const AppInfoTextContainer = styled.div`
   justify-content: center;
 `;
 const AppDescriptionText = styled.p`
-  font-size: 0.25rem;
+  font-size: 0.5rem;
   color: white;
   font-weight: bold;
   white-space: pre-wrap;
@@ -110,12 +112,20 @@ const LinkList = styled.div`
   }
 `;
 
-const StyledAnchor = styled.a`
+const linkMixin = css`
   ${buttonAnimationMixin}
   font-weight: bold;
   color: white;
   font-size: 0.75rem;
   text-decoration: none;
+`;
+
+const StyledAnchor = styled.a`
+  ${linkMixin}
+`;
+
+const StyledLink = styled(Link)`
+  ${linkMixin}
 `;
 
 const BottomRightContainer = styled.div`
@@ -154,7 +164,9 @@ const Footer: React.FC = () => {
       <AppInfoContainer>
         <StyledAppLogo />
         <AppInfoTextContainer>
-          <AppDescriptionText>{t('component.footer.motto')}</AppDescriptionText>
+          <AppDescriptionText>
+            {t('common:component.footer.motto')}
+          </AppDescriptionText>
           <AppNameText>TrainLCD</AppNameText>
         </AppInfoTextContainer>
       </AppInfoContainer>
@@ -183,20 +195,20 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t('component.footer.portfolio')}
+              {t('common:component.footer.portfolio')}
             </StyledAnchor>
-            <Link
+            <StyledLink
               href={isJa ? '/privacy-policy' : '/privacy-policy-en'}
               passHref
             >
-              <StyledAnchor>{t('component.footer.privacyPolicy')}</StyledAnchor>
-            </Link>
+              {t('common:component.footer.privacyPolicy')}
+            </StyledLink>
             <StyledAnchor
               href="https://discord.gg/qKT7zSGQre"
               target="_blank"
               rel="noreferrer noopener"
             >
-              {t('component.footer.joinCom')}
+              {t('common:component.footer.joinCom')}
             </StyledAnchor>
           </LinkList>
         </BottomLeftContainer>

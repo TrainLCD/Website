@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
 import { Media, mediaQueries } from '../../constants/media';
 import DescriptionText from '../DescriptionText';
@@ -100,16 +100,16 @@ const TextFragment = () => {
     <TextsContainer>
       <ShortHeading>PRs Welcome</ShortHeading>
       <Heading>
-        {t('section.oss.trainlcdIs')}
+        {t('common:section.oss.trainlcdIs')}
         <br />
-        <AccentText>{t('section.oss.ossProject')}</AccentText>
+        <AccentText>{t('common:section.oss.ossProject')}</AccentText>
       </Heading>
-      <DescriptionText>{t('section.oss.description')}</DescriptionText>
+      <DescriptionText>{t('common:section.oss.description')}</DescriptionText>
       <ToGHButton
         href="https://github.com/TrainLCD/MobileApp"
         rel="noopener noreferrer"
       >
-        {t('section.oss.viewRepo')}
+        {t('common:section.oss.viewRepo')}
       </ToGHButton>
     </TextsContainer>
   );

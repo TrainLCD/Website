@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ const AppInfoContainer = styled.div`
   align-items: center;
 `;
 
-const AppInfoAnchor = styled.a`
+const AppInfoAnchor = styled.span`
   display: inline-flex;
   align-items: center;
   cursor: pointer;
@@ -38,6 +38,20 @@ const AppTitle = styled.p`
   margin-left: 8px;
   font-weight: bold;
   color: #444;
+`;
+
+const LinkWithoutDecoration = styled(Link)`
+  text-decoration: none;
+`;
+
+const AnniversaryText = styled.span`
+  margin-left: 8px;
+  font-weight: bold;
+  color: #e94560;
+  border: 2px solid #e94560;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
 `;
 
 const TryButtonContainer = styled.div``;
@@ -77,9 +91,14 @@ const Header: React.FC = () => {
             <AppTitle>TrainLCD</AppTitle>
           </AppInfoAnchor>
         </Link>
+        <LinkWithoutDecoration href="/special">
+          <AnniversaryText>4th Anniversary🎉</AnniversaryText>
+        </LinkWithoutDecoration>
       </AppInfoContainer>
       <TryButtonContainer>
-        <TryButton onClick={handleTryButtonClick}>{t('global.try')}</TryButton>
+        <TryButton onClick={handleTryButtonClick}>
+          {t('common:global.try')}
+        </TryButton>
       </TryButtonContainer>
     </HeaderContainer>
   );

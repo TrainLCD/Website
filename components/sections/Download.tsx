@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
@@ -102,39 +102,41 @@ const DownloadSection: React.FC = () => {
         >
           <Media greaterThanOrEqual="lg">
             <Image
-              width={310}
-              height={95.32}
-              objectFit="contain"
+              style={{
+                width: 310,
+                height: 95.32,
+                objectFit: 'contain',
+              }}
+              alt="Google Play Store"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
           <Media lessThan="lg">
             <Image
-              width={140}
-              height={47.66}
-              objectFit="contain"
+              style={{ width: 140, height: 47.66, objectFit: 'contain' }}
+              alt="Google Play Store"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
         </a>
       </StoresContainer>
       <TextsContainer>
-        <ShortHeading>{t('section.dl.shortHeading')}</ShortHeading>
+        <ShortHeading>{t('common:section.dl.shortHeading')}</ShortHeading>
         {/* スペースの有無 */}
         {isJa ? (
           <Heading>
-            iOS{t('section.dl.and')}Android
+            iOS{t('common:section.dl.and')}Android
             <br />
-            <AccentText>{t('section.dl.bothSupport')}</AccentText>
+            <AccentText>{t('common:section.dl.bothSupport')}</AccentText>
           </Heading>
         ) : (
           <Heading>
-            iOS {t('section.dl.and')} Android
+            iOS {t('common:section.dl.and')} Android
             <br />
-            <AccentText>{t('section.dl.bothSupport')}</AccentText>
+            <AccentText>{t('common:section.dl.bothSupport')}</AccentText>
           </Heading>
         )}
-        <DescriptionText>{t('section.dl.description')} </DescriptionText>
+        <DescriptionText>{t('common:section.dl.description')} </DescriptionText>
       </TextsContainer>
     </Container>
   );
