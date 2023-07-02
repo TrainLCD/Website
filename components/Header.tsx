@@ -40,6 +40,20 @@ const AppTitle = styled.p`
   color: #444;
 `;
 
+const LinkWithoutDecoration = styled(Link)`
+  text-decoration: none;
+`;
+
+const AnniversaryText = styled.span`
+  margin-left: 8px;
+  font-weight: bold;
+  color: #e94560;
+  border: 2px solid #e94560;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+`;
+
 const TryButtonContainer = styled.div``;
 
 const TryButton = styled.button`
@@ -77,6 +91,9 @@ const Header: React.FC = () => {
             <AppTitle>TrainLCD</AppTitle>
           </AppInfoAnchor>
         </Link>
+        <LinkWithoutDecoration href="/special">
+          <AnniversaryText>4th Anniversary🎉</AnniversaryText>
+        </LinkWithoutDecoration>
       </AppInfoContainer>
       <TryButtonContainer>
         <TryButton onClick={handleTryButtonClick}>
