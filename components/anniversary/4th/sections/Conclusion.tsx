@@ -1,5 +1,6 @@
 import useTranslation from 'next-translate/useTranslation';
-import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import { useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../../constants/media';
 import Button from '../Button';
@@ -8,6 +9,11 @@ import SectionHeader from '../SectionHeader';
 const ConclusionSection: React.VFC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const handleDownloadButtonClick = useCallback(() => {
+    router.push('/');
+  }, [router]);
 
   return (
     <Container>
@@ -23,7 +29,10 @@ const ConclusionSection: React.VFC = () => {
             </DescriptionTitle>
             <DescriptionText>{t('special:conclusion.message')}</DescriptionText>
             <DownloadButtonContainer>
-              <Button> {t('common:global.download')}</Button>
+              <Button onClick={handleDownloadButtonClick}>
+                {' '}
+                {t('common:global.download')}
+              </Button>
             </DownloadButtonContainer>
           </div>
         </DescriptionContainer>
