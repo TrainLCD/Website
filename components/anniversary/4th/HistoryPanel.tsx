@@ -32,7 +32,8 @@ const BornVisualElement: React.VFC = () => (
   <VisualElementImage
     src={AntiqueTrainLCD}
     alt="Antique TrainLCD"
-    style={{ width: 1334 / 3, height: 750 / 3 }}
+    width={1334}
+    height={750}
   />
 );
 
@@ -40,7 +41,8 @@ const StoreDebutVisualElement: React.VFC = () => (
   <VisualElementImage
     src={TrainLCDClassicIcon}
     alt="Banner"
-    style={{ width: 1024 / 3, height: 1024 / 3 }}
+    width={1024}
+    height={1024}
   />
 );
 
@@ -48,7 +50,8 @@ const AppleWatchVisualElement: React.VFC = () => (
   <VisualElementImage
     src={AppleWatchMock}
     alt="Apple Watch"
-    style={{ width: 626 / 3, height: 930 / 3 }}
+    width={626}
+    height={930}
   />
 );
 
@@ -56,7 +59,8 @@ const LiveActivitiesVisualElement: React.VFC = () => (
   <VisualElementImage
     src={LiveActivities}
     alt="Live Activities"
-    style={{ width: 429 / 3, height: 930 / 3 }}
+    width={429}
+    height={930}
   />
 );
 
@@ -64,7 +68,8 @@ const Android2KDevicesVisualElement: React.VFC = () => (
   <VisualElementImage
     src={Android2K}
     alt="TrainLCD has reached 2K devices"
-    style={{ width: 419 / 3, height: 930 / 3 }}
+    width={419}
+    height={930}
   />
 );
 
@@ -72,7 +77,8 @@ const WearOSVisualElement: React.VFC = () => (
   <VisualElementImage
     src={WearOSReal}
     alt="Wear OS Demonstration"
-    style={{ width: 419 / 3, height: 930 / 3 }}
+    width={419}
+    height={930}
   />
 );
 
@@ -197,11 +203,15 @@ const YouTubeWrapper = styled.div`
   }
 `;
 
-const VisualElementImage = styled(Image)`
+const VisualElementImage = styled(Image)<{ width: number; height: number }>`
   object-fit: contain;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.16));
+  width: ${({ width }) => width / 3}px;
+  height: ${({ height }) => height / 3}px;
   @media ${mediaQueries.md} {
     max-height: 75%;
+    width: ${({ width }) => width / 2}px;
+    height: ${({ height }) => height / 2}px;
   }
 `;
 
