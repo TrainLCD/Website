@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import AppleWatchMock from '../../../assets/images/applewatch.png';
-import Android2K from '../../../assets/images/histories/android2k.jpg';
+import Android2K from '../../../assets/images/histories/android2k.png';
 import LiveActivities from '../../../assets/images/histories/live_activities.png';
 import TrainLCDClassicIcon from '../../../assets/images/histories/trainlcd_classic_icon.png';
 import AntiqueTrainLCD from '../../../assets/images/histories/trainlcd_old.png';
@@ -32,8 +32,8 @@ const BornVisualElement: React.VFC = () => (
   <VisualElementImage
     src={AntiqueTrainLCD}
     alt="Antique TrainLCD"
-    width={1334}
-    height={750}
+    width={626}
+    height={352}
   />
 );
 
@@ -41,8 +41,8 @@ const StoreDebutVisualElement: React.VFC = () => (
   <VisualElementImage
     src={TrainLCDClassicIcon}
     alt="Banner"
-    width={1024}
-    height={1024}
+    width={626}
+    height={626}
   />
 );
 
@@ -59,8 +59,8 @@ const LiveActivitiesVisualElement: React.VFC = () => (
   <VisualElementImage
     src={LiveActivities}
     alt="Live Activities"
-    width={429}
-    height={930}
+    width={626}
+    height={1357}
   />
 );
 
@@ -68,8 +68,8 @@ const Android2KDevicesVisualElement: React.VFC = () => (
   <VisualElementImage
     src={Android2K}
     alt="TrainLCD has reached 2K devices"
-    width={419}
-    height={930}
+    width={626}
+    height={1391}
   />
 );
 
@@ -77,8 +77,8 @@ const WearOSVisualElement: React.VFC = () => (
   <VisualElementImage
     src={WearOSReal}
     alt="Wear OS Demonstration"
-    width={700}
-    height={930}
+    width={626}
+    height={831}
   />
 );
 
