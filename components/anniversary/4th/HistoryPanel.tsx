@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import AppleWatchMock from '../../../assets/images/applewatch.png';
 import Android2K from '../../../assets/images/histories/android2k.jpg';
 import LiveActivities from '../../../assets/images/histories/live_activities.png';
-import TrainLCDClassicBanner from '../../../assets/images/histories/trainlcd_clasic_banner.png';
+import TrainLCDClassicIcon from '../../../assets/images/histories/trainlcd_classic_icon.png';
 import AntiqueTrainLCD from '../../../assets/images/histories/trainlcd_old.png';
 import WearOSReal from '../../../assets/images/histories/wearos_real.jpg';
 import { mediaQueries } from '../../../constants/media';
@@ -38,9 +38,9 @@ const BornVisualElement: React.VFC = () => (
 
 const StoreDebutVisualElement: React.VFC = () => (
   <VisualElementImage
-    src={TrainLCDClassicBanner}
+    src={TrainLCDClassicIcon}
     alt="Banner"
-    style={{ width: 1024, height: 500 }}
+    style={{ width: 1024, height: 1024 }}
   />
 );
 
