@@ -42,6 +42,11 @@ const AppTitle = styled.p`
 
 const LinkWithoutDecoration = styled(Link)`
   text-decoration: none;
+  display: none;
+
+  @media ${mediaQueries.md} {
+    display: initial;
+  }
 `;
 
 const AnniversaryText = styled.span`
@@ -92,7 +97,7 @@ const Header: React.FC = () => {
           </AppInfoAnchor>
         </Link>
         <LinkWithoutDecoration href="/special">
-          <AnniversaryText>4th Anniversary🎉</AnniversaryText>
+          <AnniversaryText>TrainLCD 4th🎉</AnniversaryText>
         </LinkWithoutDecoration>
       </AppInfoContainer>
       <TryButtonContainer>
