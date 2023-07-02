@@ -181,7 +181,7 @@ const Description = styled.p`
 const VisualContainer = styled.div`
   ${containerMixin};
   align-items: center;
-  padding: 0 32px;
+  padding: 32px;
 
   @media ${mediaQueries.md} {
     padding: 72px 128px;
