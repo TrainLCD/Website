@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Footer from '../components/Footer';
 import AppHead from '../components/Head';
 import SpecialHeader from '../components/anniversary/4th/Header';
+import ConclusionSection from '../components/anniversary/4th/sections/Conclusion';
 import FirstView from '../components/anniversary/4th/sections/FirstView';
 import GreetingSection from '../components/anniversary/4th/sections/Greeting';
 import HistorySection from '../components/anniversary/4th/sections/History';
@@ -29,6 +30,7 @@ const SpecialPage: React.VFC = () => {
       <FirstView />
       <GreetingSection onVisibilityChange={handleVisibilityChange} />
       <HistorySection />
+      <ConclusionSection />
       <Footer />
     </Container>
   );

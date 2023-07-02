@@ -34,7 +34,7 @@ const AppInfoTextContainer = styled.div`
   justify-content: center;
 `;
 const AppDescriptionText = styled.p`
-  font-size: 0.25rem;
+  font-size: 0.5rem;
   color: white;
   font-weight: bold;
   white-space: pre-wrap;

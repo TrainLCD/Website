@@ -13,6 +13,7 @@
     "@react-spring/web": "^9.7.3",
     "@types/styled-components": "^5.1.15",
     "eslint-config-next": "^13.4.7",
+    "lodash": "^4.17.21",
     "next": "^13.4.7",
     "next-i18next": "^12.0.0",
     "next-translate": "^2.4.4",

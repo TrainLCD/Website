@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import styled from 'styled-components';
 import mockImage from '../../../../assets/images/mockup/iphone-and-ipad.png';
 import { mediaQueries } from '../../../../constants/media';
+import Button from '../Button';
 
 const FirstView: React.VFC = () => {
   const router = useRouter();
@@ -29,9 +30,9 @@ const FirstView: React.VFC = () => {
             <ContentText>{t('special:firstView.greeting')}</ContentText>
           </SpringContainer>
           <DownloadButtonContainer>
-            <DownloadButton onClick={handleDownloadButtonClick}>
+            <Button onClick={handleDownloadButtonClick}>
               {t('common:global.download')}
-            </DownloadButton>
+            </Button>
           </DownloadButtonContainer>
         </ContentTextsContainer>
 
@@ -146,20 +147,6 @@ const DownloadButtonContainer = styled.div`
     height: 48px;
     margin-top: 32px;
   }
-`;
-
-const DownloadButton = styled.button`
-  display: block;
-  position: absolute;
-  appearance: none;
-  background-color: #e94560;
-  width: 180px;
-  height: 48px;
-  border: none;
-  border-radius: 40px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
 `;
 
 const MockupImageContainer = styled.div`

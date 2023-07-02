@@ -13,15 +13,19 @@ const SectionHeader: React.VFC<Props> = ({ title, subTitle, white }) => {
   const isJa = useIsJa();
 
   return (
-    <>
+    <Container>
       <TitleContainer white={white}>
         <SectionTitle>{title}</SectionTitle>
         {isJa && <SectionSubTitle>{subTitle}</SectionSubTitle>}
       </TitleContainer>
       <Divider white={white} />
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  z-index: 1;
+`;
 
 const TitleContainer = styled.div<{ white?: boolean }>`
   color: ${({ white }) => (white ? '#fff' : '#111')};

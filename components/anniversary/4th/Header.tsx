@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../constants/media';
+import Button from './Button';
 import SpecialLogo from './Logo';
 
 const InfoContainer = styled.div<{ fvPassed: boolean }>`
@@ -45,21 +46,6 @@ const TitleContainer = styled.div`
   margin-left: 8px;
 `;
 
-const DownloadButton = styled.button`
-  appearance: none;
-  background-color: #e94560;
-  min-width: 150px;
-  height: 40px;
-  border: none;
-  border-radius: 40px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  @media ${mediaQueries.md} {
-    height: 48px;
-  }
-`;
-
 type Props = {
   firstViewPassed: boolean;
 };
@@ -84,9 +70,9 @@ const SpecialHeader: React.FC<Props> = ({ firstViewPassed }) => {
           <PageTitleSub>Special Website</PageTitleSub>
         </TitleContainer>
       </InfoContainer>
-      <DownloadButton onClick={handleDownloadButtonClick}>
+      <Button onClick={handleDownloadButtonClick}>
         {t('common:global.download')}
-      </DownloadButton>
+      </Button>
     </HeaderContainer>
   );
 };
