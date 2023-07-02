@@ -77,7 +77,7 @@ const WearOSVisualElement: React.VFC = () => (
   <VisualElementImage
     src={WearOSReal}
     alt="Wear OS Demonstration"
-    width={419}
+    width={700}
     height={930}
   />
 );
@@ -209,7 +209,6 @@ const VisualElementImage = styled(Image)<{ width: number; height: number }>`
   width: ${({ width }) => width / 3}px;
   height: ${({ height }) => height / 3}px;
   @media ${mediaQueries.md} {
-    max-height: 75%;
     width: ${({ width }) => width / 2}px;
     height: ${({ height }) => height / 2}px;
   }
