@@ -97,7 +97,7 @@ const Header: React.FC = () => {
           </AppInfoAnchor>
         </Link>
         <LinkWithoutDecoration href="/special">
-          <AnniversaryText>TrainLCD 4th🎉</AnniversaryText>
+          <AnniversaryText>4th Anniversary🎉</AnniversaryText>
         </LinkWithoutDecoration>
       </AppInfoContainer>
       <TryButtonContainer>
