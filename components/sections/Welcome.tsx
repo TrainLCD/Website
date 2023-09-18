@@ -79,12 +79,14 @@ const StyledRingsPC = styled(RingsPC)`
   position: absolute;
   right: -64px;
   bottom: 0;
+  z-index: 0;
 `;
 
 const StyledRingsSP = styled(RingsSP)`
   position: absolute;
   right: -32px;
   top: -32px;
+  z-index: 0;
 `;
 
 const TryButton = styled.button`
@@ -139,10 +141,11 @@ const WelcomeSection: React.FC = () => {
         </Media>
         <Image
           src={mockImage}
+          width={626.19}
+          height={440}
           style={{
+            position: 'relative',
             objectFit: 'contain',
-            width: 626.19,
-            height: 440,
             zIndex: 1,
           }}
           alt="iPhone and iPad"

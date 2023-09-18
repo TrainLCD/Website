@@ -90,6 +90,7 @@ const AboutSection: React.FC = () => {
           alt="TrainLCD"
           width={542.25}
           height={288.375}
+          style={{ objectFit: 'contain' }}
         />
       </MockupContainer>
       <TextsContainer>

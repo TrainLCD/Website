@@ -113,7 +113,9 @@ const DownloadSection: React.FC = () => {
           </Media>
           <Media lessThan="lg">
             <Image
-              style={{ width: 140, height: 47.66, objectFit: 'contain' }}
+              width={140}
+              height={47.66}
+              style={{ objectFit: 'contain' }}
               alt="Google Play Store"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />

@@ -86,9 +86,11 @@ const WearableSection: React.FC = () => {
     <Container>
       <MockupContainer>
         <Image
+          width={289.44}
+          height={430}
           src={isJa ? appleWatchMock : appleWatchEnMock}
           alt="TrainLCD"
-          style={{ width: 289.44, height: 430 }}
+          style={{ objectFit: 'contain' }}
         />
       </MockupContainer>
       <TextsContainer>

@@ -106,7 +106,9 @@ const MockupFragment = () => {
       <Image
         src={isJa ? iPadMock : iPadEnMock}
         alt="iPad"
-        style={{ width: 580, height: 430.22 }}
+        width={580}
+        height={430.22}
+        style={{ objectFit: 'contain' }}
       />
     </MockupContainer>
   );
