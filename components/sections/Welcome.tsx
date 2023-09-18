@@ -1,22 +1,22 @@
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
+import ImageWithoutSize from '../ImageWithoutSize';
 import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
 
 const Container = styled.section`
   min-height: 100vh;
   position: relative;
-  padding: 32px;
+  padding: 0 32px;
   background-color: #fefefe;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 64px;
+  margin-top: 32px;
   @media ${mediaQueries.md} {
     flex-direction: row;
     justify-content: flex-start;
@@ -78,7 +78,7 @@ const MockupContainer = styled.div`
 const StyledRingsPC = styled(RingsPC)`
   position: absolute;
   right: -64px;
-  bottom: 0;
+  bottom: -32px;
   z-index: 0;
 `;
 
@@ -139,18 +139,7 @@ const WelcomeSection: React.FC = () => {
         <Media lessThan="lg">
           <StyledRingsSP />
         </Media>
-        <Image
-          src={mockImage}
-          width={626.19}
-          height={440}
-          style={{
-            position: 'relative',
-            objectFit: 'contain',
-            zIndex: 1,
-          }}
-          alt="iPhone and iPad"
-          priority
-        />
+        <ImageWithoutSize src={mockImage} alt="iPhone and iPad" fill />
       </MockupContainer>
       <Media lessThan="lg">
         <TryButton onClick={handleTryButtonClick}>

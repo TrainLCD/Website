@@ -27,6 +27,7 @@ const MockupContainer = styled.div`
 
 const TextsContainer = styled.div`
   width: 100%;
+  margin-top: 24px;
   @media ${mediaQueries.md} {
     width: 50%;
   }
@@ -44,9 +45,7 @@ const ShortHeading = styled.p`
 
 const AccentText = styled.span`
   color: #277bc0;
-  @media ${mediaQueries.md} {
-    white-space: pre-wrap;
-  }
+  white-space: pre-wrap;
 `;
 
 const Heading = styled.h3`

@@ -1,11 +1,11 @@
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import styled from 'styled-components';
 import iPadEnMock from '../../assets/images/ipad-en.png';
 import iPadMock from '../../assets/images/ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
+import ImageWithoutSize from '../ImageWithoutSize';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -30,6 +30,7 @@ const MockupContainer = styled.div`
 
 const TextsContainer = styled.div`
   width: 100%;
+  margin-top: 24px;
   @media ${mediaQueries.md} {
     width: 50%;
   }
@@ -103,13 +104,7 @@ const MockupFragment = () => {
   const isJa = useIsJa();
   return (
     <MockupContainer>
-      <Image
-        src={isJa ? iPadMock : iPadEnMock}
-        alt="iPad"
-        width={580}
-        height={430.22}
-        style={{ objectFit: 'contain' }}
-      />
+      <ImageWithoutSize src={isJa ? iPadMock : iPadEnMock} alt="iPad" />
     </MockupContainer>
   );
 };

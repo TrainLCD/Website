@@ -35,6 +35,7 @@ const MockupContainer = styled.div`
 
 const TextsContainer = styled.div`
   width: 100%;
+  margin-top: 24px;
   @media ${mediaQueries.md} {
     width: 50%;
   }

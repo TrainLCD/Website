@@ -1,13 +1,13 @@
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
+import AppStoreJPImg from '../../assets/images/store/app-store-jp.png';
+import AppStoreUSImg from '../../assets/images/store/app-store-us.png';
 import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
 import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
 import { Media, mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
-import AppStoreJPIcon from '../AppStoreJPIcon';
-import AppStoreUSIcon from '../AppStoreUSIcon';
 import DescriptionText from '../DescriptionText';
+import ImageWithoutSize from '../ImageWithoutSize';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -37,6 +37,7 @@ const StoresContainer = styled.div`
 
 const TextsContainer = styled.div`
   width: 100%;
+  margin-top: 24px;
   @media ${mediaQueries.md} {
     width: 50%;
   }
@@ -64,21 +65,15 @@ const Heading = styled.h3`
   }
 `;
 
-const appStoreResizeMixin = css`
-  width: 160px;
-  height: 52.5px;
-  margin-bottom: 21px;
-  @media ${mediaQueries.md} {
-    width: 320px;
-    height: 113.07px;
-    margin-bottom: 64px;
+const StoreLink = styled.a`
+  margin-bottom: 32px;
+  max-width: 75%;
+  &:last-child {
+    margin-bottom: 0;
   }
-`;
-const ResizedAppStoreJPIcon = styled(AppStoreJPIcon)`
-  ${appStoreResizeMixin}
-`;
-const ResizedAppStoreUSIcon = styled(AppStoreUSIcon)`
-  ${appStoreResizeMixin}
+  @media ${mediaQueries.md} {
+    max-width: 100%;
+  }
 `;
 
 const DownloadSection: React.FC = () => {
@@ -88,39 +83,42 @@ const DownloadSection: React.FC = () => {
   return (
     <Container id="download">
       <StoresContainer>
-        <a
+        <StoreLink
           href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
           target="_blank"
           rel="noreferrer noopener"
         >
-          {isJa ? <ResizedAppStoreJPIcon /> : <ResizedAppStoreUSIcon />}
-        </a>
-        <a
+          <Media greaterThanOrEqual="lg">
+            <ImageWithoutSize
+              alt="App Store"
+              src={isJa ? AppStoreJPImg : AppStoreUSImg}
+            />
+          </Media>
+          <Media lessThan="lg">
+            <ImageWithoutSize
+              alt="App Store"
+              src={isJa ? AppStoreJPImg : AppStoreUSImg}
+            />
+          </Media>
+        </StoreLink>
+        <StoreLink
           href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
           target="_blank"
           rel="noreferrer noopener"
         >
           <Media greaterThanOrEqual="lg">
-            <Image
-              style={{
-                width: 310,
-                height: 95.32,
-                objectFit: 'contain',
-              }}
-              alt="Google Play Store"
+            <ImageWithoutSize
+              alt="Play Store"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
           <Media lessThan="lg">
-            <Image
-              width={140}
-              height={47.66}
-              style={{ objectFit: 'contain' }}
-              alt="Google Play Store"
+            <ImageWithoutSize
+              alt="Play Store"
               src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
             />
           </Media>
-        </a>
+        </StoreLink>
       </StoresContainer>
       <TextsContainer>
         <ShortHeading>{t('common:section.dl.shortHeading')}</ShortHeading>

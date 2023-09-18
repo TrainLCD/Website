@@ -1,11 +1,11 @@
 import useTranslation from 'next-translate/useTranslation';
-import Image from 'next/image';
 import styled from 'styled-components';
 import mojikoEnMock from '../../assets/images/mockup/mojiko-en.png';
 import mojikoMock from '../../assets/images/mockup/mojiko.png';
 import { mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
+import ImageWithoutSize from '../ImageWithoutSize';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -35,6 +35,7 @@ const MockupContainer = styled.div`
 
 const TextsContainer = styled.div`
   width: 100%;
+  margin-top: 24px;
   @media ${mediaQueries.md} {
     width: 50%;
   }
@@ -85,12 +86,9 @@ const AboutSection: React.FC = () => {
   return (
     <Container>
       <MockupContainer>
-        <Image
+        <ImageWithoutSize
           src={isJa ? mojikoMock : mojikoEnMock}
           alt="TrainLCD"
-          width={542.25}
-          height={288.375}
-          style={{ objectFit: 'contain' }}
         />
       </MockupContainer>
       <TextsContainer>
