@@ -66,7 +66,8 @@ const Heading = styled.h3`
 `;
 
 const StoreLink = styled.a`
-  margin-bottom: 32px;
+  display: block;
+  margin-bottom: 24px;
   max-width: 75%;
   &:last-child {
     margin-bottom: 0;
