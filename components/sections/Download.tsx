@@ -68,12 +68,8 @@ const Heading = styled.h3`
 const StoreLink = styled.a`
   display: block;
   margin-bottom: 24px;
-  max-width: 75%;
   &:last-child {
     margin-bottom: 0;
-  }
-  @media ${mediaQueries.md} {
-    max-width: 100%;
   }
 `;
 
