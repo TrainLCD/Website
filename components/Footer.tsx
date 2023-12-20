@@ -173,7 +173,7 @@ const Footer: React.FC = () => {
       <Divider />
       <BottomContainer>
         <BottomLeftContainer>
-          <SocialMediaList>
+          {/* <SocialMediaList>
             <a
               href="https://twitter.com/trainlcd"
               target="_blank"
@@ -188,7 +188,7 @@ const Footer: React.FC = () => {
             >
               <ResizedDiscordLogo />
             </a>
-          </SocialMediaList>
+          </SocialMediaList> */}
           <LinkList>
             <StyledAnchor
               href="https://tinykitten.me"
@@ -203,13 +203,13 @@ const Footer: React.FC = () => {
             >
               {t('common:component.footer.privacyPolicy')}
             </StyledLink>
-            <StyledAnchor
+            {/* <StyledAnchor
               href="https://discord.gg/qKT7zSGQre"
               target="_blank"
               rel="noreferrer noopener"
             >
               {t('common:component.footer.joinCom')}
-            </StyledAnchor>
+            </StyledAnchor> */}
           </LinkList>
         </BottomLeftContainer>
         <BottomRightContainer>
