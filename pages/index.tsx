@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import AppHead from '../components/Head';
 import Header from '../components/Header';
+import ServiceSuspendModal from '../components/ServiceSuspendModal';
 import DownloadSection from '../components/sections/Download';
 import OSSSection from '../components/sections/OSS';
 import ServiceAreaSection from '../components/sections/ServiceArea';
@@ -10,6 +11,9 @@ import WearableSection from '../components/sections/Wearable';
 import WelcomeSection from '../components/sections/Welcome';
 
 const Home: React.FC = () => {
+  const [suspendModalShow, setSuspendModalShow] = useState(true);
+  const handleSuspendModalClose = () => setSuspendModalShow(false);
+
   return (
     <main>
       <AppHead
@@ -26,6 +30,11 @@ const Home: React.FC = () => {
       <OSSSection />
       <DownloadSection />
       <Footer />
+
+      <ServiceSuspendModal
+        isOpen={suspendModalShow}
+        onRequestClose={handleSuspendModalClose}
+      />
     </main>
   );
 };

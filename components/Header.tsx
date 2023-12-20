@@ -78,11 +78,11 @@ const Header: React.FC = () => {
           </AppInfoAnchor>
         </Link>
       </AppInfoContainer>
-      <TryButtonContainer>
+      {/* <TryButtonContainer>
         <TryButton onClick={handleTryButtonClick}>
           {t('common:global.try')}
         </TryButton>
-      </TryButtonContainer>
+      </TryButtonContainer> */}
     </HeaderContainer>
   );
 };

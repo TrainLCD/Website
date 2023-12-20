@@ -2,7 +2,8 @@
   "global": {
     "try": "Try TrainLCD",
     "smartwatch": "Smartwatch",
-    "download": "Download"
+    "download": "Download",
+    "unavailable": "Currently unavailable"
   },
   "component": {
     "footer": {

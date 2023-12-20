@@ -91,7 +91,8 @@ const StyledRingsSP = styled(RingsSP)`
 
 const TryButton = styled.button`
   appearance: none;
-  background-color: #277bc0;
+  /* background-color: #277bc0; */
+  background-color: #333;
   width: 180px;
   height: 48px;
   border: none;
@@ -128,7 +129,7 @@ const WelcomeSection: React.FC = () => {
         </DescriptionText>
         <Media greaterThanOrEqual="lg">
           <TryButton onClick={handleTryButtonClick}>
-            {t('common:global.try')}
+            {t('common:global.unavailable')}
           </TryButton>
         </Media>
       </TextsContainer>

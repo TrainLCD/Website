@@ -3,7 +3,8 @@
     "app": "アプリ",
     "try": "使ってみる",
     "smartwatch": "スマートウォッチ",
-    "download": "ダウンロード"
+    "download": "ダウンロード",
+    "unavailable": "現在配信停止中"
   },
   "component": {
     "footer": {

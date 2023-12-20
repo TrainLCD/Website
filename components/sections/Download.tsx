@@ -1,13 +1,8 @@
 import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
-import AppStoreJPImg from '../../assets/images/store/app-store-jp.png';
-import AppStoreUSImg from '../../assets/images/store/app-store-us.png';
-import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
-import PlayStoreUSImg from '../../assets/images/store/google-play-us.png';
-import { Media, mediaQueries } from '../../constants/media';
+import { mediaQueries } from '../../constants/media';
 import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
-import ImageWithoutSize from '../ImageWithoutSize';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -73,13 +68,26 @@ const StoreLink = styled.a`
   }
 `;
 
+const TryButton = styled.button`
+  appearance: none;
+  background-color: #333;
+  width: 180px;
+  height: 48px;
+  border: none;
+  border-radius: 48px;
+  color: white;
+  font-weight: bold;
+  margin-top: 32px;
+  cursor: pointer;
+`;
+
 const DownloadSection: React.FC = () => {
   const { t } = useTranslation();
   const isJa = useIsJa();
 
   return (
     <Container id="download">
-      <StoresContainer>
+      {/* <StoresContainer>
         <StoreLink
           href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
           target="_blank"
@@ -116,7 +124,7 @@ const DownloadSection: React.FC = () => {
             />
           </Media>
         </StoreLink>
-      </StoresContainer>
+      </StoresContainer> */}
       <TextsContainer>
         <ShortHeading>{t('common:section.dl.shortHeading')}</ShortHeading>
         {/* スペースの有無 */}
@@ -134,6 +142,7 @@ const DownloadSection: React.FC = () => {
           </Heading>
         )}
         <DescriptionText>{t('common:section.dl.description')} </DescriptionText>
+        <TryButton>{t('common:global.unavailable')}</TryButton>
       </TextsContainer>
     </Container>
   );
