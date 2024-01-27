@@ -3,7 +3,7 @@
     "try": "Try TrainLCD",
     "smartwatch": "Smartwatch",
     "download": "Download",
-    "unavailable": "Currently unavailable"
+    "unavailable": "Service suspended"
   },
   "component": {
     "footer": {

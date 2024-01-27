@@ -107,15 +107,13 @@ const ServiceSuspendModal = ({
         <Description>
           {isJa
             ? `いつもTrainLCDをご利用いただきありがとうございます。
-大変恐れ入りますが、2023年12月20日よりTrainLCD開発の一時中断・アプリストアからの取り下げを行わせていただきました。
-開発の一時中断の理由といたしまして、開発者のプライベートにて重大な問題が発生し、今後利用者の方々に満足していただけるサービスの提供が難しいと判断したためです。
-TrainLCDサービスを皆様により便利に利用できる様になりましたら、開発を全面的に再開いたします。
-当面の間はTrainLCDのアップデートをご利用いただけませんが、何卒ご理解・ご協力をお願い致します。`
+大変恐れ入りますが、2024年01月15日よりTrainLCDの開発及びサービス提供の無期限休止・アプリストアからの取り下げを行わせていただきました。
+サービス提供無期限休止の理由といたしまして、開発者のプライベートにて重大な問題が発生し、今後利用者の方々に満足していただけるサービスの提供が難しいと判断したためです。
+当面の間はTrainLCDのサービスを一切ご利用いただけませんが、何卒ご理解・ご協力をお願い致します。`
             : `Thank you for using TrainLCD.
-            We regret to inform you that we have temporarily suspended the development of TrainLCD and withdrawn it from the app store effective December 20, 2023.
-            The reason for this suspension is that a serious problem has occurred in the developer's private life, and we have determined that it will be difficult to provide a service that satisfies users in the future.
-            We will resume full development when the TrainLCD service becomes more convenient for everyone.
-            For the time being, TrainLCD updates will not be available, and we appreciate your understanding and cooperation in this matter.`}
+            We apologize for the indefinite suspension of TrainLCD development and service provision, as well as the withdrawal of TrainLCD from the app store, effective January 15, 2024.
+            The reason for the indefinite suspension is that a serious problem has occurred in the developer's private life, and we have determined that it will be difficult to provide a service that satisfies users in the future.
+            We appreciate your understanding and cooperation in this matter.`}
         </Description>
         <Credit>
           {isJa
