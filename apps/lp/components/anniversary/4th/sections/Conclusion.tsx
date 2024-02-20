@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../../../../constants/media';
