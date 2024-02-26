@@ -16,11 +16,7 @@ const StyledParagraph = styled.p`
   }
 `;
 
-const DescriptionText: React.FC = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const DescriptionText = ({ children }: { children: React.ReactNode }) => {
   return <StyledParagraph>{children}</StyledParagraph>;
 };
 

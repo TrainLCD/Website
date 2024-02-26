@@ -5,7 +5,7 @@ export type StatusType =
   | "outage"
   | "unknown";
 
-type Service = {
+export type Service = {
   id: number;
   name: string;
   status: StatusType;

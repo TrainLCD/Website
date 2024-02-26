@@ -1,12 +1,12 @@
+import type { StatusType } from "data";
 import { SVGProps } from "react";
 import { CheckmarkIcon } from "../components/icons/Checkmark";
 import { ErrorIcon } from "../components/icons/Error";
 import { QuestionIcon } from "../components/icons/Question";
 import { WarningIcon } from "../components/icons/Warning";
-import { Status } from "../utils/availability";
 
 type Props = {
-  status: Status;
+  status: StatusType;
 };
 
 export const StatusIcon = ({
