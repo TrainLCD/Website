@@ -114,7 +114,7 @@ const ServiceSuspendModal = ({
         </Credit>
         <LinksContainer>
           <Button onClick={onRequestClose} color={'#252525'}>
-            {isJa ? '閉じる' : 'Close'}
+            閉じる
           </Button>
         </LinksContainer>
       </Container>
