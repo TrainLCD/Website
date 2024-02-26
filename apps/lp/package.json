@@ -18,7 +18,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "data": "*"
   },
   "devDependencies": {
     "@types/node": "^14.14.14",
