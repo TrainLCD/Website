@@ -1,8 +1,6 @@
-import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import ImageWithoutSize from '../ImageWithoutSize';
 import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
@@ -41,8 +39,8 @@ const ColoredText = styled.span`
   color: #277bc0;
 `;
 
-const Heading = styled.h2<{ isJa: boolean }>`
-  line-height: ${({ isJa }) => (isJa ? 1.25 : 1.15)};
+const Heading = styled.h2`
+  line-height: 1.25;
   font-size: 1.5rem;
   @media ${mediaQueries.md} {
     font-size: 3rem;
@@ -104,7 +102,6 @@ const TryButton = styled.button`
 `;
 
 const WelcomeSection: React.FC = () => {
-  const { t } = useTranslation();
   const handleTryButtonClick = () => {
     const aboutElem = document.querySelector('#download');
     window.scrollTo({
@@ -112,24 +109,27 @@ const WelcomeSection: React.FC = () => {
       behavior: 'smooth',
     });
   };
-  const isJa = useIsJa();
 
   return (
     <Container>
       <TextsContainer>
-        <Heading isJa={isJa}>
-          {t('common:section.welcome.canBeUsed')}
+        <Heading>
+          日本全国の鉄道路線で使える
           <br />
-          <ColoredText>{t('common:section.welcome.newSense')}</ColoredText>
-          {!isJa && ' '}
-          <span>{t('common:section.welcome.navigationApp')}</span>
+          <ColoredText>新感覚</ColoredText>
+          ナビゲーションアプリ
         </Heading>
-        <DescriptionText en={!isJa}>
-          {t('common:section.welcome.description')}
+        <DescriptionText>
+          今までにありそうでなかった
+          あなたのスマートフォンで使えるトレインビジョン。
+          <br />
+          それが、新感覚ナビゲーションアプリ「TrainLCD」
+          <br />
+          迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
         </DescriptionText>
         <Media greaterThanOrEqual="lg">
           <TryButton onClick={handleTryButtonClick}>
-            {t('common:global.unavailable')}
+            サービス提供休止中
           </TryButton>
         </Media>
       </TextsContainer>
@@ -143,9 +143,7 @@ const WelcomeSection: React.FC = () => {
         <ImageWithoutSize src={mockImage} alt="iPhone and iPad" fill />
       </MockupContainer>
       <Media lessThan="lg">
-        <TryButton onClick={handleTryButtonClick}>
-          {t('common:global.try')}
-        </TryButton>
+        <TryButton onClick={handleTryButtonClick}>サービス提供休止中</TryButton>
       </Media>
     </Container>
   );

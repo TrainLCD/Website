@@ -1,7 +1,5 @@
-import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
 import { mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
 
 const Container = styled.section`
@@ -82,9 +80,6 @@ const TryButton = styled.button`
 `;
 
 const DownloadSection: React.FC = () => {
-  const { t } = useTranslation();
-  const isJa = useIsJa();
-
   return (
     <Container id="download">
       {/* <StoresContainer>
@@ -126,23 +121,20 @@ const DownloadSection: React.FC = () => {
         </StoreLink>
       </StoresContainer> */}
       <TextsContainer>
-        <ShortHeading>{t('common:section.dl.shortHeading')}</ShortHeading>
+        <ShortHeading>早速使ってみよう</ShortHeading>
         {/* スペースの有無 */}
-        {isJa ? (
-          <Heading>
-            iOS{t('common:section.dl.and')}Android
-            <br />
-            <AccentText>{t('common:section.dl.bothSupport')}</AccentText>
-          </Heading>
-        ) : (
-          <Heading>
-            iOS {t('common:section.dl.and')} Android
-            <br />
-            <AccentText>{t('common:section.dl.bothSupport')}</AccentText>
-          </Heading>
-        )}
-        <DescriptionText>{t('common:section.dl.description')} </DescriptionText>
-        <TryButton>{t('common:global.unavailable')}</TryButton>
+        <Heading>
+          iOSとAndroid
+          <br />
+          <AccentText>どちらも対応</AccentText>
+        </Heading>
+
+        <DescriptionText>
+          iPhone、iPad、Androidスマートフォンに対応していて、もちろん無料です。
+          <br />
+          早速お使いのスマートフォンで使ってみましょう！
+        </DescriptionText>
+        <TryButton>サービス提供休止中</TryButton>
       </TextsContainer>
     </Container>
   );

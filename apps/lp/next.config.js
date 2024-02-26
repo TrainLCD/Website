@@ -1,7 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const nextTranslate = require('next-translate-plugin');
-
-module.exports = nextTranslate({
+module.exports = {
   swcMinify: true,
   compiler: {
     styledComponents: true,
@@ -10,4 +8,4 @@ module.exports = nextTranslate({
     formats: ['image/avif', 'image/webp'],
   },
   trailingSlash: true,
-});
+};

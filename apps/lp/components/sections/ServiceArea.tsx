@@ -1,9 +1,6 @@
-import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
-import mojikoEnMock from '../../assets/images/mockup/mojiko-en.png';
 import mojikoMock from '../../assets/images/mockup/mojiko.png';
 import { mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
 import ImageWithoutSize from '../ImageWithoutSize';
 
@@ -79,44 +76,26 @@ const DisclaimerText = styled.p`
 `;
 
 const AboutSection: React.FC = () => {
-  const { t } = useTranslation();
-
-  const isJa = useIsJa();
-
   return (
     <Container>
       <MockupContainer>
-        <ImageWithoutSize
-          src={isJa ? mojikoMock : mojikoEnMock}
-          alt="TrainLCD"
-        />
+        <ImageWithoutSize src={mojikoMock} alt="TrainLCD" />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>
-          {t('common:section.serviceArea.shortHeading')}
-        </ShortHeading>
-        {isJa ? (
-          <Heading>
-            <AccentText>
-              {t('common:section.serviceArea.jaOnly.throughoutJapan')}
-            </AccentText>
-            {t('common:section.serviceArea.jaOnly.serviceTarget')}
-          </Heading>
-        ) : (
-          <Heading>
-            <AccentText>
-              {t('common:section.serviceArea.enOnly.nationwide')}&nbsp;
-            </AccentText>
-            {t('common:section.serviceArea.enOnly.svcCoverageInJpn')}
-          </Heading>
-        )}
+        <ShortHeading>サービス対象エリア</ShortHeading>
+        <Heading>
+          <AccentText>日本全国</AccentText>
+          サービス対象
+        </Heading>
         <DescriptionText>
-          {t('common:section.serviceArea.description')}
+          一部例外を除き、日本全国のほとんどの
+          <br />
+          鉄道路線に対応しています
           <DescriptionCaptionNumber>*1</DescriptionCaptionNumber>
         </DescriptionText>
         <DisclaimerText>
           <sup>*1</sup>
-          {t('common:section.serviceArea.disclaimer')}
+          地下鉄などの電波の入りづらい路線、鶴見線などの入り組んだ路線は一部サービス保証外となります。またサービス対象は鉄道路線のみであり、バス等の移動手段には対応しておりません。
         </DisclaimerText>
       </TextsContainer>
     </Container>

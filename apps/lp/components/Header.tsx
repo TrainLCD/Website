@@ -1,4 +1,3 @@
-import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -59,7 +58,6 @@ const TryButton = styled.button`
 `;
 
 const Header: React.FC = () => {
-  const { t } = useTranslation();
   const handleTryButtonClick = () => {
     const aboutElem = document.querySelector('#download');
     window.scrollTo({

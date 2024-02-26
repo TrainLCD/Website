@@ -1,10 +1,7 @@
-import useTranslation from 'next-translate/useTranslation';
 import Image from 'next/image';
 import styled from 'styled-components';
-import appleWatchEnMock from '../../assets/images/applewatch-en.png';
 import appleWatchMock from '../../assets/images/applewatch.png';
 import { mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
 
 const Container = styled.section`
@@ -80,42 +77,38 @@ const DisclaimerText = styled.p`
 `;
 
 const WearableSection: React.FC = () => {
-  const { t } = useTranslation();
-  const isJa = useIsJa();
-
   return (
     <Container>
       <MockupContainer>
         <Image
           width={289.44}
           height={430}
-          src={isJa ? appleWatchMock : appleWatchEnMock}
+          src={appleWatchMock}
           alt="TrainLCD"
           style={{ objectFit: 'contain' }}
         />
       </MockupContainer>
       <TextsContainer>
-        <ShortHeading>{t('common:section.wearable.shortHeading')}</ShortHeading>
-        {isJa ? (
-          <Heading>
-            <AccentText>{t('common:global.smartwatch')}</AccentText>
-            <HeadingCaptionNumber>*3</HeadingCaptionNumber>
-            <br />
-            {t('common:section.wearable.alsoWorks')}
-          </Heading>
-        ) : (
-          <Heading>
-            {t('common:section.wearable.alsoWorks')}&nbsp;
-            <AccentText>{t('common:global.smartwatch')}</AccentText>
-            <HeadingCaptionNumber>*3</HeadingCaptionNumber>
-          </Heading>
-        )}
+        <ShortHeading>満員電車でも安心</ShortHeading>
+        <Heading>
+          <AccentText>スマートウォッチ</AccentText>
+          <HeadingCaptionNumber>*3</HeadingCaptionNumber>
+          <br />
+          でも使えます
+        </Heading>
+
         <DescriptionText>
-          {t('common:section.wearable.description')}
+          Apple WatchもしくはWear OS by
+          Google搭載スマートウォッチ組み合わせれば手首を見るだけで今停車している駅や、
+          <br />
+          次に停まる駅を知ることができます。
         </DescriptionText>
         <DisclaimerText>
           <sup>*3</sup>
-          {t('common:section.wearable.disclaimer')}
+          3Wear OS by
+          Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。
+          <br />
+          iPhoneとペアリングされている場合はご使用になれませんのでご了承下さい。
         </DisclaimerText>
       </TextsContainer>
     </Container>

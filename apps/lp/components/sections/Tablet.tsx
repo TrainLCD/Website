@@ -1,9 +1,6 @@
-import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
-import iPadEnMock from '../../assets/images/ipad-en.png';
 import iPadMock from '../../assets/images/ipad.png';
 import { Media, mediaQueries } from '../../constants/media';
-import useIsJa from '../../hooks/useIsJa';
 import DescriptionText from '../DescriptionText';
 import ImageWithoutSize from '../ImageWithoutSize';
 
@@ -71,40 +68,33 @@ const DisclaimerText = styled.p`
 `;
 
 const TextFragment = () => {
-  const { t } = useTranslation();
-  const isJa = useIsJa();
-
   return (
     <TextsContainer>
-      <ShortHeading>{t('common:section.tablet.shortHeading')}</ShortHeading>
-      {isJa ? (
-        <Heading>
-          <AccentText>iPad</AccentText>
-          {t('common:section.tablet.canBeUsedWith')}
-        </Heading>
-      ) : (
-        <Heading>
-          {t('common:section.tablet.canBeUsedWith')}{' '}
-          <AccentText>iPad</AccentText>
-        </Heading>
-      )}
+      <ShortHeading>タブレット対応</ShortHeading>
+      <Heading>
+        <AccentText>iPad</AccentText>
+        で使えます
+      </Heading>
       <DescriptionText>
-        {t('common:section.tablet.description')}
+        iPadと一緒に使えば、 もっとわかりやすく次の駅を知ることができます。
+        <br />
+        最新のどのiPadにも対応しているため、
+        <br />
+        アプリをダウンロードしてすぐ快適に使えます。
         <DescriptionCaptionNumber>*2</DescriptionCaptionNumber>
       </DescriptionText>
       <DisclaimerText>
         <sup>*2</sup>
-        {t('common:section.tablet.disclaimer')}
+        Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる場合があります。
       </DisclaimerText>
     </TextsContainer>
   );
 };
 
 const MockupFragment = () => {
-  const isJa = useIsJa();
   return (
     <MockupContainer>
-      <ImageWithoutSize src={isJa ? iPadMock : iPadEnMock} alt="iPad" />
+      <ImageWithoutSize src={iPadMock} alt="iPad" />
     </MockupContainer>
   );
 };

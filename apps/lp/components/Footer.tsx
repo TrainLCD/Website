@@ -1,8 +1,6 @@
-import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { mediaQueries } from '../constants/media';
-import useIsJa from '../hooks/useIsJa';
 import AppLogo from './AppLogo';
 import DiscordLogo from './DiscordLogo';
 import TinyKittenProduct from './TinyKittenProduct';
@@ -156,8 +154,6 @@ const CopyrightText = styled.p`
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { t } = useTranslation();
-  const isJa = useIsJa();
 
   return (
     <FooterContainer>
@@ -165,7 +161,7 @@ const Footer: React.FC = () => {
         <StyledAppLogo />
         <AppInfoTextContainer>
           <AppDescriptionText>
-            {t('common:component.footer.motto')}
+            日本全国の鉄道路線で使える 新感覚ナビゲーションアプリ
           </AppDescriptionText>
           <AppNameText>TrainLCD</AppNameText>
         </AppInfoTextContainer>
@@ -195,13 +191,13 @@ const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t('common:component.footer.portfolio')}
+              開発者のポートフォリオ
             </StyledAnchor>
-            <StyledLink
-              href={isJa ? '/privacy-policy' : '/privacy-policy-en'}
-              passHref
-            >
-              {t('common:component.footer.privacyPolicy')}
+            <StyledLink href="/privacy-policy" passHref>
+              プライバシーポリシー
+            </StyledLink>
+            <StyledLink href="/privacy-policy-en" passHref>
+              Privacy Policy(English)
             </StyledLink>
             {/* <StyledAnchor
               href="https://discord.gg/qKT7zSGQre"
@@ -221,7 +217,9 @@ const Footer: React.FC = () => {
             <TinyKittenProduct />
           </a>
           <CopyrightText>
-            {`© 2019-${currentYear} TinyKitten(Tsubasa SEKIGUCHI)\nand the Volunteer TrainLCD development team.`}
+            © 2019-${currentYear} TinyKitten(Tsubasa SEKIGUCHI)
+            <br />
+            and the Volunteer TrainLCD development team.
           </CopyrightText>
         </BottomRightContainer>
       </BottomContainer>

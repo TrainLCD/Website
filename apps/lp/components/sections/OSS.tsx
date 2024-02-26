@@ -1,4 +1,3 @@
-import useTranslation from 'next-translate/useTranslation';
 import styled from 'styled-components';
 import { Media, mediaQueries } from '../../constants/media';
 import DescriptionText from '../DescriptionText';
@@ -93,22 +92,30 @@ const StyledMedia = styled(Media)`
   }
 `;
 const TextFragment = () => {
-  const { t } = useTranslation();
-
   return (
     <TextsContainer>
       <ShortHeading>PRs Welcome</ShortHeading>
       <Heading>
-        {t('common:section.oss.trainlcdIs')}
+        TrainLCDは
         <br />
-        <AccentText>{t('common:section.oss.ossProject')}</AccentText>
+        <AccentText>
+          オープンソース
+          <br />
+          プロジェクト
+        </AccentText>
       </Heading>
-      <DescriptionText>{t('common:section.oss.description')}</DescriptionText>
+      <DescriptionText>
+        TrainLCDはMITライセンスのオープンソースプロジェクトです。
+        <br />
+        エンジニアの皆さん、
+        <br />
+        TrainLCDの開発に貢献してみませんか？
+      </DescriptionText>
       <ToGHButton
         href="https://github.com/TrainLCD/MobileApp"
         rel="noopener noreferrer"
       >
-        {t('common:section.oss.viewRepo')}
+        リポジトリを見る
       </ToGHButton>
     </TextsContainer>
   );
