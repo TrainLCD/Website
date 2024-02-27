@@ -187,6 +187,13 @@ const Footer: React.FC = () => {
           </SocialMediaList> */}
           <LinkList>
             <StyledAnchor
+              href="https://status.trainlcd.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              障害情報
+            </StyledAnchor>
+            <StyledAnchor
               href="https://tinykitten.me"
               target="_blank"
               rel="noopener noreferrer"
