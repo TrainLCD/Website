@@ -9,34 +9,36 @@ export const Overview = () => {
   const statusObj = (() => {
     if (hasUnderMaintenanceService) {
       return {
-        text: "TrainLCDサービスは現在メンテナンス中です",
+        text: "TrainLCDサービスは\n現在メンテナンス中です",
         Icon: <StatusIcon status="maintenance" className="size-32" />,
       };
     }
     if (hasDegradedService) {
       return {
-        text: "TrainLCDサービスの一部にて障害が発生しております",
+        text: "TrainLCDサービスの一部にて\n障害が発生しております",
         Icon: <StatusIcon status="degraded" className="size-32" />,
       };
     }
     if (hasOutage) {
       return {
-        text: "TrainLCDサービスにて致命的な障害が発生しております",
+        text: "TrainLCDサービスにて\n致命的な障害が発生しております",
         Icon: <StatusIcon status="outage" className="size-32" />,
       };
     }
     return {
-      text: "すべてのサービスは正常に動作しています",
+      text: "すべてのサービスは\n正常に動作しています",
       Icon: <StatusIcon status="operational" className="size-32" />,
     };
   })();
 
-  const { Icon } = statusObj;
+  const { Icon, text } = statusObj;
 
   return (
     <div className="flex justify-center flex-col items-center">
       {Icon}
-      <h1 className="mt-4 font-bold text-2xl text-center">{statusObj.text}</h1>
+      <h1 className="mt-4 font-bold text-2xl text-center whitespace-pre-wrap">
+        {text}
+      </h1>
     </div>
   );
 };
