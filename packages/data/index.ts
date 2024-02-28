@@ -38,18 +38,22 @@ export const services: Service[] = [
 ];
 
 export type IncidentHistory = {
+  id: string;
   title: string;
   description: string;
   publishedAt: string;
+  updatedAt: string;
   incidentLink: string;
 };
 
 export const incidentHistories: IncidentHistory[] = [
   {
+    id: "urn:uuid:ef88d24e-baa9-4694-a662-a4e116cc4a7c",
     title: "TrainLCD開発者都合によるサービス全面休止",
     description:
       "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開日時は未定です。",
     publishedAt: "2023-12-15T00:00:00.000Z",
+    updatedAt: "2023-12-15T00:00:00.000Z",
     incidentLink: "https://status.trainlcd.app/incidents/1",
   },
 ];
