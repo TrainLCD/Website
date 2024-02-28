@@ -9,14 +9,14 @@ dayjs.extend(minMax);
 dayjs.extend(timezone);
 dayjs.extend(utc);
 
-const toPubDate = (date: string | Dayjs | null) =>
-  dayjs.tz(date, "UTC").format("YYYY-MM-DDTHH:mm:ssZ");
-
 export async function GET() {
   const lastPublishedIncident = incidentHistories
     .map((inc) => inc.publishedAt)
     .map((at) => dayjs(at));
   const latestIncidentDate = dayjs.max(lastPublishedIncident);
+
+  const toPubDate = (date: string | Dayjs | null) =>
+    dayjs.tz(date, "UTC").format("YYYY-MM-DDTHH:mm:ssZ");
 
   return new NextResponse(
     `<?xml version="1.0" encoding="UTF-8"?>
