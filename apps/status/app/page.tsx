@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IncidentsTable } from "./components/IncidentsTable";
 import { Overview } from "./components/Overview";
 import { ServicesTable } from "./components/ServicesTable";
 import { FeedIcon } from "./components/icons/Feed";
@@ -9,6 +10,9 @@ export default function Home() {
       <Overview />
       <div className="mt-16 w-full flex justify-center items-center">
         <ServicesTable />
+      </div>
+      <div className="mt-16 w-full flex justify-center items-center">
+        <IncidentsTable />
       </div>
       <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
         <FeedIcon color="#f26522" />

@@ -34,7 +34,7 @@ export async function GET() {
             <id>${inc.id}</id>
             <published>${toPubDate(inc.publishedAt)}</published>
             <updated>${toPubDate(inc.updatedAt)}</updated>
-            <link rel="alternate" type="text/html" href="${inc.incidentLink}"/>
+            <link rel="alternate" type="text/html" href="https://status.trainlcd.app/incidents/${inc.slug}"/>
             <title>${inc.title}</title>
             <content>${inc.description}</content>
         </entry>`

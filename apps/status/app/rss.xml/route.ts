@@ -31,8 +31,8 @@ export async function GET() {
         <title>${inc.title}</title>
             <description>${inc.description}</description>
             <pubDate>${toPubDate(inc.publishedAt)}</pubDate>
-            <link>${inc.incidentLink}</link>
-            <guid>${inc.incidentLink}</guid>
+            <link>https://status.trainlcd.app/incidents/${inc.slug}</link>
+            <guid>https://status.trainlcd.app/incidents/${inc.slug}</guid>
         </item>`
       )}
     </channel>
