@@ -14,7 +14,10 @@ export const IncidentsTable = () => {
               <p className="text-xs">
                 {dayjs(inc.publishedAt).format("YYYY/MM/DD HH:mm")}
               </p>
-              <Link href={`/incidents/${inc.slug}`}>
+              <Link
+                className="underline decoration-solid	"
+                href={`/incidents/${inc.slug}`}
+              >
                 <p className="font-semibold">{inc.title}</p>
               </Link>
               <p className="text-xs mt-1">{inc.description}</p>
