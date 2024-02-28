@@ -23,8 +23,8 @@ export const services: Service[] = [
     descriptionEn: "We are temporarily suspending all services.",
     descriptionJa:
       "一時的にサービスを全面休止しております。再開日時は未定です。",
-    statusSince: "2013-12-15T00:00:00.000Z",
-    updatedAt: "2013-12-15T00:00:00.000Z",
+    statusSince: "2023-12-15T00:00:00.000Z",
+    updatedAt: "2023-12-15T00:00:00.000Z",
   },
   {
     id: 2,
@@ -32,7 +32,24 @@ export const services: Service[] = [
     status: "maintenance",
     descriptionEn: "Operation is temporarily suspended",
     descriptionJa: "一時的に稼働を休止しております。再開日時は未定です。",
-    statusSince: "2013-12-15T00:00:00.000Z",
-    updatedAt: "2013-12-15T00:00:00.000Z",
+    statusSince: "2023-12-15T00:00:00.000Z",
+    updatedAt: "2023-12-15T00:00:00.000Z",
+  },
+];
+
+export type IncidentHistory = {
+  title: string;
+  description: string;
+  publishedAt: string;
+  incidentLink: string;
+};
+
+export const incidentHistories: IncidentHistory[] = [
+  {
+    title: "TrainLCD開発者都合によるサービス全面休止",
+    description:
+      "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開日時は未定です。",
+    publishedAt: "2023-12-15T00:00:00.000Z",
+    incidentLink: "https://status.trainlcd.app/incidents/1",
   },
 ];
