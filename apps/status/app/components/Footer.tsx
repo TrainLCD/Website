@@ -121,6 +121,14 @@ export const Footer: React.FC = () => {
           >
             プライバシーポリシー
           </Link>
+          <Link
+            href="https://trainlcd.app/privacy-policy-en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="md:opacity-75 font-bold text-white text-xs transitionOpacity hover:opacity-100 h-min"
+          >
+            Privacy Policy(English)
+          </Link>
         </div>
         <div className="md:mt-0 mt-8 md:items-end flex flex-col justify-center">
           <Link
