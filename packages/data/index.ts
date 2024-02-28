@@ -44,6 +44,8 @@ export type IncidentHistory = {
   description: string;
   publishedAt: string;
   updatedAt: string;
+  resolvedAt: string | null;
+  estimatedResolveDate: string | null;
   incidentImpact: StatusType;
 };
 
@@ -56,6 +58,8 @@ export const incidentHistories: IncidentHistory[] = [
       "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開日時は未定です。",
     publishedAt: "2023-12-15T00:00:00.000Z",
     updatedAt: "2023-12-15T00:00:00.000Z",
+    resolvedAt: null,
+    estimatedResolveDate: null,
     incidentImpact: "maintenance",
   },
 ];
