@@ -1,4 +1,5 @@
 import { incidentHistories } from "data";
+import dayjs from "dayjs";
 import Link from "next/link";
 import { StatusIcon } from "./Icon";
 
@@ -10,6 +11,9 @@ export const IncidentsTable = () => {
         {incidentHistories.map((inc) => (
           <li key={inc.id} className="flex border-b last:border-none p-4">
             <div className="flex-1">
+              <p className="text-xs">
+                {dayjs(inc.publishedAt).format("YYYY/MM/DD HH:mm")}
+              </p>
               <Link href={`/incidents/${inc.slug}`}>
                 <p className="font-semibold">{inc.title}</p>
               </Link>
