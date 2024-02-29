@@ -3,11 +3,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { mediaQueries } from '../constants/media';
 import AppLogo from './AppLogo';
+import { ServiceStatus } from './ServiceStatus';
 
 const AppInfoContainer = styled.div`
-  width: 100%;
   display: flex;
+  flex: 1;
   align-items: center;
+  flex-shrink: 0;
 `;
 
 const AppInfoAnchor = styled.span`
@@ -76,6 +78,7 @@ const Header: React.FC = () => {
           </AppInfoAnchor>
         </Link>
       </AppInfoContainer>
+      <ServiceStatus />
       {/* <TryButtonContainer>
         <TryButton onClick={handleTryButtonClick}>
           {t('common:global.try')}
