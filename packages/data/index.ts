@@ -63,3 +63,27 @@ export const incidentHistories: IncidentHistory[] = [
     incidentImpact: "maintenance",
   },
 ];
+
+export const isOperational = (() =>
+  services.every((d) => d.status === "operational"))();
+export const hasUnderMaintenanceService = (() =>
+  services.some((d) => d.status === "maintenance"))();
+export const hasDegradedService = (() =>
+  services.some((d) => d.status === "degraded"))();
+export const hasOutage = (() => services.some((d) => d.status === "outage"))();
+export const statusLabel = ((): StatusType => {
+  if (hasUnderMaintenanceService) {
+    return "maintenance";
+  }
+  if (hasDegradedService) {
+    return "degraded";
+  }
+  if (hasOutage) {
+    return "outage";
+  }
+  if (isOperational) {
+    return "operational";
+  }
+
+  return "unknown";
+})();
