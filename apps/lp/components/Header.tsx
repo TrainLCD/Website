@@ -20,7 +20,7 @@ const AppInfoAnchor = styled.span`
 `;
 
 const HeaderContainer = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 64px;
   background: #fff;
