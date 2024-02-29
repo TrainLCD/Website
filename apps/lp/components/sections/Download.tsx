@@ -134,7 +134,7 @@ const DownloadSection: React.FC = () => {
           <br />
           早速お使いのスマートフォンで使ってみましょう！
         </DescriptionText>
-        <TryButton>サービス提供休止中</TryButton>
+        <TryButton disabled>サービス提供休止中</TryButton>
       </TextsContainer>
     </Container>
   );

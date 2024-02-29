@@ -128,9 +128,7 @@ const WelcomeSection: React.FC = () => {
           迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
         </DescriptionText>
         <Media greaterThanOrEqual="lg">
-          <TryButton onClick={handleTryButtonClick}>
-            サービス提供休止中
-          </TryButton>
+          <TryButton disabled>サービス提供休止中</TryButton>
         </Media>
       </TextsContainer>
       <MockupContainer>
@@ -143,7 +141,7 @@ const WelcomeSection: React.FC = () => {
         <ImageWithoutSize src={mockImage} alt="iPhone and iPad" fill />
       </MockupContainer>
       <Media lessThan="lg">
-        <TryButton onClick={handleTryButtonClick}>サービス提供休止中</TryButton>
+        <TryButton disabled>サービス提供休止中</TryButton>
       </Media>
     </Container>
   );
