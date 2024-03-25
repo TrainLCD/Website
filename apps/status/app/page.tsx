@@ -3,6 +3,7 @@ import { IncidentsTable } from "./components/IncidentsTable";
 import { Overview } from "./components/Overview";
 import { ServicesTable } from "./components/ServicesTable";
 import { FeedIcon } from "./components/icons/Feed";
+import { XIcon } from "./components/icons/X";
 
 export default function Home() {
   return (
@@ -22,6 +23,16 @@ export default function Home() {
         </Link>
         <Link className="text-xs ml-2 text-[#f26522]" href="/atom.xml">
           Atom
+        </Link>
+      </div>
+      <div className="w-full max-w-2xl mt-2 flex justify-start items-center">
+        <XIcon color="#f26522" />
+        <p className="ml-1 text-xs">X(旧Twitter)アカウント: </p>
+        <Link
+          className="text-xs ml-2 text-[#f26522]"
+          href="https://x.com/trainlcd"
+        >
+          @TrainLCD
         </Link>
       </div>
     </main>
