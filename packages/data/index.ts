@@ -22,7 +22,7 @@ export const services: Service[] = [
     status: "maintenance",
     descriptionEn: "We are temporarily suspending all services.",
     descriptionJa:
-      "一時的にサービスを全面休止しております。再開日時は未定です。",
+      "一時的にサービスを全面休止しております。再開見込みは4月中旬です。",
     statusSince: "2023-12-15T00:00:00.000Z",
     updatedAt: "2023-12-15T00:00:00.000Z",
   },
@@ -31,7 +31,7 @@ export const services: Service[] = [
     name: "API",
     status: "maintenance",
     descriptionEn: "Operation is temporarily suspended",
-    descriptionJa: "一時的に稼働を休止しております。再開日時は未定です。",
+    descriptionJa: "一時的に稼働を休止しております。再開見込みは4月中旬です。",
     statusSince: "2023-12-15T00:00:00.000Z",
     updatedAt: "2023-12-15T00:00:00.000Z",
   },
@@ -55,7 +55,7 @@ export const incidentHistories: IncidentHistory[] = [
     slug: "1",
     title: "TrainLCD開発者都合によるサービス全面休止",
     description:
-      "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開日時は未定です。",
+      "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開見込みは4月中旬です。",
     publishedAt: "2023-12-15T00:00:00.000Z",
     updatedAt: "2023-12-15T00:00:00.000Z",
     resolvedAt: null,
