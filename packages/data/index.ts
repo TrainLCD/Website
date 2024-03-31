@@ -19,21 +19,20 @@ export const services: Service[] = [
   {
     id: 1,
     name: "モバイルアプリ",
-    status: "maintenance",
-    descriptionEn: "We are temporarily suspending all services.",
-    descriptionJa:
-      "一時的にサービスを全面休止しております。再開見込みは4月中旬です。",
+    status: "degraded",
+    descriptionEn: "We are partially resuming service on a trial basis.",
+    descriptionJa: "試験的にサービスを一部再開しております。",
     statusSince: "2023-12-15T00:00:00.000Z",
-    updatedAt: "2023-12-15T00:00:00.000Z",
+    updatedAt: "2024-04-01T00:00:00.000Z",
   },
   {
     id: 2,
     name: "API",
-    status: "maintenance",
-    descriptionEn: "Operation is temporarily suspended",
-    descriptionJa: "一時的に稼働を休止しております。再開見込みは4月中旬です。",
+    status: "degraded",
+    descriptionEn: "We are partially resuming service on a trial basis.",
+    descriptionJa: "試験的にサービスを一部再開しております。",
     statusSince: "2023-12-15T00:00:00.000Z",
-    updatedAt: "2023-12-15T00:00:00.000Z",
+    updatedAt: "2024-04-01T00:00:00.000Z",
   },
 ];
 
@@ -51,6 +50,18 @@ export type IncidentHistory = {
 
 export const incidentHistories: IncidentHistory[] = [
   {
+    id: "urn:uuid:3f00fc27-b12e-4cef-9899-ab6f63b46444",
+    slug: "2",
+    title: "TrainLCD一部サービスの提供再開",
+    description:
+      "試験的にTrainLCDのサービスを一部再開しております。サービス全面再開ではございませんので、フィードバックと自動アナウンス機能はご利用になれません。また予期しないバグが発生する可能性がございます。",
+    publishedAt: "2024-04-01T00:00:00.000Z",
+    updatedAt: "2024-04-01T00:00:00.000Z",
+    resolvedAt: null,
+    estimatedResolveDate: null,
+    incidentImpact: "degraded",
+  },
+  {
     id: "urn:uuid:ef88d24e-baa9-4694-a662-a4e116cc4a7c",
     slug: "1",
     title: "TrainLCD開発者都合によるサービス全面休止",
@@ -58,7 +69,7 @@ export const incidentHistories: IncidentHistory[] = [
       "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開見込みは4月中旬です。",
     publishedAt: "2023-12-15T00:00:00.000Z",
     updatedAt: "2023-12-15T00:00:00.000Z",
-    resolvedAt: null,
+    resolvedAt: "2024-04-01T00:00:00.000Z",
     estimatedResolveDate: null,
     incidentImpact: "maintenance",
   },

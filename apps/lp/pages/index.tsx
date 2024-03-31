@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Footer from '../components/Footer';
 import AppHead from '../components/Head';
 import Header from '../components/Header';
-import ServiceSuspendModal from '../components/ServiceSuspendModal';
 import DownloadSection from '../components/sections/Download';
 import OSSSection from '../components/sections/OSS';
 import ServiceAreaSection from '../components/sections/ServiceArea';
@@ -31,10 +30,10 @@ const Home: React.FC = () => {
       <DownloadSection />
       <Footer />
 
-      <ServiceSuspendModal
+      {/* <ServiceSuspendModal
         isOpen={suspendModalShow}
         onRequestClose={handleSuspendModalClose}
-      />
+      /> */}
     </main>
   );
 };
