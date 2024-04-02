@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import AppStoreJPImg from '../../assets/images/store/app-store-jp.png';
+import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
 import { mediaQueries } from '../../constants/media';
 import DescriptionText from '../DescriptionText';
+import ImageWithoutSize from '../ImageWithoutSize';
 
 const Container = styled.section`
   min-height: 100vh;
@@ -61,65 +64,35 @@ const Heading = styled.h3`
 const StoreLink = styled.a`
   display: block;
   margin-bottom: 24px;
+  max-width: 100%;
   &:last-child {
     margin-bottom: 0;
   }
-`;
-
-const TryButton = styled.button`
-  appearance: none;
-  background-color: #333;
-  width: 180px;
-  height: 48px;
-  border: none;
-  border-radius: 48px;
-  color: white;
-  font-weight: bold;
-  margin-top: 32px;
-  cursor: pointer;
+  @media ${mediaQueries.md} {
+    max-width: 300px;
+    margin-bottom: 32px;
+  }
 `;
 
 const DownloadSection: React.FC = () => {
   return (
     <Container id="download">
-      {/* <StoresContainer>
+      <StoresContainer>
         <StoreLink
           href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Media greaterThanOrEqual="lg">
-            <ImageWithoutSize
-              alt="App Store"
-              src={isJa ? AppStoreJPImg : AppStoreUSImg}
-            />
-          </Media>
-          <Media lessThan="lg">
-            <ImageWithoutSize
-              alt="App Store"
-              src={isJa ? AppStoreJPImg : AppStoreUSImg}
-            />
-          </Media>
+          <ImageWithoutSize alt="App Store" src={AppStoreJPImg} />
         </StoreLink>
         <StoreLink
           href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
           target="_blank"
           rel="noreferrer noopener"
         >
-          <Media greaterThanOrEqual="lg">
-            <ImageWithoutSize
-              alt="Play Store"
-              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
-            />
-          </Media>
-          <Media lessThan="lg">
-            <ImageWithoutSize
-              alt="Play Store"
-              src={isJa ? PlayStoreJPImg : PlayStoreUSImg}
-            />
-          </Media>
+          <ImageWithoutSize alt="Play Store" src={PlayStoreJPImg} />
         </StoreLink>
-      </StoresContainer> */}
+      </StoresContainer>
       <TextsContainer>
         <ShortHeading>早速使ってみよう</ShortHeading>
         {/* スペースの有無 */}
@@ -134,7 +107,6 @@ const DownloadSection: React.FC = () => {
           <br />
           早速お使いのスマートフォンで使ってみましょう！
         </DescriptionText>
-        <TryButton disabled>サービス提供休止中</TryButton>
       </TextsContainer>
     </Container>
   );

@@ -89,8 +89,7 @@ const StyledRingsSP = styled(RingsSP)`
 
 const TryButton = styled.button`
   appearance: none;
-  /* background-color: #277bc0; */
-  background-color: #333;
+  background-color: #277bc0;
   width: 180px;
   height: 48px;
   border: none;
@@ -128,7 +127,7 @@ const WelcomeSection: React.FC = () => {
           迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
         </DescriptionText>
         <Media greaterThanOrEqual="lg">
-          <TryButton disabled>サービス提供休止中</TryButton>
+          <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
         </Media>
       </TextsContainer>
       <MockupContainer>
@@ -138,10 +137,10 @@ const WelcomeSection: React.FC = () => {
         <Media lessThan="lg">
           <StyledRingsSP />
         </Media>
-        <ImageWithoutSize src={mockImage} alt="iPhone and iPad" fill />
+        <ImageWithoutSize src={mockImage} alt="iPhone and iPad" />
       </MockupContainer>
       <Media lessThan="lg">
-        <TryButton disabled>サービス提供休止中</TryButton>
+        <TryButton onClick={handleTryButtonClick}>使ってみる</TryButton>
       </Media>
     </Container>
   );
