@@ -26,15 +26,17 @@ export async function GET() {
       <link>https://status.trainlcd.app</link>
       <description>Status</description>
       <pubDate>${toPubDate(latestIncidentDate)}</pubDate>
-      ${incidentHistories.map(
-        (inc) => `<item>
+      ${incidentHistories
+        .map(
+          (inc) => `<item>
         <title>${inc.title}</title>
             <description>${inc.description}</description>
             <pubDate>${toPubDate(inc.publishedAt)}</pubDate>
             <link>https://status.trainlcd.app/incidents/${inc.slug}</link>
             <guid>https://status.trainlcd.app/incidents/${inc.slug}</guid>
         </item>`
-      )}
+        )
+        .join("\n")}
     </channel>
     </rss>`,
     {

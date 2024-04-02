@@ -29,8 +29,9 @@ export async function GET() {
       <author>
         <name>TinyKitten(関口 翼)</name>
       </author>
-      ${incidentHistories.map(
-        (inc) => `<entry>
+      ${incidentHistories
+        .map(
+          (inc) => `<entry>
             <id>${inc.id}</id>
             <published>${toPubDate(inc.publishedAt)}</published>
             <updated>${toPubDate(inc.updatedAt)}</updated>
@@ -38,7 +39,8 @@ export async function GET() {
             <title>${inc.title}</title>
             <content>${inc.description}</content>
         </entry>`
-      )}
+        )
+        .join("\n")}
     </feed>`,
     {
       headers: {
