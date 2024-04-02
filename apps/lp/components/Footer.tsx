@@ -169,22 +169,22 @@ const Footer: React.FC = () => {
       <Divider />
       <BottomContainer>
         <BottomLeftContainer>
-          {/* <SocialMediaList>
+          <SocialMediaList>
             <a
-              href="https://twitter.com/trainlcd"
+              href="https://x.com/trainlcd"
               target="_blank"
               rel="noopener noreferrer"
             >
               <ResizedTwitterLogo />
             </a>
             <a
-              href="https://discord.gg/qKT7zSGQre"
+              href="https://discord.gg/jbVE7tj9SE"
               target="_blank"
               rel="noopener noreferrer"
             >
               <ResizedDiscordLogo />
             </a>
-          </SocialMediaList> */}
+          </SocialMediaList>
           <LinkList>
             <StyledAnchor
               href="https://status.trainlcd.app"
