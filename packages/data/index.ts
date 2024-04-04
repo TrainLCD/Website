@@ -1,7 +1,9 @@
 export type StatusType =
   | "operational"
   | "maintenance"
+  | "partiallyMaintenance"
   | "degraded"
+  | "partiallyDegraded"
   | "outage"
   | "unknown";
 
@@ -18,19 +20,30 @@ export type Service = {
 export const services: Service[] = [
   {
     id: 1,
-    name: "モバイルアプリ",
-    status: "degraded",
+    name: "モバイルアプリ(iOS/iPadOS)",
+    status: "maintenance",
     descriptionEn: "We are partially resuming service on a trial basis.",
-    descriptionJa: "試験的にサービスを一部再開しております。",
-    statusSince: "2023-12-15T00:00:00.000Z",
-    updatedAt: "2024-04-01T00:00:00.000Z",
+    descriptionJa:
+      "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
+    statusSince: "2024-04-04T00:00:00.000Z",
+    updatedAt: "2024-04-04T00:00:00.000Z",
   },
   {
     id: 2,
-    name: "API",
-    status: "degraded",
+    name: "モバイルアプリ(Android)",
+    status: "maintenance",
     descriptionEn: "We are partially resuming service on a trial basis.",
-    descriptionJa: "試験的にサービスを一部再開しております。",
+    descriptionJa:
+      "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
+    statusSince: "2024-04-04T00:00:00.000Z",
+    updatedAt: "2024-04-04T00:00:00.000Z",
+  },
+  {
+    id: 3,
+    name: "API",
+    status: "operational",
+    descriptionEn: "The system is currently operating normally.",
+    descriptionJa: "現在正常に稼働しております。",
     statusSince: "2023-12-15T00:00:00.000Z",
     updatedAt: "2024-04-01T00:00:00.000Z",
   },
@@ -77,17 +90,23 @@ export const incidentHistories: IncidentHistory[] = [
 
 export const isOperational = (() =>
   services.every((d) => d.status === "operational"))();
-export const hasUnderMaintenanceService = (() =>
-  services.some((d) => d.status === "maintenance"))();
-export const hasDegradedService = (() =>
-  services.some((d) => d.status === "degraded"))();
+export const underMaintenanceServices = (() =>
+  services.filter((d) => d.status === "maintenance"))();
+export const degradedServices = (() =>
+  services.filter((d) => d.status === "degraded"))();
 export const hasOutage = (() => services.some((d) => d.status === "outage"))();
 export const statusLabel = ((): StatusType => {
-  if (hasUnderMaintenanceService) {
-    return "maintenance";
+  if (underMaintenanceServices.length > 0) {
+    if (underMaintenanceServices.length === services.length) {
+      return "maintenance";
+    }
+    return "partiallyMaintenance";
   }
-  if (hasDegradedService) {
-    return "degraded";
+  if (degradedServices.length > 0) {
+    if (degradedServices.length === services.length) {
+      return "degraded";
+    }
+    return "partiallyDegraded";
   }
   if (hasOutage) {
     return "outage";
