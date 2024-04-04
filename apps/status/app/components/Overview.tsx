@@ -4,14 +4,24 @@ import { StatusIcon } from "./Icon";
 export const Overview = () => {
   const statusObj = (() => {
     switch (statusLabel) {
+      case "partiallyMaintenance":
+        return {
+          text: "TrainLCDサービスの一部は\n現在メンテナンス中です",
+          Icon: <StatusIcon status="maintenance" className="size-32" />,
+        };
       case "maintenance":
         return {
           text: "TrainLCDサービスは\n現在メンテナンス中です",
           Icon: <StatusIcon status="maintenance" className="size-32" />,
         };
-      case "degraded":
+      case "partiallyDegraded":
         return {
           text: "TrainLCDサービスの一部にて\n障害が発生しております",
+          Icon: <StatusIcon status="degraded" className="size-32" />,
+        };
+      case "degraded":
+        return {
+          text: "TrainLCDサービスにて\n障害が発生しております",
           Icon: <StatusIcon status="degraded" className="size-32" />,
         };
       case "outage":

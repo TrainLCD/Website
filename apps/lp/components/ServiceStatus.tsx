@@ -54,15 +54,19 @@ const ActualStatusLabel = styled.span`
 export const ServiceStatus = () => {
   const statusColorMap = {
     operational: '#22c55e',
+    partiallyMaintenance: '#eab308',
     maintenance: '#eab308',
+    partiallyDegraded: '#eab308',
     degraded: '#eab308',
     outage: '#ef4444',
     unknown: '#ef4444',
   };
   const statusText = {
     operational: '異常なし',
+    partiallyMaintenance: 'メンテナンス情報あり',
     maintenance: 'メンテナンス中',
-    degraded: '障害情報あり',
+    partiallyDegraded: '支障あり',
+    degraded: '支障あり',
     outage: '障害発生中',
     unknown: '調査中',
   };
@@ -71,7 +75,9 @@ export const ServiceStatus = () => {
       case 'operational':
         return <Circle />;
       case 'maintenance':
+      case 'partiallyMaintenance':
       case 'degraded':
+      case 'partiallyDegraded':
         return <WarningIcon color={statusColorMap['maintenance']} />;
       case 'outage':
         return <ErrorIcon color={statusColorMap['outage']} />;
