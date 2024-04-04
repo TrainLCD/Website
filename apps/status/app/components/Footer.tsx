@@ -227,8 +227,10 @@ export const Footer: React.FC = () => {
               ></path>
             </svg>
           </Link>
-          <p className="md:text-right text-xs mt-3 opacity-75 whitespace-pre-wrap leading-4 md:leading-5 text-white">
-            {`© 2019-${currentYear} TinyKitten(Tsubasa SEKIGUCHI)\nand the Volunteer TrainLCD development team.`}
+          <p className="md:text-right text-xs mt-3 opacity-75 whitespace-pre-wrap leading-4 text-white">
+            © 2019-{currentYear} TinyKitten(Tsubasa SEKIGUCHI)
+            <br />
+            and the Volunteer TrainLCD development team.
           </p>
         </div>
       </div>

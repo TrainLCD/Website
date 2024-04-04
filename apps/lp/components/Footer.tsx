@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
             <TinyKittenProduct />
           </a>
           <CopyrightText>
-            © 2019-${currentYear} TinyKitten(Tsubasa SEKIGUCHI)
+            © 2019-{currentYear} TinyKitten(Tsubasa SEKIGUCHI)
             <br />
             and the Volunteer TrainLCD development team.
           </CopyrightText>
