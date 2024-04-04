@@ -22,7 +22,8 @@ export const services: Service[] = [
     id: 1,
     name: "モバイルアプリ(iOS/iPadOS)",
     status: "maintenance",
-    descriptionEn: "We are partially resuming service on a trial basis.",
+    descriptionEn:
+      "The feedback function is not available due to maintenance. All other services are currently operating normally.",
     descriptionJa:
       "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
     statusSince: "2024-04-04T00:00:00.000Z",
@@ -32,7 +33,8 @@ export const services: Service[] = [
     id: 2,
     name: "モバイルアプリ(Android)",
     status: "maintenance",
-    descriptionEn: "We are partially resuming service on a trial basis.",
+    descriptionEn:
+      "The feedback function is not available due to maintenance. All other services are currently operating normally.",
     descriptionJa:
       "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
     statusSince: "2024-04-04T00:00:00.000Z",
