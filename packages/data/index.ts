@@ -21,33 +21,54 @@ export const services: Service[] = [
   {
     id: 1,
     name: "モバイルアプリ(iOS/iPadOS)",
-    status: "maintenance",
+    status: "operational",
     descriptionEn:
-      "The feedback function is not available due to maintenance. All other services are currently operating normally.",
+      "At this time, we do not have any information on the failure of the mobile application.",
     descriptionJa:
-      "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
+      "現時点においてモバイルアプリについての障害情報はございません。",
     statusSince: "2024-04-04T00:00:00.000Z",
-    updatedAt: "2024-04-04T00:00:00.000Z",
+    updatedAt: "2024-04-05T00:00:00.000Z",
   },
   {
     id: 2,
     name: "モバイルアプリ(Android)",
-    status: "maintenance",
+    status: "operational",
     descriptionEn:
-      "The feedback function is not available due to maintenance. All other services are currently operating normally.",
+      "At this time, we do not have any information on the failure of the mobile application.",
     descriptionJa:
-      "フィードバック機能はメンテナンスのためご利用になれません。他のサービスはすべて現在正常に稼働しております。",
+      "現時点においてモバイルアプリについての障害情報はございません。",
     statusSince: "2024-04-04T00:00:00.000Z",
-    updatedAt: "2024-04-04T00:00:00.000Z",
+    updatedAt: "2024-04-05T00:00:00.000Z",
   },
   {
     id: 3,
-    name: "API",
+    name: "フィードバックシステム",
+    status: "maintenance",
+    descriptionEn:
+      "The feedback function is currently under maintenance and is not available.",
+    descriptionJa:
+      "フィードバック機能はメンテナンス中のためご利用になれません。",
+    statusSince: "2024-04-05T00:00:00.000Z",
+    updatedAt: "2024-04-05T00:00:00.000Z",
+  },
+  {
+    id: 4,
+    name: "自動アナウンス機能(TTS)",
+    status: "operational",
+    descriptionEn:
+      "The automatic announcement function is currently working properly.",
+    descriptionJa: "自動アナウンス機能は現在正常にご利用いただけます。",
+    statusSince: "2024-04-05T00:00:00.000Z",
+    updatedAt: "2024-04-05T00:00:00.000Z",
+  },
+  {
+    id: 5,
+    name: "StationAPI",
     status: "operational",
     descriptionEn: "The system is currently operating normally.",
     descriptionJa: "現在正常に稼働しております。",
     statusSince: "2023-12-15T00:00:00.000Z",
-    updatedAt: "2024-04-01T00:00:00.000Z",
+    updatedAt: "2024-04-05T00:00:00.000Z",
   },
 ];
 
