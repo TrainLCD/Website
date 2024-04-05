@@ -63,7 +63,7 @@ export const ServiceStatus = () => {
   };
   const statusText = {
     operational: '異常なし',
-    partiallyMaintenance: 'メンテナンス情報あり',
+    partiallyMaintenance: '支障あり',
     maintenance: 'メンテナンス中',
     partiallyDegraded: '支障あり',
     degraded: '支障あり',
