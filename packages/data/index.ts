@@ -84,6 +84,19 @@ export type IncidentHistory = {
 
 export const incidentHistories: IncidentHistory[] = [
   {
+    id: "urn:uuid:936e0961-0cbf-4ccd-a80c-facd88b8c052",
+    slug: "2024-04-17-tts-incident",
+    title:
+      "TrainLCDアプリ バージョン7.1.0にて自動アナウンス機能が断続的に使用不可",
+    description:
+      "日本時間2024年4月17日 17時から同日19時にかけてTrainLCD バージョン7.1.0にて断続的に自動アナウンス機能が動作しない障害が発生しておりましたが、現在は復旧しております。原因はサービス基盤の設定不備でございます。利用者の方々にご迷惑をおかけしたことをお詫び申し上げます。",
+    publishedAt: "2024-04-17T10:00:00.000Z",
+    updatedAt: "2024-04-17T10:00:00.000Z",
+    resolvedAt: "2024-04-17T10:00:00.000Z",
+    estimatedResolveDate: null,
+    incidentImpact: "degraded",
+  },
+  {
     id: "urn:uuid:e0f56f6e-1855-4ddf-8bc6-d218871d441c",
     slug: "2024-04-09-operational",
     title: "TrainLCD全サービスの提供再開",
