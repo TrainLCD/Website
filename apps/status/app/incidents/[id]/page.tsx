@@ -52,6 +52,10 @@ export default function IncidentPage({ params }: { params: { id: string } }) {
           <p className="ml-2">{formatDate(incident.updatedAt)}</p>
         </div>
         <div className="w-full flex">
+          <p className="font-bold">障害の原因:</p>
+          <p className="ml-2">{incident.cause}</p>
+        </div>
+        <div className="w-full flex">
           <p className="font-bold">復旧日時:</p>
           <p className="ml-2">
             {incident.resolvedAt

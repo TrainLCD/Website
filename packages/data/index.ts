@@ -80,6 +80,7 @@ export type IncidentHistory = {
   resolvedAt: string | null;
   estimatedResolveDate: string | null;
   incidentImpact: StatusType;
+  cause: string;
 };
 
 export const incidentHistories: IncidentHistory[] = [
@@ -95,6 +96,7 @@ export const incidentHistories: IncidentHistory[] = [
     resolvedAt: "2024-04-17T10:00:00.000Z",
     estimatedResolveDate: null,
     incidentImpact: "degraded",
+    cause: "サービス基盤の設定不備",
   },
   {
     id: "urn:uuid:e0f56f6e-1855-4ddf-8bc6-d218871d441c",
@@ -107,6 +109,7 @@ export const incidentHistories: IncidentHistory[] = [
     resolvedAt: "2024-04-09T00:00:00.000Z",
     estimatedResolveDate: null,
     incidentImpact: "operational",
+    cause: "TrainLCD全サービス提供休止の影響",
   },
   {
     id: "urn:uuid:3f00fc27-b12e-4cef-9899-ab6f63b46444",
@@ -119,6 +122,7 @@ export const incidentHistories: IncidentHistory[] = [
     resolvedAt: "2024-04-09T00:00:00.000Z",
     estimatedResolveDate: null,
     incidentImpact: "degraded",
+    cause: "TrainLCD全サービス提供休止の影響",
   },
   {
     id: "urn:uuid:ef88d24e-baa9-4694-a662-a4e116cc4a7c",
@@ -131,6 +135,7 @@ export const incidentHistories: IncidentHistory[] = [
     resolvedAt: "2024-04-01T00:00:00.000Z",
     estimatedResolveDate: null,
     incidentImpact: "maintenance",
+    cause: "TrainLCD開発者の一身上の都合",
   },
 ];
 
