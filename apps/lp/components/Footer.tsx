@@ -105,8 +105,10 @@ const LinkList = styled.div`
   gap: 12px;
   margin-top: 21px;
   flex-direction: column;
+  align-items: flex-start;
   @media ${mediaQueries.md} {
     flex-direction: row;
+    align-items: center;
   }
 `;
 
