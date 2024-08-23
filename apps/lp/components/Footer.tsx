@@ -105,7 +105,6 @@ const LinkList = styled.div`
   gap: 12px;
   margin-top: 21px;
   flex-direction: column;
-  align-items: center;
   @media ${mediaQueries.md} {
     flex-direction: row;
   }
@@ -207,13 +206,6 @@ const Footer: React.FC = () => {
             <StyledLink href="/privacy-policy-en" passHref>
               Privacy Policy(English)
             </StyledLink>
-            {/* <StyledAnchor
-              href="https://discord.gg/qKT7zSGQre"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              {t('common:component.footer.joinCom')}
-            </StyledAnchor> */}
           </LinkList>
         </BottomLeftContainer>
         <BottomRightContainer>
