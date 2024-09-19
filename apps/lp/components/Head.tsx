@@ -29,7 +29,8 @@ const AppHead: React.FC<Props> = ({
     <meta property="og:url" content={url} />
     <meta
       property="og:image"
-      content="https://trainlcd.tinykitten.me/ogp.202207271727.png"
+      // eslint-disable-next-line turbo/no-undeclared-env-vars
+      content={process.env.NEXT_PUBLIC_OG_IMAGE_URL ?? ''}
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
