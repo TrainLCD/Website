@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import appleWatchMock from '../../assets/images/applewatch.png';
+import appleWatchAppMock from '../../assets/images/applewatch_app.png';
+import appleWatchLiveActivitiesMock from '../../assets/images/applewatch_la.png';
 import { mediaQueries } from '../../constants/media';
 import DescriptionText from '../DescriptionText';
 
@@ -20,13 +21,24 @@ const Container = styled.section`
     padding: 0 64px;
   }
 `;
+const MockupWithDisclaimerContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 289.44px;
+  height: 430px;
+  @media ${mediaQueries.md} {
+    width: 100%;
+  }
+`;
 const MockupContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 50%;
   @media ${mediaQueries.md} {
-    width: 50%;
+    margin-bottom: 24px;
   }
 `;
 
@@ -79,15 +91,30 @@ const DisclaimerText = styled.p`
 const WearableSection: React.FC = () => {
   return (
     <Container>
-      <MockupContainer>
-        <Image
-          width={289.44}
-          height={430}
-          src={appleWatchMock}
-          alt="TrainLCD"
-          style={{ objectFit: 'contain' }}
-        />
-      </MockupContainer>
+      <MockupWithDisclaimerContainer>
+        <MockupContainer>
+          <Image
+            width={289.44}
+            height={430}
+            src={appleWatchLiveActivitiesMock}
+            alt="Smart Stack Live Activities"
+            style={{ objectFit: 'contain' }}
+          />
+
+          <Image
+            width={289.44}
+            height={430}
+            src={appleWatchAppMock}
+            alt="Apple Watch App"
+            style={{ objectFit: 'contain' }}
+          />
+        </MockupContainer>
+
+        <DisclaimerText>
+          *左側スクリーンショットのLive Activities対応は2024年9月19日現在App
+          Storeでは配信されておりません。
+        </DisclaimerText>
+      </MockupWithDisclaimerContainer>
       <TextsContainer>
         <ShortHeading>満員電車でも安心</ShortHeading>
         <Heading>
