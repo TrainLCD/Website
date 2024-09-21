@@ -27,9 +27,9 @@ const MockupWithDisclaimerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 289.44px;
-  height: 430px;
   @media ${mediaQueries.md} {
     width: 100%;
+    height: 430px;
   }
 `;
 const MockupContainer = styled.div`
