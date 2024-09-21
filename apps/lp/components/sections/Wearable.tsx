@@ -26,7 +26,6 @@ const MockupWithDisclaimerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 289.44px;
   @media ${mediaQueries.md} {
     width: 100%;
     height: 430px;
@@ -37,8 +36,10 @@ const MockupContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 50%;
+  gap: 16px;
   @media ${mediaQueries.md} {
     margin-bottom: 24px;
+    gap: 32px;
   }
 `;
 
@@ -111,7 +112,7 @@ const WearableSection: React.FC = () => {
         </MockupContainer>
 
         <DisclaimerText>
-          *左側スクリーンショットのLive Activities対応は2024年9月19日現在App
+          *左側スクリーンショットのライブアクティビティ対応は2024年9月19日現在App
           Storeでは配信されておりません。
         </DisclaimerText>
       </MockupWithDisclaimerContainer>
