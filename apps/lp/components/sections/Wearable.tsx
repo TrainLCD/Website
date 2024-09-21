@@ -133,7 +133,7 @@ const WearableSection: React.FC = () => {
         </DescriptionText>
         <DisclaimerText>
           <sup>*3</sup>
-          3Wear OS by
+          Wear OS by
           Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。
           <br />
           iPhoneとペアリングされている場合はご使用になれませんのでご了承下さい。
