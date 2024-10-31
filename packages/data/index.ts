@@ -52,10 +52,10 @@ export const services: Service[] = [
     {
         id: 4,
         name: "自動アナウンス機能(TTS)",
-        status: "operational",
+        status: "degraded",
         descriptionEn:
-            "The automatic announcement function is currently working properly.",
-        descriptionJa: "自動アナウンス機能は現在正常にご利用いただけます。",
+            "Due to personal reasons of the developer, the sound quality of the Japanese voice will be reduced for the time being.",
+        descriptionJa: "開発者の個人的な都合により、当分の間日本語音声の音質を下げて運用します。",
         statusSince: "2024-04-05T00:00:00.000Z",
         updatedAt: "2024-04-05T00:00:00.000Z",
     },
@@ -84,6 +84,20 @@ export type IncidentHistory = {
 };
 
 export const incidentHistories: IncidentHistory[] = [
+    {
+        id: "urn:uuid:d054fa44-faf9-42d0-a0d6-6c062cfe344c",
+        slug: "2024-11-01-tts-degradation",
+        title:
+            "TTS日本語音声のコスト削減について",
+        description:
+            "開発者の個人的な都合により、当分の間日本語音声の音質を下げて運用します。",
+        publishedAt: "2024-11-17T00:00:00.000Z",
+        updatedAt: "2024-11-17T00:00:00.000Z",
+        resolvedAt: null,
+        estimatedResolveDate: null,
+        incidentImpact: "degraded",
+        cause: "開発者の個人的な都合",
+    },
     {
         id: "urn:uuid:936e0961-0cbf-4ccd-a80c-facd88b8c052",
         slug: "2024-04-17-tts-incident",
