@@ -110,11 +110,6 @@ const WearableSection: React.FC = () => {
             style={{ objectFit: 'contain' }}
           />
         </MockupContainer>
-
-        <DisclaimerText>
-          *左側スクリーンショットのライブアクティビティ対応は2024年9月19日現在App
-          Storeでは配信されておりません。
-        </DisclaimerText>
       </MockupWithDisclaimerContainer>
       <TextsContainer>
         <ShortHeading>満員電車でも安心</ShortHeading>
