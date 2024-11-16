@@ -52,13 +52,13 @@ export const services: Service[] = [
   {
     id: 4,
     name: "自動アナウンス機能(TTS)",
-    status: "outage",
+    status: "degraded",
     descriptionEn:
-      "Due to personal reasons of the developer, the automatic announcement function will be suspended for the time being. The resumption date has not yet been determined.",
+      "Due to personal reasons of the developer, the sound quality of the Japanese voice will be reduced for the time being.",
     descriptionJa:
-      "開発者の個人的な都合により、当分の間自動アナウンス機能の運用を取りやめます。再開時期は未定です。",
-    statusSince: "2024-11-16T00:00:00.000Z",
-    updatedAt: "2024-11-16T00:00:00.000Z",
+      "開発者の個人的な都合により、当分の間日本語音声の音質を下げて運用します。",
+    statusSince: "2024-11-16T14:15:00.000Z",
+    updatedAt: "2024-11-16T14:15:00.000Z",
   },
   {
     id: 5,
@@ -85,6 +85,19 @@ export type IncidentHistory = {
 };
 
 export const incidentHistories: IncidentHistory[] = [
+  {
+    id: "urn:uuid:2ff6a668-e923-4ba5-87c4-4cfe4e734efc",
+    slug: "2024-11-01-tts-outage-resolved",
+    title: "自動アナウンス機能は現在正常にご利用いただけます",
+    description:
+      "開発者の個人的な都合により、当分の間自動アナウンス機能の運用を取りやめておりましたが、2024年11月16日 14時現在自動アナウンス機能の提供を再開致しました。この復旧作業においての音質の変更はありません。利用者の方々にご迷惑をおかけしたことをお詫び申し上げます。",
+    publishedAt: "2024-11-16T00:00:00.000Z",
+    updatedAt: "2024-11-16T00:00:00.000Z",
+    resolvedAt: "2024-11-16T14:15:00.000Z",
+    estimatedResolveDate: null,
+    incidentImpact: "degraded",
+    cause: "開発者の個人的な都合",
+  },
   {
     id: "urn:uuid:974a2140-0b20-4d74-82aa-e98b1b6240ab",
     slug: "2024-11-01-tts-outage",
