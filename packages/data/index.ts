@@ -52,13 +52,13 @@ export const services: Service[] = [
   {
     id: 4,
     name: "自動アナウンス機能(TTS)",
-    status: "degraded",
+    status: "operational",
     descriptionEn:
-      "Due to personal reasons of the developer, the sound quality of the Japanese voice will be reduced for the time being.",
+      "The system is currently operating normally.",
     descriptionJa:
-      "開発者の個人的な都合により、当分の間日本語音声の音質を下げて運用します。",
-    statusSince: "2024-11-16T14:15:00.000+0900",
-    updatedAt: "2024-11-16T14:15:00.000+0900",
+      "現在正常に稼働しております。",
+    statusSince: "2025-01-20T00:11:00.000+0900",
+    updatedAt: "2025-01-20T00:11:00.000+0900",
   },
   {
     id: 5,
