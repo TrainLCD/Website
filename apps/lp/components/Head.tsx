@@ -50,7 +50,7 @@ const AppHead: React.FC<Props> = ({
     <meta name="twitter:app:name:googleplay" content="TrainLCD" />
     <meta name="twitter:app:id:googleplay" content="me.tinykitten.trainlcd" />
     <meta property="fb:app_id" content="596269604527027" />
-    <meta name="apple-itunes-app" content="app-id=1486355943" />
+    <meta name="apple-itunes-app" content="app-id=1486355943, app-clip-bundle-id=me.tinykitten.trainlcd.Clip, app-clip-display=card" />
   </Head>
 );
 
