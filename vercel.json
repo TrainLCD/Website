@@ -9,8 +9,11 @@
       }
     },
     {
-      "src": "apps/status/next.config.mjs",
-      "use": "@vercel/next"
+      "src": "apps/status/package.json",
+      "use": "@vercel/astro",
+      "config": {
+        "outputDirectory": "dist"
+      }
     }
   ],
   "routes": [
