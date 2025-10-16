@@ -27,6 +27,7 @@ const OSSSection = () => {
           <a
             className={styles.cta}
             href="https://github.com/TrainLCD/MobileApp"
+            target="_blank"
             rel="noopener noreferrer"
           >
             リポジトリを見る

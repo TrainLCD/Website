@@ -13,7 +13,8 @@
 }
 
 .button:focus {
-  outline: none;
+  outline: 2px solid #008ffe;
+  outline-offset: 2px;
 }
 
 .button:hover {

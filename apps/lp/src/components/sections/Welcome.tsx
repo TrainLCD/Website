@@ -8,7 +8,7 @@ const WelcomeSection = () => {
   const handleTryButtonClick = () => {
     const aboutElem = document.querySelector('#download');
     window.scrollTo({
-      top: aboutElem?.getBoundingClientRect().top,
+      top: (aboutElem?.getBoundingClientRect().top ?? 0) + window.pageYOffset,
       behavior: 'smooth',
     });
   };
