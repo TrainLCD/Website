@@ -7,6 +7,7 @@ import { StatusIcon } from '@components/StatusIcon';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Tokyo');
 
 type Props = {
   incident?: IncidentHistory;
@@ -16,9 +17,10 @@ const formatDate = (dateStr: string | null, excludeMinutes = false) => {
   if (!dateStr) {
     return null;
   }
+  const date = dayjs.tz(dateStr, 'Asia/Tokyo');
   return excludeMinutes
-    ? dayjs(dateStr).format('YYYY/MM/DD H時')
-    : dayjs(dateStr).format('YYYY/MM/DD HH:mm');
+    ? date.format('YYYY/MM/DD H時')
+    : date.format('YYYY/MM/DD HH:mm');
 };
 
 const IncidentPage = ({ incident }: Props) => {

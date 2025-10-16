@@ -1,6 +1,12 @@
 import { incidentHistories } from 'data';
 import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import { StatusIcon } from './StatusIcon';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Tokyo');
 
 const IncidentsTable = () => {
   return (
@@ -11,7 +17,7 @@ const IncidentsTable = () => {
           <li key={incident.id} className="flex border-b last:border-none p-4">
             <div className="flex-1">
               <p className="text-xs">
-                {dayjs(incident.publishedAt).format('YYYY/MM/DD HH:mm')}
+                {dayjs.tz(incident.publishedAt, 'Asia/Tokyo').format('YYYY/MM/DD HH:mm')}
               </p>
               <a className="underline decoration-solid" href={`/incidents/${incident.slug}`}>
                 <p className="font-semibold">{incident.title}</p>
