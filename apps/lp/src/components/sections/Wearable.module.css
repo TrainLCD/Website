@@ -1,0 +1,122 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  padding: 32px 24px;
+  background-color: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    padding: 0 64px;
+    gap: 48px;
+  }
+}
+
+.mockupWithDisclaimer {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .mockupWithDisclaimer {
+    width: 50%;
+    max-width: none;
+  }
+}
+
+.mockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .mockup {
+    margin-bottom: 24px;
+    gap: 32px;
+  }
+}
+
+.mockImage {
+  width: clamp(180px, 32vw, 280px);
+  height: auto;
+  object-fit: contain;
+}
+
+.texts {
+  width: 100%;
+  margin-top: 0;
+  padding: 0 8px;
+}
+
+@media (min-width: 768px) {
+  .texts {
+    width: 50%;
+    padding: 32px 0 32px 24px;
+  }
+}
+
+.shortHeading {
+  color: #277bc0;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .shortHeading {
+    font-size: 1.5rem;
+  }
+}
+
+.accent {
+  color: #277bc0;
+}
+
+.heading {
+  line-height: 1.25;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+.caption {
+  font-size: 1rem;
+  color: #277bc0;
+}
+
+@media (min-width: 768px) {
+  .caption {
+    font-size: 1.25rem;
+  }
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: #444444;
+  margin-top: 16px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 767px) {
+  .disclaimer {
+    margin-top: 12px;
+  }
+}

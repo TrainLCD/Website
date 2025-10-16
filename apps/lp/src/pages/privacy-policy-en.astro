@@ -1,0 +1,48 @@
+---
+import PrivacyPolicyEnPage from '@components/pages/PrivacyPolicyEnPage';
+import '../styles/globals.css';
+
+const title = 'Privacy Policy - TrainLCD';
+const description = 'TrainLCD privacy policy.';
+const url = 'https://trainlcd.tinykitten.me/privacy-policy-en';
+const ogImage = '/opengraph-image.20241213.png';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#03A9F4" />
+    <link rel="canonical" href={url} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#03a9f4" />
+    <meta name="msapplication-TileColor" content="#03a9f4" />
+    <meta property="og:title" content="Privacy Policy - TrainLCD" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="TrainLCD" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@tinykitten8" />
+    <meta name="twitter:creator" content="@tinykitten8" />
+    <meta name="twitter:description" content={description} />
+    <meta property="fb:app_id" content="596269604527027" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <PrivacyPolicyEnPage client:load />
+  </body>
+</html>

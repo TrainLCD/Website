@@ -1,0 +1,55 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  color: #333333;
+  max-width: 1024px;
+  padding: 128px 32px 32px 32px;
+  line-height: 1.5;
+}
+
+.internalLink {
+  font-weight: bold;
+  color: #333333;
+}
+
+.headingContainer {
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
+.headingMeta {
+  margin-top: 32px;
+  text-align: right;
+}
+
+.paragraph {
+  line-height: 2;
+  margin: 24px 0;
+}
+
+.headingText {
+  font-size: 1.5rem;
+  margin: 24px 0;
+}
+
+.list {
+  margin-left: 32px;
+}
+
+.externalLink {
+  color: #333333;
+}

@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #277bc0;
+  font-size: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    font-size: 1rem;
+  }
+}
+
+.label {
+  background-color: #277bc0;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 6px 12px;
+}
+
+@media (min-width: 768px) {
+  .label {
+    padding: 4px 12px;
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+}
+
+@media (min-width: 768px) {
+  .status {
+    padding: 4px 12px;
+  }
+}
+
+.indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 4px solid #22c55e;
+}
+
+.statusText {
+  font-weight: bold;
+  margin-left: 6px;
+  color: #212121;
+}
