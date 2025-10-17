@@ -70,7 +70,7 @@ const Footer = () => {
           <a
             href="https://tinykitten.me"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener noreferrer"
             className={styles.socialLink}
           >
             <TinyKittenProduct />

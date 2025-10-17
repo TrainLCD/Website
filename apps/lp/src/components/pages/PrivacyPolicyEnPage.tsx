@@ -77,7 +77,7 @@ const PrivacyPolicyEnPage = () => (
           <a
             href="https://sentry.io/"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener noreferrer"
             className={styles.externalLink}
           >
             Sentry
@@ -86,7 +86,7 @@ const PrivacyPolicyEnPage = () => (
           <a
             href="https://sentry.io/terms/"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener noreferrer"
             className={styles.externalLink}
           >
             Terms of Use
@@ -95,7 +95,7 @@ const PrivacyPolicyEnPage = () => (
           <a
             href="https://sentry.io/privacy/"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener noreferrer"
             className={styles.externalLink}
           >
             Privacy Policy

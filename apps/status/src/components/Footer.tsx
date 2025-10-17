@@ -72,7 +72,7 @@ const Footer = () => {
           <a
             href="https://tinykitten.me"
             target="_blank"
-            rel="noreferrer noopener"
+            rel="noopener noreferrer"
             className="opacity-75 transition hover:opacity-100"
           >
             <TinyKittenProduct className="h-8 w-auto" />

@@ -12,7 +12,7 @@ const DownloadSection = () => {
           className={styles.storeLink}
           href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
           target="_blank"
-          rel="noreferrer noopener"
+          rel="noopener noreferrer"
         >
           <ImageWithoutSize alt="App Store" src={AppStoreJPImg} />
         </a>
@@ -20,7 +20,7 @@ const DownloadSection = () => {
           className={styles.storeLink}
           href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
           target="_blank"
-          rel="noreferrer noopener"
+          rel="noopener noreferrer"
         >
           <ImageWithoutSize alt="Google Play" src={PlayStoreJPImg} />
         </a>
