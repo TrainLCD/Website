@@ -65,6 +65,7 @@ const Footer = () => {
             href="https://tinykitten.me"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="開発者のポートフォリオ"
             className="opacity-75 transition hover:opacity-100"
           >
             <TinyKittenProduct className="h-8 w-auto" />

@@ -71,6 +71,7 @@ const Footer = () => {
             href="https://tinykitten.me"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="開発者のポートフォリオ"
             className={styles.socialLink}
           >
             <TinyKittenProduct />

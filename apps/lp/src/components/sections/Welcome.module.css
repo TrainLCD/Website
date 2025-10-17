@@ -35,7 +35,7 @@
 }
 
 .colored {
-  color: #277bc0;
+  color: #1565c0;
 }
 
 .heading {
@@ -106,7 +106,7 @@
 
 .button {
   appearance: none;
-  background-color: #277bc0;
+  background-color: #1565c0;
   width: 180px;
   height: 48px;
   border: none;

@@ -70,7 +70,7 @@
 }
 
 .shortHeading {
-  color: #277bc0;
+  color: #1565c0;
   font-weight: bold;
   margin-top: 0;
 }
@@ -82,7 +82,7 @@
 }
 
 .accent {
-  color: #277bc0;
+  color: #1565c0;
 }
 
 .heading {
@@ -98,7 +98,7 @@
 
 .caption {
   font-size: 1rem;
-  color: #277bc0;
+  color: #1565c0;
 }
 
 @media (min-width: 768px) {
