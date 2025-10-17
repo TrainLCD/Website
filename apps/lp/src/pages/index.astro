@@ -1,11 +1,22 @@
 ---
 import HomeApp from '@components/pages/HomeApp.astro';
 import '../styles/globals.css';
+import { getImage } from 'astro:assets';
+import mockImage from '../assets/images/mockup/iphone-and-ipad.png';
 
 const title = 'TrainLCD';
 const description = 'TrainLCDは、日本全国の鉄道路線で使える新感覚のナビゲーションアプリです。';
 const url = 'https://trainlcd.app/';
 const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
+
+const lcpImage = await getImage({
+  src: mockImage,
+  widths: [480, 720, 960, 1280, 1600],
+  sizes: '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw',
+  format: 'webp',
+  layout: 'constrained',
+  priority: true,
+});
 ---
 
 <html lang="ja">
@@ -48,8 +59,25 @@ const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      />
+    </noscript>
+    <link
+      rel="preload"
+      as="image"
+      href={lcpImage.src}
+      imagesrcset={lcpImage.srcSet.attribute}
+      imagesizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw"
+      type="image/webp"
+      fetchpriority="high"
     />
   </head>
   <body>
