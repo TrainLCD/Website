@@ -11,8 +11,8 @@ const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
 
 const lcpImage = await getImage({
   src: mockImage,
-  widths: [480, 720, 960, 1280, 1600],
-  sizes: '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw',
+  widths: [320, 480, 640, 768, 960, 1280],
+  sizes: '(min-width: 1280px) 640px, (min-width: 768px) 60vw, 90vw',
   format: 'webp',
   layout: 'constrained',
   priority: true,
@@ -75,7 +75,7 @@ const lcpImage = await getImage({
       as="image"
       href={lcpImage.src}
       imagesrcset={lcpImage.srcSet.attribute}
-      imagesizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw"
+      imagesizes="(min-width:1280px) 640px, (min-width:768px) 60vw, 90vw"
       type="image/webp"
       fetchpriority="high"
     />
