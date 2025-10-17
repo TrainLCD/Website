@@ -1,9 +1,16 @@
 import { services } from 'data';
+import type { JSX } from 'preact';
 import { StatusIcon } from './StatusIcon';
+
+// Delay painting offscreen content without layout shifts to keep LCP lightweight.
+const containerStyle: JSX.CSSProperties = {
+  contentVisibility: 'auto',
+  containIntrinsicSize: '520px',
+};
 
 const ServicesTable = () => {
   return (
-    <div className="border w-full rounded-lg max-w-2xl">
+    <div className="border w-full rounded-lg max-w-2xl" style={containerStyle}>
       <p className="bg-gray-100 font-semibold p-4">各サービス稼働状況</p>
       <ul>
         {services.map((svc) => (

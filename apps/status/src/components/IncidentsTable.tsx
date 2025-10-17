@@ -1,10 +1,17 @@
 import { incidentHistories } from 'data';
 import { parseTokyoDate } from '@utils/dayjs';
+import type { JSX } from 'preact';
 import { StatusIcon } from './StatusIcon';
+
+// Delay painting offscreen content while reserving space to improve LCP.
+const containerStyle: JSX.CSSProperties = {
+  contentVisibility: 'auto',
+  containIntrinsicSize: '640px',
+};
 
 const IncidentsTable = () => {
   return (
-    <div className="border w-full rounded-lg max-w-2xl">
+    <div className="border w-full rounded-lg max-w-2xl" style={containerStyle}>
       <p className="bg-gray-100 font-semibold p-4">障害履歴</p>
       <ul>
         {incidentHistories.map((incident) => (
