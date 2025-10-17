@@ -4,7 +4,7 @@
   cursor: pointer;
   text-decoration: none;
   background-color: #ffffff;
-  border: 1px solid #277bc0;
+  border: 1px solid #1565c0;
   font-size: 0.75rem;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .label {
-  background-color: #277bc0;
+  background-color: #1565c0;
   color: #ffffff;
   font-weight: bold;
   padding: 6px 12px;
