@@ -34,7 +34,7 @@ export const GET: APIRoute = () => {
       (inc) => `<entry>
     <id>${inc.id}</id>
     <published>${toPubDate(inc.publishedAt)}</published>
-    <updated>${toPubDate(inc.updatedAt)}</updated>
+    <updated>${toPubDate(inc.updatedAt || inc.publishedAt)}</updated>
     <link rel="alternate" type="text/html" href="https://status.trainlcd.app/incidents/${inc.slug}"/>
     <title><![CDATA[${inc.title}]]></title>
     <content type="html"><![CDATA[${inc.description}]]></content>
