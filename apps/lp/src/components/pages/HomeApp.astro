@@ -8,12 +8,12 @@ import TabletSection from '../sections/Tablet.astro';
 import WearableSection from '../sections/Wearable.astro';
 import WelcomeSection from '../sections/Welcome.astro';
 
-const { lcpImage } = Astro.props;
+const { lcpImageSources = [] } = Astro.props;
 ---
 
 <main>
   <Header />
-  <WelcomeSection lcpImage={lcpImage} />
+  <WelcomeSection lcpImageSources={lcpImageSources} />
   <ServiceAreaSection />
   <TabletSection />
   <WearableSection />

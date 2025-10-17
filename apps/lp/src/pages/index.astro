@@ -9,13 +9,29 @@ const description = 'TrainLCDは、日本全国の鉄道路線で使える新感
 const url = 'https://trainlcd.app/';
 const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
 
-const lcpImage = await getImage({
-  src: mockImage,
-  widths: [480, 720, 960, 1280, 1600],
-  sizes: '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw',
-  format: 'webp',
-  layout: 'constrained',
-  priority: true,
+const lcpFormats = ['avif', 'webp'] as const;
+const lcpImages = await Promise.all(
+  lcpFormats.map((format) =>
+    getImage({
+      src: mockImage,
+      widths: [320, 480, 640, 768, 960, 1280],
+      sizes: '(min-width: 1280px) 640px, (min-width: 768px) 60vw, 90vw',
+      format,
+      layout: 'constrained',
+      priority: true,
+    }),
+  ),
+);
+const lcpImageSources = lcpFormats.map((format, index) => {
+  const image = lcpImages[index]!;
+  return {
+    format,
+    data: {
+      src: image.src,
+      srcSet: image.srcSet,
+      attributes: image.attributes,
+    },
+  };
 });
 ---
 
@@ -70,17 +86,19 @@ const lcpImage = await getImage({
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       />
     </noscript>
-    <link
-      rel="preload"
-      as="image"
-      href={lcpImage.src}
-      imagesrcset={lcpImage.srcSet.attribute}
-      imagesizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw"
-      type="image/webp"
-      fetchpriority="high"
-    />
+    {lcpImageSources.map(({ format, data }) => (
+      <link
+        rel="preload"
+        as="image"
+        href={data.src}
+        imagesrcset={data.srcSet.attribute}
+        imagesizes="(min-width:1280px) 640px, (min-width:768px) 60vw, 90vw"
+        type={`image/${format}`}
+        fetchpriority="high"
+      />
+    ))}
   </head>
   <body>
-    <HomeApp lcpImage={lcpImage} />
+    <HomeApp lcpImageSources={lcpImageSources} />
   </body>
 </html>

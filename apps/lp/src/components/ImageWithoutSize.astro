@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import styles from './ImageWithoutSize.module.css';
 
@@ -15,15 +15,21 @@ type OptimizedImage = {
   src: string;
   attributes: Record<string, any>;
 };
+type ImageSource = {
+  format: string;
+  data: ResolvedImageData;
+};
 
 interface Props {
   src: ImageSrc;
   alt: string;
   imageData?: ResolvedImageData;
+  imageSources?: ImageSource[];
   class?: string;
   widths?: number[];
   sizes?: string;
-  format?: string;
+  format?: string | string[];
+  includeAvif?: boolean;
   loading?: 'lazy' | 'eager';
   decoding?: 'async' | 'auto' | 'sync';
   priority?: boolean;
@@ -38,10 +44,12 @@ const {
   src,
   alt,
   imageData,
+  imageSources,
   class: className,
   widths = [320, 640, 960, 1280, 1600],
   sizes = '100vw',
   format = 'webp',
+  includeAvif = true,
   loading = 'lazy',
   decoding = 'async',
   priority = false,
@@ -53,16 +61,57 @@ const {
 } = Astro.props as Props;
 
 const baseClassList = [styles.image, className];
-let optimizedImage: OptimizedImage | undefined;
+const resolveImageMetadata = async (value: ImageSrc): Promise<ImageMetadata> => {
+  if (value && typeof (value as Promise<{ default: ImageMetadata }>).then === 'function') {
+    const mod = await value;
+    return mod.default;
+  }
+  return value as ImageMetadata;
+};
 
-if (imageData) {
-  const { attributes = {}, srcSet } = imageData;
+const resolvedSrc = await resolveImageMetadata(src);
+
+const formatList = Array.isArray(format) ? format : [format];
+const preferredFormats = (() => {
+  const targets: string[] = [];
+  if (includeAvif && !formatList.includes('avif')) {
+    targets.push('avif');
+  }
+  for (const fmt of formatList) {
+    if (fmt && !targets.includes(fmt)) {
+      targets.push(fmt);
+    }
+  }
+  return targets.length ? targets : ['webp'];
+})();
+
+const mimeFromFormat = (fmt: string) => {
+  switch (fmt) {
+    case 'avif':
+      return 'image/avif';
+    case 'webp':
+      return 'image/webp';
+    case 'jpeg':
+    case 'jpg':
+      return 'image/jpeg';
+    case 'png':
+      return 'image/png';
+    default:
+      return `image/${fmt}`;
+  }
+};
+
+const normalizeImageData = (data: ResolvedImageData | undefined, extra: Record<string, unknown> = {}) => {
+  if (!data) {
+    return undefined;
+  }
+  const { attributes = {}, srcSet } = data;
   const { class: imageClass, ...otherAttributes } = attributes ?? {};
   const classList = [...baseClassList];
   if (imageClass) {
     classList.push(imageClass);
   }
-  const mergedAttributes = { ...otherAttributes, ...rest };
+  const mergedAttributes = { ...otherAttributes, ...extra };
   if (srcSet?.attribute) {
     mergedAttributes.srcset = srcSet.attribute;
   }
@@ -71,32 +120,96 @@ if (imageData) {
   }
   mergedAttributes.alt ??= alt;
   mergedAttributes.class = classList.filter(Boolean).join(' ');
-  optimizedImage = {
-    src: imageData.src,
+  Object.keys(mergedAttributes).forEach((key) => {
+    if (mergedAttributes[key] === undefined) {
+      delete mergedAttributes[key];
+    }
+  });
+  return {
+    src: data.src,
     attributes: mergedAttributes,
-  };
+  } satisfies OptimizedImage;
+};
+
+const resolvedSources: ImageSource[] = [];
+
+if (Array.isArray(imageSources) && imageSources.length > 0) {
+  resolvedSources.push(...imageSources);
+} else if (imageData) {
+  resolvedSources.push({
+    format: formatList[0] ?? 'webp',
+    data: imageData,
+  });
 }
+
+const existingFormats = new Set(resolvedSources.map((source) => source.format));
+
+for (const fmt of preferredFormats) {
+  if (!existingFormats.has(fmt)) {
+    const generated = await getImage({
+      src: resolvedSrc,
+      widths,
+      sizes,
+      format: fmt,
+      quality,
+      layout,
+      fit,
+      position,
+    });
+    resolvedSources.push({
+      format: fmt,
+      data: {
+        src: generated.src,
+        srcSet: generated.srcSet,
+        attributes: generated.attributes,
+      },
+    });
+    existingFormats.add(fmt);
+  }
+}
+
+const orderedSources = resolvedSources.sort((a, b) => {
+  const orderA = preferredFormats.indexOf(a.format);
+  const orderB = preferredFormats.indexOf(b.format);
+  const safeA = orderA === -1 ? Number.MAX_SAFE_INTEGER : orderA;
+  const safeB = orderB === -1 ? Number.MAX_SAFE_INTEGER : orderB;
+  return safeA - safeB;
+});
+const fallbackSource = orderedSources[orderedSources.length - 1];
+const pictureSources = orderedSources.slice(0, -1);
+
+const fallbackImage = normalizeImageData(fallbackSource?.data, {
+  ...rest,
+  loading,
+  decoding,
+  fetchpriority: priority ? 'high' : undefined,
+});
 
 const resolvedClass = baseClassList.filter(Boolean).join(' ');
 ---
 
-{optimizedImage ? (
-  <img src={optimizedImage.src} {...optimizedImage.attributes} />
-) : (
-  <Image
-    src={src}
-    alt={alt}
-    class={resolvedClass}
-    widths={widths}
-    sizes={sizes}
-    format={format}
-    loading={loading}
-    decoding={decoding}
-    priority={priority}
-    quality={quality}
-    layout={layout}
-    fit={fit}
-    position={position}
-    {...rest}
-  />
-)}
+<picture>
+  {pictureSources.map(({ format: fmt, data }) => {
+    const srcset = data.srcSet?.attribute ?? data.attributes?.srcset;
+    return (
+      <source
+        type={mimeFromFormat(fmt)}
+        srcset={srcset}
+        sizes={data.attributes?.sizes ?? sizes}
+      />
+    );
+  })}
+  {fallbackImage ? (
+    <img src={fallbackImage.src} {...fallbackImage.attributes} />
+  ) : (
+    <img
+      src={orderedSources[0]?.data.src ?? resolvedSrc.src}
+      alt={alt}
+      sizes={sizes}
+      class={resolvedClass}
+      loading={loading}
+      decoding={decoding}
+      {...rest}
+    />
+  )}
+</picture>
