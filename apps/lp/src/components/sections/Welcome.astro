@@ -3,20 +3,19 @@ import ImageWithoutSize from '../ImageWithoutSize.astro';
 import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
-import styles from './Welcome.module.css';
 
 const { lcpImage } = Astro.props;
 ---
 
-<section class={styles.container}>
-  <div class={styles.texts}>
-    <h2 class={styles.heading}>
+<section class="welcome-container">
+  <div class="welcome-texts">
+    <h2 class="welcome-heading">
       日本全国の鉄道路線で使える
       <br />
-      <span class={styles.colored}>新感覚</span>
+      <span class="welcome-colored">新感覚</span>
       ナビゲーションアプリ
     </h2>
-    <p class={styles.description}>
+    <p class="welcome-description">
       今までにありそうでなかった
       あなたのスマートフォンで使えるトレインビジョン。
       <br />
@@ -24,13 +23,13 @@ const { lcpImage } = Astro.props;
       <br />
       迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
     </p>
-    <a href="#download" class={`${styles.button} ${styles.desktopButton}`}>
+    <a href="#download" class="welcome-button welcome-button--desktop">
       使ってみる
     </a>
   </div>
-  <div class={styles.mockup}>
-    <RingsPC class={styles.ringsPc} />
-    <RingsSP class={styles.ringsSp} />
+  <div class="welcome-mockup">
+    <RingsPC class="welcome-rings-pc" />
+    <RingsSP class="welcome-rings-sp" />
     <ImageWithoutSize
       src={mockImage}
       imageData={lcpImage}
@@ -43,7 +42,146 @@ const { lcpImage } = Astro.props;
       priority
     />
   </div>
-  <a href="#download" class={`${styles.button} ${styles.mobileButton}`}>
+  <a href="#download" class="welcome-button welcome-button--mobile">
     使ってみる
   </a>
 </section>
+
+<style is:inline>
+  .welcome-container {
+    min-height: 100vh;
+    position: relative;
+    padding: 0 32px;
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-container {
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-top: 0;
+      padding: 0 64px;
+    }
+  }
+
+  .welcome-texts {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-texts {
+      flex: 1;
+      height: 100%;
+      margin-bottom: 80px;
+    }
+  }
+
+  .welcome-colored {
+    color: #1565c0;
+  }
+
+  .welcome-heading {
+    line-height: 1.25;
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-heading {
+      font-size: 3rem;
+    }
+  }
+
+  .welcome-description {
+    line-height: 1.5;
+    font-weight: bold;
+    color: #212121;
+    margin-top: 12px;
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-description {
+      color: #444444;
+      font-size: 1rem;
+    }
+  }
+
+  .welcome-mockup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .welcome-mockup {
+      justify-content: center;
+      flex: 0.75;
+    }
+  }
+
+  .welcome-rings-pc {
+    position: absolute;
+    right: -64px;
+    bottom: -32px;
+    z-index: 0;
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .welcome-rings-pc {
+      display: block;
+    }
+  }
+
+  .welcome-rings-sp {
+    position: absolute;
+    right: -32px;
+    top: -32px;
+    z-index: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .welcome-rings-sp {
+      display: none;
+    }
+  }
+
+  .welcome-button {
+    appearance: none;
+    background-color: #1565c0;
+    width: 180px;
+    height: 48px;
+    border: none;
+    border-radius: 48px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 32px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .welcome-button--desktop {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .welcome-button--desktop {
+      display: inline-flex;
+    }
+
+    .welcome-button--mobile {
+      display: none;
+    }
+  }
+</style>
