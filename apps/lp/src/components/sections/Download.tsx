@@ -22,7 +22,7 @@ const DownloadSection = () => {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <ImageWithoutSize alt="Play Store" src={PlayStoreJPImg} />
+          <ImageWithoutSize alt="Google Play" src={PlayStoreJPImg} />
         </a>
       </div>
       <div className={styles.texts}>

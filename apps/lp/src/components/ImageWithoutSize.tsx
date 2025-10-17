@@ -2,11 +2,13 @@ import type { JSX } from 'preact';
 import type { ImageMetadata } from 'astro';
 import styles from './ImageWithoutSize.module.css';
 
-type Props = JSX.IntrinsicElements['img'] & {
+type Props = Omit<JSX.IntrinsicElements['img'], 'alt' | 'src'> & {
   src: string | ImageMetadata;
+  alt: string;
 };
 
-const resolveSrc = (src: Props['src']) => (typeof src === 'string' ? src : src.src);
+const resolveSrc = (src: Props['src']) =>
+  typeof src === 'string' ? src : src.src;
 
 const ImageWithoutSize = ({
   loading = 'lazy',

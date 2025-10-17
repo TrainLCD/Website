@@ -35,6 +35,7 @@ const Footer = () => {
               href="https://discord.gg/jbVE7tj9SE"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Discordサーバーへ参加"
               className={styles.socialLink}
             >
               <DiscordLogo className={styles.discordIcon} />
