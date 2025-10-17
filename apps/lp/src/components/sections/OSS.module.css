@@ -56,7 +56,7 @@
 }
 
 .shortHeading {
-  color: #277bc0;
+  color: #1565c0;
   font-weight: bold;
   margin-top: 32px;
 }
@@ -69,7 +69,7 @@
 }
 
 .accent {
-  color: #277bc0;
+  color: #1565c0;
   white-space: pre-wrap;
 }
 
@@ -100,7 +100,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #277bc0;
+  background-color: #1565c0;
   width: 180px;
   height: 48px;
   border: none;
