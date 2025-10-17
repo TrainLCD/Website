@@ -27,6 +27,7 @@ const Footer = () => {
               href="https://x.com/trainlcd"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="X(旧Twitter)で@trainlcdをフォロー"
               className="inline-flex items-center justify-center opacity-75 transition hover:opacity-100"
             >
               <XIcon className="h-5 w-auto" />

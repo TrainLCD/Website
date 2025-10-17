@@ -31,7 +31,7 @@ export const GET: APIRoute = () => {
       .map(
         (inc) => `<item>
         <title><![CDATA[${inc.title}]]></title>
-        <content type="html"><![CDATA[${inc.description}]]></content>
+        <description><![CDATA[${inc.description}]]></description>
         <pubDate>${toPubDate(inc.publishedAt)}</pubDate>
         <link>https://status.trainlcd.app/incidents/${inc.slug}</link>
         <guid>https://status.trainlcd.app/incidents/${inc.slug}</guid>

@@ -26,6 +26,7 @@ const Footer = () => {
               href="https://x.com/trainlcd"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="X(旧Twitter)で@trainlcdをフォロー"
               className={styles.socialLink}
             >
               <TwitterLogo className={styles.twitterIcon} />
