@@ -8,6 +8,8 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
+  content-visibility: auto;
+  contain-intrinsic-size: 960px;
 }
 
 @media (min-width: 768px) {

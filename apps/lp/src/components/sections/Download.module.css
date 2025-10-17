@@ -7,6 +7,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
 }
 
 @media (min-width: 768px) {
