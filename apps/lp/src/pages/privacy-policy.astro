@@ -38,9 +38,17 @@ const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <PrivacyPolicyPage />
