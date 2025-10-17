@@ -7,11 +7,13 @@ import ServiceAreaSection from '../sections/ServiceArea.astro';
 import TabletSection from '../sections/Tablet.astro';
 import WearableSection from '../sections/Wearable.astro';
 import WelcomeSection from '../sections/Welcome.astro';
+
+const { lcpImage } = Astro.props;
 ---
 
 <main>
   <Header />
-  <WelcomeSection />
+  <WelcomeSection lcpImage={lcpImage} />
   <ServiceAreaSection />
   <TabletSection />
   <WearableSection />
@@ -19,4 +21,3 @@ import WelcomeSection from '../sections/Welcome.astro';
   <DownloadSection />
   <Footer />
 </main>
-

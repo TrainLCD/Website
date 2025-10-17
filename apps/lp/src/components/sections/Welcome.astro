@@ -4,6 +4,8 @@ import RingsPC from '../RingsPC';
 import RingsSP from '../RingsSP';
 import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
 import styles from './Welcome.module.css';
+
+const { lcpImage } = Astro.props;
 ---
 
 <section class={styles.container}>
@@ -31,6 +33,7 @@ import styles from './Welcome.module.css';
     <RingsSP class={styles.ringsSp} />
     <ImageWithoutSize
       src={mockImage}
+      imageData={lcpImage}
       alt="iPhoneとiPadのアプリ画面"
       widths={[480, 720, 960, 1280, 1600]}
       sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw"
@@ -44,4 +47,3 @@ import styles from './Welcome.module.css';
     使ってみる
   </a>
 </section>
-
