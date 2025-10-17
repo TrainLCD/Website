@@ -1,0 +1,47 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import RingsPC from '../RingsPC';
+import RingsSP from '../RingsSP';
+import mockImage from '../../assets/images/mockup/iphone-and-ipad.png';
+import styles from './Welcome.module.css';
+---
+
+<section class={styles.container}>
+  <div class={styles.texts}>
+    <h2 class={styles.heading}>
+      日本全国の鉄道路線で使える
+      <br />
+      <span class={styles.colored}>新感覚</span>
+      ナビゲーションアプリ
+    </h2>
+    <p class={styles.description}>
+      今までにありそうでなかった
+      あなたのスマートフォンで使えるトレインビジョン。
+      <br />
+      それが、新感覚ナビゲーションアプリ「TrainLCD」
+      <br />
+      迷いそうな時、降りれるか不安な時。きっとあなたの役に立つはずです。
+    </p>
+    <a href="#download" class={`${styles.button} ${styles.desktopButton}`}>
+      使ってみる
+    </a>
+  </div>
+  <div class={styles.mockup}>
+    <RingsPC class={styles.ringsPc} />
+    <RingsSP class={styles.ringsSp} />
+    <ImageWithoutSize
+      src={mockImage}
+      alt="iPhoneとiPadのアプリ画面"
+      widths={[480, 720, 960, 1280, 1600]}
+      sizes="(min-width: 1280px) 640px, (min-width: 768px) 50vw, 90vw"
+      format="webp"
+      loading="eager"
+      decoding="async"
+      priority
+    />
+  </div>
+  <a href="#download" class={`${styles.button} ${styles.mobileButton}`}>
+    使ってみる
+  </a>
+</section>
+

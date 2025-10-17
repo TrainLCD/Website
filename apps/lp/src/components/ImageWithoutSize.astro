@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import styles from './ImageWithoutSize.module.css';
+
+type ImageSrc = ImageMetadata | Promise<{ default: ImageMetadata }>;
+
+interface Props {
+  src: ImageSrc;
+  alt: string;
+  class?: string;
+  widths?: number[];
+  sizes?: string;
+  format?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'auto' | 'sync';
+  priority?: boolean;
+  quality?: number | string;
+  layout?: 'constrained' | 'fixed' | 'full-width' | 'none';
+  fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down' | (string & {});
+  position?: string;
+  [key: string]: unknown;
+}
+
+const {
+  src,
+  alt,
+  class: className,
+  widths = [320, 640, 960, 1280, 1600],
+  sizes = '100vw',
+  format = 'webp',
+  loading = 'lazy',
+  decoding = 'async',
+  priority = false,
+  ...rest
+} = Astro.props as Props;
+
+const resolvedClass = [styles.image, className].filter(Boolean).join(' ');
+---
+
+<Image
+  src={src}
+  alt={alt}
+  class={resolvedClass}
+  widths={widths}
+  sizes={sizes}
+  format={format}
+  loading={loading}
+  decoding={decoding}
+  priority={priority}
+  {...rest}
+/>

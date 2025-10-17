@@ -1,0 +1,53 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import DescriptionText from '../DescriptionText';
+import appleWatchAppMock from '../../assets/images/applewatch_app.png';
+import appleWatchLiveActivitiesMock from '../../assets/images/applewatch_la.png';
+import styles from './Wearable.module.css';
+---
+
+<section class={styles.container}>
+  <div class={styles.mockupWithDisclaimer}>
+    <div class={styles.mockup}>
+      <ImageWithoutSize
+        src={appleWatchLiveActivitiesMock}
+        alt="Smart StackでのLive Activities"
+        class={styles.mockImage}
+        widths={[180, 220, 260, 320]}
+        sizes="(min-width: 1024px) 260px, 45vw"
+        format="webp"
+      />
+      <ImageWithoutSize
+        src={appleWatchAppMock}
+        alt="Apple Watchアプリの画面"
+        class={styles.mockImage}
+        widths={[180, 220, 260, 320]}
+        sizes="(min-width: 1024px) 260px, 45vw"
+        format="webp"
+      />
+    </div>
+  </div>
+  <div class={styles.texts}>
+    <p class={styles.shortHeading}>満員電車でも安心</p>
+    <h3 class={styles.heading}>
+      <span class={styles.accent}>スマートウォッチ</span>
+      <sup class={styles.caption}>*3</sup>
+      <br />
+      でも使えます
+    </h3>
+
+    <DescriptionText>
+      Apple WatchもしくはWear OS by
+      Google搭載スマートウォッチ組み合わせれば手首を見るだけで今停車している駅や、
+      <br />
+      次に停まる駅を知ることができます。
+    </DescriptionText>
+    <p class={styles.disclaimer}>
+      <sup>*3</sup>
+      Wear OS by Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。
+      <br />
+      iPhoneとペアリングされている場合はご使用になれませんのでご了承下さい。
+    </p>
+  </div>
+</section>
+
