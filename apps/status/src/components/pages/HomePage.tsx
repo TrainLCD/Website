@@ -16,10 +16,10 @@ const HomePage = () => (
     <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
       <FeedIcon className="text-orange-700 h-4 w-4" />
       <p className="ml-1 text-xs">フィード登録はこちら: </p>
-      <a className="text-xs ml-2 text-orange-600" href="/rss.xml">
+      <a className="text-xs ml-2 text-orange-700" href="/rss.xml">
         RSS
       </a>
-      <a className="text-xs ml-2 text-orange-600" href="/atom.xml">
+      <a className="text-xs ml-2 text-orange-700" href="/atom.xml">
         Atom
       </a>
     </div>
@@ -27,7 +27,7 @@ const HomePage = () => (
       <XIcon className="h-4 w-4 text-neutral-600" />
       <p className="ml-1 text-xs">X(旧Twitter)アカウント: </p>
       <a
-        className="text-xs ml-2 text-orange-600"
+        className="text-xs ml-2 text-orange-700"
         href="https://x.com/trainlcd"
         target="_blank"
         rel="noopener noreferrer"
