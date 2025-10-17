@@ -3,7 +3,7 @@ import type { JSX } from 'preact';
 type Props = JSX.SVGAttributes<SVGSVGElement>;
 
 const TinyKittenProduct = (props: Props) => (
-  <svg
+  <svg role="img" aria-label="TinyKitten Product Logo"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 3247.38 630"
     width={162.36914}

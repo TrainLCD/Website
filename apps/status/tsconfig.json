@@ -8,7 +8,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@icons/*": ["src/components/icons/*"],
-      "@pages/*": ["src/components/pages/*"]
+      "@pages/*": ["src/components/pages/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": [

@@ -35,6 +35,7 @@ const Footer = () => {
               href="https://discord.gg/jbVE7tj9SE"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Discordサーバーへ参加"
               className="inline-flex items-center justify-center opacity-75 transition hover:opacity-100"
             >
               <DiscordIcon className="h-5 w-auto" />

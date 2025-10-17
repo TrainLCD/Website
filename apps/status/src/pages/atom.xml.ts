@@ -1,20 +1,22 @@
 import type { APIRoute } from 'astro';
 import { incidentHistories } from 'data';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { parseTokyoDate } from '@utils/dayjs';
+import type { Dayjs } from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(minMax);
-dayjs.extend(timezone);
-dayjs.extend(utc);
 
-const toPubDate = (date: string | Dayjs | null) =>
-  dayjs.tz(date, 'UTC').format('YYYY-MM-DDTHH:mm:ssZ');
+const toPubDate = (date: string | Dayjs | null) => {
+  if (!date) {
+    return '';
+  }
+  const base = typeof date === 'string' ? parseTokyoDate(date) : date;
+  return base.tz('UTC').format('YYYY-MM-DDTHH:mm:ssZ');
+};
 
 export const GET: APIRoute = () => {
   const lastPublished = incidentHistories
-    .map((inc) => dayjs(inc.publishedAt));
+    .map((inc) => parseTokyoDate(inc.publishedAt));
   const latestIncidentDate = dayjs.max(lastPublished);
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>
@@ -34,8 +36,8 @@ export const GET: APIRoute = () => {
     <published>${toPubDate(inc.publishedAt)}</published>
     <updated>${toPubDate(inc.updatedAt)}</updated>
     <link rel="alternate" type="text/html" href="https://status.trainlcd.app/incidents/${inc.slug}"/>
-    <title>${inc.title}</title>
-    <content>${inc.description}</content>
+    <title><![CDATA[${inc.title}]]></title>
+    <content type="html"><![CDATA[${inc.description}]]></content>
   </entry>`
     )
     .join('\n  ')}

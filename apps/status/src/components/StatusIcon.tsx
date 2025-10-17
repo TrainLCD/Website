@@ -17,7 +17,7 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <CheckmarkIcon
           {...rest}
-          className={cx(className, 'text-green-500 rgba(34,197,94,0.1)')}
+          className={cx(className, 'text-green-500')}
         />
       );
     case 'maintenance':
@@ -27,14 +27,14 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <WarningIcon
           {...rest}
-          className={cx(className, 'text-yellow-500 rgba(234,179,8,0.1)')}
+          className={cx(className, 'text-yellow-500')}
         />
       );
     case 'outage':
       return (
         <ErrorIcon
           {...rest}
-          className={cx(className, 'text-red-500 rgba(239,68,68,0.1)')}
+          className={cx(className, 'text-red-500')}
         />
       );
     case 'unknown':
@@ -42,7 +42,7 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <QuestionIcon
           {...rest}
-          className={cx(className, 'text-purple-500 rgba(168,85,247,0.1)')}
+          className={cx(className, 'text-purple-500')}
         />
       );
   }

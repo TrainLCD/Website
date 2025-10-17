@@ -26,8 +26,8 @@ export const services: Service[] = [
       "At this time, we do not have any information on the failure of the mobile application.",
     descriptionJa:
       "現時点においてモバイルアプリについての障害情報はございません。",
-    statusSince: "2024-04-04T00:00:00.000",
-    updatedAt: "2024-04-05T00:00:00.000",
+    statusSince: "2024-04-04T00:00:00+09:00",
+    updatedAt: "2024-04-05T00:00:00+09:00",
   },
   {
     id: 2,
@@ -37,8 +37,8 @@ export const services: Service[] = [
       "At this time, we do not have any information on the failure of the mobile application.",
     descriptionJa:
       "現時点においてモバイルアプリについての障害情報はございません。",
-    statusSince: "2024-04-04T00:00:00.000",
-    updatedAt: "2024-04-05T00:00:00.000",
+    statusSince: "2024-04-04T00:00:00+09:00",
+    updatedAt: "2024-04-05T00:00:00+09:00",
   },
   {
     id: 3,
@@ -46,8 +46,8 @@ export const services: Service[] = [
     status: "operational",
     descriptionEn: "The feedback function is currently working properly.",
     descriptionJa: "フィードバック機能は現在正常にご利用いただけます。",
-    statusSince: "2024-04-09T00:00:00.000",
-    updatedAt: "2024-04-09T00:00:00.000",
+    statusSince: "2024-04-09T00:00:00+09:00",
+    updatedAt: "2024-04-09T00:00:00+09:00",
   },
   {
     id: 4,
@@ -57,8 +57,8 @@ export const services: Service[] = [
       "The system is currently operating normally.",
     descriptionJa:
       "現在正常に稼働しております。",
-    statusSince: "2025-01-20T00:11:00.000",
-    updatedAt: "2025-01-20T00:11:00.000",
+    statusSince: "2025-01-20T00:11:00+09:00",
+    updatedAt: "2025-01-20T00:11:00+09:00",
   },
   {
     id: 5,
@@ -66,8 +66,8 @@ export const services: Service[] = [
     status: "operational",
     descriptionEn: "The system is currently operating normally.",
     descriptionJa: "現在正常に稼働しております。",
-    statusSince: "2023-12-15T00:00:00.000",
-    updatedAt: "2024-04-05T00:00:00.000",
+    statusSince: "2023-12-15T00:00:00+09:00",
+    updatedAt: "2024-04-05T00:00:00+09:00",
   },
 ];
 
@@ -131,9 +131,9 @@ export const incidentHistories: IncidentHistory[] = [
       "TrainLCDアプリ バージョン7.1.0にて自動アナウンス機能が断続的に使用不可",
     description:
       "日本時間2024年4月17日 17時から同日19時にかけてTrainLCD バージョン7.1.0にて断続的に自動アナウンス機能が動作しない障害が発生しておりましたが、現在は復旧しております。原因はサービス基盤の設定不備でございます。利用者の方々にご迷惑をおかけしたことをお詫び申し上げます。",
-    publishedAt: "2024-04-17T00:00:00.000",
-    updatedAt: "2024-04-17T00:00:00.000",
-    resolvedAt: "2024-04-17T00:00:00.000",
+    publishedAt: "2024-04-17T00:00:00.000+09:00",
+    updatedAt: "2024-04-17T00:00:00.000+09:00",
+    resolvedAt: "2024-04-17T00:00:00.000+09:00",
     estimatedResolveDate: null,
     incidentImpact: "degraded",
     cause: "サービス基盤の設定不備",
@@ -144,9 +144,9 @@ export const incidentHistories: IncidentHistory[] = [
     title: "TrainLCD全サービスの提供再開",
     description:
       "2024年4月9日現在より自動アナウンス機能、フィードバック機能どちらとも使用可能となり、TrainLCDサービスの全面再開となりました。ご不便ご迷惑をおかけして申し訳ございませんでした。また皆様のメンテナンスへのご理解ご協力を心より感謝致します。",
-    publishedAt: "2024-04-09T00:00:00.000",
-    updatedAt: "2024-04-09T00:00:00.000",
-    resolvedAt: "2024-04-09T00:00:00.000",
+    publishedAt: "2024-04-09T00:00:00.000+09:00",
+    updatedAt: "2024-04-09T00:00:00+09:00",
+    resolvedAt: "2024-04-09T00:00:00.000+09:00",
     estimatedResolveDate: null,
     incidentImpact: "operational",
     cause: "TrainLCD全サービス提供休止の影響",
@@ -157,9 +157,9 @@ export const incidentHistories: IncidentHistory[] = [
     title: "TrainLCD一部サービスの提供再開",
     description:
       "試験的にTrainLCDのサービスを一部再開しております。サービス全面再開ではございませんので、フィードバックと自動アナウンス機能はご利用になれません。また予期しないバグが発生する可能性がございます。",
-    publishedAt: "2024-04-01T00:00:00.000",
-    updatedAt: "2024-04-01T00:00:00.000",
-    resolvedAt: "2024-04-09T00:00:00.000",
+    publishedAt: "2024-04-01T00:00:00.000+09:00",
+    updatedAt: "2024-04-01T00:00:00.000+09:00",
+    resolvedAt: "2024-04-09T00:00:00.000+09:00",
     estimatedResolveDate: null,
     incidentImpact: "degraded",
     cause: "TrainLCD全サービス提供休止の影響",
@@ -172,7 +172,7 @@ export const incidentHistories: IncidentHistory[] = [
       "TrainLCD開発者の一身上の都合で一時的にサービスを全面休止しております。再開見込みは4月中旬です。",
     publishedAt: "2023-12-15T00:00:00.000",
     updatedAt: "2023-12-15T00:00:00.000",
-    resolvedAt: "2024-04-01T00:00:00.000",
+    resolvedAt: "2024-04-01T00:00:00.000+09:00",
     estimatedResolveDate: null,
     incidentImpact: "maintenance",
     cause: "TrainLCD開発者の一身上の都合",

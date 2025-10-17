@@ -1,13 +1,7 @@
 import type { IncidentHistory } from 'data';
-import dayjs from 'dayjs';
-import timezone from 'dayjs/plugin/timezone';
-import utc from 'dayjs/plugin/utc';
+import { parseTokyoDate } from '@utils/dayjs';
 import { ArrowIcon } from '@components/icons/Arrow';
 import { StatusIcon } from '@components/StatusIcon';
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-dayjs.tz.setDefault('Asia/Tokyo');
 
 type Props = {
   incident?: IncidentHistory;
@@ -17,7 +11,7 @@ const formatDate = (dateStr: string | null, excludeMinutes = false) => {
   if (!dateStr) {
     return null;
   }
-  const date = dayjs.tz(dateStr, 'Asia/Tokyo');
+  const date = parseTokyoDate(dateStr);
   return excludeMinutes
     ? date.format('YYYY/MM/DD H時')
     : date.format('YYYY/MM/DD HH:mm');
