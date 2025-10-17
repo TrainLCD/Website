@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "preserve",
+    "jsxImportSource": "preact",
     "types": ["astro/client"],
     "paths": {
       "@components/*": ["src/components/*"],

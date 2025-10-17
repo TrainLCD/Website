@@ -9,7 +9,26 @@ type Props = {
   status: StatusType;
 } & JSX.SVGAttributes<SVGSVGElement>;
 
-const cx = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' ');
+type SignalLike<T> = { value: T } | { peek: () => T } | { value: T; peek: () => T };
+
+const toPlainClass = (value: string | undefined | SignalLike<string | undefined>) => {
+  if (typeof value === 'string' || typeof value === 'undefined') {
+    return value;
+  }
+  if (value && typeof (value as { peek?: () => unknown }).peek === 'function') {
+    return (value as { peek: () => string | undefined }).peek();
+  }
+  if (value && 'value' in value) {
+    return (value as { value: string | undefined }).value;
+  }
+  return undefined;
+};
+
+const cx = (...classes: (string | undefined | SignalLike<string | undefined>)[]) =>
+  classes
+    .map((c) => toPlainClass(c))
+    .filter((c): c is string => Boolean(c))
+    .join(' ');
 
 export const StatusIcon = ({ status, className, ...rest }: Props) => {
   switch (status) {
@@ -17,7 +36,7 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <CheckmarkIcon
           {...rest}
-          className={cx(className, 'text-green-500')}
+          className={cx(className ?? undefined, 'text-green-500')}
         />
       );
     case 'maintenance':
@@ -27,14 +46,14 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <WarningIcon
           {...rest}
-          className={cx(className, 'text-yellow-500')}
+          className={cx(className ?? undefined, 'text-yellow-500')}
         />
       );
     case 'outage':
       return (
         <ErrorIcon
           {...rest}
-          className={cx(className, 'text-red-500')}
+          className={cx(className ?? undefined, 'text-red-500')}
         />
       );
     case 'unknown':
@@ -42,7 +61,7 @@ export const StatusIcon = ({ status, className, ...rest }: Props) => {
       return (
         <QuestionIcon
           {...rest}
-          className={cx(className, 'text-purple-500')}
+          className={cx(className ?? undefined, 'text-purple-500')}
         />
       );
   }
