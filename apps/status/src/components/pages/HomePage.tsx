@@ -14,7 +14,7 @@ const HomePage = () => (
       <IncidentsTable />
     </div>
     <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
-      <FeedIcon className="text-orange-600 h-4 w-4" />
+      <FeedIcon className="text-orange-700 h-4 w-4" />
       <p className="ml-1 text-xs">フィード登録はこちら: </p>
       <a className="text-xs ml-2 text-orange-600" href="/rss.xml">
         RSS
