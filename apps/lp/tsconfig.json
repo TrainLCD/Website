@@ -1,6 +1,8 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
+    "composite": true,
+    "incremental": true,
     "baseUrl": ".",
     "jsx": "preserve",
     "jsxImportSource": "preact",
