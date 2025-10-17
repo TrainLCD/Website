@@ -6,6 +6,8 @@ import minMax from 'dayjs/plugin/minMax';
 
 dayjs.extend(minMax);
 
+export const prerender = true;
+
 const toPubDate = (date: string | Dayjs | null) => {
   if (!date) {
     return '';
