@@ -3,6 +3,8 @@
   position: relative;
   padding: 32px;
   background-color: #fefefe;
+  content-visibility: auto;
+  contain-intrinsic-size: 960px;
 }
 
 @media (min-width: 768px) {
