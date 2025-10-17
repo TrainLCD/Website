@@ -1,0 +1,55 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import DescriptionText from '../DescriptionText';
+import AppStoreJPImg from '../../assets/images/store/app-store-jp.png';
+import PlayStoreJPImg from '../../assets/images/store/google-play-jp.png';
+import styles from './Download.module.css';
+---
+
+<section class={styles.container} id="download">
+  <div class={styles.stores}>
+    <a
+      class={styles.storeLink}
+      href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ImageWithoutSize
+        alt="App Storeでダウンロード"
+        src={AppStoreJPImg}
+        widths={[200, 260, 320, 400]}
+        sizes="(min-width: 768px) 300px, min(70vw, 220px)"
+        format="webp"
+      />
+    </a>
+    <a
+      class={styles.storeLink}
+      href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <ImageWithoutSize
+        alt="Google Playでダウンロード"
+        src={PlayStoreJPImg}
+        widths={[200, 260, 320, 400]}
+        sizes="(min-width: 768px) 300px, min(70vw, 220px)"
+        format="webp"
+      />
+    </a>
+  </div>
+  <div class={styles.texts}>
+    <p class={styles.shortHeading}>早速使ってみよう</p>
+    <h3 class={styles.heading}>
+      iOSとAndroid
+      <br />
+      <span class={styles.accent}>どちらも対応</span>
+    </h3>
+
+    <DescriptionText>
+      iPhone、iPad、Androidスマートフォンに対応していて、もちろん無料です。
+      <br />
+      早速お使いのスマートフォンで使ってみましょう！
+    </DescriptionText>
+  </div>
+</section>
+

@@ -1,0 +1,40 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import DescriptionText from '../DescriptionText';
+import iPadMock from '../../assets/images/ipad.png';
+import styles from './Tablet.module.css';
+---
+
+<section class={styles.container}>
+  <div class={styles.layout}>
+    <div class={styles.texts}>
+      <p class={styles.shortHeading}>タブレット対応</p>
+      <h3 class={styles.heading}>
+        <span class={styles.accent}>iPad</span>
+        で使えます
+      </h3>
+      <DescriptionText>
+        iPadと一緒に使えば、 もっとわかりやすく次の駅を知ることができます。
+        <br />
+        最新のどのiPadにも対応しているため、
+        <br />
+        アプリをダウンロードしてすぐ快適に使えます。
+        <sup class={styles.caption}>*2</sup>
+      </DescriptionText>
+      <p class={styles.disclaimer}>
+        <sup>*2</sup>
+        Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる場合があります。
+      </p>
+    </div>
+    <div class={styles.mockup}>
+      <ImageWithoutSize
+        src={iPadMock}
+        alt="iPadアプリの画面"
+        widths={[360, 540, 720, 960, 1200]}
+        sizes="(min-width: 1024px) 45vw, 90vw"
+        format="webp"
+      />
+    </div>
+  </div>
+</section>
+

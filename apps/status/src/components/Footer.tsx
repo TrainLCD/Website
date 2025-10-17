@@ -69,9 +69,10 @@ const Footer = () => {
           >
             <TinyKittenProduct className="h-8 w-auto" />
           </a>
-          <p className="text-white text-xs opacity-75 leading-relaxed text-left md:text-right whitespace-pre-wrap">
+          <p className="text-white text-xs opacity-75 text-left md:text-right whitespace-pre-wrap">
             © 2019-{currentYear} TinyKitten(Tsubasa SEKIGUCHI)
-            {'\n'}and the Volunteer TrainLCD development team.
+            <br />
+            and the Volunteer TrainLCD development team.
           </p>
         </div>
       </div>

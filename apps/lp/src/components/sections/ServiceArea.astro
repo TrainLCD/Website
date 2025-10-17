@@ -1,0 +1,36 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import DescriptionText from '../DescriptionText';
+import mojikoMock from '../../assets/images/mockup/mojiko.png';
+import styles from './ServiceArea.module.css';
+---
+
+<section class={styles.container}>
+  <div class={styles.mockup}>
+    <ImageWithoutSize
+      src={mojikoMock}
+      alt="TrainLCDの画面（門司港駅）"
+      widths={[360, 540, 720, 960]}
+      sizes="(min-width: 1024px) 40vw, 90vw"
+      format="webp"
+    />
+  </div>
+  <div class={styles.texts}>
+    <p class={styles.shortHeading}>サービス対象エリア</p>
+    <h3 class={styles.heading}>
+      <span class={styles.accent}>日本全国</span>
+      サービス対象
+    </h3>
+    <DescriptionText>
+      一部例外を除き、日本全国のほとんどの
+      <br />
+      鉄道路線に対応しています
+      <sup class={styles.caption}>*1</sup>
+    </DescriptionText>
+    <p class={styles.disclaimer}>
+      <sup>*1</sup>
+      地下鉄などの電波の入りづらい路線、鶴見線などの入り組んだ路線は一部サービス保証外となります。またサービス対象は鉄道路線のみであり、バス等の移動手段には対応しておりません。
+    </p>
+  </div>
+</section>
+
