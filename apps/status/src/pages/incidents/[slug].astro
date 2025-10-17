@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IncidentPage from '@pages/IncidentPage';
+import { incidentHistories } from 'data';
+
+export async function getStaticPaths() {
+  return incidentHistories.map((incident) => ({
+    params: { slug: incident.slug },
+    props: { incident },
+  }));
+}
+
+const incident = Astro.props.incident;
+const pageTitle = incident
+  ? `${incident.title} - TrainLCD System Status`
+  : 'TrainLCD System Status';
+const description = incident
+  ? incident.description
+  : 'TrainLCDサービスの障害情報';
+---
+
+<BaseLayout title={pageTitle} description={description}>
+  <IncidentPage incident={incident} />
+</BaseLayout>

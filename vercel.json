@@ -1,0 +1,41 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    {
+      "src": "apps/lp/package.json",
+      "use": "@vercel/astro",
+      "config": {
+        "outputDirectory": "dist"
+      }
+    },
+    {
+      "src": "apps/status/package.json",
+      "use": "@vercel/astro",
+      "config": {
+        "outputDirectory": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "status.trainlcd.app"
+        }
+      ],
+      "dest": "/apps/status/$1"
+    },
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "trainlcd.app"
+        }
+      ],
+      "dest": "/apps/lp/$1"
+    }
+  ]
+}

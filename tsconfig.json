@@ -1,3 +1,8 @@
 {
-  "extends": "@repo/typescript-config/base.json"
+  "files": [],
+  "references": [
+    { "path": "./apps/lp/tsconfig.json" },
+    { "path": "./apps/status/tsconfig.json" },
+    { "path": "./packages/data/tsconfig.json" }
+  ]
 }

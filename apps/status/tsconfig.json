@@ -1,18 +1,23 @@
 {
-  "extends": "@repo/typescript-config/nextjs.json",
+  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "composite": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "jsxImportSource": "preact",
+    "types": ["astro/client"],
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@icons/*": ["src/components/icons/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": [
-    "next-env.d.ts",
-    "next.config.js",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
+    "astro.config.mjs",
+    "src",
+    "env.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["dist", "node_modules"]
 }

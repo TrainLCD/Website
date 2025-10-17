@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    "composite": true,
+    "incremental": true,
     "target": "es2016",
     "module": "commonjs",
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,

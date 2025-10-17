@@ -1,0 +1,113 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  padding: 32px;
+  background-color: #fefefe;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 64px;
+  }
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.mockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .mockup {
+    width: 50%;
+    order: 0;
+  }
+}
+
+.texts {
+  width: 100%;
+  margin-top: 24px;
+  order: 0;
+}
+
+@media (min-width: 768px) {
+  .texts {
+    width: 50%;
+    margin-top: 0;
+  }
+}
+
+.shortHeading {
+  color: #277bc0;
+  font-weight: bold;
+  margin-top: 32px;
+}
+
+@media (min-width: 768px) {
+  .shortHeading {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+}
+
+.accent {
+  color: #277bc0;
+  white-space: pre-wrap;
+}
+
+.heading {
+  line-height: 1.25;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+.githubIcon {
+  width: 160px;
+  height: 156.04px;
+}
+
+@media (min-width: 768px) {
+  .githubIcon {
+    width: 290px;
+    height: 282.82px;
+  }
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #277bc0;
+  width: 180px;
+  height: 48px;
+  border: none;
+  border-radius: 48px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 32px;
+  cursor: pointer;
+  text-decoration: none;
+}

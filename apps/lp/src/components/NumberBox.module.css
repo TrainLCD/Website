@@ -1,0 +1,60 @@
+.container {
+  width: 108px;
+  height: 108px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  display: flex;
+  height: calc(100% - 32px);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #eeeeee;
+  border-radius: 16px 16px 0 0;
+}
+
+.afterTextContainer {
+  background-color: #03a9f4;
+  height: 32px;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  margin: -1px 0;
+}
+
+.afterText {
+  color: #ffffff;
+  font-size: 0.75rem;
+}
+
+.preText {
+  font-weight: bold;
+  color: #333333;
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+}
+
+.preTextEn {
+  font-size: 0.75rem;
+  margin-bottom: 8px;
+}
+
+.preTextJa {
+  font-size: 1rem;
+}
+
+.num {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+}
