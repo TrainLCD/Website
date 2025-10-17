@@ -44,14 +44,6 @@ const Footer = () => {
           </div>
           <div className="flex flex-col md:flex-row md:items-center gap-3 mt-6 text-sm font-bold">
             <a
-              href="https://status.trainlcd.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-75 transition hover:opacity-100"
-            >
-              障害情報
-            </a>
-            <a
               href="https://tinykitten.me"
               target="_blank"
               rel="noopener noreferrer"
