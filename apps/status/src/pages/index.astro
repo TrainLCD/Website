@@ -1,11 +1,23 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HomePage from '@pages/HomePage';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HomePage from "@pages/HomePage";
+import { resolveLocale } from "@utils/locale";
 
-const title = 'TrainLCD System Status';
-const description = 'TrainLCDサービスの障害情報をお知らせします。';
+const locale = resolveLocale(Astro.request.headers.get("accept-language"));
+const messages = {
+  ja: {
+    title: "TrainLCDシステムステータス",
+    description: "TrainLCDサービスの障害情報をお知らせします。",
+  },
+  en: {
+    title: "TrainLCD System Status",
+    description: "Latest operational notices for TrainLCD services.",
+  },
+} as const;
+
+const { title, description } = messages[locale];
 ---
 
-<BaseLayout {title} {description}>
-  <HomePage />
+<BaseLayout {title} {description} lang={locale}>
+  <HomePage locale={locale} />
 </BaseLayout>
