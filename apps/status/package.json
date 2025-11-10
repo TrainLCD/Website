@@ -15,7 +15,8 @@
     "astro": "^5.14.5",
     "data": "*",
     "dayjs": "^1.11.10",
-    "preact": "^10.27.2"
+    "preact": "^10.27.2",
+    "ui": "*"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",

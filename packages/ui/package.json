@@ -1,0 +1,28 @@
+{
+  "name": "ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./Footer": "./src/components/Footer.tsx",
+    "./AppLogo": "./src/components/AppLogo.tsx",
+    "./TinyKittenProduct": "./src/components/TinyKittenProduct.tsx",
+    "./icons/Discord": "./src/components/icons/Discord.tsx",
+    "./icons/X": "./src/components/icons/X.tsx"
+  },
+  "scripts": {
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "preact": "^10.27.2"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@types/node": "^20.14.10",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "typescript": "^5.6.3"
+  }
+}
