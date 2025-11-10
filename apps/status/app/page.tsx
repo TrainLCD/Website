@@ -7,11 +7,7 @@ import { FeedIcon } from './components/icons/Feed';
 import { XIcon } from './components/icons/X';
 import { services, incidentHistories, statusLabel } from 'data';
 
-// Force dynamic rendering for SSR
-export const dynamic = 'force-dynamic';
-
 export default async function HomePage() {
-  // Directly use data from the data package for SSR
   const data = {
     statusLabel,
     services,
