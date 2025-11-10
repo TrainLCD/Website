@@ -496,7 +496,7 @@ const incidentSeed: IncidentSeed[] = [
 
 export const incidentHistories: IncidentHistory[] = incidentSeed.map(
   (incident) => {
-    const latestUpdate = incident.updates.at(-1);
+    const latestUpdate = incident.updates[incident.updates.length - 1];
     const updatedAt =
       incident.updatedAt || latestUpdate?.createdAt || incident.publishedAt;
 
