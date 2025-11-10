@@ -16,10 +16,18 @@ const HomePage = () => (
     <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
       <FeedIcon className="text-orange-700 h-4 w-4" />
       <p className="ml-1 text-xs">フィード登録はこちら: </p>
-      <a className="text-xs ml-2 text-orange-700" href="/rss.xml">
+      <a
+        className="text-xs ml-2 text-orange-700"
+        href="/rss.xml"
+        target="_blank"
+      >
         RSS
       </a>
-      <a className="text-xs ml-2 text-orange-700" href="/atom.xml">
+      <a
+        className="text-xs ml-2 text-orange-700"
+        href="/atom.xml"
+        target="_blank"
+      >
         Atom
       </a>
     </div>
