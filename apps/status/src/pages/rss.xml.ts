@@ -68,6 +68,8 @@ export const GET: APIRoute = () => {
   return new Response(body, {
     headers: {
       'Content-Type': 'application/rss+xml; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, HEAD',
     },
   });
 };
