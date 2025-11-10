@@ -19,6 +19,7 @@ const HomePage = () => (
       <a
         className="text-xs ml-2 text-orange-700"
         href="/rss.xml"
+        rel="noopener noreferrer"
         target="_blank"
       >
         RSS
@@ -26,6 +27,7 @@ const HomePage = () => (
       <a
         className="text-xs ml-2 text-orange-700"
         href="/atom.xml"
+        rel="noopener noreferrer"
         target="_blank"
       >
         Atom
