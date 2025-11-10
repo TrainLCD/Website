@@ -1,4 +1,4 @@
-import AppLogo from './AppLogo';
+import AppLogo from 'ui/AppLogo';
 
 const Header = () => {
   return (
