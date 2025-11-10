@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomePage from "@pages/HomePage";
-import { resolveLocale } from "@utils/locale";
+import type { Locale } from "@utils/locale";
 
-const locale = resolveLocale(Astro.request.headers.get("accept-language"));
+const initialLocale: Locale = "ja";
 const messages = {
   ja: {
     title: "TrainLCDシステムステータス",
@@ -15,9 +15,9 @@ const messages = {
   },
 } as const;
 
-const { title, description } = messages[locale];
+const { title, description } = messages[initialLocale];
 ---
 
-<BaseLayout {title} {description} lang={locale}>
-  <HomePage locale={locale} />
+<BaseLayout {title} {description} lang={initialLocale}>
+  <HomePage client:load initialLocale={initialLocale} />
 </BaseLayout>

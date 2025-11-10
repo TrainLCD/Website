@@ -1,3 +1,4 @@
+import { useEffect, useState } from "preact/hooks";
 import IncidentsTable from "@components/IncidentsTable";
 import Overview from "@components/Overview";
 import ServicesTable from "@components/ServicesTable";
@@ -6,7 +7,7 @@ import { XIcon } from "@components/icons/X";
 import type { Locale } from "@utils/locale";
 
 type Props = {
-  locale: Locale;
+  initialLocale: Locale;
 };
 
 const copy = {
@@ -20,7 +21,25 @@ const copy = {
   },
 } as const;
 
-const HomePage = ({ locale }: Props) => {
+const detectBrowserLocale = (): Locale => {
+  if (typeof navigator === "undefined") {
+    return "ja";
+  }
+  const lang = navigator.language.toLowerCase();
+  if (lang.startsWith("ja")) {
+    return "ja";
+  }
+  return "en";
+};
+
+const HomePage = ({ initialLocale }: Props) => {
+  const [locale, setLocale] = useState<Locale>(initialLocale);
+
+  useEffect(() => {
+    const browserLocale = detectBrowserLocale();
+    setLocale(browserLocale);
+  }, []);
+
   const t = copy[locale];
 
   return (
