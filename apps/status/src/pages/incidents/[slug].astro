@@ -30,10 +30,10 @@ const resolvedText = incident?.resolvedAt
     : null;
 
 const pageTitle = incident
-  ? `${incident.title} - TrainLCD System Status`
+  ? `${incident.title.ja} - TrainLCD System Status`
   : 'TrainLCD System Status';
 const description = incident
-  ? incident.description
+  ? incident.description.ja
   : 'TrainLCDサービスの障害情報';
 ---
 
@@ -44,9 +44,9 @@ const description = incident
         <div class="flex justify-center flex-col items-center w-full max-w-2xl">
           <StatusIcon status={incident.incidentImpact} className="h-32 w-32" />
           <h1 class="mt-4 font-bold text-2xl text-center whitespace-pre-wrap">
-            {incident.title}
+            {incident.title.ja}
           </h1>
-          <p class="mt-4 w-full whitespace-pre-wrap">{incident.description}</p>
+          <p class="mt-4 w-full whitespace-pre-wrap">{incident.description.ja}</p>
 
           <div class="mt-6 w-full flex">
             <p class="font-bold">推定障害発生日時:</p>
@@ -58,7 +58,7 @@ const description = incident
           </div>
           <div class="w-full flex">
             <p class="font-bold">障害の原因:</p>
-            <p class="ml-2">{incident.cause}</p>
+            <p class="ml-2">{incident.cause?.ja}</p>
           </div>
           <div class="w-full flex">
             <p class="font-bold">復旧日時:</p>

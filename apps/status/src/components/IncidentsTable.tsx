@@ -14,9 +14,9 @@ const IncidentsTable = () => {
                 {parseTokyoDate(incident.publishedAt).format('YYYY/MM/DD HH:mm')}
               </p>
               <a className="underline decoration-solid" href={`/incidents/${incident.slug}`}>
-                <p className="font-semibold">{incident.title}</p>
+                <p className="font-semibold">{incident.title.ja}</p>
               </a>
-              <p className="text-xs mt-1">{incident.description}</p>
+              <p className="text-xs mt-1">{incident.description.ja}</p>
             </div>
             <div className="flex justify-center items-center">
               <StatusIcon
