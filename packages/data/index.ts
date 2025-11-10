@@ -50,7 +50,6 @@ export type IncidentUpdate = {
 export type IncidentHistory = {
   id: string;
   slug: string;
-  impact: StatusType;
   incidentImpact: StatusType;
   affectedServiceIds: string[];
   title: LocaleText;
@@ -204,7 +203,7 @@ export const services: Service[] = serviceCatalog.map((service) => {
   };
 });
 
-type IncidentSeed = Omit<IncidentHistory, "incidentImpact" | "updatedAt"> & {
+type IncidentSeed = Omit<IncidentHistory, "updatedAt"> & {
   updatedAt?: string;
 };
 
@@ -212,7 +211,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:2ff6a668-e923-4ba5-87c4-4cfe4e734efc",
     slug: "2024-11-01-tts-outage-resolved",
-    impact: "degraded",
+    incidentImpact: "degraded",
     affectedServiceIds: ["tts"],
     title: {
       ja: "自動アナウンス機能は現在正常にご利用いただけます",
@@ -256,7 +255,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:974a2140-0b20-4d74-82aa-e98b1b6240ab",
     slug: "2024-11-01-tts-outage",
-    impact: "outage",
+    incidentImpact: "outage",
     affectedServiceIds: ["tts"],
     title: {
       ja: "自動アナウンス機能は当分の間ご利用になれません",
@@ -291,7 +290,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:d054fa44-faf9-42d0-a0d6-6c062cfe344c",
     slug: "2024-11-01-tts-degradation",
-    impact: "degraded",
+    incidentImpact: "degraded",
     affectedServiceIds: ["tts"],
     title: {
       ja: "TTS日本語音声のコスト削減について",
@@ -326,7 +325,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:936e0961-0cbf-4ccd-a80c-facd88b8c052",
     slug: "2024-04-17-tts-incident",
-    impact: "degraded",
+    incidentImpact: "degraded",
     affectedServiceIds: ["tts"],
     title: {
       ja: "TrainLCDアプリ バージョン7.1.0にて自動アナウンス機能が断続的に使用不可",
@@ -370,7 +369,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:e0f56f6e-1855-4ddf-8bc6-d218871d441c",
     slug: "2024-04-09-operational",
-    impact: "operational",
+    incidentImpact: "operational",
     affectedServiceIds: [
       "mobile-ios",
       "mobile-android",
@@ -411,7 +410,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:3f00fc27-b12e-4cef-9899-ab6f63b46444",
     slug: "2",
-    impact: "degraded",
+    incidentImpact: "degraded",
     affectedServiceIds: ["mobile-ios", "mobile-android", "feedback", "tts"],
     title: {
       ja: "TrainLCD一部サービスの提供再開",
@@ -446,7 +445,7 @@ const incidentSeed: IncidentSeed[] = [
   {
     id: "urn:uuid:ef88d24e-baa9-4694-a662-a4e116cc4a7c",
     slug: "1",
-    impact: "maintenance",
+    incidentImpact: "maintenance",
     affectedServiceIds: [
       "mobile-ios",
       "mobile-android",
@@ -504,7 +503,6 @@ export const incidentHistories: IncidentHistory[] = incidentSeed.map(
     return {
       ...incident,
       updatedAt,
-      incidentImpact: incident.impact,
     };
   }
 );
