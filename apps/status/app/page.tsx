@@ -5,32 +5,29 @@ import ServicesTable from './components/client/ServicesTable';
 import IncidentsTable from './components/client/IncidentsTable';
 import { FeedIcon } from './components/icons/Feed';
 import { XIcon } from './components/icons/X';
+import { services, incidentHistories, statusLabel } from 'data';
 
-async function getStatusSnapshot() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/status/snapshot`, {
-    cache: 'no-store',
-  });
-  
-  if (!res.ok) {
-    throw new Error('Failed to fetch status');
-  }
-  
-  return res.json();
-}
+// Force dynamic rendering for SSR
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const { statusLabel, services, incidents } = await getStatusSnapshot();
+  // Directly use data from the data package for SSR
+  const data = {
+    statusLabel,
+    services,
+    incidents: incidentHistories,
+  };
 
   return (
     <>
       <Header />
       <main className="flex flex-col justify-center items-center md:p-8 p-4 md:mt-16 mt-4 md:mb-32 mb-16">
-        <Overview statusLabel={statusLabel} />
+        <Overview statusLabel={data.statusLabel} />
         <div className="mt-16 w-full flex justify-center items-center">
-          <ServicesTable services={services} />
+          <ServicesTable services={data.services} />
         </div>
         <div className="mt-16 w-full flex justify-center items-center">
-          <IncidentsTable incidents={incidents} />
+          <IncidentsTable incidents={data.incidents} />
         </div>
         <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
           <FeedIcon className="text-orange-700 h-4 w-4" />
