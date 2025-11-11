@@ -1,14 +1,13 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: true,
-    tsconfigRootDir: __dirname,
-  },
+  extends: ['next/core-web-vitals'],
   env: {
     browser: true,
+    node: true,
     es2022: true,
   },
-  extends: ['eslint:recommended'],
+  rules: {
+    '@next/next/no-page-custom-font': 'off',
+  },
 };
