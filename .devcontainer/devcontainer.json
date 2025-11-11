@@ -34,7 +34,7 @@
     }
   },
 
-  "postCreateCommand": "sudo chown -R node:node /workspace && npm install",
+  "postCreateCommand": "sudo chown -R node:node /workspace && [ ! -d node_modules ] && npm install || echo 'Dependencies already installed'",
   "postStartCommand": "npx prisma generate",
 
   "remoteUser": "node",
