@@ -4,8 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "db:seed": "tsx prisma/seed.ts"
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "prisma": "^6.19.0",
@@ -21,7 +20,6 @@
   ],
   "dependencies": {
     "@prisma/client": "^6.19.0",
-    "dotenv": "^17.2.3",
-    "tsx": "^4.19.2"
+    "dotenv": "^17.2.3"
   }
 }
