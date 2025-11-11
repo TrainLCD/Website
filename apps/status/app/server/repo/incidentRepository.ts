@@ -11,14 +11,15 @@ const INCIDENTS_CACHE_KEY = 'incidents:all';
  */
 export async function getIncidentHistories(): Promise<IncidentHistory[]> {
   try {
-    // Try Redis cache first
-    const cached = await redis.get(INCIDENTS_CACHE_KEY);
-    if (cached) {
-      console.log('[IncidentRepository] Cache HIT for incidents');
-      return JSON.parse(cached);
+    // Try Redis cache first if connected
+    if (redis.status === 'ready') {
+      const cached = await redis.get(INCIDENTS_CACHE_KEY);
+      if (cached) {
+        console.log('[IncidentRepository] Cache HIT for incidents');
+        return JSON.parse(cached);
+      }
+      console.log('[IncidentRepository] Cache MISS for incidents, fetching from DB');
     }
-
-    console.log('[IncidentRepository] Cache MISS for incidents, fetching from DB');
 
     // Fetch from PostgreSQL using Prisma
     const incidents = await prisma.incidentHistory.findMany({
@@ -76,12 +77,16 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
       lastNotifiedAt: incident.lastNotifiedAt?.toISOString() ?? null,
     }));
 
-    // Cache in Redis
-    await redis.setex(
-      INCIDENTS_CACHE_KEY,
-      CACHE_TTL,
-      JSON.stringify(incidentHistories)
-    );
+    // Cache in Redis if connected
+    if (redis.status === 'ready') {
+      await redis.setex(
+        INCIDENTS_CACHE_KEY,
+        CACHE_TTL,
+        JSON.stringify(incidentHistories)
+      ).catch((err) => {
+        console.warn('[IncidentRepository] Failed to cache incidents:', err.message);
+      });
+    }
 
     return incidentHistories;
   } catch (error) {

@@ -8,6 +8,9 @@ import { XIcon } from './components/icons/X';
 import { getServices, getStatusLabel } from './server/repo/serviceRepository';
 import { getIncidentHistories } from './server/repo/incidentRepository';
 
+// Force dynamic rendering - don't pre-render during build
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const [statusLabel, services, incidents] = await Promise.all([
     getStatusLabel(),

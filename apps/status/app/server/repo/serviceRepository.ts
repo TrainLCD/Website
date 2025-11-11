@@ -11,14 +11,15 @@ const SERVICES_CACHE_KEY = 'services:all';
  */
 export async function getServices(): Promise<Service[]> {
   try {
-    // Try Redis cache first
-    const cached = await redis.get(SERVICES_CACHE_KEY);
-    if (cached) {
-      console.log('[ServiceRepository] Cache HIT for services');
-      return JSON.parse(cached);
+    // Try Redis cache first if connected
+    if (redis.status === 'ready') {
+      const cached = await redis.get(SERVICES_CACHE_KEY);
+      if (cached) {
+        console.log('[ServiceRepository] Cache HIT for services');
+        return JSON.parse(cached);
+      }
+      console.log('[ServiceRepository] Cache MISS for services, fetching from DB');
     }
-
-    console.log('[ServiceRepository] Cache MISS for services, fetching from DB');
 
     // Fetch from PostgreSQL using Prisma
     const serviceDefinitions = await prisma.serviceDefinition.findMany({
@@ -59,8 +60,12 @@ export async function getServices(): Promise<Service[]> {
       };
     });
 
-    // Cache in Redis
-    await redis.setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services));
+    // Cache in Redis if connected
+    if (redis.status === 'ready') {
+      await redis.setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services)).catch((err) => {
+        console.warn('[ServiceRepository] Failed to cache services:', err.message);
+      });
+    }
 
     return services;
   } catch (error) {

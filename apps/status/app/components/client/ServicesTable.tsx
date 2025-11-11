@@ -1,6 +1,6 @@
 'use client';
 
-import type { Service } from '@/app/server/types';
+import type { Service } from '@/server/types';
 import { StatusIcon } from '../StatusIcon';
 
 type ServicesTableProps = {

@@ -1,4 +1,4 @@
-import type { StatusType } from '@/app/server/types';
+import type { StatusType } from '@/server/types';
 import type { SVGProps } from 'react';
 import { CheckmarkIcon } from './icons/Checkmark';
 import { ErrorIcon } from './icons/Error';

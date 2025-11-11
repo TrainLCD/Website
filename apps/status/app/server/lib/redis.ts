@@ -4,6 +4,7 @@ const globalForRedis = globalThis as unknown as {
   redis: Redis | undefined;
 };
 
+// Create Redis client without automatic connection
 export const redis =
   globalForRedis.redis ??
   new Redis(process.env.REDIS_URL || 'redis://localhost:6379', {
@@ -13,11 +14,16 @@ export const redis =
       return delay;
     },
     lazyConnect: true,
+    // Disable auto-reconnect during build to prevent hanging
+    enableOfflineQueue: false,
   });
 
 if (process.env.NODE_ENV !== 'production') globalForRedis.redis = redis;
 
-// Ensure connection is established
-redis.connect().catch((err) => {
-  console.error('Failed to connect to Redis:', err);
-});
+// Connect only when REDIS_URL is provided (runtime)
+if (process.env.REDIS_URL) {
+  redis.connect().catch((err) => {
+    console.warn('Redis connection failed, will fallback to database only:', err.message);
+  });
+}
+
