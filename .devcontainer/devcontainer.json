@@ -1,6 +1,6 @@
 {
   "name": "TrainLCD Status Development",
-  "dockerComposeFile": "docker-compose.yml",
+  "dockerComposeFile": "compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
   

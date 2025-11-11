@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM node:24-bookworm
 
 # Install basic development tools
 RUN apt-get update && apt-get install -y \

@@ -4,8 +4,8 @@ This directory contains the VS Code DevContainer configuration for developing th
 
 ## What's Included
 
-- **Node.js 20**: Development environment with npm
-- **PostgreSQL 16**: Database for Prisma ORM
+- **Node.js 24**: Development environment with npm
+- **PostgreSQL 18**: Database for Prisma ORM
 - **Redis 7**: Caching and session storage
 - **Development Tools**: git, postgresql-client, redis-tools
 
@@ -86,6 +86,6 @@ The DevContainer automatically configures:
 ## Notes
 
 - **Scope**: This DevContainer is configured for `apps/status` only
-- **Package Manager**: npm (version provided by Node.js 20 image; may not be exactly 10.4.0)
+- **Package Manager**: npm (version provided by Node.js 24 image)
 - **ORM**: Prisma with PostgreSQL
 - Changes to Prisma schema require running `npx prisma generate` and `npx prisma migrate dev`
