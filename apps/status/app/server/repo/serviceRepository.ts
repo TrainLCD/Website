@@ -1,16 +1,9 @@
 import { prisma } from '../lib/prisma';
 import { redis } from '../lib/redis';
 import type { Service, StatusType } from '../types';
-import type { Prisma } from '@prisma/client';
 
 const CACHE_TTL = 60; // 60 seconds cache
 const SERVICES_CACHE_KEY = 'services:all';
-
-type ServiceDefinitionWithSnapshots = Prisma.ServiceDefinitionGetPayload<{
-  include: {
-    statusSnapshots: true;
-  };
-}>;
 
 /**
  * Fetches all services with their current status.
@@ -40,7 +33,7 @@ export async function getServices(): Promise<Service[]> {
       },
     });
 
-    const services: Service[] = serviceDefinitions.map((def: ServiceDefinitionWithSnapshots) => {
+    const services: Service[] = serviceDefinitions.map((def) => {
       const snapshot = def.statusSnapshots[0];
       if (!snapshot) {
         throw new Error(`Missing status snapshot for service ${def.id}`);

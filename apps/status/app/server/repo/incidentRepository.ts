@@ -1,21 +1,9 @@
 import { prisma } from '../lib/prisma';
 import { redis } from '../lib/redis';
 import type { IncidentHistory, StatusType } from '../types';
-import type { Prisma } from '@prisma/client';
 
 const CACHE_TTL = 60; // 60 seconds cache
 const INCIDENTS_CACHE_KEY = 'incidents:all';
-
-type IncidentWithRelations = Prisma.IncidentHistoryGetPayload<{
-  include: {
-    updates: true;
-    affectedServices: {
-      select: {
-        serviceId: true;
-      };
-    };
-  };
-}>;
 
 /**
  * Fetches all incident histories with their updates.
@@ -52,7 +40,7 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
       },
     });
 
-    const incidentHistories: IncidentHistory[] = incidents.map((incident: IncidentWithRelations) => ({
+    const incidentHistories: IncidentHistory[] = incidents.map((incident) => ({
       id: incident.id,
       slug: incident.slug,
       incidentImpact: incident.incidentImpact as StatusType,
