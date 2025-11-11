@@ -1,10 +1,10 @@
 # TrainLCD System Status
 
-Status page for TrainLCD services built with Next.js 16.
+Status page for TrainLCD services built with Next.js 15.
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 with App Router
+- **Framework**: Next.js 15 with App Router
 - **Runtime**: Node.js
 - **Rendering**: Server-Side Rendering (SSR)
 - **Styling**: Tailwind CSS
