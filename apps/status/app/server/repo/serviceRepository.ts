@@ -33,7 +33,7 @@ export async function getServices(): Promise<Service[]> {
       },
     });
 
-    const services: Service[] = serviceDefinitions.map((def) => {
+    const services: Service[] = serviceDefinitions.map((def: any) => {
       const snapshot = def.statusSnapshots[0];
       if (!snapshot) {
         throw new Error(`Missing status snapshot for service ${def.id}`);

@@ -40,11 +40,11 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
       },
     });
 
-    const incidentHistories: IncidentHistory[] = incidents.map((incident) => ({
+    const incidentHistories: IncidentHistory[] = incidents.map((incident: any) => ({
       id: incident.id,
       slug: incident.slug,
       incidentImpact: incident.incidentImpact as StatusType,
-      affectedServiceIds: incident.affectedServices.map((as) => as.serviceId),
+      affectedServiceIds: incident.affectedServices.map((as: any) => as.serviceId),
       title: {
         ja: incident.titleJa,
         en: incident.titleEn,
@@ -65,7 +65,7 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
           }
         : null,
       externalLink: incident.externalLink,
-      updates: incident.updates.map((update) => ({
+      updates: incident.updates.map((update: any) => ({
         id: update.id,
         status: update.status as StatusType,
         body: {
