@@ -7,6 +7,7 @@
     "lint": "turbo lint"
   },
   "devDependencies": {
+    "prisma": "^6.19.0",
     "turbo": "latest"
   },
   "engines": {
@@ -16,5 +17,9 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "dotenv": "^17.2.3"
+  }
 }

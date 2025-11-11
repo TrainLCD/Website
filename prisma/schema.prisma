@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Service definition - catalog of available services
+model ServiceDefinition {
+  id          String   @id
+  category    String   // application, api, platform, support
+  labelJa     String   @map("label_ja")
+  labelEn     String   @map("label_en")
+  descriptionJa String @map("description_ja")
+  descriptionEn String @map("description_en")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  statusSnapshots ServiceStatusSnapshot[]
+  affectedIncidents AffectedService[]
+
+  @@map("service_definitions")
+}
+
+// Current status snapshot for each service
+model ServiceStatusSnapshot {
+  id            Int      @id @default(autoincrement())
+  serviceId     String   @map("service_id")
+  status        String   // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
+  summaryJa     String   @map("summary_ja")
+  summaryEn     String   @map("summary_en")
+  statusSince   DateTime @map("status_since")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  // Relations
+  service ServiceDefinition @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@index([serviceId])
+  @@map("service_status_snapshots")
+}
+
+// Incident history - records of incidents affecting services
+model IncidentHistory {
+  id                   String    @id
+  slug                 String    @unique
+  incidentImpact       String    @map("incident_impact") // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
+  titleJa              String    @map("title_ja")
+  titleEn              String    @map("title_en")
+  descriptionJa        String    @map("description_ja") @db.Text
+  descriptionEn        String    @map("description_en") @db.Text
+  publishedAt          DateTime  @map("published_at")
+  startedAt            DateTime  @map("started_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  resolvedAt           DateTime? @map("resolved_at")
+  estimatedResolveDate DateTime? @map("estimated_resolve_date")
+  causeJa              String?   @map("cause_ja") @db.Text
+  causeEn              String?   @map("cause_en") @db.Text
+  externalLink         String?   @map("external_link")
+  lastNotifiedAt       DateTime? @map("last_notified_at")
+  createdAt            DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  updates           IncidentUpdate[]
+  affectedServices  AffectedService[]
+
+  @@index([slug])
+  @@index([publishedAt])
+  @@map("incident_histories")
+}
+
+// Updates for each incident
+model IncidentUpdate {
+  id         String   @id
+  incidentId String   @map("incident_id")
+  status     String   // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
+  bodyJa     String   @map("body_ja") @db.Text
+  bodyEn     String   @map("body_en") @db.Text
+  createdAt  DateTime @map("created_at")
+
+  // Relations
+  incident IncidentHistory @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+
+  @@index([incidentId])
+  @@map("incident_updates")
+}
+
+// Junction table for many-to-many relationship between incidents and services
+model AffectedService {
+  incidentId String   @map("incident_id")
+  serviceId  String   @map("service_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  // Relations
+  incident IncidentHistory    @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  service  ServiceDefinition  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@id([incidentId, serviceId])
+  @@index([incidentId])
+  @@index([serviceId])
+  @@map("affected_services")
+}
