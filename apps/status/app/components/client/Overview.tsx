@@ -1,6 +1,6 @@
 'use client';
 
-import type { StatusType } from 'data';
+import type { StatusType } from '@/app/server/types';
 import { StatusIcon } from '../StatusIcon';
 
 type OverviewProps = {

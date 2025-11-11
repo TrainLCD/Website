@@ -10,8 +10,10 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.0",
     "data": "*",
     "dayjs": "^1.11.10",
+    "ioredis": "^5.4.2",
     "next": "^16.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

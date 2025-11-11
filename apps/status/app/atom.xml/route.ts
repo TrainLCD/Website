@@ -1,4 +1,5 @@
-import { incidentHistories, services } from 'data';
+import { getServices } from '@/app/server/repo/serviceRepository';
+import { getIncidentHistories } from '@/app/server/repo/incidentRepository';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -21,6 +22,11 @@ const toPubDate = (date: string | dayjs.Dayjs | null) => {
 };
 
 export async function GET() {
+  const [services, incidentHistories] = await Promise.all([
+    getServices(),
+    getIncidentHistories(),
+  ]);
+
   const incidentDates = incidentHistories
     .map((inc) => parseTokyoDate(inc.updatedAt || inc.publishedAt));
   const serviceDates = services.map((service) => parseTokyoDate(service.updatedAt));

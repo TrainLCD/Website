@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
-import { services, incidentHistories, statusLabel } from 'data';
+import { getServices, getStatusLabel } from '@/app/server/repo/serviceRepository';
+import { getIncidentHistories } from '@/app/server/repo/incidentRepository';
 
 export async function GET() {
+  const [statusLabel, services, incidents] = await Promise.all([
+    getStatusLabel(),
+    getServices(),
+    getIncidentHistories(),
+  ]);
+
   return NextResponse.json({
     statusLabel,
     services,
-    incidents: incidentHistories,
+    incidents,
   });
 }
