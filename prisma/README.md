@@ -2,6 +2,10 @@
 
 This directory contains the Prisma schema and migrations for the TrainLCD status database.
 
+## Entity Relationship Diagram
+
+For a visual representation of the database structure and relationships, see [ER_DIAGRAM.md](./ER_DIAGRAM.md).
+
 ## Prerequisites
 
 - PostgreSQL 12 or later
