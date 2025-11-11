@@ -38,7 +38,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white min-h-screen flex flex-col items-center text-neutral-800" style={{ fontFamily: 'Roboto, sans-serif' }}>
+      <body className="bg-white min-h-screen flex flex-col items-center text-neutral-800">
         {children}
       </body>
     </html>

@@ -7,7 +7,7 @@ import { FeedIcon } from './components/icons/Feed';
 import { XIcon } from './components/icons/X';
 import { services, incidentHistories, statusLabel } from 'data';
 
-export default async function HomePage() {
+export default function HomePage() {
   const data = {
     statusLabel,
     services,
