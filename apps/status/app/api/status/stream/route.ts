@@ -4,20 +4,6 @@ import { services, incidentHistories, statusLabel } from 'data';
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
-  // Check if the request is from status.trainlcd.app
-  const origin = request.headers.get('origin');
-  const host = request.headers.get('host');
-  
-  // Allow requests from status.trainlcd.app or localhost for development
-  const isAllowedOrigin = 
-    origin?.includes('status.trainlcd.app') || 
-    host?.includes('localhost') ||
-    host?.includes('127.0.0.1');
-
-  if (!isAllowedOrigin && origin) {
-    return new Response('Forbidden', { status: 403 });
-  }
-
   // Create a readable stream for SSE
   const encoder = new TextEncoder();
   
@@ -55,6 +41,8 @@ export async function GET(request: NextRequest) {
     },
   });
 
+  const origin = request.headers.get('origin');
+  
   return new Response(stream, {
     headers: {
       'Content-Type': 'text/event-stream',

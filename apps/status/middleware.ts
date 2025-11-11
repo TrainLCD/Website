@@ -7,15 +7,18 @@ export function middleware(request: NextRequest) {
     const origin = request.headers.get('origin');
     const host = request.headers.get('host');
     
-    // Allow requests from status.trainlcd.app or localhost for development
-    const isAllowedOrigin = 
-      origin?.includes('status.trainlcd.app') || 
-      host?.includes('localhost') ||
-      host?.includes('127.0.0.1') ||
-      !origin; // Allow requests without origin (same-origin requests)
-
-    if (origin && !isAllowedOrigin) {
-      return new NextResponse('Forbidden', { status: 403 });
+    // For development, allow localhost
+    const isDevelopment = 
+      host?.includes('localhost') || 
+      host?.includes('127.0.0.1');
+    
+    // For production, check origin header
+    if (!isDevelopment && origin) {
+      const isAllowedOrigin = origin.includes('status.trainlcd.app');
+      
+      if (!isAllowedOrigin) {
+        return new NextResponse('Forbidden', { status: 403 });
+      }
     }
   }
 
