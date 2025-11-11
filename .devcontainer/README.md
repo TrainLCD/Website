@@ -86,6 +86,6 @@ The DevContainer automatically configures:
 ## Notes
 
 - **Scope**: This DevContainer is configured for `apps/status` only
-- **Package Manager**: npm (version 10.4.0)
+- **Package Manager**: npm (version provided by Node.js 20 image; may not be exactly 10.4.0)
 - **ORM**: Prisma with PostgreSQL
 - Changes to Prisma schema require running `npx prisma generate` and `npx prisma migrate dev`
