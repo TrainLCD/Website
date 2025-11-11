@@ -7,7 +7,11 @@ RUN apt-get update && apt-get install -y \
     vim \
     postgresql-client \
     redis-tools \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
+
+# Allow node user to use sudo without password
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Set working directory
 WORKDIR /workspace

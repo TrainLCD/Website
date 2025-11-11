@@ -34,7 +34,7 @@
     }
   },
 
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "sudo chown -R node:node /workspace && npm install",
   "postStartCommand": "npx prisma generate",
 
   "remoteUser": "node",
