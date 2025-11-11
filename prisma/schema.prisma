@@ -12,17 +12,17 @@ datasource db {
 
 // Service definition - catalog of available services
 model ServiceDefinition {
-  id          String   @id
-  category    String   // application, api, platform, support
-  labelJa     String   @map("label_ja")
-  labelEn     String   @map("label_en")
-  descriptionJa String @map("description_ja")
-  descriptionEn String @map("description_en")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id            String   @id
+  category      String // application, api, platform, support
+  labelJa       String   @map("label_ja")
+  labelEn       String   @map("label_en")
+  descriptionJa String   @map("description_ja")
+  descriptionEn String   @map("description_en")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
 
   // Relations
-  statusSnapshots ServiceStatusSnapshot[]
+  statusSnapshots   ServiceStatusSnapshot[]
   affectedIncidents AffectedService[]
 
   @@map("service_definitions")
@@ -30,14 +30,14 @@ model ServiceDefinition {
 
 // Current status snapshot for each service
 model ServiceStatusSnapshot {
-  id            Int      @id @default(autoincrement())
-  serviceId     String   @map("service_id")
-  status        String   // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
-  summaryJa     String   @map("summary_ja")
-  summaryEn     String   @map("summary_en")
-  statusSince   DateTime @map("status_since")
-  updatedAt     DateTime @updatedAt @map("updated_at")
-  createdAt     DateTime @default(now()) @map("created_at")
+  id          Int      @id @default(autoincrement())
+  serviceId   String   @map("service_id")
+  status      String // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
+  summaryJa   String   @map("summary_ja")
+  summaryEn   String   @map("summary_en")
+  statusSince DateTime @map("status_since")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   // Relations
   service ServiceDefinition @relation(fields: [serviceId], references: [id], onDelete: Cascade)
@@ -67,10 +67,9 @@ model IncidentHistory {
   createdAt            DateTime  @default(now()) @map("created_at")
 
   // Relations
-  updates           IncidentUpdate[]
-  affectedServices  AffectedService[]
+  updates          IncidentUpdate[]
+  affectedServices AffectedService[]
 
-  @@index([slug])
   @@index([publishedAt])
   @@map("incident_histories")
 }
@@ -79,7 +78,7 @@ model IncidentHistory {
 model IncidentUpdate {
   id         String   @id
   incidentId String   @map("incident_id")
-  status     String   // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
+  status     String // operational, maintenance, partiallyMaintenance, degraded, partiallyDegraded, outage, unknown
   bodyJa     String   @map("body_ja") @db.Text
   bodyEn     String   @map("body_en") @db.Text
   createdAt  DateTime @map("created_at")
@@ -98,8 +97,8 @@ model AffectedService {
   createdAt  DateTime @default(now()) @map("created_at")
 
   // Relations
-  incident IncidentHistory    @relation(fields: [incidentId], references: [id], onDelete: Cascade)
-  service  ServiceDefinition  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  incident IncidentHistory   @relation(fields: [incidentId], references: [id], onDelete: Cascade)
+  service  ServiceDefinition @relation(fields: [serviceId], references: [id], onDelete: Cascade)
 
   @@id([incidentId, serviceId])
   @@index([incidentId])
