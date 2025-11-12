@@ -4,7 +4,7 @@ import Overview from './components/client/Overview';
 import ServicesTable from './components/client/ServicesTable';
 import IncidentsTable from './components/client/IncidentsTable';
 import { FeedIcon } from './components/icons/Feed';
-import { XIcon } from './components/icons/X';
+import { XIcon } from 'ui';
 import { services, incidentHistories, statusLabel } from 'data';
 
 export default function HomePage() {
