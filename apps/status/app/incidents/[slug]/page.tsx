@@ -120,13 +120,13 @@ export default async function IncidentDetailPage({ params }: Props) {
               </p>
               {incident.resolvedAt && (
                 <p>
-                  <span className="font-semibold">解決日時:</span>{' '}
+                  <span className="font-semibold">復旧完了日時:</span>{' '}
                   {parseTokyoDate(incident.resolvedAt).format('YYYY年MM月DD日 HH:mm')}
                 </p>
               )}
               {incident.estimatedResolveDate && (
                 <p>
-                  <span className="font-semibold">解決予定日時:</span>{' '}
+                  <span className="font-semibold">推定復旧完了日時:</span>{' '}
                   {parseTokyoDate(incident.estimatedResolveDate).format(
                     'YYYY年MM月DD日 HH:mm'
                   )}
