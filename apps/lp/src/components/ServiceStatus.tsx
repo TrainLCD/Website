@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'preact/hooks';
-import type { StatusType } from 'data';
 import styles from './ServiceStatus.module.css';
 import { ErrorIcon } from './icons/Error';
 import { WarningIcon } from './icons/Warning';
+
+type StatusType =
+  | 'operational'
+  | 'maintenance'
+  | 'partiallyMaintenance'
+  | 'degraded'
+  | 'partiallyDegraded'
+  | 'outage'
+  | 'unknown';
 
 const statusColorMap = {
   operational: '#22c55e',
@@ -35,7 +43,7 @@ export const ServiceStatus = () => {
     const fetchStatus = async () => {
       try {
         const response = await fetch(
-          'https://status.trainlcd.app/api/status/snapshot',
+          import.meta.env.PUBLIC_STATUS_API_URL,
           { cache: 'no-store' }
         );
         if (!response.ok) {
