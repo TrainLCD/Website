@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { incidentHistories, services, type IncidentHistory } from 'data';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -85,12 +86,12 @@ export default async function IncidentDetailPage({ params }: Props) {
       <main className="flex flex-col justify-center items-center md:p-8 p-4 md:mt-16 mt-4 md:mb-32 mb-16 w-full">
         <div className="w-full max-w-2xl">
           {/* Back link */}
-          <a
+          <Link
             href="/"
             className="text-orange-700 hover:underline text-sm mb-4 inline-block"
           >
             ← 障害履歴に戻る
-          </a>
+          </Link>
 
           {/* Incident header */}
           <div className="border rounded-lg p-6 mb-6">
@@ -114,7 +115,7 @@ export default async function IncidentDetailPage({ params }: Props) {
                 {parseTokyoDate(incident.publishedAt).format('YYYY年MM月DD日 HH:mm')}
               </p>
               <p>
-                <span className="font-semibold">開始日時:</span>{' '}
+                <span className="font-semibold">対応開始日時:</span>{' '}
                 {parseTokyoDate(incident.startedAt).format('YYYY年MM月DD日 HH:mm')}
               </p>
               {incident.resolvedAt && (
