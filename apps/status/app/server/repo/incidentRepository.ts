@@ -13,7 +13,7 @@ const INCIDENT_CACHE_KEY_PREFIX = 'incident:';
 export async function getIncidentHistories(): Promise<IncidentHistory[]> {
   try {
     // Try Redis cache first if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       const cached = await redis.get(INCIDENTS_CACHE_KEY);
       if (cached) {
         console.log('[IncidentRepository] Cache HIT for incidents');
@@ -106,7 +106,7 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
     }));
 
     // Cache in Redis if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       await redis.setex(
         INCIDENTS_CACHE_KEY,
         CACHE_TTL,
@@ -132,7 +132,7 @@ export async function getIncidentBySlug(slug: string): Promise<IncidentHistory |
     const cacheKey = `${INCIDENT_CACHE_KEY_PREFIX}${slug}`;
     
     // Try Redis cache first if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       const cached = await redis.get(cacheKey);
       if (cached) {
         console.log(`[IncidentRepository] Cache HIT for incident ${slug}`);
@@ -229,7 +229,7 @@ export async function getIncidentBySlug(slug: string): Promise<IncidentHistory |
     };
 
     // Cache in Redis if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       await redis.setex(
         cacheKey,
         CACHE_TTL,

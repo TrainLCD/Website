@@ -1,5 +1,5 @@
 import { prisma } from '../lib/prisma';
-import { redis } from '../lib/redis';
+import { redis, isRedisAvailable } from '../lib/redis';
 import type { Service, StatusType, ServiceCategory } from '../types';
 import type { ServiceDefinition, ServiceStatusSnapshot } from '@prisma/client';
 
@@ -17,7 +17,7 @@ const SERVICES_CACHE_KEY = 'services:all';
 export async function getServices(): Promise<Service[]> {
   try {
     // Try Redis cache first if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       const cached = await redis.get(SERVICES_CACHE_KEY);
       if (cached) {
         console.log('[ServiceRepository] Cache HIT for services');
@@ -66,7 +66,7 @@ export async function getServices(): Promise<Service[]> {
     });
 
     // Cache in Redis if connected
-    if (redis.status === 'ready') {
+    if (isRedisAvailable()) {
       await redis.setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services)).catch((err: Error) => {
         console.warn('[ServiceRepository] Failed to cache services:', err.message);
       });
