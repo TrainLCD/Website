@@ -17,6 +17,7 @@
     "ui": "*"
   },
   "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
     "@types/node": "^20.14.10",
     "autoprefixer": "^10.4.22",
     "eslint": "^8.57.0",
