@@ -1,4 +1,5 @@
-import { incidentHistories, services } from 'data';
+import { getServices } from '@/server/repo/serviceRepository';
+import { getIncidentHistories } from '@/server/repo/incidentRepository';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -7,6 +8,9 @@ import minMax from 'dayjs/plugin/minMax';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(minMax);
+
+// Force dynamic rendering - don't pre-render during build
+export const dynamic = 'force-dynamic';
 
 const parseTokyoDate = (dateStr: string) => {
   return dayjs.tz(dateStr, 'Asia/Tokyo');
@@ -21,6 +25,11 @@ const toPubDate = (date: string | dayjs.Dayjs | null) => {
 };
 
 export async function GET() {
+  const [services, incidentHistories] = await Promise.all([
+    getServices(),
+    getIncidentHistories(),
+  ]);
+
   const incidentDates = incidentHistories
     .map((inc) => parseTokyoDate(inc.updatedAt || inc.publishedAt));
   const serviceDates = services.map((service) => parseTokyoDate(service.updatedAt));

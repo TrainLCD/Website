@@ -4,11 +4,16 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "db:seed": "tsx prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
     "prisma": "^6.19.0",
-    "turbo": "latest"
+    "turbo": "latest",
+    "tsx": "^4.19.2"
   },
   "engines": {
     "node": ">=18"

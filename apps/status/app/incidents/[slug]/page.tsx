@@ -1,12 +1,17 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { incidentHistories, services, type IncidentHistory } from 'data';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { StatusIcon } from '../../components/StatusIcon';
+import { getIncidentBySlug } from '@/server/repo/incidentRepository';
+import { getServices } from '@/server/repo/serviceRepository';
+import type { StatusType } from '@/server/types';
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -20,15 +25,9 @@ type Props = {
   }>;
 };
 
-export async function generateStaticParams() {
-  return incidentHistories.map((incident) => ({
-    slug: incident.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const incident = incidentHistories.find((i) => i.slug === slug);
+  const incident = await getIncidentBySlug(slug);
 
   if (!incident) {
     return {
@@ -51,7 +50,10 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function IncidentDetailPage({ params }: Props) {
   const { slug } = await params;
-  const incident = incidentHistories.find((i) => i.slug === slug);
+  const [incident, services] = await Promise.all([
+    getIncidentBySlug(slug),
+    getServices(),
+  ]);
 
   if (!incident) {
     notFound();
@@ -61,7 +63,7 @@ export default async function IncidentDetailPage({ params }: Props) {
     incident.affectedServiceIds.includes(s.id)
   );
 
-  const getStatusLabel = (status: IncidentHistory['incidentImpact']) => {
+  const getStatusLabel = (status: StatusType) => {
     switch (status) {
       case 'operational':
         return { ja: '正常', en: 'Operational' };
