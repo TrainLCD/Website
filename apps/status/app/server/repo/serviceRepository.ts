@@ -1,6 +1,11 @@
 import { prisma } from '../lib/prisma';
 import { redis } from '../lib/redis';
-import type { Service, StatusType } from '../types';
+import type { Service, StatusType, ServiceCategory } from '../types';
+import type { ServiceDefinition, ServiceStatusSnapshot } from '@prisma/client';
+
+type PrismaServiceDefinition = ServiceDefinition & {
+  statusSnapshots: ServiceStatusSnapshot[];
+};
 
 const CACHE_TTL = 60; // 60 seconds cache
 const SERVICES_CACHE_KEY = 'services:all';
@@ -33,7 +38,7 @@ export async function getServices(): Promise<Service[]> {
       },
     });
 
-    const services: Service[] = serviceDefinitions.map((def: any) => {
+    const services: Service[] = serviceDefinitions.map((def: PrismaServiceDefinition) => {
       const snapshot = def.statusSnapshots[0];
       if (!snapshot) {
         throw new Error(`Missing status snapshot for service ${def.id}`);
@@ -51,8 +56,8 @@ export async function getServices(): Promise<Service[]> {
           en: def.descriptionEn,
         },
         statusSummary: {
-          ja: snapshot.summaryJa,
-          en: snapshot.summaryEn,
+          ja: snapshot.summaryJa || '',
+          en: snapshot.summaryEn || '',
         },
         status: snapshot.status as StatusType,
         statusSince: snapshot.statusSince.toISOString(),
@@ -69,7 +74,11 @@ export async function getServices(): Promise<Service[]> {
 
     return services;
   } catch (error) {
-    console.error('[ServiceRepository] Error fetching services:', error);
+    if (error instanceof Error) {
+      console.error('[ServiceRepository] Database error fetching services:', error.message);
+    } else {
+      console.error('[ServiceRepository] Unknown error fetching services:', error);
+    }
     throw error;
   }
 }

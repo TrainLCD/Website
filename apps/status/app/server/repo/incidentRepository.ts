@@ -41,11 +41,38 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
       },
     });
 
-    const incidentHistories: IncidentHistory[] = incidents.map((incident: any) => ({
+    type PrismaIncident = {
+      id: string;
+      slug: string;
+      incidentImpact: string;
+      affectedServices: { serviceId: string }[];
+      titleJa: string;
+      titleEn: string;
+      descriptionJa: string;
+      descriptionEn: string;
+      publishedAt: Date;
+      startedAt: Date;
+      updatedAt: Date;
+      resolvedAt: Date | null;
+      estimatedResolveDate: Date | null;
+      causeJa: string | null;
+      causeEn: string | null;
+      externalLink: string | null;
+      lastNotifiedAt: Date | null;
+      updates: {
+        id: string;
+        status: string;
+        bodyJa: string;
+        bodyEn: string;
+        createdAt: Date;
+      }[];
+    };
+
+    const incidentHistories: IncidentHistory[] = incidents.map((incident: PrismaIncident) => ({
       id: incident.id,
       slug: incident.slug,
       incidentImpact: incident.incidentImpact as StatusType,
-      affectedServiceIds: incident.affectedServices.map((as: any) => as.serviceId),
+      affectedServiceIds: incident.affectedServices.map((as) => as.serviceId),
       title: {
         ja: incident.titleJa,
         en: incident.titleEn,
@@ -66,7 +93,7 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
           }
         : null,
       externalLink: incident.externalLink,
-      updates: incident.updates.map((update: any) => ({
+      updates: incident.updates.map((update) => ({
         id: update.id,
         status: update.status as StatusType,
         body: {
@@ -137,11 +164,38 @@ export async function getIncidentBySlug(slug: string): Promise<IncidentHistory |
       return null;
     }
 
+    type PrismaIncidentDetail = {
+      id: string;
+      slug: string;
+      incidentImpact: string;
+      affectedServices: { serviceId: string }[];
+      titleJa: string;
+      titleEn: string;
+      descriptionJa: string;
+      descriptionEn: string;
+      publishedAt: Date;
+      startedAt: Date;
+      updatedAt: Date;
+      resolvedAt: Date | null;
+      estimatedResolveDate: Date | null;
+      causeJa: string | null;
+      causeEn: string | null;
+      externalLink: string | null;
+      lastNotifiedAt: Date | null;
+      updates: {
+        id: string;
+        status: string;
+        bodyJa: string;
+        bodyEn: string;
+        createdAt: Date;
+      }[];
+    };
+
     const incidentHistory: IncidentHistory = {
       id: incident.id,
       slug: incident.slug,
       incidentImpact: incident.incidentImpact as StatusType,
-      affectedServiceIds: incident.affectedServices.map((as: any) => as.serviceId),
+      affectedServiceIds: (incident as PrismaIncidentDetail).affectedServices.map((as) => as.serviceId),
       title: {
         ja: incident.titleJa,
         en: incident.titleEn,
@@ -162,7 +216,7 @@ export async function getIncidentBySlug(slug: string): Promise<IncidentHistory |
           }
         : null,
       externalLink: incident.externalLink,
-      updates: incident.updates.map((update: any) => ({
+      updates: incident.updates.map((update) => ({
         id: update.id,
         status: update.status as StatusType,
         body: {

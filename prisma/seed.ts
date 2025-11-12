@@ -318,6 +318,9 @@ async function main() {
   }
   console.log("Service definitions seeded successfully.");
 
+  // Clear existing snapshots first to ensure idempotency
+  await prisma.serviceStatusSnapshot.deleteMany({});
+
   // Seed service status snapshots
   console.log(
     `Seeding ${serviceStatusSnapshots.length} service status snapshots...`
@@ -331,6 +334,7 @@ async function main() {
         summaryEn: snapshot.summaryEn,
         statusSince: new Date(snapshot.statusSince),
         updatedAt: new Date(snapshot.updatedAt),
+        createdAt: new Date(snapshot.statusSince), // Set createdAt to match statusSince
       },
     });
   }
