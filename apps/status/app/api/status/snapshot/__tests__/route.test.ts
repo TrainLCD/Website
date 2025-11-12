@@ -103,8 +103,8 @@ describe('/api/status/snapshot CORS', () => {
 
     const response = await GET(request);
     
-    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://any-domain.com');
-    expect(response.headers.get('Access-Control-Allow-Credentials')).toBe('true');
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('*');
+    expect(response.headers.get('Access-Control-Allow-Credentials')).toBeNull();
   });
 
   it('should handle comma-separated list with spaces', async () => {

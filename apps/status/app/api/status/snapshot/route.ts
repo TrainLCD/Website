@@ -3,11 +3,12 @@ import { getServices, getStatusLabel } from '@/server/repo/serviceRepository';
 import { getIncidentHistories } from '@/server/repo/incidentRepository';
 
 /**
- * Check if the origin is allowed based on ALLOWED_SNAPSHOT_ORIGINS environment variable
+ * Check if the origin is allowed based on ALLOWED_SNAPSHOT_ORIGINS environment variable.
+ * Returns false if origin is null (same-origin requests don't need CORS headers).
  */
 function isOriginAllowed(origin: string | null): boolean {
   if (!origin) {
-    return true; // Same-origin requests don't have Origin header
+    return false; // No origin header means same-origin request, no CORS headers needed
   }
 
   const allowedOrigins = process.env.ALLOWED_SNAPSHOT_ORIGINS;
@@ -35,14 +36,21 @@ export async function GET(request: NextRequest) {
   ]);
 
   const origin = request.headers.get('origin');
+  const allowedOrigins = process.env.ALLOWED_SNAPSHOT_ORIGINS;
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   };
 
   // Add CORS headers if origin is allowed
   if (origin && isOriginAllowed(origin)) {
-    headers['Access-Control-Allow-Origin'] = origin;
-    headers['Access-Control-Allow-Credentials'] = 'true';
+    if (allowedOrigins === '*') {
+      // For wildcard, use '*' as the origin and don't include credentials
+      headers['Access-Control-Allow-Origin'] = '*';
+    } else {
+      // For specific origins, echo the origin and allow credentials
+      headers['Access-Control-Allow-Origin'] = origin;
+      headers['Access-Control-Allow-Credentials'] = 'true';
+    }
   }
 
   return NextResponse.json(
