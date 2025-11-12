@@ -10,10 +10,7 @@
     },
     {
       "src": "apps/status/package.json",
-      "use": "@vercel/astro",
-      "config": {
-        "outputDirectory": "dist"
-      }
+      "use": "@vercel/next"
     }
   ],
   "routes": [
