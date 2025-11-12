@@ -1,4 +1,5 @@
-import { statusLabel } from 'data';
+import { useEffect, useState } from 'preact/hooks';
+import type { StatusType } from 'data';
 import styles from './ServiceStatus.module.css';
 import { ErrorIcon } from './icons/Error';
 import { WarningIcon } from './icons/Warning';
@@ -23,7 +24,39 @@ const statusText = {
   unknown: '調査中',
 } as const;
 
+type Snapshot = {
+  statusLabel: StatusType;
+};
+
 export const ServiceStatus = () => {
+  const [statusLabel, setStatusLabel] = useState<StatusType | null>(null);
+
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const response = await fetch(
+          'https://status.trainlcd.app/api/status/snapshot',
+          { cache: 'no-store' }
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch status');
+        }
+        const data: Snapshot = await response.json();
+        setStatusLabel(data.statusLabel);
+      } catch (error) {
+        console.error('Error fetching service status:', error);
+        setStatusLabel('unknown');
+      }
+    };
+
+    fetchStatus();
+  }, []);
+
+  // Don't render until we have fetched the status
+  if (statusLabel === null) {
+    return null;
+  }
+
   const StatusIcon = () => {
     switch (statusLabel) {
       case 'operational':
