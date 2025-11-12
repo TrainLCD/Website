@@ -42,10 +42,7 @@ export const ServiceStatus = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const response = await fetch(
-          import.meta.env.PUBLIC_STATUS_API_URL,
-          { cache: 'no-store' }
-        );
+        const response = await fetch(import.meta.env.PUBLIC_STATUS_API_URL);
         if (!response.ok) {
           throw new Error('Failed to fetch status');
         }
