@@ -14,7 +14,8 @@
     "dayjs": "^1.11.10",
     "next": "^16.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "ui": "*"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
