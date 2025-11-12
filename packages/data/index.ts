@@ -250,7 +250,7 @@ const incidentSeed: IncidentSeed[] = [
         status: "operational",
       },
     ],
-    lastNotifiedAt: "2024-11-16T00:36:00.000",
+    lastNotifiedAt: "2024-11-16T14:15:00.000",
   },
   {
     id: "urn:uuid:d054fa44-faf9-42d0-a0d6-6c062cfe344c",
