@@ -27,14 +27,6 @@ if (process.env.REDIS_URL) {
   });
 }
 
-
-/**
- * Helper to check if Redis is available and ready for use.
- * Returns true if REDIS_URL is set and Redis client status is 'ready'.
- */
-export function isRedisAvailable(): boolean {
-  return !!process.env.REDIS_URL && redis.status === 'ready';
-}
 /**
  * Helper to check if Redis is available and ready for use.
  * Returns true if REDIS_URL is set and Redis client status is 'ready'.
