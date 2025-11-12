@@ -1,5 +1,5 @@
 import { prisma } from '../lib/prisma';
-import { redis } from '../lib/redis';
+import { redis, isRedisAvailable } from '../lib/redis';
 import type { IncidentHistory, StatusType } from '../types';
 
 const CACHE_TTL = 60; // 60 seconds cache
