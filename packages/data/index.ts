@@ -311,7 +311,7 @@ const incidentSeed: IncidentSeed[] = [
     },
     publishedAt: "2024-04-17T17:00:00+09:00",
     startedAt: "2024-04-17T17:00:00+09:00",
-    resolvedAt: "2024-04-17T00:00:00.000+09:00",
+    resolvedAt: "2024-04-17T19:00:00.000+09:00",
     estimatedResolveDate: null,
     cause: {
       ja: "サービス基盤の設定不備",
