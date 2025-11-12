@@ -1,6 +1,6 @@
-import type { JSX } from 'preact';
+import type { SVGProps } from 'react';
 
-type Props = JSX.SVGAttributes<SVGSVGElement>;
+type Props = SVGProps<SVGSVGElement>;
 
 export const XIcon = (props: Props) => (
   <svg

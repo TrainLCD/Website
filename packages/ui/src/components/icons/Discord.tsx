@@ -1,6 +1,6 @@
-import type { JSX } from 'preact';
+import type { SVGProps } from 'react';
 
-type Props = JSX.SVGAttributes<SVGSVGElement>;
+type Props = SVGProps<SVGSVGElement>;
 
 export const DiscordIcon = (props: Props) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" {...props}>
