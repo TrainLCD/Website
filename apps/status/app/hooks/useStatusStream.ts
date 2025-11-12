@@ -13,6 +13,11 @@ export function useStatusStream(initialData: StatusData) {
   const [data, setData] = useState<StatusData>(initialData);
   const [isConnected, setIsConnected] = useState(false);
 
+  // Update data if initialData changes (e.g., after navigation)
+  useEffect(() => {
+    setData(initialData);
+  }, [initialData]);
+
   useEffect(() => {
     // Only use SSE in the browser
     if (typeof window === 'undefined') {

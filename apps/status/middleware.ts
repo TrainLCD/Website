@@ -14,22 +14,26 @@ export function middleware(request: NextRequest) {
     
     // For production, validate origin header
     if (!isDevelopment) {
-      // Origin header must be present in production
+      // For same-origin requests, the browser may not send the Origin header
+      // In that case, check if the host matches the expected domain
       if (!origin) {
-        return new NextResponse('Forbidden: Origin header required', { status: 403 });
-      }
-      
-      // Use exact hostname matching for security
-      let isAllowedOrigin = false;
-      try {
-        const url = new URL(origin);
-        isAllowedOrigin = url.hostname === 'status.trainlcd.app';
-      } catch {
-        isAllowedOrigin = false;
-      }
-      
-      if (!isAllowedOrigin) {
-        return new NextResponse('Forbidden', { status: 403 });
+        // Same-origin request - check host header
+        if (host !== 'status.trainlcd.app') {
+          return new NextResponse('Forbidden: Invalid host', { status: 403 });
+        }
+      } else {
+        // Cross-origin request - validate origin
+        let isAllowedOrigin = false;
+        try {
+          const url = new URL(origin);
+          isAllowedOrigin = url.hostname === 'status.trainlcd.app';
+        } catch {
+          isAllowedOrigin = false;
+        }
+        
+        if (!isAllowedOrigin) {
+          return new NextResponse('Forbidden', { status: 403 });
+        }
       }
     }
   }
