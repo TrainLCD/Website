@@ -6,9 +6,9 @@ import timezone from 'dayjs/plugin/timezone';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { StatusIcon } from '../../components/StatusIcon';
-import { getIncidentBySlug, getIncidentHistories } from '@/server/repo/incidentRepository';
+import { getIncidentBySlug } from '@/server/repo/incidentRepository';
 import { getServices } from '@/server/repo/serviceRepository';
-import type { IncidentHistory, StatusType } from '@/server/types';
+import type { StatusType } from '@/server/types';
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
