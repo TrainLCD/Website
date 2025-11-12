@@ -335,10 +335,10 @@ const incidentSeed: IncidentSeed[] = [
           ja: "日本時間2024年4月17日 17時から同日19時にかけてTrainLCD バージョン7.1.0にて断続的に自動アナウンス機能が動作しない障害が発生しておりましたが、現在は復旧しております。原因はサービス基盤の設定不備でございます。利用者の方々にご迷惑をおかけしたことをお詫び申し上げます。",
           en: "Configuration has been fixed and the TTS feature is now operating normally.",
         },
-        createdAt: "2024-04-17T00:00:00.000+09:00",
+        createdAt: "2024-04-17T19:00:00.000+09:00",
       },
     ],
-    lastNotifiedAt: "2024-04-17T00:00:00.000+09:00",
+    lastNotifiedAt: "2024-04-17T19:00:00.000+09:00",
   },
   {
     id: "urn:uuid:ef88d24e-baa9-4694-a662-a4e116cc4a7c",
