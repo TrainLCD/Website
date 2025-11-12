@@ -2,8 +2,6 @@ type SVGAttributes = any; // Compatible with both React and Preact
 
 export const AppLogo = (props: SVGAttributes) => (
   <svg
-    width="600"
-    height="760"
     viewBox="0 0 600 760"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
