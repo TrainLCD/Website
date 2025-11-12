@@ -91,43 +91,7 @@ const serviceStatusSnapshots = [
 ];
 
 // Incident histories
-const incidentHistories = [
-  {
-    id: 'urn:uuid:2ff6a668-e923-4ba5-87c4-4cfe4e734efc',
-    slug: '2024-11-01-tts-outage-resolved',
-    incidentImpact: 'degraded',
-    affectedServiceIds: ['tts'],
-    titleJa: '自動アナウンス機能は現在正常にご利用いただけます',
-    titleEn: 'TTS announcements have been fully restored',
-    descriptionJa: '開発者の個人的な都合により自動アナウンス機能の運用を取りやめておりましたが、2024年11月16日 14時15分現在自動アナウンス機能の提供を再開致しました。この復旧作業においての音質の変更はありません。利用者の方々にご迷惑をおかけしたことをお詫び申し上げます。',
-    descriptionEn: 'Service for the TTS announcements resumed at 14:15 JST on 16 Nov 2024 with no change in audio quality. We apologise for the disruption caused while the operator was unavailable.',
-    publishedAt: '2024-11-16T00:36:00.000',
-    startedAt: '2024-11-16T00:36:00.000',
-    updatedAt: '2024-11-16T14:15:00.000',
-    resolvedAt: '2024-11-16T14:15:00.000',
-    estimatedResolveDate: null,
-    causeJa: '開発者の個人的な都合',
-    causeEn: 'Personal circumstances of the maintainer',
-    externalLink: null,
-    lastNotifiedAt: null,
-    updates: [
-      {
-        id: '2ff6a668-post-1',
-        status: 'degraded',
-        bodyJa: '自動アナウンス機能を一時停止しておりました。再開準備を進めています。',
-        bodyEn: 'The TTS announcements were paused while we prepared to resume the service.',
-        createdAt: '2024-11-16T00:36:00.000',
-      },
-      {
-        id: '2ff6a668-post-2',
-        status: 'operational',
-        bodyJa: '14:15 に提供を再開し、音質への影響はありません。',
-        bodyEn: 'Service resumed at 14:15 JST without any impact on audio quality.',
-        createdAt: '2024-11-16T14:15:00.000',
-      },
-    ],
-  },
-];
+const incidentHistories: any[] = [];
 
 async function main() {
   console.log('Starting database seed...');
