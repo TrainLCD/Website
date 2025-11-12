@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import AppLogo from './AppLogo';
+import { AppLogo } from 'ui';
 import { ServiceStatus } from './ServiceStatus';
 
 const Header = () => {

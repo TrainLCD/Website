@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AppLogo from './AppLogo';
+import { AppLogo } from 'ui';
 
 const Header = () => {
   return (
