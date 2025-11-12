@@ -89,7 +89,7 @@ The SSE functionality is automatically enabled on the status page. No user inter
 
 ```bash
 # Test the SSE stream (development)
-curl -N http://localhost:3001/api/status/stream
+curl -N http://localhost:3000/api/status/stream
 
 # Test with specific origin (production)
 curl -N -H "Origin: https://status.trainlcd.app" https://status.trainlcd.app/api/status/stream
