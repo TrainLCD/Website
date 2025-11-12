@@ -1,6 +1,6 @@
 'use client';
 
-import type { IncidentHistory } from 'data';
+import type { IncidentHistory } from '@/server/types';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';

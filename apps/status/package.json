@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest"
+    "test": "vitest",
+    "postinstall": "prisma generate --schema=../../prisma/schema.prisma"
   },
   "dependencies": {
-    "data": "*",
+    "@prisma/client": "^6.19.0",
     "dayjs": "^1.11.10",
+    "ioredis": "^5.8.2",
     "next": "^16.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -24,6 +26,7 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.1",
     "postcss": "^8.4.41",
+    "prisma": "^6.19.0",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.3",
     "vitest": "^4.0.8"

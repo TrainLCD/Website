@@ -3,9 +3,19 @@ import Footer from './components/Footer';
 import StatusContent from './components/client/StatusContent';
 import { FeedIcon } from './components/icons/Feed';
 import { XIcon } from './components/icons/X';
-import { services, incidentHistories, statusLabel } from 'data';
+import { getServices, getStatusLabel } from './server/repo/serviceRepository';
+import { getIncidentHistories } from './server/repo/incidentRepository';
 
-export default function HomePage() {
+// Force dynamic rendering - don't pre-render during build
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const [statusLabel, services, incidents] = await Promise.all([
+    getStatusLabel(),
+    getServices(),
+    getIncidentHistories(),
+  ]);
+
   return (
     <>
       <Header />
@@ -13,7 +23,7 @@ export default function HomePage() {
         <StatusContent
           initialStatusLabel={statusLabel}
           initialServices={services}
-          initialIncidents={incidentHistories}
+          initialIncidents={incidents}
         />
         <div className="w-full max-w-2xl mt-6 flex justify-start items-center">
           <FeedIcon className="text-orange-700 h-4 w-4" />
