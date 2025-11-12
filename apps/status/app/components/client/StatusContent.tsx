@@ -1,7 +1,7 @@
 'use client';
 
 import { useStatusStream } from '../../hooks/useStatusStream';
-import type { StatusType, Service, IncidentHistory } from 'data';
+import type { StatusType, Service, IncidentHistory } from '../../server/types';
 import Overview from './Overview';
 import ServicesTable from './ServicesTable';
 import IncidentsTable from './IncidentsTable';

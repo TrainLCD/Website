@@ -4,7 +4,7 @@ This document describes the Server-Sent Events (SSE) implementation for real-tim
 
 ## Overview
 
-The status page now supports real-time updates via Server-Sent Events (SSE), allowing the UI to automatically refresh when status changes occur without requiring page refreshes.
+The status page now supports real-time updates via Server-Sent Events (SSE), allowing the UI to automatically refresh when status changes occur without requiring page refreshes. The implementation uses Redis pub/sub for event distribution.
 
 ## Architecture
 
@@ -14,8 +14,9 @@ The status page now supports real-time updates via Server-Sent Events (SSE), all
 
 The SSE endpoint:
 - Serves status updates via the `/api/status/stream` endpoint
-- Sends initial status data immediately upon connection
-- Sends updates every 30 seconds (configurable)
+- Fetches initial data from PostgreSQL (via Prisma) with Redis caching
+- Subscribes to Redis pub/sub channel (`status:updates`) for real-time updates
+- Sends heartbeat messages every 30 seconds to keep connections alive
 - Properly handles connection cleanup when clients disconnect
 - Returns data in SSE format: `data: {JSON}\n\n`
 
@@ -25,8 +26,14 @@ The SSE endpoint:
 
 The middleware:
 - Restricts SSE access to status.trainlcd.app origin in production
+- Uses exact hostname matching (not `includes()`) for security
+- Requires Origin header in production (returns 403 if missing)
 - Allows localhost/127.0.0.1 in development
-- Returns 403 Forbidden for unauthorized origins
+
+**Security improvements:**
+- Uses `URL` parsing for exact hostname validation
+- Prevents subdomain attacks (e.g., `evil.status.trainlcd.app.attacker.com`)
+- Requires Origin header in production to prevent CSRF attacks
 
 ### Client-Side: React Hook
 
@@ -36,7 +43,7 @@ The custom hook:
 - Manages EventSource connection lifecycle
 - Parses incoming SSE data
 - Maintains connection state
-- Automatically reconnects on errors
+- Sets `isConnected` to false on errors (including EventSource creation failures)
 - Cleans up on component unmount
 
 ### UI Component
@@ -49,6 +56,31 @@ The wrapper component:
 - Passes updated data to child components (Overview, ServicesTable, IncidentsTable)
 - Seamlessly updates UI when new data arrives
 
+## Data Layer
+
+### Redis Integration
+
+The SSE endpoint integrates with Redis for two purposes:
+
+1. **Caching**: Initial data is fetched from Redis cache (60s TTL) when available, falling back to PostgreSQL
+2. **Pub/Sub**: Real-time updates are distributed via Redis pub/sub on the `status:updates` channel
+
+To publish status updates:
+```javascript
+// Publish update event
+await redis.publish('status:updates', JSON.stringify({
+  statusLabel,
+  services,
+  incidents,
+}));
+```
+
+### PostgreSQL + Prisma
+
+Data is persisted in PostgreSQL with the following repositories:
+- `serviceRepository`: Manages service definitions and status snapshots
+- `incidentRepository`: Manages incident histories and updates
+
 ## Usage
 
 The SSE functionality is automatically enabled on the status page. No user interaction is required.
@@ -56,10 +88,10 @@ The SSE functionality is automatically enabled on the status page. No user inter
 ### Testing SSE Endpoint
 
 ```bash
-# Test the SSE stream
+# Test the SSE stream (development)
 curl -N http://localhost:3001/api/status/stream
 
-# Test with specific origin (in production)
+# Test with specific origin (production)
 curl -N -H "Origin: https://status.trainlcd.app" https://status.trainlcd.app/api/status/stream
 ```
 
@@ -75,15 +107,39 @@ The SSE endpoint sends data in the following format:
 }
 ```
 
+### Heartbeat
+
+The server sends heartbeat comments (`: heartbeat\n\n`) every 30 seconds to keep the connection alive. These are ignored by EventSource clients.
+
 ## Security
 
-- Origin validation ensures only status.trainlcd.app can access the SSE endpoint in production
-- Development mode allows localhost for testing
-- CORS headers are set appropriately for the allowed origin
+- **Origin validation**: Exact hostname matching ensures only status.trainlcd.app can access the SSE endpoint in production
+- **Origin header required**: Production requests must include Origin header to prevent CSRF
+- **CORS headers**: Only set when origin is present, never uses wildcard with credentials
+- **Development mode**: Allows localhost for testing
+
+## Implementation Notes
+
+### Redis Pub/Sub
+
+The implementation uses Redis pub/sub for distributing updates:
+- A duplicate Redis client is created for subscription to avoid blocking
+- Subscription is properly cleaned up when connection closes
+- Falls back gracefully if Redis is unavailable
+
+### Stream Error Handling
+
+The implementation includes proper error handling:
+- Try-catch blocks prevent `controller.enqueue()` errors from crashing
+- Heartbeat interval is cleared when stream closes
+- Redis subscription is cleaned up on abort
 
 ## Future Enhancements
 
-- [ ] Implement actual change detection instead of periodic polling
-- [ ] Add support for different event types (status change, incident update, etc.)
-- [ ] Implement exponential backoff for reconnection attempts
+- [x] Implement Redis pub/sub for real-time updates
+- [x] Use PostgreSQL + Prisma for data persistence
+- [x] Fix origin validation security issues
+- [x] Add proper error handling for stream enqueue
 - [ ] Add connection status indicator in UI
+- [ ] Implement exponential backoff for reconnection attempts
+- [ ] Add support for different event types (status change, incident update, etc.)

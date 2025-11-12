@@ -12,9 +12,21 @@ export function middleware(request: NextRequest) {
       host?.includes('localhost') || 
       host?.includes('127.0.0.1');
     
-    // For production, check origin header
-    if (!isDevelopment && origin) {
-      const isAllowedOrigin = origin.includes('status.trainlcd.app');
+    // For production, validate origin header
+    if (!isDevelopment) {
+      // Origin header must be present in production
+      if (!origin) {
+        return new NextResponse('Forbidden: Origin header required', { status: 403 });
+      }
+      
+      // Use exact hostname matching for security
+      let isAllowedOrigin = false;
+      try {
+        const url = new URL(origin);
+        isAllowedOrigin = url.hostname === 'status.trainlcd.app';
+      } catch {
+        isAllowedOrigin = false;
+      }
       
       if (!isAllowedOrigin) {
         return new NextResponse('Forbidden', { status: 403 });

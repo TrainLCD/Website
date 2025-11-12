@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { StatusType, Service, IncidentHistory } from 'data';
+import type { StatusType, Service, IncidentHistory } from '../server/types';
 
 export type StatusData = {
   statusLabel: StatusType;
@@ -43,6 +43,7 @@ export function useStatusStream(initialData: StatusData) {
       };
     } catch (error) {
       console.error('Failed to create EventSource:', error);
+      setIsConnected(false);
     }
 
     return () => {
