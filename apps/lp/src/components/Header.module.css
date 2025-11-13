@@ -55,14 +55,16 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 0.75rem;
+  line-height: 1.5;
   transition: background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
 }
 
 @media (min-width: 768px) {
   .faqButton {
-    padding: 4px 12px;
+    padding: 6px 12px;
     font-size: 1rem;
+    line-height: 1.5;
   }
 }
 
