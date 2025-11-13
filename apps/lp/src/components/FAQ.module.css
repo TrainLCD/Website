@@ -1,0 +1,280 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  color: #333333;
+  max-width: 1024px;
+  padding: 128px 32px 32px 32px;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.headingContainer {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+  color: #666666;
+}
+
+.categorySection {
+  margin-bottom: 48px;
+}
+
+.categoryTitle {
+  font-size: 1.75rem;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #03a9f4;
+  color: #03a9f4;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.faqItem:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faqQuestion {
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.faqQuestion:hover {
+  background-color: #f5f5f5;
+}
+
+.faqQuestion:focus-visible {
+  outline: 2px solid #03a9f4;
+  outline-offset: 2px;
+}
+
+.questionMark {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background-color: #03a9f4;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.questionText {
+  flex: 1;
+  font-weight: 500;
+  color: #333333;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: #03a9f4;
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
+}
+
+.iconOpen {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  gap: 16px;
+  animation: slideDown 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqAnswer {
+    animation: none;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.answerMark {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.answerText {
+  flex: 1;
+  line-height: 1.8;
+  color: #555555;
+}
+
+.contactSection {
+  margin-top: 64px;
+  padding: 32px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.contactText {
+  line-height: 1.8;
+  margin-bottom: 24px;
+  color: #555555;
+}
+
+.contactLinks {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  padding: 12px 24px;
+  background-color: #03a9f4;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.contactLink:hover {
+  background-color: #0288d1;
+}
+
+.contactLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    padding: 96px 16px 16px 16px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .categoryTitle {
+    font-size: 1.5rem;
+  }
+
+  .headingContainer {
+    margin-bottom: 48px;
+  }
+
+  .faqQuestion {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .questionMark,
+  .answerMark {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  .faqAnswer {
+    padding: 16px;
+  }
+
+  .contactSection {
+    padding: 24px 16px;
+  }
+
+  .contactLinks {
+    flex-direction: column;
+  }
+
+  .contactLink {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .categoryTitle {
+    font-size: 1.25rem;
+  }
+
+  .faqQuestion {
+    font-size: 0.95rem;
+    padding: 14px;
+  }
+
+  .questionMark,
+  .answerMark {
+    width: 26px;
+    height: 26px;
+    font-size: 0.95rem;
+  }
+
+  .answerText {
+    font-size: 0.9rem;
+  }
+}

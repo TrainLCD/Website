@@ -1,0 +1,57 @@
+---
+import FAQPage from '@components/pages/FAQPage';
+import '../styles/globals.css';
+
+const title = 'よくある質問 - TrainLCD';
+const description = 'TrainLCDに関するよくある質問と回答をまとめています。アプリの使い方や対応路線、動作環境などについてご確認いただけます。';
+const url = 'https://trainlcd.app/faq';
+const ogImage = 'https://trainlcd.app/opengraph-image.20241213.png';
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#03A9F4" />
+    <link rel="canonical" href={url} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#03a9f4" />
+    <meta name="msapplication-TileColor" content="#03a9f4" />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="TrainLCD" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tinykitten8" />
+    <meta name="twitter:creator" content="@tinykitten8" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta property="fb:app_id" content="596269604527027" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      />
+    </noscript>
+  </head>
+  <body>
+    <FAQPage client:load />
+  </body>
+</html>

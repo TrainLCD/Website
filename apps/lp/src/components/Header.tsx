@@ -11,6 +11,11 @@ const Header = () => {
           <span className={styles.title}>TrainLCD</span>
         </a>
       </div>
+      <nav className={styles.nav}>
+        <a href="/faq" className={styles.faqButton}>
+          FAQ
+        </a>
+      </nav>
       <ServiceStatus />
     </header>
   );
