@@ -76,6 +76,11 @@
   background-color: #f5f5f5;
 }
 
+.faqQuestion:focus-visible {
+  outline: 2px solid #03a9f4;
+  outline-offset: 2px;
+}
+
 .questionMark {
   flex-shrink: 0;
   width: 32px;
@@ -103,6 +108,12 @@
   font-size: 0.8rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
+}
+
 .iconOpen {
   transform: rotate(180deg);
 }
@@ -114,6 +125,12 @@
   display: flex;
   gap: 16px;
   animation: slideDown 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faqAnswer {
+    animation: none;
+  }
 }
 
 @keyframes slideDown {
@@ -178,6 +195,11 @@
 
 .contactLink:hover {
   background-color: #0288d1;
+}
+
+.contactLink:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 /* レスポンシブ対応 */

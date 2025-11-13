@@ -39,9 +39,15 @@
 }
 
 .nav {
-  display: flex;
+  display: none;
   align-items: center;
   margin-right: 16px;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
 }
 
 .faqButton {
@@ -54,18 +60,10 @@
   color: #444444;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.75rem;
+  font-size: 1rem;
   line-height: 1.5;
   transition: background-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
-}
-
-@media (min-width: 768px) {
-  .faqButton {
-    padding: 6px 12px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
 }
 
 .faqButton:hover {

@@ -114,8 +114,9 @@ const faqData: FAQCategory[] = [
 ];
 
 // FAQ項目のコンポーネント
-const FAQItemComponent = ({ question, answer }: FAQItem) => {
+const FAQItemComponent = ({ question, answer, id }: FAQItem & { id: string }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const answerId = `answer-${id}`;
 
   return (
     <div className={styles.faqItem}>
@@ -123,6 +124,8 @@ const FAQItemComponent = ({ question, answer }: FAQItem) => {
         className={styles.faqQuestion}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
+        aria-controls={answerId}
+        aria-label={`質問: ${question}`}
       >
         <span className={styles.questionMark}>Q</span>
         <span className={styles.questionText}>{question}</span>
@@ -131,7 +134,12 @@ const FAQItemComponent = ({ question, answer }: FAQItem) => {
         </span>
       </button>
       {isOpen && (
-        <div className={styles.faqAnswer}>
+        <div
+          id={answerId}
+          role="region"
+          aria-labelledby={answerId}
+          className={styles.faqAnswer}
+        >
           <span className={styles.answerMark}>A</span>
           <p className={styles.answerText}>{answer}</p>
         </div>
@@ -150,13 +158,14 @@ const FAQPage = () => (
           <h2 className={styles.subtitle}>よくある質問</h2>
         </header>
 
-        {faqData.map((category, categoryIndex) => (
-          <section key={categoryIndex} className={styles.categorySection}>
+        {faqData.map((category) => (
+          <section key={category.category} className={styles.categorySection}>
             <h3 className={styles.categoryTitle}>{category.category}</h3>
             <div className={styles.faqList}>
               {category.items.map((item, itemIndex) => (
                 <FAQItemComponent
-                  key={itemIndex}
+                  key={`${category.category}-${itemIndex}`}
+                  id={`${category.category}-${itemIndex}`}
                   question={item.question}
                   answer={item.answer}
                 />
