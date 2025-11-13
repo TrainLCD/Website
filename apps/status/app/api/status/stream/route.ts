@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
               // Send a comment line as heartbeat (ignored by EventSource)
               controller.enqueue(encoder.encode(': heartbeat\n\n'));
             }
-          } catch (err) {
+          } catch {
             // Stream is likely closed, clear interval
             clearInterval(heartbeatInterval);
           }

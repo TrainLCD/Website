@@ -1,6 +1,6 @@
 import { prisma } from "../lib/prisma";
 import { redis, isRedisAvailable } from "../lib/redis";
-import type { Service, StatusType, ServiceCategory } from "../types";
+import type { Service, StatusType } from "../types";
 import type { ServiceDefinition, ServiceStatusSnapshot } from "@prisma/client";
 import type { Locale } from "../lib/locale";
 

@@ -1,5 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "ALLOWED_SNAPSHOT_ORIGINS",
+    "NODE_ENV",
+    "REDIS_URL",
+    "STATUS_UPDATE_API_KEY"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
