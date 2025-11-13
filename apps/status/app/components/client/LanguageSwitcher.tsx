@@ -34,7 +34,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
         disabled={isPending}
         className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
           locale === 'ja'
-            ? 'bg-orange-700 text-white'
+            ? 'bg-neutral-800 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
         aria-label="Switch to Japanese"
@@ -46,7 +46,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
         disabled={isPending}
         className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
           locale === 'en'
-            ? 'bg-orange-700 text-white'
+            ? 'bg-neutral-800 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
         aria-label="Switch to English"
