@@ -1,0 +1,58 @@
+'use client';
+
+import { useState, useTransition } from 'react';
+import type { Locale } from '../../server/lib/locale';
+
+type LanguageSwitcherProps = {
+  currentLocale: Locale;
+};
+
+export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+  const [locale, setLocale] = useState<Locale>(currentLocale);
+  const [isPending, startTransition] = useTransition();
+
+  const handleLocaleChange = (newLocale: Locale) => {
+    setLocale(newLocale);
+    startTransition(async () => {
+      // Set cookie and reload page to apply new locale
+      await fetch('/api/locale', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ locale: newLocale }),
+      });
+      // Reload to apply new locale from server-side
+      window.location.reload();
+    });
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <button
+        onClick={() => handleLocaleChange('ja')}
+        disabled={isPending}
+        className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
+          locale === 'ja'
+            ? 'bg-orange-700 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+        aria-label="Switch to Japanese"
+      >
+        日本語
+      </button>
+      <button
+        onClick={() => handleLocaleChange('en')}
+        disabled={isPending}
+        className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
+          locale === 'en'
+            ? 'bg-orange-700 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+        } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+        aria-label="Switch to English"
+      >
+        English
+      </button>
+    </div>
+  );
+}
