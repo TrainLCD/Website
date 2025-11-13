@@ -15,15 +15,27 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
     setLocale(newLocale);
     startTransition(async () => {
       // Set cookie and reload page to apply new locale
-      await fetch('/api/locale', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ locale: newLocale }),
-      });
-      // Reload to apply new locale from server-side
-      window.location.reload();
+      try {
+        const response = await fetch('/api/locale', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ locale: newLocale }),
+        });
+        if (!response.ok) {
+          // Revert the optimistic state update
+          setLocale(currentLocale);
+          console.error('Failed to set locale');
+          return;
+        }
+        // Reload to apply new locale from server-side
+        window.location.reload();
+      } catch (error) {
+        // Revert the optimistic state update
+        setLocale(currentLocale);
+        console.error('Failed to set locale:', error);
+      }
     });
   };
 
