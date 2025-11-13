@@ -27,11 +27,12 @@ export async function detectLocale(): Promise<Locale> {
     .filter((lang) => lang.code) // Remove empty codes
     .sort((a, b) => b.q - a.q); // Sort by preference (highest q first)
 
-  // Check if any preferred language is English
-  for (const lang of languages) {
-    if (lang.code.startsWith('en')) {
-      return 'en';
-    }
+  // Check the highest preference language
+  // If it's English (starts with 'en'), return 'en'
+  // Otherwise, return 'ja' as default
+  const topLanguage = languages[0];
+  if (topLanguage && topLanguage.code.startsWith('en')) {
+    return 'en';
   }
 
   // Default to Japanese for all other cases
