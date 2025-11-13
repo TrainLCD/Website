@@ -1,12 +1,22 @@
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 
 export type Locale = 'ja' | 'en';
 
 /**
- * Detects the user's preferred locale from the Accept-Language header.
+ * Detects the user's preferred locale.
+ * Priority: 1. Cookie preference, 2. Accept-Language header
  * Returns 'ja' as default, 'en' for English locales.
  */
 export async function detectLocale(): Promise<Locale> {
+  // First, check if user has set a preference via cookie
+  const cookieStore = await cookies();
+  const localeCookie = cookieStore.get('locale');
+  
+  if (localeCookie && (localeCookie.value === 'ja' || localeCookie.value === 'en')) {
+    return localeCookie.value as Locale;
+  }
+
+  // Fall back to Accept-Language header
   const headersList = await headers();
   const acceptLanguage = headersList.get('accept-language');
 
