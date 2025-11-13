@@ -1,6 +1,6 @@
-# GitHub Copilot Agents ガイドライン
+# 開発ガイドライン
 
-このドキュメントは、GitHub Copilot Agentsがこのリポジトリで作業する際に従うべきルールとガイドラインを定義します。
+このドキュメントは、このリポジトリで作業する際に従うべきルールとガイドラインを定義します。
 
 ## 基本原則
 
@@ -19,15 +19,12 @@ npm run lint
 ```
 - **ESLintエラーは0件であること**
 - 警告も可能な限り解消してください
-- 既存のコードに新たなlintエラーを導入しないでください
+- 既存のコードに新たなlintエラーを追加しないでください
 
 #### ユニットテストの実行
 ```bash
 # status アプリのテスト実行
 cd apps/status && npm run test
-
-# または、ルートディレクトリから
-npm run test --workspace=status
 ```
 - **すべてのユニットテストが成功すること**
 - 既存のテストを壊さないでください
@@ -57,17 +54,17 @@ npm run test --workspace=status
 
 - テストファイルは `__tests__` ディレクトリに配置してください
 - ファイル名は `*.test.ts` または `*.test.tsx` としてください
-- テスト対象のファイルと同じディレクトリ構造を維持してください
+- テスト対象のファイルと同じディレクトリ内の `__tests__` ディレクトリに配置してください
 
 例：
 ```
-app/server/lib/locale.ts
-→ app/server/lib/__tests__/locale.test.ts
+apps/status/app/server/lib/locale.ts
+→ apps/status/app/server/lib/__tests__/locale.test.ts
 ```
 
 ### テストの書き方
 
-このプロジェクトでは **Vitest** を使用しています：
+このプロジェクトでは **Vitest** を使用しています（現在はstatusアプリのみ）：
 
 ```typescript
 import { describe, it, expect } from 'vitest';
@@ -106,7 +103,7 @@ npm install
 
 # 現在の状態を確認
 npm run lint
-npm run test --workspace=status
+cd apps/status && npm run test
 ```
 
 ### 2. 開発中
@@ -122,8 +119,8 @@ npm run dev
 # リントチェック
 npm run lint
 
-# テストの実行
-npm run test --workspace=status
+# テストの実行（statusアプリ）
+cd apps/status && npm run test
 
 # ビルドの確認
 npm run build
@@ -143,10 +140,14 @@ Website/
 ├── apps/
 │   ├── lp/          # ランディングページ (Astro)
 │   └── status/      # ステータスページ (Next.js)
-│       ├── app/     # Next.js App Router
-│       │   ├── api/ # APIルート
-│       │   └── server/ # サーバーサイドコード
-│       └── __tests__/ # テストファイル
+│       └── app/     # Next.js App Router
+│           ├── api/ # APIルート
+│           │   └── status/
+│           │       └── snapshot/
+│           │           └── __tests__/ # APIテスト
+│           └── server/ # サーバーサイドコード
+│               └── lib/
+│                   └── __tests__/ # ユニットテスト
 ├── packages/
 │   ├── eslint-config/
 │   └── typescript-config/
