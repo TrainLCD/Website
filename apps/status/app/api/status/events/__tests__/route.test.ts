@@ -3,32 +3,76 @@ import { POST } from '../route';
 import { NextRequest } from 'next/server';
 
 // Prismaのモック
-vi.mock('@/server/lib/prisma', () => ({
-  prisma: {
+vi.mock('@/server/lib/prisma', () => {
+  const mockServiceDefinitionFindUnique = vi.fn();
+  const mockServiceStatusSnapshotFindFirst = vi.fn();
+  const mockServiceStatusSnapshotCreate = vi.fn();
+  const mockServiceStatusSnapshotUpdate = vi.fn();
+  const mockIncidentHistoryFindUnique = vi.fn();
+  const mockIncidentHistoryCreate = vi.fn();
+  const mockIncidentHistoryUpdate = vi.fn();
+  const mockAffectedServiceDeleteMany = vi.fn();
+  const mockAffectedServiceCreate = vi.fn();
+  const mockAffectedServiceCreateMany = vi.fn();
+  const mockIncidentUpdateFindUnique = vi.fn();
+  const mockIncidentUpdateCreate = vi.fn();
+  const mockIncidentUpdateUpdate = vi.fn();
+
+  const mockTransactionClient = {
     serviceDefinition: {
-      findUnique: vi.fn(),
+      findUnique: mockServiceDefinitionFindUnique,
     },
     serviceStatusSnapshot: {
-      findFirst: vi.fn(),
-      create: vi.fn(),
-      update: vi.fn(),
+      findFirst: mockServiceStatusSnapshotFindFirst,
+      create: mockServiceStatusSnapshotCreate,
+      update: mockServiceStatusSnapshotUpdate,
     },
     incidentHistory: {
-      findUnique: vi.fn(),
-      create: vi.fn(),
-      update: vi.fn(),
+      findUnique: mockIncidentHistoryFindUnique,
+      create: mockIncidentHistoryCreate,
+      update: mockIncidentHistoryUpdate,
     },
     affectedService: {
-      deleteMany: vi.fn(),
-      create: vi.fn(),
+      deleteMany: mockAffectedServiceDeleteMany,
+      create: mockAffectedServiceCreate,
+      createMany: mockAffectedServiceCreateMany,
     },
     incidentUpdate: {
-      findUnique: vi.fn(),
-      create: vi.fn(),
-      update: vi.fn(),
+      findUnique: mockIncidentUpdateFindUnique,
+      create: mockIncidentUpdateCreate,
+      update: mockIncidentUpdateUpdate,
     },
-  },
-}));
+  };
+
+  return {
+    prisma: {
+      $transaction: vi.fn((callback) => callback(mockTransactionClient)),
+      serviceDefinition: {
+        findUnique: mockServiceDefinitionFindUnique,
+      },
+      serviceStatusSnapshot: {
+        findFirst: mockServiceStatusSnapshotFindFirst,
+        create: mockServiceStatusSnapshotCreate,
+        update: mockServiceStatusSnapshotUpdate,
+      },
+      incidentHistory: {
+        findUnique: mockIncidentHistoryFindUnique,
+        create: mockIncidentHistoryCreate,
+        update: mockIncidentHistoryUpdate,
+      },
+      affectedService: {
+        deleteMany: mockAffectedServiceDeleteMany,
+        create: mockAffectedServiceCreate,
+        createMany: mockAffectedServiceCreateMany,
+      },
+      incidentUpdate: {
+        findUnique: mockIncidentUpdateFindUnique,
+        create: mockIncidentUpdateCreate,
+        update: mockIncidentUpdateUpdate,
+      },
+    },
+  };
+});
 
 // Redisのモック
 vi.mock('@/server/lib/redis', () => ({
@@ -61,6 +105,21 @@ const mockIsRedisAvailable = vi.mocked(isRedisAvailable);
 const mockGetServices = vi.mocked(getServices);
 const mockGetStatusLabel = vi.mocked(getStatusLabel);
 const mockGetIncidentHistories = vi.mocked(getIncidentHistories);
+
+// Prismaのモック関数を取得
+const mockServiceDefinitionFindUnique = mockPrisma.serviceDefinition.findUnique;
+const mockServiceStatusSnapshotFindFirst = mockPrisma.serviceStatusSnapshot.findFirst;
+const mockServiceStatusSnapshotCreate = mockPrisma.serviceStatusSnapshot.create;
+const mockServiceStatusSnapshotUpdate = mockPrisma.serviceStatusSnapshot.update;
+const mockIncidentHistoryFindUnique = mockPrisma.incidentHistory.findUnique;
+const mockIncidentHistoryCreate = mockPrisma.incidentHistory.create;
+const mockIncidentHistoryUpdate = mockPrisma.incidentHistory.update;
+const mockAffectedServiceDeleteMany = mockPrisma.affectedService.deleteMany;
+const mockAffectedServiceCreate = mockPrisma.affectedService.create;
+const mockAffectedServiceCreateMany = mockPrisma.affectedService.createMany;
+const mockIncidentUpdateFindUnique = mockPrisma.incidentUpdate.findUnique;
+const mockIncidentUpdateCreate = mockPrisma.incidentUpdate.create;
+const mockIncidentUpdateUpdate = mockPrisma.incidentUpdate.update;
 
 describe('POST /api/status/events', () => {
   const originalEnv = process.env.STATUS_UPDATE_API_KEY;
@@ -106,7 +165,7 @@ describe('POST /api/status/events', () => {
     });
 
     it('正しいAPI キーがあれば認証が通る', async () => {
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -116,8 +175,8 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
-      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue(null);
+      mockServiceStatusSnapshotCreate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
@@ -152,7 +211,7 @@ describe('POST /api/status/events', () => {
     it('API キーが設定されていない場合、認証チェックをスキップする', async () => {
       delete process.env.STATUS_UPDATE_API_KEY;
 
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -162,8 +221,8 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
-      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue(null);
+      mockServiceStatusSnapshotCreate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
@@ -334,7 +393,7 @@ describe('POST /api/status/events', () => {
 
   describe('サービスステータスの更新', () => {
     it('正常なリクエストの場合、サービスステータスを更新する', async () => {
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -344,8 +403,8 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
-      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue(null);
+      mockServiceStatusSnapshotCreate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'degraded',
@@ -380,14 +439,14 @@ describe('POST /api/status/events', () => {
 
       expect(response.status).toBe(200);
       expect(data.success).toBe(true);
-      expect(mockPrisma.serviceDefinition.findUnique).toHaveBeenCalledWith({
+      expect(mockServiceDefinitionFindUnique).toHaveBeenCalledWith({
         where: { id: 'test-service' },
       });
-      expect(mockPrisma.serviceStatusSnapshot.create).toHaveBeenCalled();
+      expect(mockServiceStatusSnapshotCreate).toHaveBeenCalled();
     });
 
     it('ステータスが変更されていない場合、サマリーのみ更新する', async () => {
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -397,7 +456,7 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
@@ -407,7 +466,7 @@ describe('POST /api/status/events', () => {
         updatedAt: new Date(),
         createdAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.update.mockResolvedValue({
+      mockServiceStatusSnapshotUpdate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
@@ -438,21 +497,20 @@ describe('POST /api/status/events', () => {
       });
 
       const response = await POST(request);
-      const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(mockPrisma.serviceStatusSnapshot.update).toHaveBeenCalledWith({
+      expect(mockServiceStatusSnapshotUpdate).toHaveBeenCalledWith({
         where: { id: 1 },
         data: {
           summaryJa: '新しいサマリー',
           summaryEn: 'New summary',
         },
       });
-      expect(mockPrisma.serviceStatusSnapshot.create).not.toHaveBeenCalled();
+      expect(mockServiceStatusSnapshotCreate).not.toHaveBeenCalled();
     });
 
     it('存在しないサービスIDの場合、500エラーを返す', async () => {
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue(null);
+      mockServiceDefinitionFindUnique.mockResolvedValue(null);
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
@@ -478,14 +536,14 @@ describe('POST /api/status/events', () => {
 
       expect(response.status).toBe(500);
       expect(data.error).toBe('サーバーエラーが発生しました');
-      expect(data.details).toContain('サービスID');
+      // Note: details are only shown in development mode
     });
   });
 
   describe('インシデントの更新', () => {
     it('正常なリクエストの場合、新規インシデントを作成する', async () => {
-      mockPrisma.incidentHistory.findUnique.mockResolvedValue(null);
-      mockPrisma.incidentHistory.create.mockResolvedValue({
+      mockIncidentHistoryFindUnique.mockResolvedValue(null);
+      mockIncidentHistoryCreate.mockResolvedValue({
         id: 'incident-1',
         slug: 'slug-1',
         incidentImpact: 'outage',
@@ -504,8 +562,8 @@ describe('POST /api/status/events', () => {
         lastNotifiedAt: new Date(),
         createdAt: new Date(),
       });
-      mockPrisma.affectedService.deleteMany.mockResolvedValue({ count: 0 });
-      mockPrisma.affectedService.create.mockResolvedValue({
+      mockAffectedServiceDeleteMany.mockResolvedValue({ count: 0 });
+      mockAffectedServiceCreate.mockResolvedValue({
         incidentId: 'incident-1',
         serviceId: 'service1',
         createdAt: new Date(),
@@ -540,12 +598,18 @@ describe('POST /api/status/events', () => {
 
       expect(response.status).toBe(200);
       expect(data.success).toBe(true);
-      expect(mockPrisma.incidentHistory.create).toHaveBeenCalled();
-      expect(mockPrisma.affectedService.create).toHaveBeenCalledTimes(2);
+      expect(mockIncidentHistoryCreate).toHaveBeenCalled();
+      expect(mockAffectedServiceCreateMany).toHaveBeenCalledWith({
+        data: [
+          { incidentId: expect.any(String), serviceId: 'service1' },
+          { incidentId: expect.any(String), serviceId: 'service2' },
+        ],
+        skipDuplicates: true,
+      });
     });
 
     it('既存のインシデントIDが指定された場合、インシデントを更新する', async () => {
-      mockPrisma.incidentHistory.findUnique.mockResolvedValue({
+      mockIncidentHistoryFindUnique.mockResolvedValue({
         id: 'existing-incident',
         slug: 'existing-slug',
         incidentImpact: 'outage',
@@ -564,7 +628,7 @@ describe('POST /api/status/events', () => {
         lastNotifiedAt: null,
         createdAt: new Date(),
       });
-      mockPrisma.incidentHistory.update.mockResolvedValue({
+      mockIncidentHistoryUpdate.mockResolvedValue({
         id: 'existing-incident',
         slug: 'existing-slug',
         incidentImpact: 'degraded',
@@ -583,8 +647,8 @@ describe('POST /api/status/events', () => {
         lastNotifiedAt: new Date(),
         createdAt: new Date(),
       });
-      mockPrisma.affectedService.deleteMany.mockResolvedValue({ count: 1 });
-      mockPrisma.affectedService.create.mockResolvedValue({
+      mockAffectedServiceDeleteMany.mockResolvedValue({ count: 1 });
+      mockAffectedServiceCreate.mockResolvedValue({
         incidentId: 'existing-incident',
         serviceId: 'service1',
         createdAt: new Date(),
@@ -616,10 +680,9 @@ describe('POST /api/status/events', () => {
       });
 
       const response = await POST(request);
-      const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(mockPrisma.incidentHistory.update).toHaveBeenCalledWith(
+      expect(mockIncidentHistoryUpdate).toHaveBeenCalledWith(
         expect.objectContaining({
           where: { id: 'existing-incident' },
         })
@@ -627,8 +690,8 @@ describe('POST /api/status/events', () => {
     });
 
     it('インシデント更新を含む場合、インシデント更新を作成する', async () => {
-      mockPrisma.incidentHistory.findUnique.mockResolvedValue(null);
-      mockPrisma.incidentHistory.create.mockResolvedValue({
+      mockIncidentHistoryFindUnique.mockResolvedValue(null);
+      mockIncidentHistoryCreate.mockResolvedValue({
         id: 'incident-1',
         slug: 'slug-1',
         incidentImpact: 'outage',
@@ -647,14 +710,14 @@ describe('POST /api/status/events', () => {
         lastNotifiedAt: new Date(),
         createdAt: new Date(),
       });
-      mockPrisma.affectedService.deleteMany.mockResolvedValue({ count: 0 });
-      mockPrisma.affectedService.create.mockResolvedValue({
+      mockAffectedServiceDeleteMany.mockResolvedValue({ count: 0 });
+      mockAffectedServiceCreate.mockResolvedValue({
         incidentId: 'incident-1',
         serviceId: 'service1',
         createdAt: new Date(),
       });
-      mockPrisma.incidentUpdate.findUnique.mockResolvedValue(null);
-      mockPrisma.incidentUpdate.create.mockResolvedValue({
+      mockIncidentUpdateFindUnique.mockResolvedValue(null);
+      mockIncidentUpdateCreate.mockResolvedValue({
         id: 'update-1',
         incidentId: 'incident-1',
         status: 'degraded',
@@ -697,10 +760,9 @@ describe('POST /api/status/events', () => {
       });
 
       const response = await POST(request);
-      const data = await response.json();
 
       expect(response.status).toBe(200);
-      expect(mockPrisma.incidentUpdate.create).toHaveBeenCalled();
+      expect(mockIncidentUpdateCreate).toHaveBeenCalled();
     });
   });
 
@@ -713,7 +775,7 @@ describe('POST /api/status/events', () => {
       mockGetServices.mockResolvedValue([]);
       mockGetIncidentHistories.mockResolvedValue([]);
 
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -723,8 +785,8 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
-      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue(null);
+      mockServiceStatusSnapshotCreate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
@@ -755,7 +817,6 @@ describe('POST /api/status/events', () => {
       });
 
       const response = await POST(request);
-      const data = await response.json();
 
       expect(response.status).toBe(200);
       expect(mockGetStatusLabel).toHaveBeenCalled();
@@ -771,7 +832,7 @@ describe('POST /api/status/events', () => {
     it('Redis が利用不可の場合でも、正常に処理される', async () => {
       mockIsRedisAvailable.mockReturnValue(false);
 
-      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+      mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
         labelJa: 'テストサービス',
@@ -781,8 +842,8 @@ describe('POST /api/status/events', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
       });
-      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
-      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+      mockServiceStatusSnapshotFindFirst.mockResolvedValue(null);
+      mockServiceStatusSnapshotCreate.mockResolvedValue({
         id: 1,
         serviceId: 'test-service',
         status: 'operational',
