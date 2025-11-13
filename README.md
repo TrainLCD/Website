@@ -208,7 +208,7 @@ npx prisma migrate deploy
 
 ### 📄 ライセンス
 
-このプロジェクトはプライベートリポジトリです。詳細については、リポジトリの所有者にお問い合わせください。
+このプロジェクトは[MITライセンス](LICENSE)の下で公開されています。
 
 ### 🔗 関連リンク
 
@@ -414,7 +414,7 @@ Contributions are welcome! Please follow these steps:
 
 ### 📄 License
 
-This project is a private repository. Please contact the repository owner for details.
+This project is released under the [MIT License](LICENSE).
 
 ### 🔗 Related Links
 
