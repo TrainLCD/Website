@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint via Turbo
+      - name: Run ESLint
         run: npm run lint
 
       - name: Run Status app tests
