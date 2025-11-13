@@ -63,22 +63,143 @@ const mockGetStatusLabel = vi.mocked(getStatusLabel);
 const mockGetIncidentHistories = vi.mocked(getIncidentHistories);
 
 describe('POST /api/status/events', () => {
+  const originalEnv = process.env.STATUS_UPDATE_API_KEY;
+  
   beforeEach(() => {
     vi.clearAllMocks();
     mockIsRedisAvailable.mockReturnValue(false);
     mockGetStatusLabel.mockResolvedValue('operational');
     mockGetServices.mockResolvedValue([]);
     mockGetIncidentHistories.mockResolvedValue([]);
+    // テスト用にAPIキーを設定
+    process.env.STATUS_UPDATE_API_KEY = 'test-api-key';
   });
 
   afterEach(() => {
     vi.resetAllMocks();
+    // 元の環境変数を復元
+    if (originalEnv === undefined) {
+      delete process.env.STATUS_UPDATE_API_KEY;
+    } else {
+      process.env.STATUS_UPDATE_API_KEY = originalEnv;
+    }
+  });
+
+  describe('認証', () => {
+    it('API キーが設定されている場合、正しいキーがないと401エラーを返す', async () => {
+      const request = new NextRequest('http://localhost:3000/api/status/events', {
+        method: 'POST',
+        body: JSON.stringify({
+          services: [{
+            serviceId: 'test-service',
+            status: 'operational',
+            summary: { ja: 'サマリー', en: 'Summary' },
+          }],
+        }),
+      });
+
+      const response = await POST(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(401);
+      expect(data.error).toContain('認証');
+    });
+
+    it('正しいAPI キーがあれば認証が通る', async () => {
+      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+        id: 'test-service',
+        category: 'application',
+        labelJa: 'テストサービス',
+        labelEn: 'Test Service',
+        descriptionJa: '説明',
+        descriptionEn: 'Description',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
+      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+        id: 1,
+        serviceId: 'test-service',
+        status: 'operational',
+        summaryJa: 'サマリー',
+        summaryEn: 'Summary',
+        statusSince: new Date(),
+        updatedAt: new Date(),
+        createdAt: new Date(),
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/status/events', {
+        method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
+        body: JSON.stringify({
+          services: [{
+            serviceId: 'test-service',
+            status: 'operational',
+            summary: { ja: 'サマリー', en: 'Summary' },
+          }],
+        }),
+      });
+
+      const response = await POST(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.success).toBe(true);
+    });
+
+    it('API キーが設定されていない場合、認証チェックをスキップする', async () => {
+      delete process.env.STATUS_UPDATE_API_KEY;
+
+      mockPrisma.serviceDefinition.findUnique.mockResolvedValue({
+        id: 'test-service',
+        category: 'application',
+        labelJa: 'テストサービス',
+        labelEn: 'Test Service',
+        descriptionJa: '説明',
+        descriptionEn: 'Description',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      mockPrisma.serviceStatusSnapshot.findFirst.mockResolvedValue(null);
+      mockPrisma.serviceStatusSnapshot.create.mockResolvedValue({
+        id: 1,
+        serviceId: 'test-service',
+        status: 'operational',
+        summaryJa: 'サマリー',
+        summaryEn: 'Summary',
+        statusSince: new Date(),
+        updatedAt: new Date(),
+        createdAt: new Date(),
+      });
+
+      const request = new NextRequest('http://localhost:3000/api/status/events', {
+        method: 'POST',
+        body: JSON.stringify({
+          services: [{
+            serviceId: 'test-service',
+            status: 'operational',
+            summary: { ja: 'サマリー', en: 'Summary' },
+          }],
+        }),
+      });
+
+      const response = await POST(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.success).toBe(true);
+    });
   });
 
   describe('バリデーション', () => {
     it('空のリクエストボディの場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({}),
       });
 
@@ -92,6 +213,9 @@ describe('POST /api/status/events', () => {
     it('services が配列でない場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: 'invalid',
         }),
@@ -107,6 +231,9 @@ describe('POST /api/status/events', () => {
     it('service の status が不正な場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -131,6 +258,9 @@ describe('POST /api/status/events', () => {
     it('service の summary が LocaleText でない場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -152,6 +282,9 @@ describe('POST /api/status/events', () => {
     it('incident の impact が不正な場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           incidents: [
             {
@@ -175,6 +308,9 @@ describe('POST /api/status/events', () => {
     it('incident の affectedServiceIds が空配列の場合、400エラーを返す', async () => {
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           incidents: [
             {
@@ -222,6 +358,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -281,6 +420,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -314,6 +456,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -368,6 +513,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           incidents: [
             {
@@ -444,6 +592,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           incidents: [
             {
@@ -514,6 +665,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           incidents: [
             {
@@ -583,6 +737,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {
@@ -638,6 +795,9 @@ describe('POST /api/status/events', () => {
 
       const request = new NextRequest('http://localhost:3000/api/status/events', {
         method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
         body: JSON.stringify({
           services: [
             {

@@ -415,6 +415,17 @@ async function updateCacheAndNotify(): Promise<void> {
 
 export async function POST(request: NextRequest) {
   try {
+    // API キー認証チェック
+    const apiKey = request.headers.get('x-api-key');
+    const expectedApiKey = process.env.STATUS_UPDATE_API_KEY;
+    
+    if (expectedApiKey && apiKey !== expectedApiKey) {
+      return NextResponse.json(
+        { error: '認証に失敗しました' },
+        { status: 401 }
+      );
+    }
+    
     // リクエストボディの取得とバリデーション
     const body = await request.json();
     const validation = validatePayload(body);
