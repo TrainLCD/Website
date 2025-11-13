@@ -44,14 +44,34 @@
   margin-right: 16px;
 }
 
-.navLink {
-  padding: 8px 16px;
-  color: #444;
+.faqButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  background-color: #ffffff;
+  border: 1px solid #7e57c2;
+  border-radius: 4px;
+  color: #7e57c2;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: bold;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
 }
 
-.navLink:hover {
-  color: #03a9f4;
+@media (min-width: 768px) {
+  .faqButton {
+    padding: 4px 16px;
+    font-size: 1rem;
+  }
+}
+
+.faqButton:hover {
+  background-color: #7e57c2;
+  color: #ffffff;
+}
+
+.faqButton:focus-visible {
+  outline: 2px solid #7e57c2;
+  outline-offset: 2px;
 }
