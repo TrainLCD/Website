@@ -49,9 +49,9 @@
   align-items: center;
   padding: 6px 16px;
   background-color: #ffffff;
-  border: 1px solid #7e57c2;
+  border: 1px solid #00B48D;
   border-radius: 4px;
-  color: #7e57c2;
+  color: #00B48D;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.875rem;
@@ -67,11 +67,11 @@
 }
 
 .faqButton:hover {
-  background-color: #7e57c2;
+  background-color: #00B48D;
   color: #ffffff;
 }
 
 .faqButton:focus-visible {
-  outline: 2px solid #7e57c2;
+  outline: 2px solid #00B48D;
   outline-offset: 2px;
 }
