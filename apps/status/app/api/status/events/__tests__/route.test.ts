@@ -16,7 +16,6 @@ vi.mock('@/server/lib/prisma', () => {
   const mockAffectedServiceCreateMany = vi.fn();
   const mockIncidentUpdateFindUnique = vi.fn();
   const mockIncidentUpdateCreate = vi.fn();
-  const mockIncidentUpdateUpdate = vi.fn();
 
   const mockTransactionClient = {
     serviceDefinition: {
@@ -40,7 +39,6 @@ vi.mock('@/server/lib/prisma', () => {
     incidentUpdate: {
       findUnique: mockIncidentUpdateFindUnique,
       create: mockIncidentUpdateCreate,
-      update: mockIncidentUpdateUpdate,
     },
   };
 
@@ -68,7 +66,6 @@ vi.mock('@/server/lib/prisma', () => {
       incidentUpdate: {
         findUnique: mockIncidentUpdateFindUnique,
         create: mockIncidentUpdateCreate,
-        update: mockIncidentUpdateUpdate,
       },
     },
   };
@@ -119,7 +116,6 @@ const mockAffectedServiceCreate = mockPrisma.affectedService.create;
 const mockAffectedServiceCreateMany = mockPrisma.affectedService.createMany;
 const mockIncidentUpdateFindUnique = mockPrisma.incidentUpdate.findUnique;
 const mockIncidentUpdateCreate = mockPrisma.incidentUpdate.create;
-const mockIncidentUpdateUpdate = mockPrisma.incidentUpdate.update;
 
 describe('POST /api/status/events', () => {
   const originalEnv = process.env.STATUS_UPDATE_API_KEY;

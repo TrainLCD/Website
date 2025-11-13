@@ -126,9 +126,11 @@ POST /api/status/events
 ```json
 {
   "error": "サーバーエラーが発生しました",
-  "details": "詳細なエラーメッセージ"
+  "details": "詳細なエラーメッセージ (開発環境のみ)"
 }
 ```
+
+> 注: `details` フィールドは開発環境 (`NODE_ENV=development`) でのみ含まれます。本番環境ではセキュリティ上の理由から省略されます。
 
 ## リクエスト例
 

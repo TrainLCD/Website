@@ -80,9 +80,22 @@ function isValidLocaleText(text: unknown): text is LocaleText {
 }
 
 function isValidISODate(dateStr: string): boolean {
-  if (!dateStr) return false;
+  if (!dateStr || typeof dateStr !== 'string') return false;
+  // Check for basic ISO 8601 format (YYYY-MM-DD or full timestamp)
+  const iso8601Regex = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d{3})?Z?)?$/;
+  if (!iso8601Regex.test(dateStr)) return false;
   const date = new Date(dateStr);
-  return !isNaN(date.getTime()) && date.toISOString().startsWith(dateStr.substring(0, 10));
+  return !isNaN(date.getTime());
+}
+
+function isValidUrl(url: string): boolean {
+  try {
+    const parsedUrl = new URL(url);
+    // Only allow http and https protocols
+    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
+  } catch {
+    return false;
+  }
 }
 
 function validateServicePayload(service: unknown): service is ServiceEventPayload {
@@ -167,7 +180,7 @@ function validateIncidentPayload(incident: unknown): incident is IncidentEventPa
   if (i.cause !== undefined && i.cause !== null && !isValidLocaleText(i.cause)) {
     return false;
   }
-  if (i.externalLink !== undefined && i.externalLink !== null && (typeof i.externalLink !== 'string' || i.externalLink.length > MAX_STRING_LENGTH)) {
+  if (i.externalLink !== undefined && i.externalLink !== null && (typeof i.externalLink !== 'string' || i.externalLink.length > MAX_STRING_LENGTH || !isValidUrl(i.externalLink))) {
     return false;
   }
   if (i.updates !== undefined) {
@@ -234,15 +247,19 @@ function generateId(): string {
 
 // スラッグの生成
 function generateSlug(title: string): string {
-  // タイトルから基本的なスラッグを生成
+  // タイトルから基本的なスラッグを生成（ASCIIのみ許可、ダイアクリティクス除去）
   const baseSlug = title
     .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // ダイアクリティクス除去
+    .replace(/[^a-z0-9\s-]/g, '') // a-z, 0-9, スペース, ハイフンのみ許可
+    .replace(/\s+/g, '-') // スペースをハイフンに
+    .replace(/-+/g, '-') // ハイフン連続を1つに
+    .replace(/^-|-$/g, '') // 先頭・末尾のハイフン除去
     .substring(0, 50);
   
-  // ユニークIDを追加
-  return `${baseSlug}-${nanoid(10)}`;
+  // baseSlugが空の場合は'incident'を使用
+  return `${baseSlug || 'incident'}-${nanoid(10)}`;
 }
 
 // サービスステータスの更新
@@ -427,8 +444,7 @@ async function updateCacheAndNotify(): Promise<void> {
       const locales = ['ja', 'en'] as const;
       await Promise.all(
         locales.map(async (locale) => {
-          const [localeStatusLabel, localeServices, localeIncidents] = await Promise.all([
-            getStatusLabel(locale),
+          const [localeServices, localeIncidents] = await Promise.all([
             getServices(locale),
             getIncidentHistories(locale),
           ]);
