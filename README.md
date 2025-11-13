@@ -37,7 +37,7 @@ This repository hosts the official TrainLCD landing page and system status page 
 
 ## Repository Structure
 
-```
+```plaintext
 Website/
 ├── apps/
 │   ├── lp/                # Astro landing page
