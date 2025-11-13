@@ -43,24 +43,24 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
     <div className="flex items-center gap-2">
       <button
         onClick={() => handleLocaleChange('ja')}
-        disabled={isPending}
+        disabled={isPending || locale === 'ja'}
         className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
           locale === 'ja'
             ? 'bg-neutral-800 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-        } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+        } ${isPending || locale === 'ja' ? 'opacity-50 cursor-not-allowed' : ''}`}
         aria-label="Switch to Japanese"
       >
         日本語
       </button>
       <button
         onClick={() => handleLocaleChange('en')}
-        disabled={isPending}
+        disabled={isPending || locale === 'en'}
         className={`px-3 py-1 text-sm font-medium rounded transition-colors ${
           locale === 'en'
             ? 'bg-neutral-800 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-        } ${isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+        } ${isPending || locale === 'en' ? 'opacity-50 cursor-not-allowed' : ''}`}
         aria-label="Switch to English"
       >
         English
