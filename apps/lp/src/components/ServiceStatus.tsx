@@ -57,12 +57,11 @@ export const ServiceStatus = () => {
     fetchStatus();
   }, []);
 
-  // Don't render until we have fetched the status
-  if (statusLabel === null) {
-    return null;
-  }
-
   const StatusIcon = () => {
+    if (statusLabel === null) {
+      return null;
+    }
+
     switch (statusLabel) {
       case 'operational':
         return <span className={styles.indicator} />;
@@ -88,10 +87,12 @@ export const ServiceStatus = () => {
       target="_blank"
     >
       <span className={styles.label}>障害情報</span>
-      <span className={styles.status}>
-        <StatusIcon />
-        <span className={styles.statusText}>{statusText[statusLabel]}</span>
-      </span>
+      {statusLabel !== null && (
+        <span className={styles.status}>
+          <StatusIcon />
+          <span className={styles.statusText}>{statusText[statusLabel]}</span>
+        </span>
+      )}
     </a>
   );
 };
