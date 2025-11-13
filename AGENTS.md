@@ -170,7 +170,8 @@ Website/
 
 ### 命名規則
 
-- **ファイル名**: camelCase (例: `locale.ts`, `StatusContent.tsx`)
+- **コンポーネントファイル名**: PascalCase (例: `StatusContent.tsx`, `ServicesTable.tsx`)
+- **ユーティリティファイル名**: camelCase (例: `locale.ts`, `redis.ts`)
 - **コンポーネント名**: PascalCase (例: `StatusContent`, `ServicesTable`)
 - **関数名**: camelCase (例: `detectLocale`, `getStatusLabel`)
 - **定数**: UPPER_SNAKE_CASE (例: `DEFAULT_LOCALE`)
