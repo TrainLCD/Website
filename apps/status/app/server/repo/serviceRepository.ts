@@ -7,7 +7,7 @@ type PrismaServiceDefinition = ServiceDefinition & {
   statusSnapshots: ServiceStatusSnapshot[];
 };
 
-const CACHE_TTL = 60; // 60 seconds cache
+const CACHE_TTL = 600; // 600 seconds cache (10 minutes)
 const SERVICES_CACHE_KEY = 'services:all';
 
 /**

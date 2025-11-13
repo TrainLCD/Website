@@ -2,7 +2,7 @@ import { prisma } from '../lib/prisma';
 import { redis, isRedisAvailable } from '../lib/redis';
 import type { IncidentHistory, StatusType } from '../types';
 
-const CACHE_TTL = 60; // 60 seconds cache
+const CACHE_TTL = 600; // 600 seconds cache (10 minutes)
 const INCIDENTS_CACHE_KEY = 'incidents:all';
 const INCIDENT_CACHE_KEY_PREFIX = 'incident:';
 
