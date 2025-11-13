@@ -1,32 +1,34 @@
-import { prisma } from '../lib/prisma';
-import { redis, isRedisAvailable } from '../lib/redis';
-import type { Service, StatusType, ServiceCategory } from '../types';
-import type { ServiceDefinition, ServiceStatusSnapshot } from '@prisma/client';
-import type { Locale } from '../lib/locale';
+import { prisma } from "../lib/prisma";
+import { redis, isRedisAvailable } from "../lib/redis";
+import type { Service, StatusType, ServiceCategory } from "../types";
+import type { ServiceDefinition, ServiceStatusSnapshot } from "@prisma/client";
+import type { Locale } from "../lib/locale";
 
 type PrismaServiceDefinition = ServiceDefinition & {
   statusSnapshots: ServiceStatusSnapshot[];
 };
 
-const CACHE_TTL = 600; // 600 seconds cache (10 minutes)
-const SERVICES_CACHE_KEY_PREFIX = 'services:all';
+const CACHE_TTL = 3600; // 3600 seconds cache (1 hour)
+const SERVICES_CACHE_KEY_PREFIX = "services:all";
 
 /**
  * Fetches all services with their current status.
  * Checks Redis cache first, then falls back to PostgreSQL.
  * Cache is locale-specific to avoid language mixing.
  */
-export async function getServices(locale: Locale = 'ja'): Promise<Service[]> {
+export async function getServices(locale: Locale = "ja"): Promise<Service[]> {
   const SERVICES_CACHE_KEY = `${SERVICES_CACHE_KEY_PREFIX}:${locale}`;
   try {
     // Try Redis cache first if connected
     if (isRedisAvailable()) {
       const cached = await redis.get(SERVICES_CACHE_KEY);
       if (cached) {
-        console.log('[ServiceRepository] Cache HIT for services');
+        console.log("[ServiceRepository] Cache HIT for services");
         return JSON.parse(cached);
       }
-      console.log('[ServiceRepository] Cache MISS for services, fetching from DB');
+      console.log(
+        "[ServiceRepository] Cache MISS for services, fetching from DB"
+      );
     }
 
     // Fetch from PostgreSQL using Prisma
@@ -34,53 +36,66 @@ export async function getServices(locale: Locale = 'ja'): Promise<Service[]> {
       include: {
         statusSnapshots: {
           orderBy: {
-            createdAt: 'desc',
+            createdAt: "desc",
           },
           take: 1,
         },
       },
     });
 
-    const services: Service[] = serviceDefinitions.map((def: PrismaServiceDefinition) => {
-      const snapshot = def.statusSnapshots[0];
-      if (!snapshot) {
-        throw new Error(`Missing status snapshot for service ${def.id}`);
-      }
+    const services: Service[] = serviceDefinitions.map(
+      (def: PrismaServiceDefinition) => {
+        const snapshot = def.statusSnapshots[0];
+        if (!snapshot) {
+          throw new Error(`Missing status snapshot for service ${def.id}`);
+        }
 
-      return {
-        id: def.id,
-        category: def.category as Service['category'],
-        label: {
-          ja: def.labelJa,
-          en: def.labelEn,
-        },
-        description: {
-          ja: def.descriptionJa,
-          en: def.descriptionEn,
-        },
-        statusSummary: {
-          ja: snapshot.summaryJa || '',
-          en: snapshot.summaryEn || '',
-        },
-        status: snapshot.status as StatusType,
-        statusSince: snapshot.statusSince.toISOString(),
-        updatedAt: snapshot.updatedAt.toISOString(),
-      };
-    });
+        return {
+          id: def.id,
+          category: def.category as Service["category"],
+          label: {
+            ja: def.labelJa,
+            en: def.labelEn,
+          },
+          description: {
+            ja: def.descriptionJa,
+            en: def.descriptionEn,
+          },
+          statusSummary: {
+            ja: snapshot.summaryJa || "",
+            en: snapshot.summaryEn || "",
+          },
+          status: snapshot.status as StatusType,
+          statusSince: snapshot.statusSince.toISOString(),
+          updatedAt: snapshot.updatedAt.toISOString(),
+        };
+      }
+    );
 
     // Cache in Redis if connected
     if (isRedisAvailable()) {
-      await redis.setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services)).catch((err: Error) => {
-        console.warn('[ServiceRepository] Failed to cache services:', err.message);
-      });
+      await redis
+        .setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services))
+        .catch((err: Error) => {
+          console.warn(
+            "[ServiceRepository] Failed to cache services:",
+            err.message
+          );
+        });
     }
 
     return services;
   } catch (error) {
     if (error instanceof Error) {
-      console.error('[ServiceRepository] Database error fetching services:', error.message);
+      console.error(
+        "[ServiceRepository] Database error fetching services:",
+        error.message
+      );
     } else {
-      console.error('[ServiceRepository] Unknown error fetching services:', error);
+      console.error(
+        "[ServiceRepository] Unknown error fetching services:",
+        error
+      );
     }
     throw error;
   }
@@ -89,38 +104,40 @@ export async function getServices(locale: Locale = 'ja'): Promise<Service[]> {
 /**
  * Calculates the overall status label based on service statuses.
  */
-export async function getStatusLabel(locale: Locale = 'ja'): Promise<StatusType> {
+export async function getStatusLabel(
+  locale: Locale = "ja"
+): Promise<StatusType> {
   const services = await getServices(locale);
-  
+
   const underMaintenanceServices = services.filter(
-    (service) => service.status === 'maintenance'
+    (service) => service.status === "maintenance"
   );
   const degradedServices = services.filter(
-    (service) => service.status === 'degraded'
+    (service) => service.status === "degraded"
   );
-  const hasOutage = services.some((service) => service.status === 'outage');
+  const hasOutage = services.some((service) => service.status === "outage");
   const isOperational = services.every(
-    (service) => service.status === 'operational'
+    (service) => service.status === "operational"
   );
 
   if (underMaintenanceServices.length > 0) {
     if (underMaintenanceServices.length === services.length) {
-      return 'maintenance';
+      return "maintenance";
     }
-    return 'partiallyMaintenance';
+    return "partiallyMaintenance";
   }
   if (degradedServices.length > 0) {
     if (degradedServices.length === services.length) {
-      return 'degraded';
+      return "degraded";
     }
-    return 'partiallyDegraded';
+    return "partiallyDegraded";
   }
   if (hasOutage) {
-    return 'outage';
+    return "outage";
   }
   if (isOperational) {
-    return 'operational';
+    return "operational";
   }
 
-  return 'unknown';
+  return "unknown";
 }
