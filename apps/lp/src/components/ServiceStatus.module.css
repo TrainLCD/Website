@@ -31,24 +31,45 @@
   display: flex;
   align-items: center;
   padding: 6px 12px;
+  overflow: hidden;
   animation: slideIn 0.3s ease-out;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(-10px);
+    max-width: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    max-width: 200px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
 @media (min-width: 768px) {
   .status {
     padding: 4px 12px;
-    animation: slideIn 0.3s ease-out;
+    overflow: hidden;
+    animation: slideInDesktop 0.3s ease-out;
+  }
+}
+
+@keyframes slideInDesktop {
+  from {
+    opacity: 0;
+    max-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  to {
+    opacity: 1;
+    max-width: 200px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
