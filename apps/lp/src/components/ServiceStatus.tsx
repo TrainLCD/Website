@@ -1,7 +1,16 @@
-import { statusLabel } from 'data';
+import { useEffect, useState } from 'preact/hooks';
 import styles from './ServiceStatus.module.css';
 import { ErrorIcon } from './icons/Error';
 import { WarningIcon } from './icons/Warning';
+
+type StatusType =
+  | 'operational'
+  | 'maintenance'
+  | 'partiallyMaintenance'
+  | 'degraded'
+  | 'partiallyDegraded'
+  | 'outage'
+  | 'unknown';
 
 const statusColorMap = {
   operational: '#22c55e',
@@ -23,7 +32,36 @@ const statusText = {
   unknown: '調査中',
 } as const;
 
+type Snapshot = {
+  statusLabel: StatusType;
+};
+
 export const ServiceStatus = () => {
+  const [statusLabel, setStatusLabel] = useState<StatusType | null>(null);
+
+  useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const response = await fetch(import.meta.env.PUBLIC_STATUS_API_URL);
+        if (!response.ok) {
+          throw new Error('Failed to fetch status');
+        }
+        const data: Snapshot = await response.json();
+        setStatusLabel(data.statusLabel);
+      } catch (error) {
+        console.error('Error fetching service status:', error);
+        setStatusLabel('unknown');
+      }
+    };
+
+    fetchStatus();
+  }, []);
+
+  // Don't render until we have fetched the status
+  if (statusLabel === null) {
+    return null;
+  }
+
   const StatusIcon = () => {
     switch (statusLabel) {
       case 'operational':

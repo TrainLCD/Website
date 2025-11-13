@@ -12,7 +12,7 @@ const { lcpImageSources = [] } = Astro.props;
 ---
 
 <main>
-  <Header />
+  <Header client:load />
   <WelcomeSection lcpImageSources={lcpImageSources} />
   <ServiceAreaSection />
   <TabletSection />
