@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
       maxAge: 60 * 60 * 24 * 365, // 1 year
       path: '/',
       sameSite: 'lax',
+      httpOnly: true,
     });
 
     return NextResponse.json({ success: true });
