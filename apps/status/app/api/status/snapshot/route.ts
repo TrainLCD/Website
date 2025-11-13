@@ -4,28 +4,29 @@ import { getIncidentHistories } from '@/server/repo/incidentRepository';
 
 /**
  * Check if the origin is allowed based on ALLOWED_SNAPSHOT_ORIGINS environment variable.
- * Returns false if origin is null (same-origin requests don't need CORS headers).
+ * Returns 'wildcard' if all origins are allowed, 'specific' if the origin matches the allowed list,
+ * or null if the origin is not allowed or is null (same-origin requests don't need CORS headers).
  */
-function isOriginAllowed(origin: string | null): boolean {
+function isOriginAllowed(origin: string | null): 'wildcard' | 'specific' | null {
   if (!origin) {
-    return false; // No origin header means same-origin request, no CORS headers needed
+    return null; // No origin header means same-origin request, no CORS headers needed
   }
 
   const allowedOrigins = process.env.ALLOWED_SNAPSHOT_ORIGINS;
   
   // If not set or empty, don't allow cross-origin requests
   if (!allowedOrigins) {
-    return false;
+    return null;
   }
 
   // If set to "*", allow all origins
   if (allowedOrigins === '*') {
-    return true;
+    return 'wildcard';
   }
 
   // Parse comma-separated list of allowed origins
   const originList = allowedOrigins.split(',').map(o => o.trim());
-  return originList.includes(origin);
+  return originList.includes(origin) ? 'specific' : null;
 }
 
 export async function GET(request: NextRequest) {
@@ -36,21 +37,19 @@ export async function GET(request: NextRequest) {
   ]);
 
   const origin = request.headers.get('origin');
-  const allowedOrigins = process.env.ALLOWED_SNAPSHOT_ORIGINS;
+  const allowedType = isOriginAllowed(origin);
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
   };
 
   // Add CORS headers if origin is allowed
-  if (origin && isOriginAllowed(origin)) {
-    if (allowedOrigins === '*') {
-      // For wildcard, use '*' as the origin and don't include credentials
-      headers['Access-Control-Allow-Origin'] = '*';
-    } else {
-      // For specific origins, echo the origin and allow credentials
-      headers['Access-Control-Allow-Origin'] = origin;
-      headers['Access-Control-Allow-Credentials'] = 'true';
-    }
+  if (allowedType === 'wildcard') {
+    // For wildcard, use '*' as the origin and don't include credentials
+    headers['Access-Control-Allow-Origin'] = '*';
+  } else if (allowedType === 'specific' && origin) {
+    // For specific origins, echo the origin and allow credentials
+    headers['Access-Control-Allow-Origin'] = origin;
+    headers['Access-Control-Allow-Credentials'] = 'true';
   }
 
   return NextResponse.json(
