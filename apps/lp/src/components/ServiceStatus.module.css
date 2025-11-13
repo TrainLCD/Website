@@ -32,7 +32,7 @@
   align-items: center;
   padding: 6px 12px;
   overflow: hidden;
-  animation: slideIn 0.5s ease-out;
+  animation: slideIn 0.5s ease;
 }
 
 @keyframes slideIn {
@@ -54,7 +54,7 @@
   .status {
     padding: 4px 12px;
     overflow: hidden;
-    animation: slideInDesktop 0.5s ease-out;
+    animation: slideInDesktop 0.5s ease;
   }
 }
 
