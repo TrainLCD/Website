@@ -1,16 +1,20 @@
 'use client';
 
 import type { Service } from '@/server/types';
+import type { Locale } from '@/server/lib/locale';
 import { StatusIcon } from '../StatusIcon';
 
 type ServicesTableProps = {
   services: Service[];
+  locale: Locale;
 };
 
-export default function ServicesTable({ services }: ServicesTableProps) {
+export default function ServicesTable({ services, locale }: ServicesTableProps) {
+  const headerText = locale === 'ja' ? '各サービス稼働状況' : 'Service Status';
+  
   return (
     <div className="border w-full rounded-lg max-w-2xl">
-      <p className="bg-gray-100 font-semibold p-4">各サービス稼働状況</p>
+      <p className="bg-gray-100 font-semibold p-4">{headerText}</p>
       <ul>
         {services.map((svc) => (
           <li
@@ -19,8 +23,8 @@ export default function ServicesTable({ services }: ServicesTableProps) {
             className="flex border-b last:border-none p-4"
           >
             <div className="flex-1">
-              <p className="font-semibold">{svc.label.ja}</p>
-              <p className="text-xs mt-1">{svc.description.ja}</p>
+              <p className="font-semibold">{svc.label[locale]}</p>
+              <p className="text-xs mt-1">{svc.description[locale]}</p>
             </div>
             <div className="flex justify-center items-center">
               <StatusIcon status={svc.status} className="h-8 w-8 md:ml-2 ml-3" />

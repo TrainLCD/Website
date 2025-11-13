@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './styles/global.css';
+import { detectLocale } from './server/lib/locale';
 
 export const metadata: Metadata = {
   title: 'TrainLCD System Status',
@@ -23,13 +24,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await detectLocale();
+  
   return (
-    <html lang="ja">
+    <html lang={locale}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

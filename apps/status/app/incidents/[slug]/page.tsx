@@ -8,6 +8,7 @@ import Footer from '../../components/Footer';
 import { StatusIcon } from '../../components/StatusIcon';
 import { getIncidentBySlug } from '@/server/repo/incidentRepository';
 import { getServices } from '@/server/repo/serviceRepository';
+import { detectLocale } from '@/server/lib/locale';
 import type { StatusType } from '@/server/types';
 
 // Force dynamic rendering
@@ -27,7 +28,8 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const incident = await getIncidentBySlug(slug);
+  const locale = await detectLocale();
+  const incident = await getIncidentBySlug(slug, locale);
 
   if (!incident) {
     return {
@@ -36,11 +38,11 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: `${incident.title.ja} - TrainLCD System Status`,
-    description: incident.description.ja,
+    title: `${incident.title[locale]} - TrainLCD System Status`,
+    description: incident.description[locale],
     openGraph: {
-      title: `${incident.title.ja} - TrainLCD System Status`,
-      description: incident.description.ja,
+      title: `${incident.title[locale]} - TrainLCD System Status`,
+      description: incident.description[locale],
       type: 'article',
       publishedTime: incident.publishedAt,
       modifiedTime: incident.updatedAt,
@@ -50,9 +52,11 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function IncidentDetailPage({ params }: Props) {
   const { slug } = await params;
+  const locale = await detectLocale();
+  
   const [incident, services] = await Promise.all([
-    getIncidentBySlug(slug),
-    getServices(),
+    getIncidentBySlug(slug, locale),
+    getServices(locale),
   ]);
 
   if (!incident) {
@@ -64,23 +68,32 @@ export default async function IncidentDetailPage({ params }: Props) {
   );
 
   const getStatusLabel = (status: StatusType) => {
-    switch (status) {
-      case 'operational':
-        return { ja: '正常', en: 'Operational' };
-      case 'maintenance':
-        return { ja: 'メンテナンス', en: 'Maintenance' };
-      case 'partiallyMaintenance':
-        return { ja: '一部メンテナンス', en: 'Partial Maintenance' };
-      case 'degraded':
-        return { ja: '性能低下', en: 'Degraded' };
-      case 'partiallyDegraded':
-        return { ja: '一部性能低下', en: 'Partially Degraded' };
-      case 'outage':
-        return { ja: '障害', en: 'Outage' };
-      default:
-        return { ja: '不明', en: 'Unknown' };
-    }
+    const labels = {
+      operational: { ja: '正常', en: 'Operational' },
+      maintenance: { ja: 'メンテナンス', en: 'Maintenance' },
+      partiallyMaintenance: { ja: '一部メンテナンス', en: 'Partial Maintenance' },
+      degraded: { ja: '性能低下', en: 'Degraded' },
+      partiallyDegraded: { ja: '一部性能低下', en: 'Partially Degraded' },
+      outage: { ja: '障害', en: 'Outage' },
+      unknown: { ja: '不明', en: 'Unknown' },
+    };
+    return labels[status] || labels.unknown;
   };
+
+  const labels = {
+    backLink: locale === 'ja' ? '← 障害履歴に戻る' : '← Back to incident history',
+    publishedAt: locale === 'ja' ? '公開日時:' : 'Published:',
+    startedAt: locale === 'ja' ? '対応開始日時:' : 'Started:',
+    resolvedAt: locale === 'ja' ? '復旧完了日時:' : 'Resolved:',
+    estimatedResolveDate: locale === 'ja' ? '推定復旧完了日時:' : 'Estimated resolution:',
+    summary: locale === 'ja' ? '概要' : 'Summary',
+    cause: locale === 'ja' ? '原因' : 'Cause',
+    affectedServices: locale === 'ja' ? '影響を受けたサービス' : 'Affected Services',
+    relatedLinks: locale === 'ja' ? '関連リンク' : 'Related Links',
+    updates: locale === 'ja' ? '更新情報' : 'Updates',
+  };
+
+  const dateFormat = locale === 'ja' ? 'YYYY年MM月DD日 HH:mm' : 'MMM DD, YYYY HH:mm';
 
   return (
     <>
@@ -92,13 +105,13 @@ export default async function IncidentDetailPage({ params }: Props) {
             href="/"
             className="text-orange-700 hover:underline text-sm mb-4 inline-block"
           >
-            ← 障害履歴に戻る
+            {labels.backLink}
           </Link>
 
           {/* Incident header */}
           <div className="border rounded-lg p-6 mb-6">
             <div className="flex items-start justify-between mb-4">
-              <h1 className="text-2xl font-bold flex-1">{incident.title.ja}</h1>
+              <h1 className="text-2xl font-bold flex-1">{incident.title[locale]}</h1>
               <StatusIcon
                 status={incident.incidentImpact}
                 className="h-10 w-10 ml-4 flex-shrink-0"
@@ -107,54 +120,52 @@ export default async function IncidentDetailPage({ params }: Props) {
 
             <div className="flex items-center gap-2 mb-4">
               <span className="text-sm font-semibold px-3 py-1 rounded-full bg-gray-100">
-                {getStatusLabel(incident.incidentImpact).ja}
+                {getStatusLabel(incident.incidentImpact)[locale]}
               </span>
             </div>
 
             <div className="text-sm text-gray-600 space-y-1 mb-4">
               <p>
-                <span className="font-semibold">公開日時:</span>{' '}
-                {parseTokyoDate(incident.publishedAt).format('YYYY年MM月DD日 HH:mm')}
+                <span className="font-semibold">{labels.publishedAt}</span>{' '}
+                {parseTokyoDate(incident.publishedAt).format(dateFormat)}
               </p>
               <p>
-                <span className="font-semibold">対応開始日時:</span>{' '}
-                {parseTokyoDate(incident.startedAt).format('YYYY年MM月DD日 HH:mm')}
+                <span className="font-semibold">{labels.startedAt}</span>{' '}
+                {parseTokyoDate(incident.startedAt).format(dateFormat)}
               </p>
               {incident.resolvedAt && (
                 <p>
-                  <span className="font-semibold">復旧完了日時:</span>{' '}
-                  {parseTokyoDate(incident.resolvedAt).format('YYYY年MM月DD日 HH:mm')}
+                  <span className="font-semibold">{labels.resolvedAt}</span>{' '}
+                  {parseTokyoDate(incident.resolvedAt).format(dateFormat)}
                 </p>
               )}
               {incident.estimatedResolveDate && (
                 <p>
-                  <span className="font-semibold">推定復旧完了日時:</span>{' '}
-                  {parseTokyoDate(incident.estimatedResolveDate).format(
-                    'YYYY年MM月DD日 HH:mm'
-                  )}
+                  <span className="font-semibold">{labels.estimatedResolveDate}</span>{' '}
+                  {parseTokyoDate(incident.estimatedResolveDate).format(dateFormat)}
                 </p>
               )}
             </div>
 
             <div className="mb-4">
-              <h2 className="font-semibold text-lg mb-2">概要</h2>
-              <p className="text-gray-700">{incident.description.ja}</p>
+              <h2 className="font-semibold text-lg mb-2">{labels.summary}</h2>
+              <p className="text-gray-700">{incident.description[locale]}</p>
             </div>
 
             {incident.cause && (
               <div className="mb-4">
-                <h2 className="font-semibold text-lg mb-2">原因</h2>
-                <p className="text-gray-700">{incident.cause.ja}</p>
+                <h2 className="font-semibold text-lg mb-2">{labels.cause}</h2>
+                <p className="text-gray-700">{incident.cause[locale]}</p>
               </div>
             )}
 
             {affectedServices.length > 0 && (
               <div className="mb-4">
-                <h2 className="font-semibold text-lg mb-2">影響を受けたサービス</h2>
+                <h2 className="font-semibold text-lg mb-2">{labels.affectedServices}</h2>
                 <ul className="list-disc list-inside space-y-1">
                   {affectedServices.map((service) => (
                     <li key={service.id} className="text-gray-700">
-                      {service.label.ja}
+                      {service.label[locale]}
                     </li>
                   ))}
                 </ul>
@@ -163,7 +174,7 @@ export default async function IncidentDetailPage({ params }: Props) {
 
             {incident.externalLink && (
               <div>
-                <h2 className="font-semibold text-lg mb-2">関連リンク</h2>
+                <h2 className="font-semibold text-lg mb-2">{labels.relatedLinks}</h2>
                 <a
                   href={incident.externalLink}
                   target="_blank"
@@ -179,7 +190,7 @@ export default async function IncidentDetailPage({ params }: Props) {
           {/* Updates section */}
           {incident.updates.length > 0 && (
             <div className="border rounded-lg p-6">
-              <h2 className="font-semibold text-xl mb-4">更新情報</h2>
+              <h2 className="font-semibold text-xl mb-4">{labels.updates}</h2>
               <div className="space-y-6">
                 {incident.updates
                   .slice()
@@ -189,15 +200,13 @@ export default async function IncidentDetailPage({ params }: Props) {
                       <div className="flex items-center gap-2 mb-2">
                         <StatusIcon status={update.status} className="h-6 w-6" />
                         <span className="text-sm font-semibold px-2 py-1 rounded bg-gray-100">
-                          {getStatusLabel(update.status).ja}
+                          {getStatusLabel(update.status)[locale]}
                         </span>
                         <span className="text-sm text-gray-600">
-                          {parseTokyoDate(update.createdAt).format(
-                            'YYYY年MM月DD日 HH:mm'
-                          )}
+                          {parseTokyoDate(update.createdAt).format(dateFormat)}
                         </span>
                       </div>
-                      <p className="text-gray-700">{update.body.ja}</p>
+                      <p className="text-gray-700">{update.body[locale]}</p>
                     </div>
                   ))}
               </div>

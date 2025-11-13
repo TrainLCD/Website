@@ -1,48 +1,58 @@
 'use client';
 
 import type { StatusType } from '@/server/types';
+import type { Locale } from '@/server/lib/locale';
 import { StatusIcon } from '../StatusIcon';
 
 type OverviewProps = {
   statusLabel: StatusType;
+  locale: Locale;
 };
 
-export default function Overview({ statusLabel }: OverviewProps) {
+export default function Overview({ statusLabel, locale }: OverviewProps) {
   const statusObj = (() => {
-    switch (statusLabel) {
-      case 'partiallyMaintenance':
-        return {
-          text: 'TrainLCDサービスの一部は\n現在メンテナンス中です',
-          status: 'maintenance' as const,
-        };
-      case 'maintenance':
-        return {
-          text: 'TrainLCDサービスは\n現在メンテナンス中です',
-          status: 'maintenance' as const,
-        };
-      case 'partiallyDegraded':
-        return {
-          text: 'TrainLCDサービスの一部にて\n障害が発生しております',
-          status: 'degraded' as const,
-        };
-      case 'degraded':
-        return {
-          text: 'TrainLCDサービスにて\n障害が発生しております',
-          status: 'degraded' as const,
-        };
-      case 'outage':
-        return {
-          text: 'TrainLCDサービスにて\n致命的な障害が発生しております',
-          status: 'outage' as const,
-        };
-      case 'operational':
-        return {
-          text: 'すべてのサービスは\n正常に動作しています',
-          status: 'operational' as const,
-        };
-      default:
-        return null;
+    const messages = {
+      partiallyMaintenance: {
+        ja: 'TrainLCDサービスの一部は\n現在メンテナンス中です',
+        en: 'Some TrainLCD services are\ncurrently under maintenance',
+        status: 'maintenance' as const,
+      },
+      maintenance: {
+        ja: 'TrainLCDサービスは\n現在メンテナンス中です',
+        en: 'TrainLCD services are\ncurrently under maintenance',
+        status: 'maintenance' as const,
+      },
+      partiallyDegraded: {
+        ja: 'TrainLCDサービスの一部にて\n障害が発生しております',
+        en: 'Some TrainLCD services are\nexperiencing issues',
+        status: 'degraded' as const,
+      },
+      degraded: {
+        ja: 'TrainLCDサービスにて\n障害が発生しております',
+        en: 'TrainLCD services are\nexperiencing issues',
+        status: 'degraded' as const,
+      },
+      outage: {
+        ja: 'TrainLCDサービスにて\n致命的な障害が発生しております',
+        en: 'TrainLCD services are\nexperiencing a major outage',
+        status: 'outage' as const,
+      },
+      operational: {
+        ja: 'すべてのサービスは\n正常に動作しています',
+        en: 'All services are\noperating normally',
+        status: 'operational' as const,
+      },
+    };
+
+    const message = messages[statusLabel as keyof typeof messages];
+    if (!message) {
+      return null;
     }
+
+    return {
+      text: message[locale],
+      status: message.status,
+    };
   })();
 
   if (!statusObj) {

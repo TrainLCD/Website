@@ -2,19 +2,22 @@ import { prisma } from '../lib/prisma';
 import { redis, isRedisAvailable } from '../lib/redis';
 import type { Service, StatusType, ServiceCategory } from '../types';
 import type { ServiceDefinition, ServiceStatusSnapshot } from '@prisma/client';
+import type { Locale } from '../lib/locale';
 
 type PrismaServiceDefinition = ServiceDefinition & {
   statusSnapshots: ServiceStatusSnapshot[];
 };
 
 const CACHE_TTL = 600; // 600 seconds cache (10 minutes)
-const SERVICES_CACHE_KEY = 'services:all';
+const SERVICES_CACHE_KEY_PREFIX = 'services:all';
 
 /**
  * Fetches all services with their current status.
  * Checks Redis cache first, then falls back to PostgreSQL.
+ * Cache is locale-specific to avoid language mixing.
  */
-export async function getServices(): Promise<Service[]> {
+export async function getServices(locale: Locale = 'ja'): Promise<Service[]> {
+  const SERVICES_CACHE_KEY = `${SERVICES_CACHE_KEY_PREFIX}:${locale}`;
   try {
     // Try Redis cache first if connected
     if (isRedisAvailable()) {
@@ -86,8 +89,8 @@ export async function getServices(): Promise<Service[]> {
 /**
  * Calculates the overall status label based on service statuses.
  */
-export async function getStatusLabel(): Promise<StatusType> {
-  const services = await getServices();
+export async function getStatusLabel(locale: Locale = 'ja'): Promise<StatusType> {
+  const services = await getServices(locale);
   
   const underMaintenanceServices = services.filter(
     (service) => service.status === 'maintenance'

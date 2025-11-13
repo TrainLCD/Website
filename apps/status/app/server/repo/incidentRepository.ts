@@ -1,16 +1,19 @@
 import { prisma } from '../lib/prisma';
 import { redis, isRedisAvailable } from '../lib/redis';
 import type { IncidentHistory, StatusType } from '../types';
+import type { Locale } from '../lib/locale';
 
 const CACHE_TTL = 600; // 600 seconds cache (10 minutes)
-const INCIDENTS_CACHE_KEY = 'incidents:all';
-const INCIDENT_CACHE_KEY_PREFIX = 'incident:';
+const INCIDENTS_CACHE_KEY_PREFIX = 'incidents:all';
+const INCIDENT_CACHE_KEY_PREFIX = 'incident';
 
 /**
  * Fetches all incident histories with their updates.
  * Checks Redis cache first, then falls back to PostgreSQL.
+ * Cache is locale-specific to avoid language mixing.
  */
-export async function getIncidentHistories(): Promise<IncidentHistory[]> {
+export async function getIncidentHistories(locale: Locale = 'ja'): Promise<IncidentHistory[]> {
+  const INCIDENTS_CACHE_KEY = `${INCIDENTS_CACHE_KEY_PREFIX}:${locale}`;
   try {
     // Try Redis cache first if connected
     if (isRedisAvailable()) {
@@ -126,10 +129,11 @@ export async function getIncidentHistories(): Promise<IncidentHistory[]> {
 /**
  * Fetches a single incident by slug with its updates.
  * Checks Redis cache first, then falls back to PostgreSQL.
+ * Cache is locale-specific to avoid language mixing.
  */
-export async function getIncidentBySlug(slug: string): Promise<IncidentHistory | null> {
+export async function getIncidentBySlug(slug: string, locale: Locale = 'ja'): Promise<IncidentHistory | null> {
   try {
-    const cacheKey = `${INCIDENT_CACHE_KEY_PREFIX}${slug}`;
+    const cacheKey = `${INCIDENT_CACHE_KEY_PREFIX}:${slug}:${locale}`;
     
     // Try Redis cache first if connected
     if (isRedisAvailable()) {
