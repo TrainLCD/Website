@@ -84,4 +84,5 @@
   font-weight: bold;
   margin-left: 6px;
   color: #212121;
+  white-space: nowrap;
 }
