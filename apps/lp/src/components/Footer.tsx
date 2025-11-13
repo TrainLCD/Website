@@ -50,6 +50,9 @@ const Footer = () => {
             >
               障害情報
             </a>
+            <a href="/faq" className={styles.link}>
+              よくある質問
+            </a>
             <a
               href="https://tinykitten.me"
               target="_blank"
