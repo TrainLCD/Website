@@ -222,42 +222,6 @@ const FAQItemComponent = ({
     </div>
   );
 };
-  const renderedAnswer = useMemo(
-    () => markdownParser.parse(answer) as string,
-    [answer],
-  );
-
-  return (
-    <div className={styles.faqItem}>
-      <button
-        className={styles.faqQuestion}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-        aria-controls={answerId}
-        aria-label={`質問: ${question}`}
-      >
-        <span className={styles.questionMark}>Q</span>
-        <span className={styles.questionText}>{question}</span>
-        <span className={`${styles.icon} ${isOpen ? styles.iconOpen : ''}`}>
-          ▼
-        </span>
-      </button>
-      {isOpen && (
-        <section
-          id={answerId}
-          aria-labelledby={answerId}
-          className={styles.faqAnswer}
-        >
-          <span className={styles.answerMark}>A</span>
-          <div
-            className={styles.answerText}
-            dangerouslySetInnerHTML={{ __html: renderedAnswer }}
-          />
-        </section>
-      )}
-    </div>
-  );
-};
 
 const FAQPage = () => (
   <>
