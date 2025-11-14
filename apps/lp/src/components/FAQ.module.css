@@ -164,6 +164,32 @@
   color: #555555;
 }
 
+.answerText p {
+  margin: 0 0 1em 0;
+}
+
+.answerText ul {
+  margin: 0 0 1em 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.answerText li {
+  margin-bottom: 0.5em;
+}
+
+.answerText li:last-child {
+  margin-bottom: 0;
+}
+
+.answerText p:last-child,
+.answerText ul:last-child {
+  margin-bottom: 0;
+}
+
+.answerText strong {
+  font-weight: 600;
+}
+
 .contactSection {
   margin-top: 64px;
   padding: 32px;
