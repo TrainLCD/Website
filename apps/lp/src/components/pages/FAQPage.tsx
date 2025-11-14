@@ -183,6 +183,45 @@ const FAQItemComponent = ({
 }: FAQItem & { id: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const answerId = `answer-${id}`;
+  const questionId = `question-${id}`;
+  const renderedAnswer = useMemo(
+    () => markdownParser.parse(answer) as string,
+    [answer],
+  );
+
+  return (
+    <div className={styles.faqItem}>
+      <button
+        className={styles.faqQuestion}
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={answerId}
+        aria-label={`質問: ${question}`}
+      >
+        <span className={styles.questionMark}>Q</span>
+        <span id={questionId} className={styles.questionText}>
+          {question}
+        </span>
+        <span className={`${styles.icon} ${isOpen ? styles.iconOpen : ''}`}>
+          ▼
+        </span>
+      </button>
+      {isOpen && (
+        <section
+          id={answerId}
+          aria-labelledby={questionId}
+          className={styles.faqAnswer}
+        >
+          <span className={styles.answerMark}>A</span>
+          <div
+            className={styles.answerText}
+            dangerouslySetInnerHTML={{ __html: renderedAnswer }}
+          />
+        </section>
+      )}
+    </div>
+  );
+};
   const renderedAnswer = useMemo(
     () => markdownParser.parse(answer) as string,
     [answer],
