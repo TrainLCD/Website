@@ -6,14 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "vitest",
+    "lint": "eslint . --max-warnings=0",
+    "test": "vitest run",
     "postinstall": "prisma generate --schema=../../prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "dayjs": "^1.11.10",
     "ioredis": "^5.8.2",
+    "nanoid": "^5.1.6",
     "next": "^16.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
