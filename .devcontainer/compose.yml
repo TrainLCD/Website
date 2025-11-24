@@ -34,7 +34,7 @@ services:
     networks:
       - trainlcd-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U trainlcd"]
+      test: ["CMD-SHELL", "pg_isready -U trainlcd -d trainlcd_status"]
       interval: 10s
       timeout: 5s
       retries: 5
