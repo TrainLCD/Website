@@ -119,12 +119,12 @@ const faqData: FAQCategory[] = [
       {
         question: 'iOSの必要バージョンは？',
         answer:
-          '**iOS 14.0以降が必要です。** 最新のiOSバージョンでのご利用を推奨します。',
+          '**iOS 15.1以降が必要です。** 最新のiOSバージョンでのご利用を推奨します。',
       },
       {
         question: 'Androidの必要バージョンは？',
         answer:
-          '**Android 6.0以降が必要です。** 最新のAndroidバージョンでのご利用を推奨します。',
+          '**Android 7.0以降が必要です。** 最新のAndroidバージョンでのご利用を推奨します。',
       },
     ],
   },
