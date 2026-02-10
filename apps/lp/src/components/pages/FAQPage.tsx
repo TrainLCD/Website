@@ -240,7 +240,7 @@ const FAQPage = () => (
           </p>
           <div className={styles.contactLinks}>
             <a
-              href="https://discord.gg/jbVE7tj9SE"
+              href="https://discord.gg/tsemdME9Nz"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.contactLink}
