@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './styles/global.css';
 import { detectLocale } from './server/lib/locale';
+import GoogleAnalytics from './components/GoogleAnalytics';
 
 export const metadata: Metadata = {
   title: 'TrainLCD System Status',
@@ -42,6 +43,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="bg-white min-h-screen flex flex-col items-center text-neutral-800">
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
