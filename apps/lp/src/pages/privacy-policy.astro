@@ -1,5 +1,6 @@
 ---
 import PrivacyPolicyPage from '@components/pages/PrivacyPolicyPage';
+import GoogleAnalytics from '@components/GoogleAnalytics.astro';
 import '../styles/globals.css';
 
 const title = 'プライバシーポリシー - TrainLCD';
@@ -10,6 +11,7 @@ const ogImage = 'https://trainlcd.app/opengraph-image.20251201.png';
 
 <html lang="ja">
   <head>
+    <GoogleAnalytics />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>{title}</title>
