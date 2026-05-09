@@ -13,7 +13,7 @@ const Footer = () => {
         <AppLogo className={styles.appLogo} />
         <div className={styles.appInfoText}>
           <p className={styles.description}>
-            日本全国の鉄道路線で使える 新感覚ナビゲーションアプリ
+            日本全国の電車で使える 新感覚ナビゲーションアプリ
           </p>
           <p className={styles.appName}>TrainLCD</p>
         </div>
