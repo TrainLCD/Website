@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: 'TrainLCDサービスの障害情報をお知らせします。',
     type: 'website',
     url: 'https://status.trainlcd.app',
-    images: '/opengraph-image.20251201.png',
+    images: '/opengraph-image.20260527.png',
   },
   twitter: {
     card: 'summary',
