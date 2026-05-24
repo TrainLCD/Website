@@ -47,6 +47,42 @@ const { lcpImageSources = [] } = Astro.props;
   </a>
 </section>
 
+<script>
+  // 「使ってみる」ボタンのアンカースクロール処理。
+  // 中間セクションが `content-visibility: auto` のままだと
+  // 推定サイズ（contain-intrinsic-size）で位置計算が行われ、
+  // 実際のレイアウトとズレてダウンロードセクションのバナーを
+  // 飛び越えてスクロールしてしまう。
+  // クリック時に対象より前のセクションを `content-visibility: visible`
+  // に上書きして実サイズでレイアウトさせ、正しい位置にスクロールする。
+  const welcomeButtons = document.querySelectorAll<HTMLAnchorElement>(
+    'a.welcome-button[href^="#"]',
+  );
+
+  welcomeButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const href = button.getAttribute('href');
+      if (!href || !href.startsWith('#') || href === '#') return;
+      const target = document.querySelector(href);
+      if (!(target instanceof HTMLElement)) return;
+      event.preventDefault();
+
+      const sections = Array.from(
+        document.querySelectorAll<HTMLElement>('section'),
+      );
+      const targetIndex = sections.indexOf(target);
+      if (targetIndex > 0) {
+        for (let i = 0; i < targetIndex; i++) {
+          sections[i].style.contentVisibility = 'visible';
+        }
+      }
+
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', href);
+    });
+  });
+</script>
+
 <style is:inline>
   .welcome-container {
     min-height: 100vh;
