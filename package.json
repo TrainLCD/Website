@@ -12,7 +12,7 @@
     "seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
-    "prisma": "^6.19.0",
+    "prisma": "^6.19.3",
     "turbo": "latest",
     "tsx": "^4.19.2"
   },
