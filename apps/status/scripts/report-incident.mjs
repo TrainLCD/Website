@@ -81,6 +81,40 @@ function readStdin() {
   }
 }
 
+/**
+ * ペイロードの簡易検証。API が弾かない「表示上の落とし穴」を送信前に止める。
+ * - services[].summary は サービス一覧の各行にそのまま表示される文言。
+ *   ja/en どちらかが空だと UI が静的な description（古い「正常」表記）に
+ *   フォールバックしてしまうため、空を許さない。
+ * 検出した問題の配列を返す（空配列なら問題なし）。
+ */
+function validatePayload(payload) {
+  const errors = [];
+  if (!payload || typeof payload !== "object") {
+    return ["ペイロードがオブジェクトではありません"];
+  }
+  const services = payload.services;
+  if (services !== undefined) {
+    if (!Array.isArray(services)) {
+      errors.push("services は配列である必要があります");
+    } else {
+      services.forEach((svc, i) => {
+        const id = svc && svc.serviceId ? `"${svc.serviceId}"` : `#${i}`;
+        const summary = svc ? svc.summary : undefined;
+        const ja = summary && typeof summary.ja === "string" ? summary.ja.trim() : "";
+        const en = summary && typeof summary.en === "string" ? summary.en.trim() : "";
+        if (!ja || !en) {
+          errors.push(
+            `services[${i}] (${id}): summary.ja / summary.en は空にできません` +
+              "（空だとサービス一覧で古い説明文が表示されます）"
+          );
+        }
+      });
+    }
+  }
+  return errors;
+}
+
 /** 日時フィールドを再帰的に UTC("...Z") へ正規化する */
 function normalizeDates(node) {
   if (Array.isArray(node)) {
@@ -128,6 +162,13 @@ async function main() {
   }
 
   normalizeDates(payload);
+
+  const validationErrors = validatePayload(payload);
+  if (validationErrors.length > 0) {
+    console.error("エラー: ペイロードの検証に失敗しました:");
+    for (const msg of validationErrors) console.error(`  - ${msg}`);
+    process.exit(1);
+  }
 
   if (opts.dryRun) {
     console.log("[dry-run] 送信される正規化済みペイロード:\n");
