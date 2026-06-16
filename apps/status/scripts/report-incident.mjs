@@ -161,7 +161,12 @@ async function main() {
     process.exit(1);
   }
 
-  normalizeDates(payload);
+  try {
+    normalizeDates(payload);
+  } catch (e) {
+    console.error("エラー: 日時の正規化に失敗しました:", e.message);
+    process.exit(1);
+  }
 
   const validationErrors = validatePayload(payload);
   if (validationErrors.length > 0) {
