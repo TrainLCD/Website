@@ -24,7 +24,9 @@ export default function ServicesTable({ services, locale }: ServicesTableProps) 
           >
             <div className="flex-1">
               <p className="font-semibold">{svc.label[locale]}</p>
-              <p className="text-xs mt-1">{svc.description[locale]}</p>
+              <p className="text-xs mt-1">
+                {svc.statusSummary[locale] || svc.description[locale]}
+              </p>
             </div>
             <div className="flex justify-center items-center">
               <StatusIcon status={svc.status} className="h-8 w-8 md:ml-2 ml-3" />

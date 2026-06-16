@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",
+    "report-incident": "node scripts/report-incident.mjs",
     "postinstall": "prisma generate --schema=../../prisma/schema.prisma"
   },
   "dependencies": {
