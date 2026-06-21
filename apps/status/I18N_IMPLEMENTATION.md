@@ -72,21 +72,22 @@ const label = getStatusLabel(status, locale);
 
 ## Cache Considerations
 
-Redis cache keys include the locale to prevent language mixing:
+Edge Config snapshot keys include the locale to prevent language mixing
+(keys allow `[A-Za-z0-9_-]` only — no colons):
 
 ```typescript
-// Services cache keys
-'services:all:ja'
-'services:all:en'
+// Services snapshot keys
+'status_services_ja'
+'status_services_en'
 
-// Incidents cache keys
-'incidents:all:ja'
-'incidents:all:en'
-
-// Individual incident
-'incident:example-slug:ja'
-'incident:example-slug:en'
+// Incidents snapshot keys
+'status_incidents_ja'
+'status_incidents_en'
 ```
+
+Individual incidents (`getIncidentBySlug`) are derived from the
+`status_incidents_<locale>` snapshot, falling back to PostgreSQL when the slug
+is not present in Edge Config.
 
 ## Testing
 

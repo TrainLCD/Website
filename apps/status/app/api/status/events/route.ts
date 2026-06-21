@@ -3,9 +3,9 @@ import { timingSafeEqual } from "crypto";
 import { nanoid } from "nanoid";
 import type { StatusType, LocaleText } from "@/server/types";
 import { prisma } from "@/server/lib/prisma";
-import { redis, isRedisAvailable } from "@/server/lib/redis";
-import { getServices, getStatusLabel } from "@/server/repo/serviceRepository";
+import { getServices } from "@/server/repo/serviceRepository";
 import { getIncidentHistories } from "@/server/repo/incidentRepository";
+import { writeSnapshotsToEdgeConfig } from "@/server/lib/edgeConfig";
 
 // リクエストペイロード型定義
 type ServiceEventPayload = {
@@ -47,6 +47,9 @@ const MAX_ARRAY_SIZE = 100;
 const MAX_SERVICES = 50;
 const MAX_INCIDENTS = 50;
 const MAX_UPDATES_PER_INCIDENT = 100;
+
+// Edge Config 反映の最大待機時間（best-effort）。これを超えても DB は正本なので応答を返す。
+const EDGE_CONFIG_REFRESH_TIMEOUT_MS = 5_000;
 
 // バリデーション関数
 const VALID_STATUS_TYPES: StatusType[] = [
@@ -504,60 +507,25 @@ async function updateIncidents(
   );
 }
 
-// Redisキャッシュの更新とSSEイベントの配信
-async function updateCacheAndNotify(): Promise<void> {
-  // 更新されたデータを取得
-  const [statusLabel, services, incidents] = await Promise.all([
-    getStatusLabel(),
-    getServices(),
-    getIncidentHistories(),
-  ]);
+// DB の最新状態から各ロケールのスナップショットを再構築し、Edge Config へ反映する。
+// 公開ページはこの Edge Config スナップショットを読む（ポーリング）ため、
+// 障害更新の内容がここで読み取り層へ反映される。
+async function refreshEdgeConfigSnapshots(): Promise<void> {
+  const locales = ["ja", "en"] as const;
 
-  const snapshot = {
-    statusLabel,
-    services,
-    incidents,
-  };
+  // DB から最新データを取得（Edge Config キャッシュをバイパス）
+  const snapshots = await Promise.all(
+    locales.map(async (locale) => {
+      const [services, incidents] = await Promise.all([
+        getServices(locale, { skipCache: true }),
+        getIncidentHistories(locale, { skipCache: true }),
+      ]);
+      return { locale, services, incidents };
+    })
+  );
 
-  if (isRedisAvailable()) {
-    try {
-      // 各ロケール用のキャッシュを並列更新
-      const locales = ["ja", "en"] as const;
-      await Promise.all(
-        locales.map(async (locale) => {
-          const [localeServices, localeIncidents] = await Promise.all([
-            getServices(locale),
-            getIncidentHistories(locale),
-          ]);
-
-          // キャッシュを更新
-          await redis.setex(
-            `services:all:${locale}`,
-            3600,
-            JSON.stringify(localeServices)
-          );
-          await redis.setex(
-            `incidents:all:${locale}`,
-            3600,
-            JSON.stringify(localeIncidents)
-          );
-        })
-      );
-
-      // SSEイベントを配信
-      await redis.publish("status:updates", JSON.stringify(snapshot));
-
-      console.log(
-        "[StatusEvents] キャッシュ更新とSSEイベント配信が完了しました"
-      );
-    } catch (error) {
-      console.error("[StatusEvents] Redisの更新に失敗しました:", error);
-      console.error(
-        "[StatusEvents] 注意: データベースは既に更新されていますが、キャッシュの更新またはSSEイベント配信に失敗しました。オペレーターはキャッシュの手動無効化や再配信を検討してください。"
-      );
-      throw error;
-    }
-  }
+  await writeSnapshotsToEdgeConfig(snapshots);
+  console.log("[StatusEvents] Edge Config のスナップショットを更新しました");
 }
 
 export async function POST(request: NextRequest) {
@@ -594,8 +562,26 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // リクエストボディの取得とバリデーション
+    // リクエストボディの取得
     const body = await request.json();
+
+    // リフレッシュ要求: DB を変更せず、現在の DB 状態から Edge Config を
+    // 再同期する（初期ブートストラップ・復旧用）。
+    if (
+      body &&
+      typeof body === "object" &&
+      (body as { refresh?: unknown }).refresh === true &&
+      (body as { services?: unknown }).services === undefined &&
+      (body as { incidents?: unknown }).incidents === undefined
+    ) {
+      await refreshEdgeConfigSnapshots();
+      return NextResponse.json(
+        { success: true, message: "Edge Config を再同期しました" },
+        { status: 200 }
+      );
+    }
+
+    // バリデーション
     const validation = validatePayload(body);
 
     if (!validation.valid) {
@@ -615,8 +601,27 @@ export async function POST(request: NextRequest) {
       await updateIncidents(payload.incidents);
     }
 
-    // Redisキャッシュの更新とSSEイベントの配信
-    await updateCacheAndNotify();
+    // 読み取り層(Edge Config)へ反映。DB は既に更新済み（正本）なので、
+    // Edge Config への反映失敗・遅延はリクエスト全体を失敗させない（best-effort + タイムアウト）。
+    let refreshTimer: ReturnType<typeof setTimeout> | undefined;
+    try {
+      await Promise.race([
+        refreshEdgeConfigSnapshots(),
+        new Promise<never>((_, reject) => {
+          refreshTimer = setTimeout(
+            () => reject(new Error("Edge Config refresh timeout")),
+            EDGE_CONFIG_REFRESH_TIMEOUT_MS
+          );
+        }),
+      ]);
+    } catch (error) {
+      console.error(
+        "[StatusEvents] Edge Config の更新に失敗しました（DB は更新済み。`{\"refresh\":true}` で再同期可能）:",
+        error
+      );
+    } finally {
+      clearTimeout(refreshTimer);
+    }
 
     return NextResponse.json(
       {

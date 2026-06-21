@@ -1,5 +1,8 @@
 import { prisma } from "../lib/prisma";
-import { redis, isRedisAvailable } from "../lib/redis";
+import {
+  isEdgeConfigReadAvailable,
+  readServicesFromEdgeConfig,
+} from "../lib/edgeConfig";
 import type { Service, StatusType, ServiceCategory } from "../types";
 import type { ServiceDefinition, ServiceStatusSnapshot } from "@prisma/client";
 import type { Locale } from "../lib/locale";
@@ -8,30 +11,34 @@ type PrismaServiceDefinition = ServiceDefinition & {
   statusSnapshots: ServiceStatusSnapshot[];
 };
 
-const CACHE_TTL = 3600; // 3600 seconds cache (1 hour)
-const SERVICES_CACHE_KEY_PREFIX = "services:all";
+export type RepoReadOptions = {
+  /**
+   * Edge Config のスナップショットを無視して常に DB から取得する。
+   * 書き込み直後にスナップショットを再構築する用途で使用する。
+   */
+  skipCache?: boolean;
+};
 
 /**
  * Fetches all services with their current status.
- * Checks Redis cache first, then falls back to PostgreSQL.
- * Cache is locale-specific to avoid language mixing.
+ * Read priority: Edge Config (edge snapshot) -> PostgreSQL (source of truth).
  */
-export async function getServices(locale: Locale = "ja"): Promise<Service[]> {
-  const SERVICES_CACHE_KEY = `${SERVICES_CACHE_KEY_PREFIX}:${locale}`;
+export async function getServices(
+  locale: Locale = "ja",
+  options: RepoReadOptions = {}
+): Promise<Service[]> {
+  const { skipCache = false } = options;
   try {
-    // Try Redis cache first if connected
-    if (isRedisAvailable()) {
-      const cached = await redis.get(SERVICES_CACHE_KEY);
-      if (cached) {
-        console.log("[ServiceRepository] Cache HIT for services");
-        return JSON.parse(cached);
+    // Try Edge Config first (edge read, no DB cold start) unless skipping caches
+    if (!skipCache && isEdgeConfigReadAvailable()) {
+      const fromEdge = await readServicesFromEdgeConfig(locale);
+      if (fromEdge) {
+        console.log("[ServiceRepository] Edge Config HIT for services");
+        return fromEdge;
       }
-      console.log(
-        "[ServiceRepository] Cache MISS for services, fetching from DB"
-      );
     }
 
-    // Fetch from PostgreSQL using Prisma
+    // Fall back to PostgreSQL using Prisma
     const serviceDefinitions = await prisma.serviceDefinition.findMany({
       include: {
         statusSnapshots: {
@@ -72,18 +79,6 @@ export async function getServices(locale: Locale = "ja"): Promise<Service[]> {
       }
     );
 
-    // Cache in Redis if connected
-    if (isRedisAvailable()) {
-      await redis
-        .setex(SERVICES_CACHE_KEY, CACHE_TTL, JSON.stringify(services))
-        .catch((err: Error) => {
-          console.warn(
-            "[ServiceRepository] Failed to cache services:",
-            err.message
-          );
-        });
-    }
-
     return services;
   } catch (error) {
     if (error instanceof Error) {
@@ -102,13 +97,11 @@ export async function getServices(locale: Locale = "ja"): Promise<Service[]> {
 }
 
 /**
- * Calculates the overall status label based on service statuses.
+ * Calculates the overall status label from a list of services (pure function).
+ * Extracted so the write path can derive a fresh label from freshly-fetched
+ * services without going through the cache.
  */
-export async function getStatusLabel(
-  locale: Locale = "ja"
-): Promise<StatusType> {
-  const services = await getServices(locale);
-
+export function computeStatusLabel(services: Service[]): StatusType {
   const underMaintenanceServices = services.filter(
     (service) => service.status === "maintenance"
   );
@@ -140,4 +133,14 @@ export async function getStatusLabel(
   }
 
   return "unknown";
+}
+
+/**
+ * Calculates the overall status label based on current service statuses.
+ */
+export async function getStatusLabel(
+  locale: Locale = "ja"
+): Promise<StatusType> {
+  const services = await getServices(locale);
+  return computeStatusLabel(services);
 }
