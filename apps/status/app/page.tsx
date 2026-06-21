@@ -3,7 +3,7 @@ import Footer from './components/Footer';
 import StatusContent from './components/client/StatusContent';
 import { FeedIcon } from './components/icons/Feed';
 import { XIcon } from './components/icons/X';
-import { getServices, getStatusLabel } from './server/repo/serviceRepository';
+import { getServices, computeStatusLabel } from './server/repo/serviceRepository';
 import { getIncidentHistories } from './server/repo/incidentRepository';
 import { detectLocale } from './server/lib/locale';
 
@@ -13,11 +13,11 @@ export const dynamic = 'force-dynamic';
 export default async function HomePage() {
   const locale = await detectLocale();
   
-  const [statusLabel, services, incidents] = await Promise.all([
-    getStatusLabel(locale),
+  const [services, incidents] = await Promise.all([
     getServices(locale),
     getIncidentHistories(locale),
   ]);
+  const statusLabel = computeStatusLabel(services);
 
   const feedText = locale === 'ja' 
     ? 'フィード登録はこちら: '

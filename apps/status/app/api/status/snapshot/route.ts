@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServices, getStatusLabel } from '@/server/repo/serviceRepository';
+import { getServices, computeStatusLabel } from '@/server/repo/serviceRepository';
 import { getIncidentHistories } from '@/server/repo/incidentRepository';
 import type { Locale } from '@/server/lib/locale';
 
@@ -41,11 +41,11 @@ function isOriginAllowed(origin: string | null): 'wildcard' | 'specific' | null 
 
 export async function GET(request: NextRequest) {
   const locale = parseLocale(request);
-  const [statusLabel, services, incidents] = await Promise.all([
-    getStatusLabel(locale),
+  const [services, incidents] = await Promise.all([
     getServices(locale),
     getIncidentHistories(locale),
   ]);
+  const statusLabel = computeStatusLabel(services);
 
   const origin = request.headers.get('origin');
   const allowedType = isOriginAllowed(origin);
