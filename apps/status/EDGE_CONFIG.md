@@ -15,7 +15,7 @@
 
 ## データフロー
 
-```
+```text
 [管理オペレーター]
       │  POST /api/status/events  (x-api-key)
       ▼
@@ -43,7 +43,7 @@
 | PostgreSQL (Neon) | 正本。書き込み・全インシデント履歴・古いデータ・フォールバック・SQL 検索 |
 | Edge Config | 公開ページ用の読み取りスナップショット（ja/en）。全サービス + 直近インシデントのみ |
 | `/api/status/events` | 書き込み口。DB 更新後に Edge Config を再構築 |
-| `/api/status/snapshot` | 読み取り口。ポーリング先（`?locale=ja|en`） |
+| `/api/status/snapshot` | 読み取り口。ポーリング先（`?locale=ja\|en`） |
 
 ## Edge Config のキー
 

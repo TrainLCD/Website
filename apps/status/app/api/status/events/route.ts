@@ -48,6 +48,9 @@ const MAX_SERVICES = 50;
 const MAX_INCIDENTS = 50;
 const MAX_UPDATES_PER_INCIDENT = 100;
 
+// Edge Config 反映の最大待機時間（best-effort）。これを超えても DB は正本なので応答を返す。
+const EDGE_CONFIG_REFRESH_TIMEOUT_MS = 5_000;
+
 // バリデーション関数
 const VALID_STATUS_TYPES: StatusType[] = [
   "operational",
@@ -599,14 +602,25 @@ export async function POST(request: NextRequest) {
     }
 
     // 読み取り層(Edge Config)へ反映。DB は既に更新済み（正本）なので、
-    // Edge Config への反映失敗はリクエスト全体を失敗させない（best-effort）。
+    // Edge Config への反映失敗・遅延はリクエスト全体を失敗させない（best-effort + タイムアウト）。
+    let refreshTimer: ReturnType<typeof setTimeout> | undefined;
     try {
-      await refreshEdgeConfigSnapshots();
+      await Promise.race([
+        refreshEdgeConfigSnapshots(),
+        new Promise<never>((_, reject) => {
+          refreshTimer = setTimeout(
+            () => reject(new Error("Edge Config refresh timeout")),
+            EDGE_CONFIG_REFRESH_TIMEOUT_MS
+          );
+        }),
+      ]);
     } catch (error) {
       console.error(
         "[StatusEvents] Edge Config の更新に失敗しました（DB は更新済み。`{\"refresh\":true}` で再同期可能）:",
         error
       );
+    } finally {
+      clearTimeout(refreshTimer);
     }
 
     return NextResponse.json(

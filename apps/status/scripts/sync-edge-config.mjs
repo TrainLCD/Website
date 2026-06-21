@@ -65,14 +65,30 @@ async function main() {
   const url = process.env.STATUS_API_URL || DEFAULT_URL;
   console.log(`Edge Config を再同期します: ${url}`);
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": apiKey,
-    },
-    body: JSON.stringify({ refresh: true }),
-  });
+  // 無期限ハングを防ぐためタイムアウトを設ける（復旧コマンドが固まらないように）
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15_000);
+  let res;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": apiKey,
+      },
+      body: JSON.stringify({ refresh: true }),
+      signal: controller.signal,
+    });
+  } catch (err) {
+    console.error(
+      err && err.name === "AbortError"
+        ? "タイムアウトしました (15s)"
+        : `リクエストに失敗しました: ${err}`
+    );
+    process.exit(1);
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   const text = await res.text();
   if (!res.ok) {

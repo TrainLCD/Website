@@ -4,8 +4,9 @@ import { getIncidentHistories } from '@/server/repo/incidentRepository';
 import type { Locale } from '@/server/lib/locale';
 
 /**
- * Reads and validates the `locale` query param. Defaults to 'ja'.
- * The polling client passes its locale so the snapshot matches the page language.
+ * `locale` クエリパラメータを読み取り検証する。既定は 'ja'。
+ * ポーリングするクライアントが自身の locale を渡すことで、
+ * ページの言語と一致したスナップショットを返す。
  */
 function parseLocale(request: NextRequest): Locale {
   return request.nextUrl.searchParams.get('locale') === 'en' ? 'en' : 'ja';

@@ -32,7 +32,7 @@ POST /api/status/events
 
 `services` または `incidents` の少なくとも一方を指定する必要があります。
 
-#### 再同期（リフレッシュ）
+### 再同期（リフレッシュ）
 
 DB を変更せず、現在の DB 状態から Edge Config のスナップショットを再構築させる場合は、以下のペイロードを送ります（初期ブートストラップ・復旧用）。`npm run sync-edge-config` でも実行できます。
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useStatusPolling } from '../../hooks/useStatusPolling';
 import type { StatusType, Service, IncidentHistory } from '../../server/types';
 import type { Locale } from '../../server/lib/locale';
@@ -20,14 +21,16 @@ export default function StatusContent({
   initialIncidents,
   locale,
 }: StatusContentProps) {
-  const { data } = useStatusPolling(
-    {
+  const initialData = useMemo(
+    () => ({
       statusLabel: initialStatusLabel,
       services: initialServices,
       incidents: initialIncidents,
-    },
-    locale
+    }),
+    [initialStatusLabel, initialServices, initialIncidents]
   );
+
+  const { data } = useStatusPolling(initialData, locale);
 
   return (
     <>
