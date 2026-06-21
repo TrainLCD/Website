@@ -5,7 +5,7 @@ import { GET } from '../route';
 // Mock the repository functions
 vi.mock('@/server/repo/serviceRepository', () => ({
   getServices: vi.fn().mockResolvedValue([]),
-  getStatusLabel: vi.fn().mockResolvedValue('operational'),
+  computeStatusLabel: vi.fn().mockReturnValue('operational'),
 }));
 
 vi.mock('@/server/repo/incidentRepository', () => ({
