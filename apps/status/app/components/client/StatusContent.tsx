@@ -1,6 +1,6 @@
 'use client';
 
-import { useStatusStream } from '../../hooks/useStatusStream';
+import { useStatusPolling } from '../../hooks/useStatusPolling';
 import type { StatusType, Service, IncidentHistory } from '../../server/types';
 import type { Locale } from '../../server/lib/locale';
 import Overview from './Overview';
@@ -20,11 +20,14 @@ export default function StatusContent({
   initialIncidents,
   locale,
 }: StatusContentProps) {
-  const { data } = useStatusStream({
-    statusLabel: initialStatusLabel,
-    services: initialServices,
-    incidents: initialIncidents,
-  });
+  const { data } = useStatusPolling(
+    {
+      statusLabel: initialStatusLabel,
+      services: initialServices,
+      incidents: initialIncidents,
+    },
+    locale
+  );
 
   return (
     <>

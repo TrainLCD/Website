@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServices, getStatusLabel } from '@/server/repo/serviceRepository';
 import { getIncidentHistories } from '@/server/repo/incidentRepository';
+import type { Locale } from '@/server/lib/locale';
+
+/**
+ * Reads and validates the `locale` query param. Defaults to 'ja'.
+ * The polling client passes its locale so the snapshot matches the page language.
+ */
+function parseLocale(request: NextRequest): Locale {
+  return request.nextUrl.searchParams.get('locale') === 'en' ? 'en' : 'ja';
+}
 
 /**
  * Check if the origin is allowed based on ALLOWED_SNAPSHOT_ORIGINS environment variable.
@@ -30,10 +39,11 @@ function isOriginAllowed(origin: string | null): 'wildcard' | 'specific' | null 
 }
 
 export async function GET(request: NextRequest) {
+  const locale = parseLocale(request);
   const [statusLabel, services, incidents] = await Promise.all([
-    getStatusLabel(),
-    getServices(),
-    getIncidentHistories(),
+    getStatusLabel(locale),
+    getServices(locale),
+    getIncidentHistories(locale),
   ]);
 
   const origin = request.headers.get('origin');

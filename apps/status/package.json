@@ -9,12 +9,13 @@
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run",
     "report-incident": "node scripts/report-incident.mjs",
+    "sync-edge-config": "node scripts/sync-edge-config.mjs",
     "postinstall": "prisma generate --schema=../../prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@vercel/edge-config": "^1.4.3",
     "dayjs": "^1.11.10",
-    "ioredis": "^5.8.2",
     "nanoid": "^5.1.6",
     "next": "^16.2.6",
     "react": "^19.0.0",

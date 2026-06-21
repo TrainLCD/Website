@@ -2,7 +2,7 @@
 
 ## 概要
 
-`POST /api/status/events` は、サービスのステータスとインシデント情報を更新するためのAPIエンドポイントです。更新されたデータはデータベース（PostgreSQL）に永続化され、Redisキャッシュが更新され、SSE経由で接続中のクライアントに配信されます。
+`POST /api/status/events` は、サービスのステータスとインシデント情報を更新するためのAPIエンドポイントです。更新されたデータはデータベース（PostgreSQL）に永続化され（正本）、読み取り層である Vercel Edge Config のスナップショット（ja/en）が再構築されます。公開ページは Edge Config を定期ポーリングして最新状態を取得します。
 
 ## 認証
 
@@ -31,6 +31,14 @@ POST /api/status/events
 ```
 
 `services` または `incidents` の少なくとも一方を指定する必要があります。
+
+#### 再同期（リフレッシュ）
+
+DB を変更せず、現在の DB 状態から Edge Config のスナップショットを再構築させる場合は、以下のペイロードを送ります（初期ブートストラップ・復旧用）。`npm run sync-edge-config` でも実行できます。
+
+```json
+{ "refresh": true }
+```
 
 ### ServiceEventPayload
 
@@ -266,14 +274,15 @@ curl -X POST http://localhost:3000/api/status/events \
 1. APIリクエストを受信
 2. API キー認証（環境変数が設定されている場合）
 3. リクエストボディのバリデーション
-4. データベース更新（Prisma経由）
+4. データベース更新（Prisma経由、正本）
    - サービスステータスのupsert
    - インシデント情報のupsert
    - インシデント更新の作成/更新
    - 影響を受けるサービスの関連付け
-5. Redisキャッシュの更新（ja/en 両ロケール）
-6. Redis pub/sub 経由でSSEイベント配信
-7. 接続中のクライアントが `/api/status/stream` 経由でリアルタイム更新を受信
+5. DB の最新状態から各ロケール（ja/en）のスナップショットを再構築
+6. Edge Config へスナップショットを upsert（読み取り層）
+   - 書き込み失敗は best-effort（DB は更新済みなのでリクエストは 200。`{ "refresh": true }` で再同期可能）
+7. 公開ページが `/api/status/snapshot?locale=...` を定期ポーリングして Edge Config から最新状態を取得
 
 ## 環境変数
 
@@ -281,11 +290,17 @@ curl -X POST http://localhost:3000/api/status/events \
 # API キー認証（オプション）
 STATUS_UPDATE_API_KEY=your-secret-api-key
 
-# データベース接続
+# データベース接続（正本）
 DATABASE_URL=postgresql://user:password@localhost:5432/database
 
-# Redis接続（オプション）
-REDIS_URL=redis://localhost:6379
+# Edge Config 読み取り（Vercel が Edge Config をリンクすると自動設定）
+EDGE_CONFIG=https://edge-config.vercel.com/ecfg_xxx?token=yyy
+
+# Edge Config 書き込み（events からのスナップショット反映に必要）
+# EDGE_CONFIG_ID は EDGE_CONFIG から自動抽出されるため省略可能
+VERCEL_API_TOKEN=xxxxxxxx
+# EDGE_CONFIG_ID=ecfg_xxx
+# VERCEL_TEAM_ID=team_xxx   # チーム所有の Edge Config の場合のみ
 ```
 
 ## セキュリティ考慮事項
@@ -313,6 +328,6 @@ npm run test
 
 ## 関連ドキュメント
 
-- [SSE Implementation](../../../SSE_IMPLEMENTATION.md) - SSE実装の詳細
+- [Edge Config / Polling Architecture](../../../EDGE_CONFIG.md) - 読み取り層とポーリングの詳細
 - [I18N Implementation](../../../I18N_IMPLEMENTATION.md) - 国際化実装の詳細
 - [Prisma Schema](../../../../../prisma/schema.prisma) - データベーススキーマ

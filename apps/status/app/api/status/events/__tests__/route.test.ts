@@ -71,19 +71,14 @@ vi.mock('@/server/lib/prisma', () => {
   };
 });
 
-// Redisのモック
-vi.mock('@/server/lib/redis', () => ({
-  redis: {
-    setex: vi.fn(),
-    publish: vi.fn(),
-  },
-  isRedisAvailable: vi.fn(),
+// Edge Config のモック
+vi.mock('@/server/lib/edgeConfig', () => ({
+  writeSnapshotsToEdgeConfig: vi.fn(),
 }));
 
 // リポジトリのモック
 vi.mock('@/server/repo/serviceRepository', () => ({
   getServices: vi.fn(),
-  getStatusLabel: vi.fn(),
 }));
 
 vi.mock('@/server/repo/incidentRepository', () => ({
@@ -92,15 +87,13 @@ vi.mock('@/server/repo/incidentRepository', () => ({
 
 // モック関数の取得
 import { prisma } from '@/server/lib/prisma';
-import { redis, isRedisAvailable } from '@/server/lib/redis';
-import { getServices, getStatusLabel } from '@/server/repo/serviceRepository';
+import { writeSnapshotsToEdgeConfig } from '@/server/lib/edgeConfig';
+import { getServices } from '@/server/repo/serviceRepository';
 import { getIncidentHistories } from '@/server/repo/incidentRepository';
 
 const mockPrisma = vi.mocked(prisma);
-const mockRedis = vi.mocked(redis);
-const mockIsRedisAvailable = vi.mocked(isRedisAvailable);
+const mockWriteSnapshots = vi.mocked(writeSnapshotsToEdgeConfig);
 const mockGetServices = vi.mocked(getServices);
-const mockGetStatusLabel = vi.mocked(getStatusLabel);
 const mockGetIncidentHistories = vi.mocked(getIncidentHistories);
 
 // Prismaのモック関数を取得
@@ -122,10 +115,9 @@ describe('POST /api/status/events', () => {
   
   beforeEach(() => {
     vi.clearAllMocks();
-    mockIsRedisAvailable.mockReturnValue(false);
-    mockGetStatusLabel.mockResolvedValue('operational');
     mockGetServices.mockResolvedValue([]);
     mockGetIncidentHistories.mockResolvedValue([]);
+    mockWriteSnapshots.mockResolvedValue(undefined);
     // テスト用にAPIキーを設定
     process.env.STATUS_UPDATE_API_KEY = 'test-api-key';
   });
@@ -762,15 +754,8 @@ describe('POST /api/status/events', () => {
     });
   });
 
-  describe('Redis キャッシュとSSE配信', () => {
-    it('Redis が利用可能な場合、キャッシュを更新してイベントを配信する', async () => {
-      mockIsRedisAvailable.mockReturnValue(true);
-      mockRedis.setex.mockResolvedValue('OK');
-      mockRedis.publish.mockResolvedValue(1);
-      mockGetStatusLabel.mockResolvedValue('operational');
-      mockGetServices.mockResolvedValue([]);
-      mockGetIncidentHistories.mockResolvedValue([]);
-
+  describe('Edge Config 同期', () => {
+    it('更新成功後、Edge Config スナップショットを再構築して書き込む', async () => {
       mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
         category: 'application',
@@ -815,18 +800,24 @@ describe('POST /api/status/events', () => {
       const response = await POST(request);
 
       expect(response.status).toBe(200);
-      expect(mockGetStatusLabel).toHaveBeenCalled();
-      expect(mockGetServices).toHaveBeenCalled();
-      expect(mockGetIncidentHistories).toHaveBeenCalled();
-      expect(mockRedis.setex).toHaveBeenCalled();
-      expect(mockRedis.publish).toHaveBeenCalledWith(
-        'status:updates',
-        expect.any(String)
-      );
+      // DB をバイパスして最新を取得していること
+      expect(mockGetServices).toHaveBeenCalledWith('ja', { skipCache: true });
+      expect(mockGetServices).toHaveBeenCalledWith('en', { skipCache: true });
+      expect(mockGetIncidentHistories).toHaveBeenCalledWith('ja', {
+        skipCache: true,
+      });
+      expect(mockGetIncidentHistories).toHaveBeenCalledWith('en', {
+        skipCache: true,
+      });
+      // 各ロケールのスナップショットを Edge Config へ書き込んでいること
+      expect(mockWriteSnapshots).toHaveBeenCalledWith([
+        { locale: 'ja', services: [], incidents: [] },
+        { locale: 'en', services: [], incidents: [] },
+      ]);
     });
 
-    it('Redis が利用不可の場合でも、正常に処理される', async () => {
-      mockIsRedisAvailable.mockReturnValue(false);
+    it('Edge Config への書き込みが失敗しても、DB は正本なのでリクエストは成功する', async () => {
+      mockWriteSnapshots.mockRejectedValue(new Error('size limit exceeded'));
 
       mockServiceDefinitionFindUnique.mockResolvedValue({
         id: 'test-service',
@@ -874,8 +865,29 @@ describe('POST /api/status/events', () => {
 
       expect(response.status).toBe(200);
       expect(data.success).toBe(true);
-      expect(mockRedis.setex).not.toHaveBeenCalled();
-      expect(mockRedis.publish).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('リフレッシュ要求', () => {
+    it('{ refresh: true } の場合、DB を変更せず Edge Config を再同期する', async () => {
+      const request = new NextRequest('http://localhost:3000/api/status/events', {
+        method: 'POST',
+        headers: {
+          'x-api-key': 'test-api-key',
+        },
+        body: JSON.stringify({ refresh: true }),
+      });
+
+      const response = await POST(request);
+      const data = await response.json();
+
+      expect(response.status).toBe(200);
+      expect(data.success).toBe(true);
+      // DB の書き込みは行われない
+      expect(mockServiceStatusSnapshotCreate).not.toHaveBeenCalled();
+      expect(mockIncidentHistoryCreate).not.toHaveBeenCalled();
+      // Edge Config への再同期は行われる
+      expect(mockWriteSnapshots).toHaveBeenCalled();
     });
   });
 });
