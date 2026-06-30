@@ -172,6 +172,11 @@ describe("applyStatusEvents", () => {
     });
 
     expect(txClient.serviceStatusSnapshot.create).toHaveBeenCalled();
+    // Edge Config 再同期は DB 最新値を読む契約（skipCache: true）を固定する
+    expect(getServices).toHaveBeenCalledWith("ja", { skipCache: true });
+    expect(getServices).toHaveBeenCalledWith("en", { skipCache: true });
+    expect(getIncidentHistories).toHaveBeenCalledWith("ja", { skipCache: true });
+    expect(getIncidentHistories).toHaveBeenCalledWith("en", { skipCache: true });
     expect(writeSnapshotsToEdgeConfig).toHaveBeenCalled();
   });
 });
