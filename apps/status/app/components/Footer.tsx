@@ -12,7 +12,7 @@ const Footer = () => {
         <AppLogo className="h-12 w-auto md:border border-[0.5px] rounded border-white" />
         <div className="ml-4 flex flex-col justify-center">
           <p className="text-white font-bold text-xs md:text-sm whitespace-pre-wrap">
-            日本全国の電車で使える 新感覚ナビゲーションアプリ
+            電車のあの画面、持ち歩けます。
           </p>
           <p className="text-white font-bold text-lg md:text-2xl mt-1">TrainLCD</p>
         </div>
