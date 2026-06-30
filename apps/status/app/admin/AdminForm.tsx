@@ -225,17 +225,17 @@ export default function AdminForm({ locale, services, incidents }: Props) {
     setExternalLink(incident.externalLink ?? "");
     const nextAffected = new Set(incident.affectedServiceIds);
     setAffected(nextAffected);
+    // インシデント選択はフォームの再初期化として扱う。対象サービス分は前回の
+    // state を引きずらないよう毎回上書きする（別インシデントの状態混入を防ぐ）。
     setServiceStates((states) => {
       const next = { ...states };
       for (const sid of incident.affectedServiceIds) {
-        if (!next[sid]) {
-          const summary = presetSummary(incident.impact);
-          next[sid] = {
-            status: incident.impact,
-            summaryJa: summary.ja,
-            summaryEn: summary.en,
-          };
-        }
+        const summary = presetSummary(incident.impact);
+        next[sid] = {
+          status: incident.impact,
+          summaryJa: summary.ja,
+          summaryEn: summary.en,
+        };
       }
       return next;
     });

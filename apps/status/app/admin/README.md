@@ -1,7 +1,7 @@
 # 管理画面（スマホ対応）/admin
 
 PC が無くてもスマホのブラウザだけで障害情報を登録・更新・復旧できる、ログイン保護された
-管理フォーム。データは公開 API と同じ共有ロジック(`server/lib/statusEvents.ts`)を通って
+管理フォーム。データは公開 API と同じ共有ロジック(`app/server/lib/statusEvents.ts`)を通って
 PostgreSQL に保存され、Edge Config スナップショットも再構築される（公開ページは従来どおり
 `/api/status/snapshot` を 30 秒ポーリングして自動反映）。
 
@@ -48,7 +48,7 @@ PostgreSQL に保存され、Edge Config スナップショットも再構築さ
 
 ## 関連ファイル
 
-- 認証: `app/server/lib/adminAuth.ts` / `middleware.ts` / `app/api/admin/login` / `logout`
+- 認証: `app/server/lib/adminAuth.ts` / `middleware.ts` / `app/api/admin/login/route.ts` / `app/api/admin/logout/route.ts`
 - 画面: `app/admin/login/` / `app/admin/page.tsx` / `app/admin/AdminForm.tsx`
 - 更新 API: `app/api/admin/events/route.ts`
 - 共有コア: `app/server/lib/statusEvents.ts`（`applyStatusEvents` / `validatePayload`）

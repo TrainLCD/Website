@@ -485,9 +485,14 @@ export async function updateIncidents(
             if (update.id) {
               const existingUpdate = await tx.incidentUpdate.findUnique({
                 where: { id: update.id },
+                select: { incidentId: true },
               });
 
               if (existingUpdate) {
+                // 別インシデントに属する update.id で他履歴を書き換えられないようにする
+                if (existingUpdate.incidentId !== incidentId) {
+                  throw new Error("別インシデントの更新 ID は使用できません");
+                }
                 await tx.incidentUpdate.update({
                   where: { id: updateId },
                   data: {

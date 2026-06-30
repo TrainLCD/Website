@@ -11,9 +11,11 @@ export const dynamic = "force-dynamic";
 export default async function AdminPage() {
   const locale = await detectLocale();
 
+  // 管理画面のプリフィルは DB を正本として読む（Edge Config 反映は best-effort のため、
+  // 送信直後の再読込で古い値が戻り、次の編集で上書き事故になるのを防ぐ）。
   const [services, incidents] = await Promise.all([
-    getServices(locale),
-    getIncidentHistories(locale),
+    getServices(locale, { skipCache: true }),
+    getIncidentHistories(locale, { skipCache: true }),
   ]);
 
   const adminServices: AdminService[] = services.map((service) => ({

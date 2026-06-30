@@ -46,10 +46,10 @@ describe("normalizeDates", () => {
       ],
     };
     normalizeDates(payload);
-    expect(payload.services[0].statusSince).toBe("2026-06-30T00:00:00.000Z");
-    expect(payload.incidents[0].startedAt).toBe("2026-06-30T00:00:00.000Z");
-    expect(payload.incidents[0].resolvedAt).toBe("2026-06-30T09:00:00.000Z");
-    expect(payload.incidents[0].updates[0].createdAt).toBe(
+    expect(payload.services[0]?.statusSince).toBe("2026-06-30T00:00:00.000Z");
+    expect(payload.incidents[0]?.startedAt).toBe("2026-06-30T00:00:00.000Z");
+    expect(payload.incidents[0]?.resolvedAt).toBe("2026-06-30T09:00:00.000Z");
+    expect(payload.incidents[0]?.updates[0]?.createdAt).toBe(
       "2026-06-30T01:00:00.000Z"
     );
   });
@@ -59,6 +59,6 @@ describe("normalizeDates", () => {
       incidents: [{ title: { ja: "9:00 開始", en: "starts at 9:00" } }],
     };
     normalizeDates(payload);
-    expect(payload.incidents[0].title.ja).toBe("9:00 開始");
+    expect(payload.incidents[0]?.title.ja).toBe("9:00 開始");
   });
 });
