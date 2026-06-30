@@ -6,8 +6,9 @@ description: TrainLCD のステータスページ(apps/status)に障害情報を
 # 障害情報の登録 (TrainLCD Status)
 
 `apps/status` のステータスページに障害情報を登録・更新する。データは
-`POST /api/status/events` 経由で PostgreSQL に永続化され、Redis キャッシュ更新と
-SSE 配信まで自動で行われる。投稿には `apps/status/scripts/report-incident.mjs` を使う。
+`POST /api/status/events` 経由で PostgreSQL に永続化され、Vercel Edge Config の
+スナップショット再構築まで自動で行われる（公開ページは `/api/status/snapshot` を
+30秒間隔でポーリングして反映）。投稿には `apps/status/scripts/report-incident.mjs` を使う。
 
 ## ワークフロー
 
