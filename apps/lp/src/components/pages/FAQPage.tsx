@@ -222,8 +222,9 @@ AIの処理はサーバー側で行っており、送信されるのは会話の
       },
       {
         question: 'バスには対応していますか？',
-        answer: `**都営バスのみ対応しており、その他のバス路線には対応しておりません。**
-系統を選択して、鉄道と同じように停留所の案内をご利用いただけます。`,
+        answer: `**都営バス・西武バス・京王バス・東急バスに対応しています。**
+系統を選択して、鉄道と同じように停留所の案内をご利用いただけます。
+なお、これら以外のバス事業者の路線には対応しておりません。`,
       },
       {
         question: '海外の鉄道には対応していますか？',
@@ -261,9 +262,15 @@ Apple WatchのSmart Stackへのライブアクティビティ表示には、watc
     items: [
       {
         question: '路線データはどこから取得していますか？',
-        answer: `**「駅データ.jp」などの路線データをもとに、一部を手動で補正して利用しています。**
+        answer: `**鉄道の駅・路線データは「駅データ.jp」などをもとに、一部を手動で補正して利用しています。**
 実際の運行に合わせた調整も行っており、多くの路線で安定した精度でご利用いただけます。
-バス関連のデータは、[東京都交通局](https://www.kotsu.metro.tokyo.jp/)が提供するデータ（[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)）を利用しています。`,
+
+バス関連のデータは、以下の提供元のデータを利用しています。
+
+- [東京都交通局](https://www.kotsu.metro.tokyo.jp/)（[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)）
+- [西武バス](https://www.seibubus.co.jp/)、[京王電鉄バス](https://www.keio-bus.com/)、[東急バス](https://www.tokyubus.co.jp/)（[公共交通オープンデータセンター](https://ckan.odpt.org/)経由、[公共交通オープンデータ基本ライセンス](https://developer.odpt.org/terms)）
+
+このほか、駅間の距離の算出に[OpenStreetMap](https://www.openstreetmap.org/copyright)のデータ（ODbL）を、駅間の所要時間の補正に各事業者が公開するGTFSデータを利用しています。`,
       },
       {
         question: 'データの精度はどのくらいですか？',
