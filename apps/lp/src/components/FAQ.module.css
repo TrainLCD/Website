@@ -190,6 +190,22 @@
   font-weight: 600;
 }
 
+.answerText a {
+  color: #01579b;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.answerText a:hover {
+  color: #0277bd;
+}
+
+.answerText a:focus-visible {
+  outline: 2px solid #0288d1;
+  outline-offset: 2px;
+}
+
 .contactSection {
   margin-top: 64px;
   padding: 32px;
