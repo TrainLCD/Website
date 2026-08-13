@@ -19,7 +19,7 @@ const PrivacyPolicyEnPage = () => (
           </aside>
         </header>
         <p className={styles.paragraph}>
-          In the following, customers who use the application “TrainLCD” (hereinafter referred to as “this application”) and this website (hereinafter referred to as “this site”) managed and operated by TinyKitten (hereafter referred to as TinyKitten), the sole owner of the business owner (hereinafter referred to as “user”). When using this application or this site, please agree to the following and use it. In addition, TinyKitten shall be able to change the following contents as appropriate.
+          The following sets out the terms that apply between TinyKitten and customers who use the application “TrainLCD” (hereinafter referred to as “this application”) and this website (hereinafter referred to as “this site”), which are managed and operated by TinyKitten (hereafter referred to as TinyKitten), a sole proprietorship (such customers being hereinafter referred to as “user”). When using this application or this site, please agree to the following and use it. In addition, TinyKitten shall be able to change the following contents as appropriate.
         </p>
         <p className={styles.paragraph}>
           The privacy policy for the handling of user’s personal information in this application and this site provided by TinyKitten is as follows.
