@@ -16,7 +16,7 @@
     "@prisma/client": "^6.19.0",
     "@vercel/edge-config": "^1.4.3",
     "dayjs": "^1.11.10",
-    "nanoid": "^5.1.6",
+    "nanoid": "^5.1.16",
     "next": "^16.2.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
