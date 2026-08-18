@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.1",
-    "astro": "^6.4.6",
+    "astro": "^7.1.1",
     "marked": "^17.0.0",
     "preact": "^10.27.3",
-    "sharp": "^0.33.5"
+    "sharp": "^0.35.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.10",
