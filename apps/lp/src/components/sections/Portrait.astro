@@ -1,0 +1,36 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import SectionHeading from '../SectionHeading';
+import portraitMock from '../../assets/images/mockup/phone-portrait.png';
+import styles from './Portrait.module.css';
+---
+
+<section class={styles.container} id="portrait">
+  <div class={styles.inner}>
+    <div class={styles.texts}>
+      <SectionHeading num="02" label="ポートレートモード">
+        縦に持てば、
+        <br />
+        縦のまま見やすく。
+      </SectionHeading>
+      <p class={styles.body}>
+        端末を縦向きにすると、縦画面に最適化された表示に切り替わります。
+        <br />
+        次に停まる駅を大きく、その先の停車駅は到着までの目安時間や乗換路線と一緒に一覧で確認できます。
+      </p>
+      <p class={styles.disclaimer}>
+        ※ ポートレートモードは設定の「外観」から切り替えられます。
+      </p>
+    </div>
+    <div class={styles.mockup}>
+      <ImageWithoutSize
+        src={portraitMock}
+        alt="ポートレートモードでのTrainLCDの走行画面（鹿児島本線 門司港駅）"
+        class={styles.mockImage}
+        widths={[240, 320, 400, 480, 640]}
+        sizes="(min-width: 1024px) 320px, 60vw"
+        format="webp"
+      />
+    </div>
+  </div>
+</section>

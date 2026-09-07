@@ -19,13 +19,36 @@ html, body {
   scroll-behavior: smooth;
 }
 /*
+  デザイントークン。Figma「ClaudeLP」ページの草案(ライト配色)に合わせた値。
+  アクセントはアプリ側の LIGHT_APP_COLORS.accent と同じ #008FFE。
+*/
+:root {
+  --color-navy: #0b1220;
+  --color-navy-deep: #070d1a;
+  --color-navy-strip: #0f1a30;
+  --color-accent: #008ffe;
+  --color-accent-soft: #e6f3ff;
+  --color-surface: #f5f7fa;
+  --color-white: #ffffff;
+  --color-text: #111827;
+  --color-body: #4b5563;
+  --color-muted: #64748b;
+  --color-line: #e5e7eb;
+  --color-strip: #f3f7fc;
+  --header-height: 64px;
+  --content-max-width: 1200px;
+}
+/*
   Typographic tweaks!
   4. Add accessible line-height
   5. Improve text rendering
 */
 body {
-  font-family: 'Roboto', sans-serif;
+  /* 欧文は Roboto、和文は Noto Sans JP にフォールバックさせる */
+  font-family: 'Roboto', 'Noto Sans JP', sans-serif;
   overflow-wrap: break-word;
+  color: var(--color-text);
+  background-color: var(--color-white);
 }
 /*
   6. Improve media defaults

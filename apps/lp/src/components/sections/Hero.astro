@@ -1,0 +1,61 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import StoreBadges from '../StoreBadges.astro';
+import mockImage from '../../assets/images/mockup/phone-landscape.png';
+import styles from './Hero.module.css';
+
+// ファーストビュー。見出しと両ストアの導線を先に出し、その下に実画面のキャプチャを置く。
+const { lcpImageSources = [] } = Astro.props;
+
+// ヒーロー直下の帯。訴求の要点を先に伝える
+const HIGHLIGHTS = [
+  { heading: '無料', body: 'ダウンロードも利用も無料' },
+  { heading: 'iPhone / Android', body: 'どちらのスマートフォンでも' },
+  { heading: 'iPad', body: '大きな画面でも同じ体験' },
+  { heading: 'Apple Watch / Wear OS', body: '手首で次の案内を確認' },
+  { heading: 'オープンソース', body: 'MITライセンスで公開' },
+] as const;
+---
+
+<section class={styles.container}>
+  <div class={styles.copy}>
+    <p class={styles.eyebrow}>
+      <span class={styles.eyebrowDot} aria-hidden="true"></span>
+      iOS・Android 対応 / 無料
+    </p>
+    <h1 class={styles.heading}>
+      電車のあの画面、
+      <br />
+      <span class={styles.accent}>持ち歩けます。</span>
+    </h1>
+    <p class={styles.description}>
+      次に停まる駅、停車駅、行先。
+      <br class={styles.pcOnlyBreak} />
+      車内の案内表示そのままの見た目を、あなたのスマートフォンで。
+    </p>
+    <StoreBadges class={styles.stores} loading="eager" />
+  </div>
+  <div class={styles.media}>
+    <div class={styles.glow} aria-hidden="true"></div>
+    <ImageWithoutSize
+      src={mockImage}
+      imageSources={lcpImageSources}
+      alt="TrainLCDの走行画面（湘南新宿ライン 新宿→渋谷・逗子ゆき）"
+      class={styles.mockImage}
+      widths={[480, 640, 768, 960, 1280, 1600]}
+      sizes="(min-width: 1280px) 1000px, 92vw"
+      format="webp"
+      loading="eager"
+      decoding="async"
+      priority
+    />
+  </div>
+  <ul class={styles.highlights}>
+    {HIGHLIGHTS.map((item) => (
+      <li class={styles.highlight}>
+        <p class={styles.highlightHeading}>{item.heading}</p>
+        <p class={styles.highlightBody}>{item.body}</p>
+      </li>
+    ))}
+  </ul>
+</section>
