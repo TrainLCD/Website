@@ -1,53 +1,82 @@
 ---
+import FeatureIcon from '../FeatureIcon';
 import ImageWithoutSize from '../ImageWithoutSize.astro';
-import DescriptionText from '../DescriptionText';
+import SectionHeading from '../SectionHeading';
 import appleWatchAppMock from '../../assets/images/applewatch_app.png';
 import appleWatchLiveActivitiesMock from '../../assets/images/applewatch_la.png';
 import styles from './Wearable.module.css';
+
+// 手首で使える3つの機能。OS ラベルは対応プラットフォームを示す
+const CARDS = [
+  {
+    icon: 'watch',
+    os: 'watchOS',
+    title: 'Apple Watch',
+    body: 'iPhoneとペアリングしたApple Watchに、今停車している駅と次に停まる駅を表示。',
+  },
+  {
+    icon: 'smartphone',
+    os: 'iOS',
+    title: 'Live Activities',
+    body: 'iPhoneのロック画面やDynamic Islandに、次の駅を常時表示。アプリを開かなくても分かります。',
+  },
+  {
+    icon: 'watch',
+    os: 'Android',
+    title: 'Wear OS by Google',
+    body: 'Androidスマートフォンとペアリングしたウォッチで、同じ案内を手首に。',
+  },
+] as const;
 ---
 
-<section class={styles.container}>
-  <div class={styles.mockupWithDisclaimer}>
-    <div class={styles.mockup}>
-      <ImageWithoutSize
-        src={appleWatchLiveActivitiesMock}
-        alt="Smart StackでのLive Activities"
-        class={styles.mockImage}
-        widths={[180, 220, 260, 320]}
-        sizes="(min-width: 1024px) 260px, 45vw"
-        format="webp"
-      />
-      <ImageWithoutSize
-        src={appleWatchAppMock}
-        alt="Apple Watchアプリの画面"
-        class={styles.mockImage}
-        widths={[180, 220, 260, 320]}
-        sizes="(min-width: 1024px) 260px, 45vw"
-        format="webp"
-      />
+<section class={styles.container} id="wearable">
+  <div class={styles.inner}>
+    <div class={styles.headRow}>
+      <div class={styles.texts}>
+        <SectionHeading num="04" label="手首で">
+          満員電車でも、
+          <br />
+          手首を見れば次の駅。
+        </SectionHeading>
+        <p class={styles.lead}>
+          スマートフォンを取り出しづらいときも、今停車している駅と次に停まる駅を手首で確認できます。
+        </p>
+      </div>
+      <div class={styles.mockup}>
+        <ImageWithoutSize
+          src={appleWatchLiveActivitiesMock}
+          alt="Smart StackでのLive Activities"
+          class={styles.mockImage}
+          widths={[180, 220, 260, 320]}
+          sizes="(min-width: 1024px) 200px, 40vw"
+          format="webp"
+        />
+        <ImageWithoutSize
+          src={appleWatchAppMock}
+          alt="Apple Watchアプリの画面"
+          class={styles.mockImage}
+          widths={[180, 220, 260, 320]}
+          sizes="(min-width: 1024px) 200px, 40vw"
+          format="webp"
+        />
+      </div>
     </div>
-  </div>
-  <div class={styles.texts}>
-    <p class={styles.shortHeading}>満員電車でも安心</p>
-    <h3 class={styles.heading}>
-      <span class={styles.accent}>スマートウォッチ</span>
-      <sup class={styles.caption}>*3</sup>
-      <br />
-      でも使えます
-    </h3>
-
-    <DescriptionText>
-      Apple WatchもしくはWear OS by
-      Google搭載スマートウォッチ組み合わせれば手首を見るだけで今停車している駅や、
-      <br />
-      次に停まる駅を知ることができます。
-    </DescriptionText>
+    <ul class={styles.grid}>
+      {CARDS.map((card) => (
+        <li class={styles.card}>
+          <div class={styles.cardHead}>
+            <span class={styles.iconTile}>
+              <FeatureIcon name={card.icon} />
+            </span>
+            <span class={styles.os}>{card.os}</span>
+          </div>
+          <h3 class={styles.cardTitle}>{card.title}</h3>
+          <p class={styles.cardBody}>{card.body}</p>
+        </li>
+      ))}
+    </ul>
     <p class={styles.disclaimer}>
-      <sup>*3</sup>
-      Wear OS by Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。
-      <br />
-      iPhoneとペアリングされている場合はご使用になれませんのでご了承下さい。
+      ※ Wear OS by Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。iPhoneとペアリングされている場合はご使用になれませんのでご了承下さい。
     </p>
   </div>
 </section>
-
