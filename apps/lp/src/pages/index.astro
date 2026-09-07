@@ -15,7 +15,7 @@ const lcpImages = await Promise.all(
   lcpFormats.map((format) =>
     getImage({
       src: mockImage,
-      widths: [480, 640, 768, 960, 1280, 1600],
+      widths: [480, 640, 768, 960, 1000, 1280, 1600],
       sizes: '(min-width: 1280px) 1000px, 92vw',
       format,
       layout: 'constrained',

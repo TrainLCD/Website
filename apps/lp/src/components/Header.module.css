@@ -26,7 +26,13 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    gap: 24px;
+  }
 }
 
 .appLink {
@@ -37,12 +43,20 @@
   flex-shrink: 0;
 }
 
+/* 320px 幅では障害情報ピルと並ばないため、ワードマークはロゴのみにする */
 .title {
+  display: none;
   margin-left: 8px;
   font-weight: bold;
   font-size: 1.125rem;
   color: var(--color-navy);
   letter-spacing: -0.01em;
+}
+
+@media (min-width: 480px) {
+  .title {
+    display: inline;
+  }
 }
 
 .nav {

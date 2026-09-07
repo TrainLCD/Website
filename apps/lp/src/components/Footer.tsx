@@ -130,7 +130,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="開発者のポートフォリオ"
-            className={styles.socialLink}
+            className={styles.productLink}
           >
             <TinyKittenProduct />
           </a>

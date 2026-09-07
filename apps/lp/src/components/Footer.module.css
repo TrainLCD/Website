@@ -92,6 +92,20 @@
   height: 19.75px;
 }
 
+/* 右下の TinyKitten バナー。ロゴ同様に白塗りなのでネイビー地に載せるが、角丸は付けない */
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--color-navy);
+  opacity: 0.85;
+  transition: 250ms;
+}
+
+.productLink:hover {
+  opacity: 1;
+}
+
 .columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -99,7 +113,21 @@
 }
 
 @media (min-width: 768px) {
-  .columns {
+  /* 右下の TinyKitten バナー。ロゴ同様に白塗りなのでネイビー地に載せるが、角丸は付けない */
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: var(--color-navy);
+  opacity: 0.85;
+  transition: 250ms;
+}
+
+.productLink:hover {
+  opacity: 1;
+}
+
+.columns {
     display: flex;
     gap: 64px;
   }
