@@ -86,13 +86,15 @@
 
 .description {
   font-size: 0.9375rem;
-  line-height: 1.75;
+  line-height: 1.7;
   color: var(--color-body);
 }
 
 @media (min-width: 768px) {
   .description {
     font-size: 1.125rem;
+    /* 2 行の短い説明なので、本文より少し詰めて見出しとのまとまりを出す */
+    line-height: 1.6;
   }
 }
 
