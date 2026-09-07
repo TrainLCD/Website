@@ -93,7 +93,39 @@
   }
 }
 
+.iconTile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+@media (min-width: 768px) {
+  .iconTile {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+}
+
+/* Discord のロゴは白塗り固定の SVG なので、タイル上ではアクセント色に塗り替える */
+.discordIcon {
+  width: 24px;
+  height: 18px;
+}
+
+/* ロゴ側の inline style(fill: #fff) より優先させるため !important を付ける */
+.discordIcon path {
+  fill: currentColor !important;
+}
+
 .linkTexts {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
