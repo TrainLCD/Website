@@ -1,7 +1,7 @@
 ---
 import ImageWithoutSize from '../ImageWithoutSize.astro';
 import StoreBadges from '../StoreBadges.astro';
-import mockImage from '../../assets/images/mockup/mojiko.png';
+import mockImage from '../../assets/images/mockup/phone-landscape.png';
 import styles from './Hero.module.css';
 
 // ファーストビュー。見出しと両ストアの導線を先に出し、その下に実画面のキャプチャを置く。
@@ -43,7 +43,7 @@ const HIGHLIGHTS = [
     <ImageWithoutSize
       src={mockImage}
       imageSources={lcpImageSources}
-      alt="TrainLCDの画面（門司港駅）"
+      alt="TrainLCDの走行画面（鹿児島本線 門司港駅・博多ゆき）"
       class={styles.mockImage}
       widths={[480, 640, 768, 960, 1280, 1600]}
       sizes="(min-width: 1280px) 1000px, 92vw"

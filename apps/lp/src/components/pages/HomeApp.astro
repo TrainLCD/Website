@@ -5,6 +5,7 @@ import CommunitySection from '../sections/Community.astro';
 import DownloadSection from '../sections/Download.astro';
 import FeaturesSection from '../sections/Features.astro';
 import HeroSection from '../sections/Hero.astro';
+import PortraitSection from '../sections/Portrait.astro';
 import TabletSection from '../sections/Tablet.astro';
 import WearableSection from '../sections/Wearable.astro';
 
@@ -15,6 +16,7 @@ const { lcpImageSources = [] } = Astro.props;
   <Header client:load />
   <HeroSection lcpImageSources={lcpImageSources} />
   <FeaturesSection />
+  <PortraitSection />
   <TabletSection />
   <WearableSection />
   <CommunitySection />

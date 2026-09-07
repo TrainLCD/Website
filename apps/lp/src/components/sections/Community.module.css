@@ -1,6 +1,6 @@
 .container {
   padding: 64px 24px;
-  background-color: var(--color-surface);
+  background-color: var(--color-white);
   scroll-margin-top: var(--header-height);
 }
 

@@ -20,6 +20,7 @@ const COLUMNS: FooterColumn[] = [
     heading: 'プロダクト',
     links: [
       { href: '/#features', label: 'できること' },
+      { href: '/#portrait', label: 'ポートレートモード' },
       { href: '/#tablet', label: 'iPad' },
       { href: '/#wearable', label: 'スマートウォッチ' },
       { href: '/faq', label: 'よくある質問' },
