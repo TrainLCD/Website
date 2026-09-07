@@ -96,19 +96,8 @@
   }
 }
 
-.pcOnly,
 .pcOnlyBreak {
   display: none;
-}
-
-@media (min-width: 768px) {
-  .pcOnly {
-    display: inline;
-  }
-
-  .spOnly {
-    display: none;
-  }
 }
 
 @media (min-width: 768px) {
