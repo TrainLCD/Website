@@ -1,12 +1,18 @@
 import type { JSX } from 'preact';
 
-export type FeatureIconName = 'navigation' | 'list' | 'voice' | 'map';
+export type FeatureIconName =
+  | 'navigation'
+  | 'list'
+  | 'voice'
+  | 'map'
+  | 'watch'
+  | 'smartphone';
 
 type Props = JSX.SVGAttributes<SVGSVGElement> & {
   name: FeatureIconName;
 };
 
-// できることカードのアイコン。Lucide (MIT) の線画をインラインで持つ
+// できること / 手首で のカードのアイコン。Lucide (MIT) の線画をインラインで持つ
 const PATHS: Record<FeatureIconName, JSX.Element> = {
   navigation: <polygon points="3 11 22 2 13 21 11 13 3 11" />,
   list: (
@@ -31,6 +37,20 @@ const PATHS: Record<FeatureIconName, JSX.Element> = {
       <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
       <line x1="9" x2="9" y1="3" y2="18" />
       <line x1="15" x2="15" y1="6" y2="21" />
+    </>
+  ),
+  watch: (
+    <>
+      <circle cx="12" cy="12" r="6" />
+      <polyline points="12 10 12 12 13 13" />
+      <path d="m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05" />
+      <path d="m7.88 16.36.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.81-4.05" />
+    </>
+  ),
+  smartphone: (
+    <>
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+      <path d="M12 18h.01" />
     </>
   ),
 };

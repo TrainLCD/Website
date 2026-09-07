@@ -1,4 +1,5 @@
 ---
+import FeatureIcon from '../FeatureIcon';
 import ImageWithoutSize from '../ImageWithoutSize.astro';
 import SectionHeading from '../SectionHeading';
 import appleWatchAppMock from '../../assets/images/applewatch_app.png';
@@ -8,16 +9,19 @@ import styles from './Wearable.module.css';
 // 手首で使える3つの機能。OS ラベルは対応プラットフォームを示す
 const CARDS = [
   {
+    icon: 'watch',
     os: 'watchOS',
     title: 'Apple Watch',
     body: 'iPhoneとペアリングしたApple Watchに、今停車している駅と次に停まる駅を表示。',
   },
   {
+    icon: 'smartphone',
     os: 'iOS',
     title: 'Live Activities',
     body: 'iPhoneのロック画面やDynamic Islandに、次の駅を常時表示。アプリを開かなくても分かります。',
   },
   {
+    icon: 'watch',
     os: 'Android',
     title: 'Wear OS by Google',
     body: 'Androidスマートフォンとペアリングしたウォッチで、同じ案内を手首に。',
@@ -60,7 +64,12 @@ const CARDS = [
     <ul class={styles.grid}>
       {CARDS.map((card) => (
         <li class={styles.card}>
-          <span class={styles.os}>{card.os}</span>
+          <div class={styles.cardHead}>
+            <span class={styles.iconTile}>
+              <FeatureIcon name={card.icon} />
+            </span>
+            <span class={styles.os}>{card.os}</span>
+          </div>
           <h3 class={styles.cardTitle}>{card.title}</h3>
           <p class={styles.cardBody}>{card.body}</p>
         </li>
