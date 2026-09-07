@@ -167,5 +167,6 @@
 .copyright {
   font-size: 0.75rem;
   color: var(--color-muted);
-  line-height: 1.6;
+  /* 2 行固定の小さな表記なので、ヒーロー説明文と同様に少し詰める */
+  line-height: 1.5;
 }
