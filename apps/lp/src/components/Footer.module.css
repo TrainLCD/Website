@@ -92,12 +92,11 @@
   height: 19.75px;
 }
 
-/* 右下の TinyKitten バナー。ロゴ同様に白塗りなのでネイビー地に載せるが、角丸は付けない */
+/* 右下の TinyKitten バナー。背景は透明にし、描画色(currentColor)をネイビーにする */
 .productLink {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
-  background-color: var(--color-navy);
+  color: var(--color-navy);
   opacity: 0.85;
   transition: 250ms;
 }
@@ -113,12 +112,11 @@
 }
 
 @media (min-width: 768px) {
-  /* 右下の TinyKitten バナー。ロゴ同様に白塗りなのでネイビー地に載せるが、角丸は付けない */
+  /* 右下の TinyKitten バナー。背景は透明にし、描画色(currentColor)をネイビーにする */
 .productLink {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
-  background-color: var(--color-navy);
+  color: var(--color-navy);
   opacity: 0.85;
   transition: 250ms;
 }
