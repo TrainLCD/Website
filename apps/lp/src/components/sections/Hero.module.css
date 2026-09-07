@@ -110,18 +110,6 @@
   margin-top: 6px;
 }
 
-.note {
-  font-size: 0.75rem;
-  line-height: 1.6;
-  color: var(--color-muted);
-}
-
-@media (min-width: 768px) {
-  .note {
-    font-size: 0.8125rem;
-  }
-}
-
 .media {
   position: relative;
   width: 100%;

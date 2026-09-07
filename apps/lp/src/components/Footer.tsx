@@ -74,9 +74,7 @@ const Footer = () => {
               <p className={styles.appName}>TrainLCD</p>
             </div>
             <p className={styles.description}>
-              今までにありそうでなかった、
-              <br />
-              あなたのスマートフォンで使えるトレインビジョン。
+              電車のあの画面、持ち歩けます。
             </p>
             <div className={styles.socialList}>
               <a
