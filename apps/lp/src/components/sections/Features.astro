@@ -1,22 +1,27 @@
 ---
+import FeatureIcon from '../FeatureIcon';
 import SectionHeading from '../SectionHeading';
 import styles from './Features.module.css';
 
 // アプリでできることを4つのカードで紹介する
 const FEATURES = [
   {
+    icon: 'navigation',
     title: '次に停まる駅',
     body: '現在地から次に停まる駅を自動で判定。走行中も停車中も、今どこにいるかがひと目で分かります。',
   },
   {
+    icon: 'list',
     title: '停車駅の一覧',
     body: '種別と行先に合わせた停車駅を、車内の路線図と同じ横並びで表示。通過駅は通過駅として描きます。',
   },
   {
+    icon: 'voice',
     title: '音声でも案内',
     body: '「次は〜」の車内放送風アナウンスを日本語・英語で読み上げ。画面を見なくても分かります。',
   },
   {
+    icon: 'map',
     title: '日本全国に対応',
     body: '通勤路線から旅先のローカル線まで。地下鉄や電波の届きにくい区間など一部例外は、よくある質問に記載しています。',
   },
@@ -40,6 +45,9 @@ const FEATURES = [
     <ul class={styles.grid}>
       {FEATURES.map((feature) => (
         <li class={styles.card}>
+          <span class={styles.iconTile}>
+            <FeatureIcon name={feature.icon} />
+          </span>
           <h3 class={styles.cardTitle}>{feature.title}</h3>
           <p class={styles.cardBody}>{feature.body}</p>
         </li>
