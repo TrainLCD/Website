@@ -1,8 +1,8 @@
 .container {
   position: relative;
   padding-top: calc(var(--header-height) + 48px);
-  background-color: var(--color-navy);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-navy);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,9 +38,9 @@
   gap: 8px;
   padding: 6px 14px;
   border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--color-on-dark-body);
+  background-color: var(--color-accent-soft);
+  border: 1px solid #b3dbff;
+  color: #0b5fa8;
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -80,7 +80,7 @@
 .description {
   font-size: 0.9375rem;
   line-height: 1.75;
-  color: var(--color-on-dark-body);
+  color: var(--color-body);
 }
 
 @media (min-width: 768px) {
@@ -117,7 +117,7 @@
 .note {
   font-size: 0.75rem;
   line-height: 1.6;
-  color: var(--color-on-dark-muted);
+  color: var(--color-muted);
 }
 
 @media (min-width: 768px) {
@@ -146,8 +146,8 @@
   inset: -20% 0 0 0;
   background: radial-gradient(
     ellipse at 50% 40%,
-    rgba(0, 143, 254, 0.35) 0%,
-    rgba(11, 18, 32, 0) 65%
+    rgba(0, 143, 254, 0.16) 0%,
+    rgba(255, 255, 255, 0) 65%
   );
   pointer-events: none;
 }
@@ -156,7 +156,7 @@
   position: relative;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 24px 48px rgba(11, 18, 32, 0.18));
 }
 
 .highlights {
@@ -164,8 +164,8 @@
   padding: 20px 24px;
   margin-top: 40px;
   width: 100%;
-  background-color: var(--color-navy-strip);
-  border-top: 1px solid var(--color-on-dark-line);
+  background-color: var(--color-strip);
+  border-top: 1px solid var(--color-line);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -190,10 +190,10 @@
 .highlightHeading {
   font-size: 0.9375rem;
   font-weight: bold;
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .highlightBody {
   font-size: 0.75rem;
-  color: var(--color-on-dark-muted);
+  color: var(--color-muted);
 }

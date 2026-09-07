@@ -8,8 +8,6 @@ type Props = {
   label: string;
   /** 見出し本文。改行は <br /> を含めて渡す */
   children: ComponentChildren;
-  /** ダーク背景上に置くときの配色 */
-  onDark?: boolean;
   /** 見出しを中央揃えにする */
   center?: boolean;
   /** h2 / h3 を切り替える。トップページの各セクションは h2 */
@@ -21,14 +19,12 @@ const SectionHeading = ({
   num,
   label,
   children,
-  onDark = false,
   center = false,
   level = 'h2',
 }: Props) => {
   const Heading = level;
   const classNames = [
     styles.container,
-    onDark ? styles.onDark : '',
     center ? styles.center : '',
   ]
     .filter(Boolean)

@@ -19,7 +19,7 @@ html, body {
   scroll-behavior: smooth;
 }
 /*
-  デザイントークン。Figma「ClaudeLP」ページの草案に合わせた値。
+  デザイントークン。Figma「ClaudeLP」ページの草案(ライト配色)に合わせた値。
   アクセントはアプリ側の LIGHT_APP_COLORS.accent と同じ #008FFE。
 */
 :root {
@@ -34,9 +34,7 @@ html, body {
   --color-body: #4b5563;
   --color-muted: #8b8b8b;
   --color-line: #e5e7eb;
-  --color-on-dark-body: #c7d2e3;
-  --color-on-dark-muted: #8fa0ba;
-  --color-on-dark-line: rgba(255, 255, 255, 0.08);
+  --color-strip: #f3f7fc;
   --header-height: 64px;
   --content-max-width: 1200px;
 }

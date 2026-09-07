@@ -1,6 +1,6 @@
 .container {
   padding: 64px 24px;
-  background-color: var(--color-navy);
+  background-color: var(--color-accent-soft);
   /* 固定ヘッダー分のオフセットを確保してスクロール先が隠れないようにする */
   scroll-margin-top: var(--header-height);
 }
@@ -30,7 +30,7 @@
 .body {
   font-size: 0.9375rem;
   line-height: 1.8;
-  color: var(--color-on-dark-body);
+  color: var(--color-body);
 }
 
 @media (min-width: 768px) {
