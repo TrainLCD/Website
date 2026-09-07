@@ -15,39 +15,27 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
 }
 
 @media (min-width: 768px) {
   .inner {
-    gap: 48px;
+    gap: 56px;
   }
 }
 
 .headRow {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
 }
 
 @media (min-width: 1024px) {
   .headRow {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    gap: 64px;
-  }
-}
-
-.texts {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-@media (min-width: 768px) {
-  .texts {
-    gap: 24px;
+    align-items: flex-end;
+    gap: 48px;
   }
 }
 
@@ -57,29 +45,20 @@
   color: var(--color-body);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .lead {
     font-size: 1rem;
-    max-width: 560px;
+    max-width: 440px;
   }
 }
 
-.mockup {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-shrink: 0;
-}
-
-.mockImage {
-  width: 40vw;
-  max-width: 200px;
-  height: auto;
+.pcOnlyBreak {
+  display: none;
 }
 
 @media (min-width: 1024px) {
-  .mockImage {
-    width: 200px;
+  .pcOnlyBreak {
+    display: inline;
   }
 }
 
@@ -93,49 +72,43 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 10px;
   padding: 20px;
   border-radius: 16px;
-  background-color: var(--color-white);
-  border: 1.5px solid var(--color-line);
+  background-color: var(--color-surface);
 }
 
 @media (min-width: 768px) {
   .card {
-    gap: 14px;
-    padding: 32px;
+    gap: 16px;
+    padding: 28px;
     border-radius: 20px;
   }
 }
 
-.os {
-  display: inline-flex;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background-color: var(--color-accent-soft);
-  color: var(--color-accent);
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
 .cardTitle {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: bold;
   color: var(--color-text);
 }
 
 @media (min-width: 768px) {
   .cardTitle {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 }
 
@@ -147,18 +120,6 @@
 
 @media (min-width: 768px) {
   .cardBody {
-    font-size: 0.9375rem;
-  }
-}
-
-.disclaimer {
-  font-size: 0.75rem;
-  line-height: 1.7;
-  color: var(--color-muted);
-}
-
-@media (min-width: 768px) {
-  .disclaimer {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
 }

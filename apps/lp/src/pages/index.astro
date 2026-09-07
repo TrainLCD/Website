@@ -3,7 +3,7 @@ import HomeApp from '@components/pages/HomeApp.astro';
 import GoogleAnalytics from '@components/GoogleAnalytics.astro';
 import '../styles/globals.css';
 import { getImage } from 'astro:assets';
-import mockImage from '../assets/images/mockup/iphone-and-ipad.png';
+import mockImage from '../assets/images/mockup/mojiko.png';
 
 const title = 'TrainLCD';
 const description = '電車のあの画面、持ち歩けます。';
@@ -15,8 +15,8 @@ const lcpImages = await Promise.all(
   lcpFormats.map((format) =>
     getImage({
       src: mockImage,
-      widths: [320, 480, 640, 768, 960, 1280],
-      sizes: '(min-width: 1280px) 640px, (min-width: 768px) 60vw, 90vw',
+      widths: [480, 640, 768, 960, 1280, 1600],
+      sizes: '(min-width: 1280px) 1000px, 92vw',
       format,
       layout: 'constrained',
       priority: true,
@@ -43,7 +43,7 @@ const lcpImageSources = lcpFormats.map((format, index) => {
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#03A9F4" />
+    <meta name="theme-color" content="#0B1220" />
     <link rel="canonical" href={url} />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -79,13 +79,13 @@ const lcpImageSources = lcpFormats.map((format, index) => {
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap"
       />
     </noscript>
     {lcpImageSources.map(({ format, data }) => (
@@ -94,7 +94,7 @@ const lcpImageSources = lcpFormats.map((format, index) => {
         as="image"
         href={data.src}
         imagesrcset={data.srcSet.attribute}
-        imagesizes="(min-width:1280px) 640px, (min-width:768px) 60vw, 90vw"
+        imagesizes="(min-width:1280px) 1000px, 92vw"
         type={`image/${format}`}
         fetchpriority="high"
       />

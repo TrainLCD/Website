@@ -1,0 +1,62 @@
+---
+import SectionHeading from '../SectionHeading';
+import styles from './Community.module.css';
+
+// オープンソースとコミュニティへの導線。以前はフッターにだけあった GitHub / Discord / 障害情報を本文に出す
+const LINKS = [
+  {
+    title: 'GitHub',
+    description: 'リポジトリを見る',
+    host: 'github.com/TrainLCD/MobileApp',
+    href: 'https://github.com/TrainLCD/MobileApp',
+  },
+  {
+    title: 'Discord',
+    description: 'コミュニティに参加する',
+    host: 'discord.gg/tsemdME9Nz',
+    href: 'https://discord.gg/tsemdME9Nz',
+  },
+  {
+    title: '障害情報',
+    description: 'サービスの稼働状況を確認する',
+    host: 'status.trainlcd.app',
+    href: 'https://status.trainlcd.app',
+  },
+] as const;
+---
+
+<section class={styles.container} id="community">
+  <div class={styles.inner}>
+    <div class={styles.texts}>
+      <SectionHeading num="04" label="オープンソース">
+        みんなで育てる、
+        <br />
+        オープンソースのアプリ。
+      </SectionHeading>
+      <p class={styles.body}>
+        TrainLCDはMITライセンスのオープンソースプロジェクトです。コードはGitHubで公開しており、バグ報告や機能提案、翻訳もコミュニティから受け付けています。
+      </p>
+    </div>
+    <ul class={styles.links}>
+      {LINKS.map((link) => (
+        <li>
+          <a
+            class={styles.linkCard}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class={styles.linkTexts}>
+              <span class={styles.linkTitle}>{link.title}</span>
+              <span class={styles.linkDescription}>
+                {link.description}
+                <span class={styles.linkHost}> · {link.host}</span>
+              </span>
+            </span>
+            <span class={styles.arrow} aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

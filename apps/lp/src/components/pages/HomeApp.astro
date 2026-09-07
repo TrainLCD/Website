@@ -1,23 +1,23 @@
 ---
 import Footer from '../Footer';
 import Header from '../Header';
+import CommunitySection from '../sections/Community.astro';
 import DownloadSection from '../sections/Download.astro';
-import OSSSection from '../sections/OSS';
-import ServiceAreaSection from '../sections/ServiceArea.astro';
+import FeaturesSection from '../sections/Features.astro';
+import HeroSection from '../sections/Hero.astro';
 import TabletSection from '../sections/Tablet.astro';
 import WearableSection from '../sections/Wearable.astro';
-import WelcomeSection from '../sections/Welcome.astro';
 
 const { lcpImageSources = [] } = Astro.props;
 ---
 
 <main>
   <Header client:load />
-  <WelcomeSection lcpImageSources={lcpImageSources} />
-  <ServiceAreaSection />
+  <HeroSection lcpImageSources={lcpImageSources} />
+  <FeaturesSection />
   <TabletSection />
   <WearableSection />
-  <OSSSection />
+  <CommunitySection />
   <DownloadSection />
   <Footer />
 </main>

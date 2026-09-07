@@ -1,0 +1,141 @@
+.container {
+  padding: 64px 24px;
+  background-color: var(--color-surface);
+  scroll-margin-top: var(--header-height);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 120px 64px;
+  }
+}
+
+.inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 80px;
+  }
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .texts {
+    gap: 24px;
+    width: 520px;
+    flex-shrink: 0;
+  }
+}
+
+.body {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--color-body);
+}
+
+@media (min-width: 768px) {
+  .body {
+    font-size: 1rem;
+  }
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .links {
+    gap: 16px;
+  }
+}
+
+.linkCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background-color: var(--color-white);
+  border: 1.5px solid var(--color-line);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 250ms, box-shadow 250ms;
+}
+
+.linkCard:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(0, 143, 254, 0.12);
+}
+
+@media (min-width: 768px) {
+  .linkCard {
+    padding: 22px 24px;
+    border-radius: 16px;
+  }
+}
+
+.linkTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.linkTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .linkTitle {
+    font-size: 1.125rem;
+  }
+}
+
+.linkDescription {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+@media (min-width: 768px) {
+  .linkDescription {
+    font-size: 0.8125rem;
+  }
+}
+
+.linkHost {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .linkHost {
+    display: inline;
+  }
+}
+
+.arrow {
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}

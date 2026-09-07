@@ -1,101 +1,84 @@
 .container {
-  min-height: 100vh;
-  position: relative;
-  padding: 32px;
-  background-color: #fefefe;
-  content-visibility: auto;
-  contain-intrinsic-size: 960px;
+  padding: 64px 24px;
+  background-color: var(--color-surface);
+  scroll-margin-top: var(--header-height);
 }
 
 @media (min-width: 768px) {
   .container {
-    padding: 0 64px;
+    padding: 120px 64px;
   }
 }
 
-.layout {
+.inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 24px;
+  gap: 28px;
 }
 
-@media (min-width: 768px) {
-  .layout {
+@media (min-width: 1024px) {
+  .inner {
     flex-direction: row;
-    gap: 0;
+    align-items: center;
+    gap: 80px;
   }
 }
 
 .mockup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  order: -1;
+  order: 1;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .mockup {
-    width: 50%;
+    width: 560px;
+    flex-shrink: 0;
     order: 0;
   }
 }
 
-.texts {
+.mockImage {
   width: 100%;
-  margin-top: 24px;
+  height: auto;
+  filter: drop-shadow(0 24px 48px rgba(11, 18, 32, 0.18));
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   order: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .texts {
-    width: 50%;
-    margin-top: 0;
+    gap: 24px;
+    order: 1;
   }
 }
 
-.shortHeading {
-  color: #1565c0;
-  font-weight: bold;
+.body {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--color-body);
 }
 
 @media (min-width: 768px) {
-  .shortHeading {
-    font-size: 1.5rem;
-  }
-}
-
-.accent {
-  color: #1565c0;
-}
-
-.heading {
-  line-height: 1.25;
-  font-size: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .heading {
-    font-size: 3rem;
-  }
-}
-
-.caption {
-  font-size: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .caption {
+  .body {
     font-size: 1rem;
   }
 }
 
 .disclaimer {
   font-size: 0.75rem;
-  color: #444444;
-  margin-top: 12px;
-  line-height: 1.5;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+@media (min-width: 768px) {
+  .disclaimer {
+    font-size: 0.8125rem;
+  }
 }

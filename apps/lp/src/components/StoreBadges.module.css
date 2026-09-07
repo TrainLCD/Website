@@ -1,0 +1,23 @@
+.stores {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.storeLink {
+  display: inline-flex;
+  width: 160px;
+  transition: opacity 250ms;
+}
+
+.storeLink:hover {
+  opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+  .storeLink {
+    width: 200px;
+  }
+}

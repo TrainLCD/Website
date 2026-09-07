@@ -1,0 +1,48 @@
+---
+import ImageWithoutSize from './ImageWithoutSize.astro';
+import AppStoreJPImg from '../assets/images/store/app-store-jp.png';
+import PlayStoreJPImg from '../assets/images/store/google-play-jp.png';
+import styles from './StoreBadges.module.css';
+
+// App Store / Google Play の公式バッジを並べる。ヒーローとダウンロードで共用する。
+interface Props {
+  class?: string;
+  /** LCP に近い位置に置く場合は eager にする */
+  loading?: 'lazy' | 'eager';
+}
+
+const { class: className, loading = 'lazy' } = Astro.props;
+---
+
+<div class={className ? `${styles.stores} ${className}` : styles.stores}>
+  <a
+    class={styles.storeLink}
+    href="https://apps.apple.com/jp/app/trainlcd/id1486355943"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <ImageWithoutSize
+      alt="App Storeからダウンロード"
+      src={AppStoreJPImg}
+      widths={[200, 260, 320, 400]}
+      sizes="(min-width: 768px) 200px, 160px"
+      format="webp"
+      loading={loading}
+    />
+  </a>
+  <a
+    class={styles.storeLink}
+    href="https://play.google.com/store/apps/details?id=me.tinykitten.trainlcd"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <ImageWithoutSize
+      alt="Google Playで手に入れよう"
+      src={PlayStoreJPImg}
+      widths={[200, 260, 320, 400]}
+      sizes="(min-width: 768px) 200px, 160px"
+      format="webp"
+      loading={loading}
+    />
+  </a>
+</div>
