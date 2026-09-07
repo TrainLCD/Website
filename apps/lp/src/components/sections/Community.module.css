@@ -121,7 +121,7 @@
 
 /* ロゴ側の inline style(fill: #fff) より優先させるため !important を付ける */
 .discordIcon path {
-  fill: currentColor !important;
+  fill: currentcolor !important;
 }
 
 .linkTexts {
