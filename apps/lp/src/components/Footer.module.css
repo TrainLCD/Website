@@ -112,20 +112,7 @@
 }
 
 @media (min-width: 768px) {
-  /* 右下の TinyKitten バナー。背景は透明にし、描画色(currentColor)をネイビーにする */
-.productLink {
-  display: inline-flex;
-  align-items: center;
-  color: var(--color-navy);
-  opacity: 0.85;
-  transition: 250ms;
-}
-
-.productLink:hover {
-  opacity: 1;
-}
-
-.columns {
+  .columns {
     display: flex;
     gap: 64px;
   }
