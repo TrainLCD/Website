@@ -32,7 +32,9 @@
 .status {
   display: flex;
   align-items: center;
-  padding: 0 12px 0 0;
+  /* インジケーターの外周リング(box-shadow)が overflow: hidden で
+     見切れてしまうため、リングの太さぶんの余白を確保する */
+  padding: 3px 12px 3px 3px;
   overflow: hidden;
   animation: slideIn 0.5s ease;
 }
@@ -42,11 +44,13 @@
     opacity: 0;
     max-width: 0;
     padding-right: 0;
+    padding-left: 0;
   }
   to {
     opacity: 1;
     max-width: 200px;
     padding-right: 12px;
+    padding-left: 3px;
   }
 }
 
