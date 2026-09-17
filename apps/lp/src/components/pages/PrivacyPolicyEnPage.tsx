@@ -11,7 +11,7 @@ const PrivacyPolicyEnPage = () => (
           <h1 className={styles.title}>Privacy Policy</h1>
           <aside className={styles.headingMeta}>
             <p>Policy enacted: March 30, 2020</p>
-            <p>Last updated: September 17, 2026</p>
+            <p>Last updated: September 18, 2026</p>
             <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
             <a className={styles.internalLink} href="/privacy-policy">
               日本語版
