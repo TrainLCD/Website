@@ -160,7 +160,7 @@ const PrivacyPolicyEnPage = () => (
           The “automatic announcement” function of this application speaks either by synthesizing the audio on the server side (hereinafter referred to as “remote synthesis”) or by using the speech synthesis function built into the device. Which of the two is used depends on the environment and on settings distributed by TinyKitten. As of the revision date of this policy, the iOS version uses remote synthesis by default, and the Android version uses the speech synthesis function built into the device by default.
         </p>
         <p className={styles.paragraph}>
-          When remote synthesis is used, the announcement text (sentences containing station names, line names and the like) is sent to the speech synthesis service provided by OpenAI, L.L.C. The information sent contains no location information and nothing that identifies the user. The synthesized audio is stored for a certain period of time on servers managed by TinyKitten, in order to avoid synthesizing the same announcement text repeatedly.
+          When remote synthesis is used, the announcement text (sentences containing station names, line names and the like) is sent to the speech synthesis service provided by Google LLC. The information sent contains no location information and nothing that identifies the user. The synthesized audio is stored for a certain period of time on servers managed by TinyKitten, in order to avoid synthesizing the same announcement text repeatedly.
           <br />
           When the speech synthesis function built into the device is used, no information is sent externally for the purpose of speech.
         </p>
