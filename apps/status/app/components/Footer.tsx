@@ -130,7 +130,7 @@ const TEXT: Record<
     portfolio: '開発者のポートフォリオ',
   },
   en: {
-    tagline: 'Carry that train screen with you.',
+    tagline: 'A new kind of navigation app.',
     followX: 'Follow @trainlcd on X (formerly Twitter)',
     joinDiscord: 'Join our Discord server',
     portfolio: "Developer's portfolio",
