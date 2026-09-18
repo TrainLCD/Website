@@ -166,7 +166,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <h3 className={styles.headingText}>14. AI destination consultation function</h3>
         <p className={styles.paragraph}>
-          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by OpenAI, L.L.C. and Cloudflare, Inc.:
+          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by Google LLC and Cloudflare, Inc.:
         </p>
         <ol className={styles.list}>
           <li>The text entered by the user and the recent conversation within this function</li>

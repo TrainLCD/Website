@@ -170,7 +170,7 @@ const PrivacyPolicyPage = () => (
         </p>
         <h3 className={styles.headingText}>第14条（AIによる行き先相談機能について）</h3>
         <p className={styles.paragraph}>
-          本アプリの「AIに行き先を相談」機能では、応答を生成するために、以下の情報をOpenAI, L.L.C.およびCloudflare, Inc.の提供するAIサービスへ送信します。
+          本アプリの「AIに行き先を相談」機能では、応答を生成するために、以下の情報をGoogle LLCおよびCloudflare, Inc.の提供するAIサービスへ送信します。
         </p>
         <ol className={styles.list}>
           <li>利用者様が入力された文章、および本機能における直近の会話の内容</li>
