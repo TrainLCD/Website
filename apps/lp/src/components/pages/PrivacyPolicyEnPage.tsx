@@ -176,6 +176,9 @@ const PrivacyPolicyEnPage = () => (
           <li>The display language setting of this application</li>
         </ol>
         <p className={styles.paragraph}>
+          In addition, in order to determine whether the candidate stations to be suggested match the user’s request, the text most recently entered by the user and the name of the station the user is currently traveling through are sent, together with information about the candidate stations, to the AI service provided by TypeSafe AI, Inc.
+        </p>
+        <p className={styles.paragraph}>
           The conversation sent is used only to generate a response and is not stored on TinyKitten’s servers. The conversation history is held only on the user’s device and can be erased at any time from within this application. In order to operate this function properly, the number of uses per day is limited using the anonymous identifier described in Article 5.
           <br />
           Please do not enter your name, contact information, or any other information that can identify a specific individual into this function.
