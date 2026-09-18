@@ -11,7 +11,7 @@ const PrivacyPolicyEnPage = () => (
           <h1 className={styles.title}>Privacy Policy</h1>
           <aside className={styles.headingMeta}>
             <p>Policy enacted: March 30, 2020</p>
-            <p>Last updated: August 13, 2026</p>
+            <p>Last updated: September 18, 2026</p>
             <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
             <a className={styles.internalLink} href="/privacy-policy">
               日本語版
@@ -196,7 +196,7 @@ const PrivacyPolicyEnPage = () => (
           This information does not contain anything that identifies a specific individual, unless the user includes personal information in the text or the attached screenshot.
         </p>
         <p className={styles.paragraph}>
-          The information submitted is used to investigate defects and to improve this application, and is stored for a period of time determined by TinyKitten. It is also classified and summarized using the AI service provided by Cloudflare, Inc., and is forwarded to a private GitHub repository and a Discord channel managed by TinyKitten in order to track how it is handled. Attached screenshots are stored at a unique URL that is difficult to guess, but any third party who knows that URL is able to view them.
+          The information submitted is used to investigate defects and to improve this application, and is stored for a period of time determined by TinyKitten. It is also classified using the AI service provided by TypeSafe AI, Inc. and summarized using the AI service provided by Cloudflare, Inc., and is forwarded to a private GitHub repository and a Discord channel managed by TinyKitten in order to track how it is handled. Attached screenshots are stored at a unique URL that is difficult to guess, but any third party who knows that URL is able to view them.
         </p>
       </main>
     </div>
