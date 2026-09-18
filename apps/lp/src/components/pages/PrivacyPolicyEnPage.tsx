@@ -160,13 +160,13 @@ const PrivacyPolicyEnPage = () => (
           The “automatic announcement” function of this application speaks either by synthesizing the audio on the server side (hereinafter referred to as “remote synthesis”) or by using the speech synthesis function built into the device. Which of the two is used depends on the environment and on settings distributed by TinyKitten. As of the revision date of this policy, the iOS version uses remote synthesis by default, and the Android version uses the speech synthesis function built into the device by default.
         </p>
         <p className={styles.paragraph}>
-          When remote synthesis is used, the announcement text (sentences containing station names, line names and the like) is sent to the speech synthesis service provided by OpenAI, L.L.C. The information sent contains no location information and nothing that identifies the user. The synthesized audio is stored for a certain period of time on servers managed by TinyKitten, in order to avoid synthesizing the same announcement text repeatedly.
+          When remote synthesis is used, the announcement text (sentences containing station names, line names and the like) is sent to the speech synthesis service provided by Google LLC. The information sent contains no location information and nothing that identifies the user. The synthesized audio is stored for a certain period of time on servers managed by TinyKitten, in order to avoid synthesizing the same announcement text repeatedly.
           <br />
           When the speech synthesis function built into the device is used, no information is sent externally for the purpose of speech.
         </p>
         <h3 className={styles.headingText}>14. AI destination consultation function</h3>
         <p className={styles.paragraph}>
-          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by OpenAI, L.L.C. and Cloudflare, Inc.:
+          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by Google LLC and Cloudflare, Inc.:
         </p>
         <ol className={styles.list}>
           <li>The text entered by the user and the recent conversation within this function</li>
@@ -175,6 +175,9 @@ const PrivacyPolicyEnPage = () => (
           </li>
           <li>The display language setting of this application</li>
         </ol>
+        <p className={styles.paragraph}>
+          In addition, in order to determine whether the candidate stations to be suggested match the user’s request, the text most recently entered by the user and the name of the station the user is currently traveling through are sent, together with information about the candidate stations, to the AI service provided by TypeSafe AI, Inc.
+        </p>
         <p className={styles.paragraph}>
           The conversation sent is used only to generate a response and is not stored on TinyKitten’s servers. The conversation history is held only on the user’s device and can be erased at any time from within this application. In order to operate this function properly, the number of uses per day is limited using the anonymous identifier described in Article 5.
           <br />

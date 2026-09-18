@@ -46,7 +46,7 @@ export default async function AdminPage() {
           incidents={adminIncidents}
         />
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

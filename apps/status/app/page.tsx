@@ -70,7 +70,7 @@ export default async function HomePage() {
           </a>
         </div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }
