@@ -16,7 +16,7 @@ export default async function AdminLoginPage() {
           <LoginForm locale={locale} />
         </Suspense>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

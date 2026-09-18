@@ -214,7 +214,7 @@ export default async function IncidentDetailPage({ params }: Props) {
           )}
         </div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }
