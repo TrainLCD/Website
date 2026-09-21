@@ -11,7 +11,7 @@ const PrivacyPolicyEnPage = () => (
           <h1 className={styles.title}>Privacy Policy</h1>
           <aside className={styles.headingMeta}>
             <p>Policy enacted: March 30, 2020</p>
-            <p>Last updated: September 18, 2026</p>
+            <p>Last updated: September 21, 2026</p>
             <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
             <a className={styles.internalLink} href="/privacy-policy">
               日本語版
@@ -200,6 +200,9 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <p className={styles.paragraph}>
           The information submitted is used to investigate defects and to improve this application, and is stored for a period of time determined by TinyKitten. It is also classified using the AI service provided by TypeSafe AI, Inc. and summarized using the AI service provided by Cloudflare, Inc., and is forwarded to a private GitHub repository and a Discord channel managed by TinyKitten in order to track how it is handled. Attached screenshots are stored at a unique URL that is difficult to guess, but any third party who knows that URL is able to view them.
+        </p>
+        <p className={styles.paragraph}>
+          In addition, in order to automatically draft a fix for the defect, the submitted text is sent to the AI service provided by Anthropic PBC after information that could identify the sender has been removed. The drafted fix is submitted as a Pull Request to a public GitHub repository managed by TinyKitten. The Pull Request does not contain the text entered by the user. It contains only a description of the defect and, to the extent necessary to reproduce it, the device model name, the OS version, and the version of this application.
         </p>
       </main>
     </div>
