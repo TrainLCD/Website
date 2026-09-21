@@ -139,7 +139,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <h3 className={styles.headingText}>11. Use of Sentry</h3>
         <p className={styles.paragraph}>
-          This application uses
+          This application uses{' '}
           <a
             href="https://sentry.io/"
             target="_blank"
@@ -148,7 +148,7 @@ const PrivacyPolicyEnPage = () => (
           >
             Sentry
           </a>
-          , a service provided by Functional Software, to understand the stability of the application. TinyKitten receives the results of this analysis from Functional Software to understand the user’s error status. The information collected, recorded, and analyzed by Sentry does not contain any personally identifiable information; please visit Sentry’s site for a description of Sentry’s
+          , a service provided by Functional Software, to understand the stability of the application. TinyKitten receives the results of this analysis from Functional Software to understand the user’s error status. The information collected, recorded, and analyzed by Sentry does not contain any personally identifiable information; please visit Sentry’s site for a description of Sentry’s{' '}
           <a
             href="https://sentry.io/terms/"
             target="_blank"
@@ -156,8 +156,8 @@ const PrivacyPolicyEnPage = () => (
             className={styles.externalLink}
           >
             Terms of Use
-          </a>
-          and
+          </a>{' '}
+          and{' '}
           <a
             href="https://sentry.io/privacy/"
             target="_blank"
@@ -170,7 +170,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <h3 className={styles.headingText}>12. Use of Cloudflare</h3>
         <p className={styles.paragraph}>
-          The backend of this application and this site run on services provided by Cloudflare, Inc. Communication between this application or this site and the server therefore passes through that company’s network. For a description of how information is handled by Cloudflare, please see the
+          The backend of this application and this site run on services provided by Cloudflare, Inc. Communication between this application or this site and the server therefore passes through that company’s network. For a description of how information is handled by Cloudflare, please see the{' '}
           <a
             href="https://www.cloudflare.com/privacypolicy/"
             target="_blank"
