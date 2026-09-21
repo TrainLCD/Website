@@ -15,6 +15,7 @@ const PrivacyPolicyPage = () => (
             <p>令和4年7月13日 改定</p>
             <p>令和8年8月13日 改定</p>
             <p>令和8年9月18日 改定</p>
+            <p>令和8年9月21日 改定</p>
             <p>屋号TinyKitten(関口 翼)</p>
             <a className={styles.internalLink} href="/privacy-policy-en">
               English version available here.
@@ -204,6 +205,9 @@ const PrivacyPolicyPage = () => (
         </p>
         <p className={styles.paragraph}>
           送信された内容は、不具合の調査および本アプリの改善のために利用し、TinyKittenの定める一定の期間保管されます。また、内容の分類のためにTypeSafe AI, Inc.の提供するAIサービスを、内容の要約のためにCloudflare, Inc.の提供するAIサービスをそれぞれ利用するほか、対応状況を管理する目的で、TinyKittenが管理する非公開のGitHubリポジトリおよびDiscordのチャンネルへ転送します。添付されたスクリーンショットは、推測が困難な固有のURLで保管されますが、当該URLを知る第三者は閲覧が可能です。
+        </p>
+        <p className={styles.paragraph}>
+          また、不具合の修正案を自動で作成する目的で、本文から送信者を特定しうる情報を取り除いたうえで、Anthropic PBCの提供するAIサービスへ送信します。作成された修正案は、TinyKittenが管理する公開のGitHubリポジトリへPull Requestとして投稿されます。Pull Requestには利用者様が入力された本文を掲載しません。掲載するのは、不具合の内容の説明と、再現に必要な範囲の端末の機種名・OSのバージョン・本アプリのバージョンです。
         </p>
       </main>
     </div>
