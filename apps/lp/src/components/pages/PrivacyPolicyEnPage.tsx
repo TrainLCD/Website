@@ -11,7 +11,7 @@ const PrivacyPolicyEnPage = () => (
           <h1 className={styles.title}>Privacy Policy</h1>
           <aside className={styles.headingMeta}>
             <p>Policy enacted: March 30, 2020</p>
-            <p>Last updated: September 21, 2026</p>
+            <p>Last updated: September 23, 2026</p>
             <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
             <a className={styles.internalLink} href="/privacy-policy">
               日本語版
@@ -38,6 +38,7 @@ const PrivacyPolicyEnPage = () => (
         <ol className={styles.list}>
           <li>Location information obtained from the user’s device (Article 4)</li>
           <li>An anonymous identifier generated automatically for each installation (Article 5)</li>
+          <li>Information about the usage of this application and about the device (Article 10)</li>
           <li>Information about errors that occur while using this application (Article 11)</li>
           <li>Content voluntarily submitted by the user through the “Feedback” function (Article 15)</li>
         </ol>
@@ -47,7 +48,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <ol className={styles.list}>
           <li>To provide and operate this application and this site</li>
-          <li>To investigate defects in this application and to maintain and improve its quality</li>
+          <li>To investigate defects in this application, to understand how it is used, and to maintain and improve its quality</li>
           <li>To respond to inquiries and comments from users</li>
         </ol>
         <h3 className={styles.headingText}>4. Handling of location information</h3>
@@ -108,12 +109,37 @@ const PrivacyPolicyEnPage = () => (
         <h3 className={styles.headingText}>10. About the use of Google Analytics</h3>
         <p className={styles.paragraph}>
           This site uses Google Analytics to understand the usage status of the site. Google Analytics uses cookies to collect user information, but the user’s personal information is not associated. For a description of the Google Analytics Terms of Service and Privacy Policy, please visit the Google Analytics website.
-          <br />
-          TinyKitten shall not be liable for any damages caused by using the Google Analytics service. This application does not use Google Analytics.
+        </p>
+        <p className={styles.paragraph}>
+          This application also uses Google Analytics for Firebase, provided by Google LLC, to understand how it is used and to improve it. Through Google Analytics for Firebase, this application sends the following information to Google LLC:
+        </p>
+        <ol className={styles.list}>
+          <li>
+            An identifier assigned to each installation of this application (the iOS version also sends the Identifier for Vendor (IDFV))
+          </li>
+          <li>
+            Information about the usage of this application, such as the number of launches, time spent, first launches, and updates
+          </li>
+          <li>Information about the device, such as the device model, OS version, and approximate region</li>
+        </ol>
+        <p className={styles.paragraph}>
+          This application does not collect advertising identifiers (the Advertising Identifier (IDFA) on iOS and the Advertising ID on Android). TinyKitten does not use this information to deliver advertising. For how Google handles information in Google Analytics, please see{' '}
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.externalLink}
+          >
+            “How Google uses information from sites or apps that use our services”
+          </a>
+          .
+        </p>
+        <p className={styles.paragraph}>
+          TinyKitten shall not be liable for any damages caused by using the Google Analytics service.
         </p>
         <h3 className={styles.headingText}>11. Use of Sentry</h3>
         <p className={styles.paragraph}>
-          This application uses
+          This application uses{' '}
           <a
             href="https://sentry.io/"
             target="_blank"
@@ -122,7 +148,7 @@ const PrivacyPolicyEnPage = () => (
           >
             Sentry
           </a>
-          , a service provided by Functional Software, to understand the stability of the application. TinyKitten receives the results of this analysis from Functional Software to understand the user’s error status. The information collected, recorded, and analyzed by Sentry does not contain any personally identifiable information; please visit Sentry’s site for a description of Sentry’s
+          , a service provided by Functional Software, to understand the stability of the application. TinyKitten receives the results of this analysis from Functional Software to understand the user’s error status. The information collected, recorded, and analyzed by Sentry does not contain any personally identifiable information; please visit Sentry’s site for a description of Sentry’s{' '}
           <a
             href="https://sentry.io/terms/"
             target="_blank"
@@ -130,8 +156,8 @@ const PrivacyPolicyEnPage = () => (
             className={styles.externalLink}
           >
             Terms of Use
-          </a>
-          and
+          </a>{' '}
+          and{' '}
           <a
             href="https://sentry.io/privacy/"
             target="_blank"
@@ -144,7 +170,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <h3 className={styles.headingText}>12. Use of Cloudflare</h3>
         <p className={styles.paragraph}>
-          The backend of this application and this site run on services provided by Cloudflare, Inc. Communication between this application or this site and the server therefore passes through that company’s network. For a description of how information is handled by Cloudflare, please see the
+          The backend of this application and this site run on services provided by Cloudflare, Inc. Communication between this application or this site and the server therefore passes through that company’s network. For a description of how information is handled by Cloudflare, please see the{' '}
           <a
             href="https://www.cloudflare.com/privacypolicy/"
             target="_blank"
@@ -166,7 +192,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <h3 className={styles.headingText}>14. AI destination consultation function</h3>
         <p className={styles.paragraph}>
-          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by Google LLC and Cloudflare, Inc.:
+          In order to generate a response, the “Ask AI about your destination” function of this application sends the following information to the AI services provided by OpenAI, L.L.C. and Cloudflare, Inc.:
         </p>
         <ol className={styles.list}>
           <li>The text entered by the user and the recent conversation within this function</li>

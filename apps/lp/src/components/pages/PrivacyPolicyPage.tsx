@@ -16,6 +16,7 @@ const PrivacyPolicyPage = () => (
             <p>令和8年8月13日 改定</p>
             <p>令和8年9月18日 改定</p>
             <p>令和8年9月21日 改定</p>
+            <p>令和8年9月23日 改定</p>
             <p>屋号TinyKitten(関口 翼)</p>
             <a className={styles.internalLink} href="/privacy-policy-en">
               English version available here.
@@ -42,6 +43,7 @@ const PrivacyPolicyPage = () => (
         <ol className={styles.list}>
           <li>利用者様の端末から取得する位置情報（第4条）</li>
           <li>端末ごとに自動的に生成される匿名の識別子（第5条）</li>
+          <li>本アプリの利用状況および端末に関する情報（第10条）</li>
           <li>本アプリの利用中に発生したエラーに関する情報（第11条）</li>
           <li>利用者様が「フィードバック」機能から任意で送信された内容（第15条）</li>
         </ol>
@@ -51,7 +53,7 @@ const PrivacyPolicyPage = () => (
         </p>
         <ol className={styles.list}>
           <li>本アプリおよび本サイトの提供・運営のため</li>
-          <li>本アプリの不具合の調査、ならびに品質の維持および改善のため</li>
+          <li>本アプリの不具合の調査、利用状況の把握、ならびに品質の維持および改善のため</li>
           <li>利用者様からのお問い合わせやご意見に対応するため</li>
         </ol>
         <h3 className={styles.headingText}>第4条（位置情報の取扱い）</h3>
@@ -112,8 +114,33 @@ const PrivacyPolicyPage = () => (
         <h3 className={styles.headingText}>第10条（Google Analyticsの利用について）</h3>
         <p className={styles.paragraph}>
           本サイトでは、サイトの利用状況を把握するためにGoogle Analyticsを利用しています。Google Analyticsは、クッキーを利用して利用者様の情報を収集しますが、利用者様の個人情報とは関連付けられません。Google Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google Analyticsのサイトをご覧ください。
-          <br />
-          なお、Google Analyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。また、本アプリではGoogle Analyticsを利用しておりません。
+        </p>
+        <p className={styles.paragraph}>
+          本アプリでも、利用状況を把握し改善に役立てるために、Google LLCの提供するGoogle Analytics for Firebaseを利用しています。本アプリは、Google Analytics for Firebaseを通じて以下の情報をGoogle LLCへ送信します。
+        </p>
+        <ol className={styles.list}>
+          <li>
+            本アプリのインストールごとに割り当てられる識別子（iOS版では、あわせてベンダー識別子（IDFV）を送信します）
+          </li>
+          <li>
+            起動の回数、利用時間、初回起動、アップデートなど、本アプリの利用状況に関する情報
+          </li>
+          <li>端末の機種名、OSのバージョン、おおよその地域など、端末に関する情報</li>
+        </ol>
+        <p className={styles.paragraph}>
+          本アプリは、広告識別子（iOSの広告識別子（IDFA）およびAndroidの広告ID）を収集しません。また、TinyKittenがこれらの情報を広告の配信に利用することはありません。GoogleによるGoogle Analyticsでの情報の取扱いについては、
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.externalLink}
+          >
+            「Google のサービスを使用するサイトやアプリから収集した情報の Google による使用」
+          </a>
+          をご覧ください。
+        </p>
+        <p className={styles.paragraph}>
+          なお、Google Analyticsのサービス利用による損害については、TinyKittenは責任を負わないものとします。
         </p>
         <h3 className={styles.headingText}>第11条（Sentryの利用について）</h3>
         <p className={styles.paragraph}>
@@ -171,7 +198,7 @@ const PrivacyPolicyPage = () => (
         </p>
         <h3 className={styles.headingText}>第14条（AIによる行き先相談機能について）</h3>
         <p className={styles.paragraph}>
-          本アプリの「AIに行き先を相談」機能では、応答を生成するために、以下の情報をGoogle LLCおよびCloudflare, Inc.の提供するAIサービスへ送信します。
+          本アプリの「AIに行き先を相談」機能では、応答を生成するために、以下の情報をOpenAI, L.L.C.およびCloudflare, Inc.の提供するAIサービスへ送信します。
         </p>
         <ol className={styles.list}>
           <li>利用者様が入力された文章、および本機能における直近の会話の内容</li>
