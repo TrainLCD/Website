@@ -16,7 +16,7 @@ const PrivacyPolicyPage = () => (
             <p>令和8年8月13日 改定</p>
             <p>令和8年9月18日 改定</p>
             <p>令和8年9月21日 改定</p>
-            <p>令和8年9月22日 改定</p>
+            <p>令和8年9月23日 改定</p>
             <p>屋号TinyKitten(関口 翼)</p>
             <a className={styles.internalLink} href="/privacy-policy-en">
               English version available here.
