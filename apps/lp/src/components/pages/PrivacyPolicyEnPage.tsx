@@ -11,7 +11,7 @@ const PrivacyPolicyEnPage = () => (
           <h1 className={styles.title}>Privacy Policy</h1>
           <aside className={styles.headingMeta}>
             <p>Policy enacted: March 30, 2020</p>
-            <p>Last updated: September 23, 2026</p>
+            <p>Last updated: October 17, 2026</p>
             <p>TinyKitten(Tsubasa SEKIGUCHI)</p>
             <a className={styles.internalLink} href="/privacy-policy">
               日本語版
@@ -57,7 +57,7 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <ol className={styles.list}>
           <li>
-            Location information is used solely to determine the nearest station, and to determine the station the user is currently traveling through and the direction of travel.
+            Location information is used to determine the nearest station, the station the user is currently traveling through, and the direction of travel. If the user enables ride recording, the identified stations and times are also recorded on the device to provide the Ride Recap function described in Article 16.
           </li>
           <li>
             While the navigation function is in use, location information is also obtained in the background, but only while this application is running.
@@ -66,7 +66,7 @@ const PrivacyPolicyEnPage = () => (
             The location information obtained is temporarily sent to servers managed by TinyKitten in order to determine the station, but it is not stored on the server.
           </li>
           <li>
-            Location information is never used for advertising or for tracking the behavior of users, nor is it provided to third parties for such purposes.
+            Location information is not used for advertising. Apart from the user’s own Ride Recap described in Article 16, it is not used to track the behavior of users. Nor is it provided to third parties for such advertising or tracking purposes.
           </li>
           <li>
             The collection of location information can be stopped at any time from the settings of the device. Even if permission to use location information is not granted, functions that do not require location information, such as “Auto Mode”, remain available.
@@ -229,6 +229,42 @@ const PrivacyPolicyEnPage = () => (
         </p>
         <p className={styles.paragraph}>
           In addition, in order to automatically draft a fix for the defect, the submitted text is sent to the AI service provided by Anthropic PBC after information that could identify the sender has been removed. The drafted fix is submitted as a Pull Request to a public GitHub repository managed by TinyKitten. The Pull Request does not contain the text entered by the user. It contains only a description of the defect and, to the extent necessary to reproduce it, the device model name, the OS version, and the version of this application.
+        </p>
+        <h3 className={styles.headingText}>16. Ride Recap function</h3>
+        <p className={styles.paragraph}>
+          Ride recording for the “Ride Recap” function is disabled by default. When the user enables it from “Ride Recap” in Settings or from the Ride Recap screen, this application records rides based on the stations and times identified during navigation. Rides taken before recording is enabled are not recorded retroactively. Station movements in Auto Mode are not recorded.
+        </p>
+        <p className={styles.paragraph}>
+          Ride records include the following information:
+        </p>
+        <ol className={styles.list}>
+          <li>Ride start and end times, stations arrived at or passed through and their order, and the times when arrivals, passages, and departures were detected</li>
+          <li>Station and line identifiers and names, line colors, direction of travel, and train type identifiers</li>
+          <li>Distances between stations and how they were calculated, and estimated travel times used to calculate ride duration</li>
+          <li>Station coordinates, coordinates of intermediate stations along the route, and the prefectures in which stations are located</li>
+        </ol>
+        <p className={styles.paragraph}>
+          The saved coordinates are station locations from station data, not the user’s location coordinates obtained from the device. Records are used to display ride distance, duration, and count for this week, month, and year, breakdowns by line and prefecture, and a map of traveled routes.
+        </p>
+        <p className={styles.paragraph}>
+          Ride records are stored in a database on the device. This application has no function to send this database to TinyKitten’s servers, independently synchronize or back it up to the cloud, or export it as a file. Backups and device-to-device data transfers provided by the device’s operating system follow that operating system’s specifications and the user’s settings.
+        </p>
+        <p className={styles.paragraph}>
+          To obtain estimated travel times used to calculate ride duration, this application sends information such as station and line identifiers and direction for the route being traveled to servers managed by TinyKitten. This communication does not send saved ride records.
+        </p>
+        <p className={styles.paragraph}>
+          Route maps use Apple’s map service on iOS and Google’s map service on Android. Saved station coordinates determine the map’s viewing area and are used to display routes on the map. Displaying maps involves communication with the respective provider, so not all processing in Ride Recap takes place solely on the device. For information about how the map providers handle data, please see{' '}
+          <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+            Apple’s Privacy Policy
+          </a>{' '}
+          and{' '}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+            Google’s Privacy Policy
+          </a>
+          .
+        </p>
+        <p className={styles.paragraph}>
+          Records are not automatically deleted based on their age. Turning off “Record rides” under “Ride Recap” in Settings stops future recording but does not delete saved records. “Delete all records” on the same screen deletes all ride records stored on the device. Deleting records does not change the recording setting; turn off “Record rides” as well if you want to stop future recording.
         </p>
       </main>
     </div>
