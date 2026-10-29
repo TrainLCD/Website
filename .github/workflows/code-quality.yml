@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches:
       - main
+      - dev
 
 jobs:
   lint-and-test:
@@ -19,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -31,3 +33,10 @@ jobs:
       - name: Run Status app tests
         working-directory: apps/status
         run: npm run test
+
+      - name: Build all apps
+        run: npm run build
+
+      - name: Type check Status app
+        working-directory: apps/status
+        run: npx tsc --noEmit
