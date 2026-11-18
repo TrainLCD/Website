@@ -31,7 +31,7 @@ const devices = [
     <h2>縦画面・iPad・Watch</h2>
     <div class="card">
       <nav aria-label="端末の表示を切り替える">
-        {devices.map(({ id, label }) => <a id={id} href={'#' + id}>{label}</a>)}
+        {devices.map(({ id, label }) => <a id={id} aria-current={id === 'portrait' ? 'true' : undefined} href={'#' + id}>{label}</a>)}
       </nav>
       {devices.map((device) => (
         <article data-device={device.id}>
@@ -50,6 +50,18 @@ const devices = [
     </div>
   </div>
 </section>
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('#devices nav a');
+  function syncCurrentDevice() {
+    const current = document.querySelector('#devices nav a:target') ?? links[0];
+    for (const link of links) {
+      if (link === current) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  syncCurrentDevice();
+  window.addEventListener('hashchange', syncCurrentDevice);
+</script>
 <style>
   .devices { background: #f5f9fa; padding: clamp(48px, 5vw, 80px) clamp(20px, 5vw, 80px); color: #123a4a; scroll-margin-top: var(--header-height); }
   .inner { max-width: var(--content-max-width); margin: auto; }

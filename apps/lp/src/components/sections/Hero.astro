@@ -1,4 +1,5 @@
 ---
+import { heroImageSizes } from './heroImageSizes';
 import ImageWithoutSize from '../ImageWithoutSize.astro';
 import StoreBadges from '../StoreBadges.astro';
 import mockImage from '../../assets/images/mockup/phone-landscape.png';
@@ -24,7 +25,7 @@ const { lcpImageSources = [] } = Astro.props;
         imageSources={lcpImageSources}
         alt="TrainLCDの走行画面（湘南新宿ライン 新宿→渋谷・逗子ゆき）"
         widths={[480, 640, 768, 960, 1280, 1600]}
-        sizes="(min-width: 1280px) 1000px, 92vw"
+        sizes={heroImageSizes}
         format="webp"
         loading="eager"
         decoding="async"
