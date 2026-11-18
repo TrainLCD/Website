@@ -71,6 +71,13 @@ const devices = [
   nav a { color: inherit; font-weight: 700; padding: 9px 18px; text-decoration: none; border-radius: inherit; scroll-margin-top: calc(var(--header-height) + 24px); }
   nav a:target, nav:not(:has(:target)) a:first-child { background: #105e73; color: white; }
   article { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .card:has(nav :target) article { animation: device-fade-in 180ms ease-out; }
+  }
+  @keyframes device-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
   .card:not(:has(nav :target)) article:first-of-type,
   .card:has(#portrait:target) [data-device="portrait"],
   .card:has(#tablet:target) [data-device="tablet"],
