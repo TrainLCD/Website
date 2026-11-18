@@ -15,10 +15,12 @@ const { lcpImageSources = [] } = Astro.props;
     <p class={styles.eyebrow}>iOS・Android 対応 / 無料</p>
     <h1 class={styles.heading}>電車のあの画面、<br />持ち歩けます。</h1>
     <p class={styles.description}>
-      次に停まる駅、停車駅、行先。<br />
       車内の案内表示そのままの見た目を、あなたのスマートフォンで。
     </p>
-    <StoreBadges class={styles.stores} loading="eager" />
+    <div class={styles.download}>
+      <StoreBadges class={styles.stores} loading="eager" />
+      <p class={styles.price}>すべて無料です</p>
+    </div>
     <div class={styles.media}>
       <ImageWithoutSize
         src={mockImage}

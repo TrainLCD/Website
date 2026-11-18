@@ -5,7 +5,7 @@ import { ServiceStatus } from './ServiceStatus';
 // ページ内セクションへのアンカー。id は各セクションコンポーネント側で定義している
 const NAV_ITEMS = [
   { href: '/#features', label: 'できること' },
-  { href: '/#devices', label: '縦画面・iPad・Watch' },
+  { href: '/#devices', label: '対応端末' },
   { href: '/faq', label: 'よくある質問' },
 ] as const;
 

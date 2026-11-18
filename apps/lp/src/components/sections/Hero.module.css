@@ -13,7 +13,9 @@
 .eyebrow { grid-area: label; font-weight: 700; color: #105e73; }
 .heading { grid-area: heading; font-size: clamp(32px, 8vw, 84px); font-weight: 900; line-height: 1.27; letter-spacing: -.035em; }
 .description { grid-area: description; font-size: clamp(16px, 1.5vw, 22px); line-height: 1.7; }
-.stores { grid-area: stores; justify-content: flex-start; }
+.download { grid-area: stores; }
+.stores { justify-content: flex-start; }
+.price { margin-top: 12px; font-size: .875rem; font-weight: 600; }
 .media { grid-area: media; display: grid; align-items: center; }
 .media img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 14px #123a4a26); }
 .portrait { display: none; }

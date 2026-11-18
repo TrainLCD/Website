@@ -123,6 +123,6 @@
 }
 @media (max-width: 767px) {
   .header { padding-inline: 12px; }
-  .right { gap: 8px; }
+
   .cta { font-size: .8125rem; }
 }
