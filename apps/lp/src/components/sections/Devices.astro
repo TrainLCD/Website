@@ -59,6 +59,20 @@ const devices = [
       else link.removeAttribute('aria-current');
     }
   }
+  for (const image of document.querySelectorAll<HTMLImageElement>('#devices article img')) {
+    image.dataset.fade = 'pending';
+    const reveal = async () => {
+      try {
+        await image.decode();
+        image.dataset.fade = 'ready';
+      } catch {
+        delete image.dataset.fade;
+      }
+    };
+    image.addEventListener('load', reveal);
+    image.addEventListener('error', () => { delete image.dataset.fade; });
+    if (image.complete) void reveal();
+  }
   syncCurrentDevice();
   window.addEventListener('hashchange', syncCurrentDevice);
 </script>
@@ -72,7 +86,11 @@ const devices = [
   nav a:target, nav:not(:has(:target)) a:first-child { background: #105e73; color: white; }
   article { display: none; }
   @media (prefers-reduced-motion: no-preference) {
-    .card:has(nav :target) article { animation: device-fade-in 180ms ease-out; }
+    .card:has(nav :target) .copy,
+    .card:has(nav :target) .media :global(img[data-fade="ready"]) {
+      animation: device-fade-in 180ms ease-out;
+    }
+    .card:has(nav :target) .media :global(img[data-fade="pending"]) { opacity: 0; }
   }
   @keyframes device-fade-in {
     from { opacity: 0; }
