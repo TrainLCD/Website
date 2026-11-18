@@ -98,12 +98,12 @@
 }
 
 .cta {
-  display: none;
+  display: inline-flex;
   align-items: center;
   height: 40px;
-  padding: 0 20px;
+  padding: 0 16px;
   border-radius: 20px;
-  background-color: var(--color-accent);
+  background-color: #105e73;
   color: var(--color-white);
   font-size: 0.875rem;
   font-weight: bold;
@@ -118,6 +118,11 @@
 
 @media (min-width: 768px) {
   .cta {
-    display: inline-flex;
+    padding-inline: 24px;
   }
+}
+@media (max-width: 767px) {
+  .header { padding-inline: 12px; }
+
+  .cta { font-size: .8125rem; }
 }

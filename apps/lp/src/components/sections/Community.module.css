@@ -1,4 +1,10 @@
 .container {
+  --color-accent: #105e73;
+  --color-accent-soft: #f0f7f8;
+  --color-text: #123a4a;
+  --color-body: #123a4a;
+  --color-muted: #4b6570;
+  --color-line: #d6e4e7;
   padding: 64px 24px;
   background-color: var(--color-white);
   scroll-margin-top: var(--header-height);
@@ -83,7 +89,7 @@
 
 .linkCard:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(0, 143, 254, 0.12);
+  box-shadow: 0 8px 24px rgba(16, 94, 115, 0.12);
 }
 
 @media (min-width: 768px) {

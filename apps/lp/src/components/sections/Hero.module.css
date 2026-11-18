@@ -1,185 +1,31 @@
 .container {
-  position: relative;
-  padding-top: calc(var(--header-height) + 48px);
-  background-color: var(--color-white);
-  color: var(--color-navy);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+  padding: calc(var(--header-height) + clamp(36px, 4vw, 72px)) clamp(18px, 5vw, 80px) clamp(40px, 5vw, 80px);
+  color: #123a4a;
+  background: radial-gradient(ellipse at 22% 88%, #d9edfb, transparent 58%), linear-gradient(155deg, #fbfefe 30%, #e1f3ef);
 }
-
-@media (min-width: 768px) {
-  .container {
-    padding-top: calc(var(--header-height) + 88px);
-  }
-}
-
-.copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.inner {
+  max-width: var(--content-max-width);
+  margin: auto;
+  display: grid;
   gap: 18px;
-  padding: 0 24px;
-  text-align: center;
-  max-width: 960px;
-  z-index: 1;
+  grid-template-areas: "label" "heading" "description" "media" "stores";
 }
-
-@media (min-width: 768px) {
-  .copy {
-    gap: 24px;
+.eyebrow { grid-area: label; font-weight: 700; color: #105e73; }
+.heading { grid-area: heading; font-size: clamp(32px, 8vw, 84px); font-weight: 900; line-height: 1.27; letter-spacing: -.035em; }
+.description { grid-area: description; font-size: clamp(16px, 1.5vw, 22px); line-height: 1.7; }
+.download { grid-area: stores; }
+.stores { justify-content: flex-start; }
+.price { margin-top: 12px; font-size: .875rem; font-weight: 600; }
+.media { grid-area: media; display: grid; align-items: center; }
+.media img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 14px #123a4a26); }
+.portrait { display: none; }
+@media (min-width: 820px) {
+  .inner {
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-areas: "label label" "heading description" "heading stores" "media media";
+    column-gap: 7%;
   }
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background-color: var(--color-accent-soft);
-  border: 1px solid #b3dbff;
-  color: #0b5fa8;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-@media (min-width: 768px) {
-  .eyebrow {
-    font-size: 0.8125rem;
-  }
-}
-
-.eyebrowDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #34d399;
-  flex-shrink: 0;
-}
-
-.heading {
-  /* 320px 幅で「電車のあの画面、」が 1 行に収まるサイズ。360px 以上で拡大する */
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-}
-
-@media (min-width: 360px) {
-  .heading {
-    font-size: 2.375rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .heading {
-    font-size: 4rem;
-    line-height: 1.3;
-  }
-}
-
-.accent {
-  color: var(--color-accent);
-}
-
-.description {
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--color-body);
-}
-
-@media (min-width: 768px) {
-  .description {
-    font-size: 1.125rem;
-    /* 2 行の短い説明なので、本文より少し詰めて見出しとのまとまりを出す */
-    line-height: 1.6;
-  }
-}
-
-.pcOnlyBreak {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .pcOnlyBreak {
-    display: inline;
-  }
-}
-
-.stores {
-  margin-top: 6px;
-}
-
-.media {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin-top: 40px;
-  padding: 0 16px;
-}
-
-@media (min-width: 768px) {
-  .media {
-    margin-top: 56px;
-    padding: 0 24px;
-  }
-}
-
-.glow {
-  position: absolute;
-  inset: -20% 0 0 0;
-  background: radial-gradient(
-    ellipse at 50% 40%,
-    rgba(0, 143, 254, 0.16) 0%,
-    rgba(255, 255, 255, 0) 65%
-  );
-  pointer-events: none;
-}
-
-.mockImage {
-  position: relative;
-  width: 100%;
-  height: auto;
-  filter: drop-shadow(0 24px 48px rgba(11, 18, 32, 0.18));
-}
-
-.highlights {
-  list-style: none;
-  padding: 20px 24px;
-  margin-top: 40px;
-  width: 100%;
-  background-color: var(--color-strip);
-  border-top: 1px solid var(--color-line);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-@media (min-width: 768px) {
-  .highlights {
-    margin-top: 56px;
-    padding: 24px 64px;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 24px;
-  }
-}
-
-.highlight {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.highlightHeading {
-  font-size: 0.9375rem;
-  font-weight: bold;
-  color: var(--color-navy);
-}
-
-.highlightBody {
-  font-size: 0.75rem;
-  color: var(--color-muted);
+  .media { margin-top: 12px; grid-template-columns: 3.9fr .92fr; gap: 5%; }
+  .portrait { display: block; }
+  .heading { font-size: clamp(48px, 5.6vw, 84px); }
 }

@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  --pill-padding: 16px;
   height: 36px;
   border-radius: 18px;
   cursor: pointer;
@@ -18,6 +19,7 @@
 
 @media (min-width: 768px) {
   .container {
+    --pill-padding: 20px;
     font-size: 0.8125rem;
   }
 }
@@ -25,8 +27,12 @@
 .label {
   color: var(--color-body);
   font-weight: bold;
-  padding: 0 12px;
+  padding: 0 var(--pill-padding);
   white-space: nowrap;
+}
+
+.label:has(+ .status) {
+  padding-right: 8px;
 }
 
 .status {
@@ -34,7 +40,7 @@
   align-items: center;
   /* インジケーターの外周リング(box-shadow)が overflow: hidden で
      見切れてしまうため、リングの太さぶんの余白を確保する */
-  padding: 3px 12px 3px 3px;
+  padding: 3px var(--pill-padding) 3px 3px;
   overflow: hidden;
   animation: slideIn 0.5s ease;
 }
@@ -49,7 +55,7 @@
   to {
     opacity: 1;
     max-width: 200px;
-    padding-right: 12px;
+    padding-right: var(--pill-padding);
     padding-left: 3px;
   }
 }
@@ -67,4 +73,7 @@
   margin-left: 8px;
   color: var(--color-text);
   white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .statusText { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
 }

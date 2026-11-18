@@ -1,0 +1,117 @@
+---
+import ImageWithoutSize from '../ImageWithoutSize.astro';
+import phone from '../../assets/images/mockup/phone-portrait.png';
+import tablet from '../../assets/images/ipad.png';
+import watch from '../../assets/images/applewatch_app.png';
+import live from '../../assets/images/applewatch_la.png';
+
+const devices = [
+  {
+    id: 'portrait', label: '縦画面', title: ['縦に持てば、', '縦のまま見やすく。'],
+    body: ['端末を縦向きにすると、縦画面に最適化された表示に切り替わります。', '次に停まる駅を大きく、その先の停車駅は到着までの目安時間や乗換路線と一緒に一覧で確認できます。'],
+    note: '※ ポートレートモードは設定の「外観」から切り替えられます。',
+    images: [{ src: phone, alt: 'ポートレートモードでの走行画面（鹿児島本線 門司港駅）' }],
+  },
+  {
+    id: 'tablet', label: 'iPad', title: ['大きな画面で、', '次の駅をもっと見やすく。'],
+    body: ['iPadでも同じTrainLCD。停車駅や路線の案内を、テーブルに置いた画面で家族や同行者と一緒に確認できます。', '路線図は横長いっぱいに広がり、駅名・ナンバリング・乗換路線まで余裕を持って読めます。'],
+    note: '※ Wi-FiモデルのiPadはGPSを搭載していないため、一定条件下で動作が不安定になる場合があります。',
+    images: [{ src: tablet, alt: 'iPadでの走行画面（埼京線 新宿駅・川越ゆき）' }],
+  },
+  {
+    id: 'wearable', label: 'Watch', title: ['満員電車でも、', '手首を見れば次の駅。'],
+    body: ['スマートフォンを取り出しづらいときも、今停車している駅と次に停まる駅を手首で確認できます。', 'iPhoneのロック画面やDynamic Islandに、次の駅を常時表示。アプリを開かなくても分かります。'],
+    note: '※ Wear OS by Googleでのご使用はAndroidスマートフォンとペアリングされている必要があります。',
+    images: [{ src: watch, alt: 'Apple Watchアプリの画面' }, { src: live, alt: 'Smart StackでのLive Activities' }],
+  },
+];
+---
+<section id="devices" class="devices">
+  <div class="inner">
+    <h2>対応端末</h2>
+    <div class="card">
+      <nav aria-label="端末の表示を切り替える">
+        {devices.map(({ id, label }) => <a id={id} aria-current={id === 'portrait' ? 'true' : undefined} href={'#' + id}>{label}</a>)}
+      </nav>
+      {devices.map((device) => (
+        <article data-device={device.id}>
+          <div class="copy">
+            <h3>{device.title[0]}<br />{device.title[1]}</h3>
+            {device.body.map((line) => <p>{line}</p>)}
+            <small>{device.note}</small>
+          </div>
+          <div class="media">
+            {device.images.map(({ src, alt }) => (
+              <div class="imageSlot" style={{ '--ratio': src.width / src.height }}>
+                <ImageWithoutSize src={src} alt={alt} widths={[240, 480, 720, 960]} sizes="(min-width: 820px) 36vw, 80vw" />
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('#devices nav a');
+  function syncCurrentDevice() {
+    const current = document.querySelector('#devices nav a:target') ?? links[0];
+    for (const link of links) {
+      if (link === current) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    }
+  }
+  for (const image of document.querySelectorAll<HTMLImageElement>('#devices article img')) {
+    image.dataset.fade = 'pending';
+    const reveal = async () => {
+      try {
+        await image.decode();
+        image.dataset.fade = 'ready';
+      } catch {
+        delete image.dataset.fade;
+      }
+    };
+    image.addEventListener('load', reveal);
+    image.addEventListener('error', () => { delete image.dataset.fade; });
+    if (image.complete) void reveal();
+  }
+  syncCurrentDevice();
+  window.addEventListener('hashchange', syncCurrentDevice);
+</script>
+<style>
+  .devices { background: #f5f9fa; padding: clamp(48px, 5vw, 80px) clamp(20px, 5vw, 80px); color: #123a4a; scroll-margin-top: var(--header-height); }
+  .inner { max-width: var(--content-max-width); margin: auto; }
+  h2, h3 { font-size: clamp(28px, 3.2vw, 48px); line-height: 1.4; }
+  .card { margin-top: 24px; position: relative; border-radius: 20px; background: white; border: 1px solid #d6e4e7; overflow: clip; }
+  nav { position: absolute; z-index: 1; top: 28px; left: clamp(18px, 3vw, 48px); display: flex; border-radius: 32px; background: #eff5f6; }
+  nav a { color: inherit; font-weight: 700; padding: 9px 18px; text-decoration: none; border-radius: inherit; scroll-margin-top: calc(var(--header-height) + 24px); }
+  nav a:target, nav:not(:has(:target)) a:first-child { background: #105e73; color: white; }
+  article { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .card:has(nav :target) .copy,
+    .card:has(nav :target) .media :global(img[data-fade="ready"]) {
+      animation: device-fade-in 260ms ease-out;
+    }
+    .card:has(nav :target) .media :global(img[data-fade="pending"]) { opacity: 0; }
+  }
+  @keyframes device-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .card:not(:has(nav :target)) article:first-of-type,
+  .card:has(#portrait:target) [data-device="portrait"],
+  .card:has(#tablet:target) [data-device="tablet"],
+  .card:has(#wearable:target) [data-device="wearable"] { display: grid; }
+  .copy { padding: 92px clamp(18px, 3vw, 48px) 36px; }
+  .copy p, small { display: block; margin-top: 14px; line-height: 1.8; }
+  .media { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 36px 24px; background: linear-gradient(105deg, #ecf5fa, #e1f1ec); }
+  .imageSlot {
+    position: relative;
+    flex: 0 1 calc(340px * var(--ratio));
+    min-width: 0;
+    aspect-ratio: var(--ratio);
+  }
+  .imageSlot :global(picture) { position: absolute; inset: 0; }
+  .media :global(img) { display: block; width: 100%; height: 100%; object-fit: contain; }
+  @media (min-width: 820px) { article { grid-template-columns: 1fr 1fr; } }
+</style>
