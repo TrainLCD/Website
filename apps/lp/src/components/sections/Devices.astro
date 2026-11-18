@@ -42,7 +42,9 @@ const devices = [
           </div>
           <div class="media">
             {device.images.map(({ src, alt }) => (
-              <ImageWithoutSize src={src} alt={alt} widths={[240, 480, 720, 960]} sizes="(min-width: 820px) 36vw, 80vw" />
+              <div class="imageSlot" style={{ '--ratio': src.width / src.height }}>
+                <ImageWithoutSize src={src} alt={alt} widths={[240, 480, 720, 960]} sizes="(min-width: 820px) 36vw, 80vw" />
+              </div>
             ))}
           </div>
         </article>
@@ -88,7 +90,7 @@ const devices = [
   @media (prefers-reduced-motion: no-preference) {
     .card:has(nav :target) .copy,
     .card:has(nav :target) .media :global(img[data-fade="ready"]) {
-      animation: device-fade-in 180ms ease-out;
+      animation: device-fade-in 260ms ease-out;
     }
     .card:has(nav :target) .media :global(img[data-fade="pending"]) { opacity: 0; }
   }
@@ -103,7 +105,13 @@ const devices = [
   .copy { padding: 92px clamp(18px, 3vw, 48px) 36px; }
   .copy p, small { display: block; margin-top: 14px; line-height: 1.8; }
   .media { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 36px 24px; background: linear-gradient(105deg, #ecf5fa, #e1f1ec); }
-  .media :global(picture) { min-width: 0; }
-  .media :global(img) { display: block; width: auto; max-width: 100%; max-height: 340px; margin: auto; object-fit: contain; }
+  .imageSlot {
+    position: relative;
+    flex: 0 1 calc(340px * var(--ratio));
+    min-width: 0;
+    aspect-ratio: var(--ratio);
+  }
+  .imageSlot :global(picture) { position: absolute; inset: 0; }
+  .media :global(img) { display: block; width: 100%; height: 100%; object-fit: contain; }
   @media (min-width: 820px) { article { grid-template-columns: 1fr 1fr; } }
 </style>
