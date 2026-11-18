@@ -11,3 +11,5 @@
   .coverage { grid-column: 1 / -1; }
   .coverage a { margin-left: auto; }
 }
+.cardTitle, .coverage strong { display: flex; align-items: center; gap: 10px; }
+.cardTitle svg, .coverage strong svg { flex: none; width: 24px; height: 24px; color: #105e73; }
