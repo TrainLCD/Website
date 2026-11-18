@@ -74,7 +74,7 @@ const Footer = () => {
               <p className={styles.appName}>TrainLCD</p>
             </div>
             <p className={styles.description}>
-              電車のあの画面、持ち歩けます。
+              TrainLCDはMITライセンスのオープンソースプロジェクトです。
             </p>
             <div className={styles.socialList}>
               <a

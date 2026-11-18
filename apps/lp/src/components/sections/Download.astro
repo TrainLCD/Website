@@ -1,18 +1,13 @@
 ---
-import SectionHeading from '../SectionHeading';
 import StoreBadges from '../StoreBadges.astro';
 import styles from './Download.module.css';
 ---
-
 <section class={styles.container} id="download">
   <div class={styles.inner}>
-    <SectionHeading num="06" label="ダウンロード" center>
-      次の移動で、
-      <br />
-      使ってみませんか。
-    </SectionHeading>
-    <p class={styles.body}>iPhone・iPad・Androidに対応。無料で使えます。</p>
+    <div>
+      <h2>次の移動で、使ってみませんか。</h2>
+      <p>iPhone・iPad・Androidに対応。無料で使えます。</p>
+    </div>
     <StoreBadges />
-    <a href="/faq" class={styles.faqLink}>気になることは、よくある質問へ →</a>
   </div>
 </section>

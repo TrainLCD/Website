@@ -8,7 +8,7 @@
 
 .storeLink {
   display: inline-flex;
-  width: 160px;
+  width: min(34vw, 148px);
   transition: opacity 250ms;
 }
 
@@ -18,6 +18,6 @@
 
 @media (min-width: 768px) {
   .storeLink {
-    width: 200px;
+    width: 148px;
   }
 }

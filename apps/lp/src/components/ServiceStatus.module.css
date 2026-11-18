@@ -68,3 +68,6 @@
   color: var(--color-text);
   white-space: nowrap;
 }
+@media (max-width: 767px) {
+  .statusText { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+}

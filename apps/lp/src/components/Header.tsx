@@ -5,9 +5,7 @@ import { ServiceStatus } from './ServiceStatus';
 // ページ内セクションへのアンカー。id は各セクションコンポーネント側で定義している
 const NAV_ITEMS = [
   { href: '/#features', label: 'できること' },
-  { href: '/#portrait', label: '縦画面' },
-  { href: '/#tablet', label: 'iPad' },
-  { href: '/#wearable', label: 'Watch' },
+  { href: '/#devices', label: '縦画面・iPad・Watch' },
   { href: '/faq', label: 'よくある質問' },
 ] as const;
 
@@ -15,7 +13,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <a href="/" className={styles.appLink}>
+        <a href="/" aria-label="TrainLCD トップ" className={styles.appLink}>
           <AppLogo width={25.26} height={32} />
           <span className={styles.title}>TrainLCD</span>
         </a>
